@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "SpaceGrotesk-Light";
+  src: url("../fonts/SpaceGrotesk-Light.ttf");
+}
+@font-face {
+  font-family: "SpaceGrotesk-Medium";
+  src: url("../fonts/SpaceGrotesk-Medium.ttf");
+}
+@font-face {
+  font-family: "SpaceGrotesk-SemiBold";
+  src: url("../fonts/SpaceGrotesk-SemiBold.ttf");
+}
+@font-face {
+  font-family: "SpaceGrotesk-Bold";
+  src: url("../fonts/SpaceGrotesk-Bold.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "SpaceGrotesk-SemiBold", sans-serif, Arial;
+  color: var(--primary-color);
+  scroll-behavior: smooth;
+}
+
+body{
+  background-color: var(--primary-background) !important;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a, input, button, textarea {
+  border: none;
+  outline: none;
+  text-decoration: none !important;
+  color: var(--primary-link);
+}
+
+a:hover {
+  text-decoration: none !important;
+  color: var(--primary-link-hover);
+}
+
+body{
+  background-color: #f7f7f7;
+}

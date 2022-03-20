@@ -1,0 +1,28 @@
+::-webkit-scrollbar {
+  width: 0.4rem;
+  background: transparent;
+  position: fixed;
+  // height: 0.4rem;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #a9a9a9;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  display: none !important;
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+::-webkit-scrollbar:horizontal {
+  height: 0.4rem;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #7e7e7e; 
+}
+
+label{
+  cursor: pointer;
+}

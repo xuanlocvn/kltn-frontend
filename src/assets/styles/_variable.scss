@@ -1,0 +1,271 @@
+$blue: #0073b7;
+$indigo:  #6610f2;
+$lightblue: #3c8dbc;
+$pink:    #e83e8c;
+$red:     #FF4D4D;
+$yellow:  #ffc107;
+$green:   #2EE662;
+$cyan:    #17a2b8;
+$navy: #001f3f;
+$teal: #00E5E5;
+$olive: #3d9970;
+$lime: #01ff70;
+$orange: #ff851b;
+$fuchsia: #f012be;
+$purple: #605ca8;
+$maroon: #d81b60;
+$dark: #444444;
+$black: #111;
+$gray-x-light: #d2d6de;
+$white:    #fff;
+$light:    #f7f7f7;
+$gray-100: #f7f7f7;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+$colors: (
+  "blue": $blue,
+  "indigo": $indigo,
+  "purple": $purple,
+  "pink": $pink,
+  "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "green": $green,
+  "teal": $teal,
+  "cyan": $cyan,
+  "white": $white,
+  "gray": $gray-600,
+  "gray-dark": $gray-800,
+  "lightblue": $lightblue,
+  "navy": $navy,
+  "olive": $olive,
+  "lime": $lime,
+  "fuchsia": $fuchsia,
+  "maroon": $maroon,
+  "dark": $dark,
+);
+
+
+
+$blue-10:      rgba($color: $blue, $alpha: 0.1);
+$indigo-10:    rgba($color: $indigo, $alpha: 0.1);
+$lightblue-10: rgba($color: $lightblue, $alpha: 0.1);
+$pink-10:      rgba($color: $pink, $alpha: 0.1);
+$red-10:       rgba($color: $red, $alpha: 0.1);
+$yellow-10:    rgba($color: $yellow, $alpha: 0.1);
+$green-10:     rgba($color: $green, $alpha: 0.1);
+$cyan-10:      rgba($color: $cyan, $alpha: 0.1);
+$navy-10:      rgba($color: $navy, $alpha: 0.1);
+$teal-10:      rgba($color: $teal, $alpha: 0.1);
+$olive-10:     rgba($color: $olive, $alpha: 0.1);
+$lime-10:      rgba($color: $lime, $alpha: 0.1);
+$orange-10:    rgba($color: $orange, $alpha: 0.1);
+$fuchsia-10:   rgba($color: $fuchsia, $alpha: 0.1);
+$purple-10:    rgba($color: $purple, $alpha: 0.1);
+$maroon-10:    rgba($color: $maroon, $alpha: 0.1);
+$dark-10:      rgba($color: $dark, $alpha: 0.1);
+$black-10:     rgba($color: $black, $alpha: 0.1);
+$white-10:     rgba($color: $white, $alpha: 0.1);
+$gray-10:      rgba($color: $gray-600, $alpha: 0.1);
+$gray-dark-10: rgba($color: $gray-800, $alpha: 0.1);
+
+$colors-10: (
+  "blue-10": $blue-10,
+  "indigo-10": $indigo-10,
+  "purple-10": $purple-10,
+  "pink-10": $pink-10,
+  "red-10": $red-10,
+  "orange-10": $orange-10,
+  "yellow-10": $yellow-10,
+  "green-10": $green-10,
+  "teal-10": $teal-10,
+  "cyan-10": $cyan-10,
+  "white-10": $white-10,
+  "gray-10": $gray-10,
+  "gray-dark-10": $gray-dark-10,
+  "lightblue-10": $lightblue-10,
+  "navy-10": $navy-10,
+  "olive-10": $olive-10,
+  "lime-10": $lime-10,
+  "fuchsia-10": $fuchsia-10,
+  "maroon-10": $maroon-10,
+  "dark-10": $dark-10,
+);
+
+
+
+$blue-25:      rgba($color: $blue, $alpha: 0.25);
+$indigo-25:    rgba($color: $indigo, $alpha: 0.25);
+$lightblue-25: rgba($color: $lightblue, $alpha: 0.25);
+$pink-25:      rgba($color: $pink, $alpha: 0.25);
+$red-25:       rgba($color: $red, $alpha: 0.25);
+$yellow-25:    rgba($color: $yellow, $alpha: 0.25);
+$green-25:     rgba($color: $green, $alpha: 0.25);
+$cyan-25:      rgba($color: $cyan, $alpha: 0.25);
+$navy-25:      rgba($color: $navy, $alpha: 0.25);
+$teal-25:      rgba($color: $teal, $alpha: 0.25);
+$olive-25:     rgba($color: $olive, $alpha: 0.25);
+$lime-25:      rgba($color: $lime, $alpha: 0.25);
+$orange-25:    rgba($color: $orange, $alpha: 0.25);
+$fuchsia-25:   rgba($color: $fuchsia, $alpha: 0.25);
+$purple-25:    rgba($color: $purple, $alpha: 0.25);
+$maroon-25:    rgba($color: $maroon, $alpha: 0.25);
+$dark-25:      rgba($color: $dark, $alpha: 0.25);
+$black-25:     rgba($color: $black, $alpha: 0.25);
+$white-25:     rgba($color: $white, $alpha: 0.25);
+$gray-25:      rgba($color: $gray-600, $alpha: 0.25);
+$gray-dark-25: rgba($color: $gray-800, $alpha: 0.25);
+
+$colors-25: (
+  "blue-25": $blue-25,
+  "indigo-25": $indigo-25,
+  "purple-25": $purple-25,
+  "pink-25": $pink-25,
+  "red-25": $red-25,
+  "orange-25": $orange-25,
+  "yellow-25": $yellow-25,
+  "green-25": $green-25,
+  "teal-25": $teal-25,
+  "cyan-25": $cyan-25,
+  "white-25": $white-25,
+  "gray-25": $gray-25,
+  "gray-dark-25": $gray-dark-25,
+  "lightblue-25": $lightblue-25,
+  "navy-25": $navy-25,
+  "olive-25": $olive-25,
+  "lime-25": $lime-25,
+  "fuchsia-25": $fuchsia-25,
+  "maroon-25": $maroon-25,
+  "dark-25": $dark-25,
+);
+
+$blue-50:      rgba($color: $blue, $alpha: 0.50);
+$indigo-50:    rgba($color: $indigo, $alpha: 0.50);
+$lightblue-50: rgba($color: $lightblue, $alpha: 0.50);
+$pink-50:      rgba($color: $pink, $alpha: 0.50);
+$red-50:       rgba($color: $red, $alpha: 0.50);
+$yellow-50:    rgba($color: $yellow, $alpha: 0.50);
+$green-50:     rgba($color: $green, $alpha: 0.50);
+$cyan-50:      rgba($color: $cyan, $alpha: 0.50);
+$navy-50:      rgba($color: $navy, $alpha: 0.50);
+$teal-50:      rgba($color: $teal, $alpha: 0.50);
+$olive-50:     rgba($color: $olive, $alpha: 0.50);
+$lime-50:      rgba($color: $lime, $alpha: 0.50);
+$orange-50:    rgba($color: $orange, $alpha: 0.50);
+$fuchsia-50:   rgba($color: $fuchsia, $alpha: 0.50);
+$purple-50:    rgba($color: $purple, $alpha: 0.50);
+$maroon-50:    rgba($color: $maroon, $alpha: 0.50);
+$dark-50:      rgba($color: $dark, $alpha: 0.50);
+$black-50:     rgba($color: $black, $alpha: 0.50);
+$white-50:     rgba($color: $white, $alpha: 0.50);
+$gray-50:      rgba($color: $gray-600, $alpha: 0.50);
+$gray-dark-50: rgba($color: $gray-800, $alpha: 0.50);
+
+$colors-50: (
+  "blue-50": $blue-50,
+  "indigo-50": $indigo-50,
+  "purple-50": $purple-50,
+  "pink-50": $pink-50,
+  "red-50": $red-50,
+  "orange-50": $orange-50,
+  "yellow-50": $yellow-50,
+  "green-50": $green-50,
+  "teal-50": $teal-50,
+  "cyan-50": $cyan-50,
+  "white-50": $white-50,
+  "gray-50": $gray-50,
+  "gray-dark-50": $gray-dark-50,
+  "lightblue-50": $lightblue-50,
+  "navy-50": $navy-50,
+  "olive-50": $olive-50,
+  "lime-50": $lime-50,
+  "fuchsia-50": $fuchsia-50,
+  "maroon-50": $maroon-50,
+  "dark-50": $dark-50,
+);
+
+$light-text-background: (
+  "blue": $blue,
+  "indigo": $indigo,
+  "purple": $purple,
+  "pink": $pink,
+  "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "green": $green,
+  "teal": $teal,
+  "cyan": $cyan,
+  "black": $black,
+  "lightblue": $lightblue,
+  "navy": $navy,
+  "olive": $olive,
+  "lime": $lime,
+  "fuchsia": $fuchsia,
+  "maroon": $maroon,
+  "dark": $dark,
+);
+
+$background-light: $gray-100;
+$background-dark:#0C0B13;
+$popup-darker: #141321;
+$popup-dark: #201D30;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+$gap-breakpoints: (
+  none: 0px,
+  xs: 10px,
+  sm: 20px,
+  md: 30px,
+  lg: 40px,
+  xl: 50px
+);
+
+@each $name, $value in $colors{
+  .text-c-#{$name} {
+    color: #{$value};
+  }
+}
+
+:root{
+	--primary-background: #{$background-light};
+	--primary-color: #{$dark};
+  --primary-color-blur: #{$dark-50};
+  --primary-link: #{$indigo};
+  --primary-link-hover: #{$indigo-50};
+  --primary-link-active: #{$indigo};
+  --primary-link-inactive: #{$indigo-50};
+  --primary-border-color: #{$gray-400};
+  --primary-popup-background: #fff;
+  --primary-hover-background: #{$gray-400};
+  --primary-userbox-background: rgba(0, 0, 0, .08);
+  --primary-address-color: #{$dark};
+}
+
+.dark-theme{
+  --primary-background: #{$background-dark};
+	--primary-color: #fff;
+  --primary-color-blur: #{$white-50};
+  --primary-link: #{$white};
+  --primary-link-hover: #{$white-50};
+  --primary-link-active: #{$white};
+  --primary-link-inactive: #{$white-50};
+  --primary-border-color: #{$gray-700};
+  --primary-popup-background: #{$popup-darker};
+  --primary-hover-background: #{$gray-700};
+  --primary-userbox-background: #1A1C23;
+  --primary-address-color: #{$white-50};
+}
