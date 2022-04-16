@@ -1,0 +1,346 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="./css/index.css" />
+		<title>Hồ Sơ Sinh Viên</title>
+		<script src="https://use.fontawesome.com/52a8bdd4d2.js"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="header">
+				<h1>Blockchain</h1>
+			</div>
+			<div class="student">
+				<div class="student_info">
+					<div class="infor_cover"></div>
+					<div class="info_avt d-flex align-items-center">
+						<div class="col col-3">
+							<img
+								class="avt"
+								src="https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg"
+								alt="This is image"
+							/>
+						</div>
+						<div class="info col col-9">
+							<div class="mb-3">
+								<h2>Mai Nguyen Duc Tho</h2>
+							</div>
+							<div class="d-flex justify-content-between">
+								<div>
+									<p>
+										<span>Mã số sinh viên:</span>
+										18520369
+									</p>
+									<p>
+										<span>Ngành học:</span>
+										Công nghệ Thông tin
+									</p>
+								</div>
+								<div>
+									<p>
+										<span>Lớp sinh hoạt:</span>
+										CNTT2018
+									</p>
+									<p>
+										<span>Hệ đào tạo:</span>
+										Chính quy
+									</p>
+								</div>
+								<div>
+									<p>
+										<span>Khoa:</span>
+										KTTT
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="student_form mt-5 d-flex">
+					<div class="form_tab col col-3">
+						<p>
+							<button class="active">Thông tin sinh viên</button>
+						</p>
+						<p>
+							<button>Tài khoản</button>
+						</p>
+						<p>
+							<button>Chứng nhận</button>
+						</p>
+					</div>
+					<div class="form_body d-flex flex-column col col-9">
+						<div class="studentInformation">
+							<div>
+								<h2>Thông Tin Sinh Viên</h2>
+							</div>
+							<div class="body_form mt-3">
+								<form action="" method="post" class="d-flex flex-column">
+									<div>
+										<div class="d-flex flex-column mb-2 row">
+											<div class="d-flex flex-column">
+												<label for="name">Họ và tên <span style="color: red">*</span></label>
+												<input type="text" placeholder="Họ và tên" name="name" />
+											</div>
+										</div>
+										<div class="d-flex mb-2 row">
+											<div class="d-flex flex-column col col-3">
+												<label for="birthday ">Ngày sinh <span style="color: red">*</span></label>
+												<input type="date" placeholder="Ngày sinh" name="birthday" />
+											</div>
+											<div class="d-flex flex-column col col-3">
+												<label for="gender">Giới tính <span style="color: red">*</span></label>
+												<select name="gender" id="gender">
+													<option value="Nam">Nam</option>
+													<option value="Nữ">Nữ</option>
+												</select>
+											</div>
+											<div class="d-flex flex-column col col-3">
+												<label for="name">Nơi sinh <span style="color: red">*</span></label>
+												<input type="text" placeholder="Nơi sinh" name="name" />
+											</div>
+											<div class="d-flex flex-column col col-3">
+												<label for="dantoc">Dân tộc <span style="color: red">*</span></label>
+												<input type="text" placeholder="Dân tộc" name="dantoc" />
+											</div>
+										</div>
+										<div class="d-flex justify-content-between row">
+											<div class="d-flex flex-column mb-2 col col-4">
+												<label for="idnumber">CMND/CCCD <span style="color: red">*</span></label>
+												<input type="text" placeholder="CMND/CCCD" name="idnumber" />
+											</div>
+											<div class="d-flex flex-column mb-2 col col-4">
+												<label for="ngaycap">Ngày cấp <span style="color: red">*</span></label>
+												<input type="date" name="ngaycap" value="today" />
+											</div>
+											<div class="d-flex flex-column col col-4">
+												<label for="noicap">Nơi cấp <span style="color: red">*</span></label>
+												<input type="text" placeholder="Nơi cấp" name="noicap" />
+											</div>
+										</div>
+										<div class="d-flex flex-column mb-2 row">
+											<div class="d-flex flex-column">
+												<label for="address1">Địa chỉ tạm trú</label>
+												<input type="text" placeholder="Địa chỉ tập trú" name="address1" />
+											</div>
+										</div>
+										<div class="d-flex flex-column row">
+											<div class="d-flex flex-column">
+												<label for="address2">Địa chỉ thường trú</label>
+												<input type="text" placeholder="Địa chỉ thường trú" name="address2" />
+											</div>
+										</div>
+									</div>
+									<button class="submitbtn" type="submit">Cập nhật</button>
+								</form>
+							</div>
+						</div>
+
+						<div class="studentAccount">
+							<div>
+								<h2>Tài Khoản Sinh Viên</h2>
+							</div>
+							<div class="body_form mt-3">
+								<form action="" method="post" class="d-flex flex-column">
+									<div class="d-flex mb-2">
+										<div class="d-flex flex-column flex-grow-1">
+											<label for="walletAddress">Địa chỉ ví<span style="color: red">*</span></label>
+											<input type="text" placeholder="0x1a2C3..." name="walletAddress" />
+										</div>
+										<button class="submitbtn" type="submit">Cập nhật</button>
+									</div>
+								</form>
+								<div>
+									<div>
+										<label class="d-block">Số phần thưởng đã tích lũy</label>
+										<div class="d-flex justify-content-around">
+											<div>
+												<p class="amountToken d-inline-block">5000</p>
+												<p class="d-inline-block" style="font-weight: bold">Token</p>
+											</div>
+										</div>
+									</div>
+									<div class="historyTable">
+										<table>
+											<tr class="row">
+												<th class="col col-3 text-center">Mã nhiệm vụ</th>
+												<th class="col col-3 text-center">Tên nhiệm</th>
+												<th class="col col-3 text-center">Biến động số dư</th>
+												<th class="col col-3 text-center">Thời gian</th>
+											</tr>
+											<tr class="row">
+												<td class="col col-3 text-center">123</td>
+												<td class="col col-3 text-center">Mùa Hè Xanh</td>
+												<td class="col col-3 text-center">
+													<span class="text-success fw-bold">+50</span>
+												</td>
+												<td class="col col-3 text-center">13/12/2000</td>
+											</tr>
+											<tr class="row">
+												<td class="col col-3 text-center">123</td>
+												<td class="col col-3 text-center">Học phí học kỳ I</td>
+												<td class="col col-3 text-center">
+													<span class="text-danger fw-bold">-500</span>
+												</td>
+												<td class="col col-3 text-center">13/12/2000</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="confirmedInfo">
+							<div style="width: 100%; height: 500px">
+								<div>
+									<h2>Môn Học Hoàn Thành</h2>
+								</div>
+								<div class="body_form mt-3" style="width: 100%; height: 100%">
+									<div>
+										<table style="width: 95%; margin: auto">
+											<tr class="element d-flex row align-items-center">
+												<td class="col col-2 text-center">
+													<p><span class="fw-bolder fs-5 text-success">&#10003;</span></p>
+												</td>
+
+												<td class="col col-4 align-content-center text-center">
+													<p><b>Từ ngày:</b> 1/1/2021</p>
+													<p><b>Đến ngày:</b> 22/2/2021</p>
+												</td>
+
+												<td class="subject col col-6 text-center">Nhập môn lập trình</td>
+											</tr>
+
+											<tr class="element d-flex row align-items-center">
+												<td class="col col-2 text-center">
+													<p><span class="fw-bolder fs-5 text-success">&#10003;</span></p>
+												</td>
+
+												<td class="col col-4 align-content-center text-center">
+													<p><b>Từ ngày:</b> 1/1/2021</p>
+													<p><b>Đến ngày:</b> 22/2/2021</p>
+												</td>
+
+												<td class="subject col col-6 text-center">Nhập môn lập trình</td>
+											</tr>
+											<tr class="element d-flex row align-items-center">
+												<td class="col col-2 text-center">
+													<p><span class="fw-bolder fs-5 text-success">&#10003;</span></p>
+												</td>
+
+												<td class="col col-4 align-content-center text-center">
+													<p><b>Từ ngày:</b> 1/1/2021</p>
+													<p><b>Đến ngày:</b> 22/2/2021</p>
+												</td>
+
+												<td class="subject col col-6 text-center">Nhập môn lập trình</td>
+											</tr>
+											<tr class="element d-flex row align-items-center">
+												<td class="col col-2 text-center">
+													<p><span class="fw-bolder fs-5 text-success">&#10003;</span></p>
+												</td>
+
+												<td class="col col-4 align-content-center text-center">
+													<p><b>Từ ngày:</b> 1/1/2021</p>
+													<p><b>Đến ngày:</b> 22/2/2021</p>
+												</td>
+
+												<td class="subject col col-6 text-center">Nhập môn lập trình</td>
+											</tr>
+											<tr class="element d-flex row align-items-center">
+												<td class="col col-2 text-center">
+													<p><span class="fw-bolder fs-5 text-success">&#10003;</span></p>
+												</td>
+
+												<td class="col col-4 align-content-center text-center">
+													<p><b>Từ ngày:</b> 1/1/2021</p>
+													<p><b>Đến ngày:</b> 22/2/2021</p>
+												</td>
+
+												<td class="subject col col-6 text-center">Nhập môn lập trình</td>
+											</tr>
+											<tr class="element d-flex row align-items-center">
+												<td class="col col-2 text-center">
+													<p><span class="fw-bolder fs-5 text-success">&#10003;</span></p>
+												</td>
+
+												<td class="col col-4 align-content-center text-center">
+													<p><b>Từ ngày:</b> 1/1/2021</p>
+													<p><b>Đến ngày:</b> 22/2/2021</p>
+												</td>
+
+												<td class="subject col col-6 text-center">Nhập môn lập trình</td>
+											</tr>
+											<tr class="element d-flex row align-items-center">
+												<td class="col col-2 text-center">
+													<p><span class="fw-bolder fs-5 text-success">&#10003;</span></p>
+												</td>
+
+												<td class="col col-4 align-content-center text-center">
+													<p><b>Từ ngày:</b> 1/1/2021</p>
+													<p><b>Đến ngày:</b> 22/2/2021</p>
+												</td>
+
+												<td class="subject col col-6 text-center">Nhập môn lập trình</td>
+											</tr>
+											<tr class="element d-flex row align-items-center">
+												<td class="col col-2 text-center">
+													<p><span class="fw-bolder fs-5 text-success">&#10003;</span></p>
+												</td>
+
+												<td class="col col-4 align-content-center text-center">
+													<p><b>Từ ngày:</b> 1/1/2021</p>
+													<p><b>Đến ngày:</b> 22/2/2021</p>
+												</td>
+
+												<td class="subject col col-6 text-center">Nhập môn lập trình</td>
+											</tr>
+											<tr class="element d-flex row align-items-center">
+												<td class="col col-2 text-center">
+													<p><span class="fw-bolder fs-5 text-success">&#10003;</span></p>
+												</td>
+
+												<td class="col col-4 align-content-center text-center">
+													<p><b>Từ ngày:</b> 1/1/2021</p>
+													<p><b>Đến ngày:</b> 22/2/2021</p>
+												</td>
+
+												<td class="subject col col-6 text-center">Nhập môn lập trình</td>
+											</tr>
+											<tr class="element d-flex row align-items-center">
+												<td class="col col-2 text-center">
+													<p><span class="fw-bolder fs-5 text-success">&#10003;</span></p>
+												</td>
+
+												<td class="col col-4 align-content-center text-center">
+													<p><b>Từ ngày:</b> 1/1/2021</p>
+													<p><b>Đến ngày:</b> 22/2/2021</p>
+												</td>
+
+												<td class="subject col col-6 text-center">Nhập môn lập trình</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="header mt-5">
+				<h1>Blockchain</h1>
+			</div>
+		</div>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
