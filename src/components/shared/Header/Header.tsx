@@ -38,6 +38,7 @@ function Header() {
           setAccount(makeShotAccount(accounts[0]));
           window.localStorage.account = accounts[0];
           if (accounts[0] == 'undefined') setAccount(null);
+          dispatch(connect(new Web3(ethereum)));
         });
         ethereum.on('disconnect', (code, reason) => {
           console.log(`Ethereum Provider connection disconnect: ${reason}`);
@@ -64,7 +65,7 @@ function Header() {
 
   const loadWeb3 = async () => {
     if (window.ethereum != undefined) {
-      // dispatch(connect(new Web3(window.ethereum)));
+      dispatch(connect(new Web3(window.ethereum)));
       await window.ethereum
         .request({ method: 'eth_requestAccounts' })
         .then((result) => {
@@ -82,8 +83,13 @@ function Header() {
   return (
     <div className="header">
       <div className="container header__account">
+        <div>
+          <Link to="/sign-in">{account}</Link>
+        </div>
         {account ? (
-          <Link to="/student-info">{account}</Link>
+          <Link to={'/student-info/' + window.localStorage.account}>
+            {account}
+          </Link>
         ) : (
           <a onClick={loadWeb3}>Connect Wallet</a>
         )}
@@ -98,7 +104,6 @@ function Header() {
             </a>
           </div>
         )}
-        <button onClick={() => console.log(web3)}></button>
       </div>
     </div>
   );
