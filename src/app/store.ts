@@ -1,11 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
-import headerReducer from '../components/shared/Header/HeaderSlice';
+import signInReducer from '../pages/Sign-in/SignInSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    web3: headerReducer,
+    web3: signInReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

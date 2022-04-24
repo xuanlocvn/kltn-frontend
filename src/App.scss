@@ -25,6 +25,20 @@
   color: rgb(112, 76, 182);
 }
 
+.loading {
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .spinner {
+    position: relative;
+    top: 47vh;
+    left: 43vw;
+  }
+}
+
 @keyframes App-logo-float {
   0% {
     transform: translateY(0);

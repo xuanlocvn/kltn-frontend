@@ -8,7 +8,7 @@ import { convertLocalTime } from 'src/utils';
 import StudentAccount from './StudentAccount';
 import { useSearchParams } from 'react-router-dom';
 import { useAppSelector } from 'src/app/hooks';
-import { selectWeb3 } from 'src/components/shared/Header/HeaderSlice';
+import { selectWeb3 } from 'src/pages/Sign-in/SignInSlice';
 import StudentCertificate from './StudentCertificate';
 
 StudentBody.propTypes = {
