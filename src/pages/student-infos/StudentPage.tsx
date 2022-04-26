@@ -6,7 +6,6 @@ import StudentBody from './components/StudentBody';
 
 function StudentPage() {
   const { address } = useParams();
-  console.log(address);
   const navigate = useNavigate();
   useEffect(() => {
     address == 'undefined' && navigate('/sign-in');

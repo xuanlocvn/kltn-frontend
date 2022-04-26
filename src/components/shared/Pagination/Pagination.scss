@@ -1,0 +1,51 @@
+.pagination {
+  div {
+    cursor: pointer;
+
+    p {
+      padding: 2px 10px;
+      justify-items: center;
+      border-radius: 50%;
+      color: black;
+    }
+
+    p:hover{
+      background-color: #33aaff;
+      color: white;
+    }
+
+    .active {
+      padding: 2px 10px;
+      justify-items: center;
+      border-radius: 50%;
+      background-color: #33aaff;
+      color: white;
+    }
+  }
+
+  .lastpage p:hover{
+    background-color: white;
+    color: rgb(112, 109, 109);
+  }
+
+  .firstpage p:hover{
+    background-color: white;
+    color: rgb(112, 109, 109);
+  }
+
+  .disable {
+    cursor: text;
+  }
+
+  .disable p {
+    cursor: text;
+    color: rgb(112, 109, 109);
+  }
+
+  .disable p:hover {
+    cursor: text;
+    color: rgb(112, 109, 109);
+    background-color: white;
+  }
+
+}

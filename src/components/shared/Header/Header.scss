@@ -4,15 +4,13 @@
   background-color: aqua;
   
   &__account {
-    position: relative;
     color: white;
     font-weight: bold;
-    font-size: 20px;
-    line-height: 50px;
+    font-size: 1.2 rem;
 
     a {
-      position: absolute;
-      right: 0;
+      // position: absolute;
+      // right: 20px;
       cursor: pointer;
       text-decoration-line: none;
     }

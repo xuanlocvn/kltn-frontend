@@ -1,42 +1,35 @@
-// import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import { AppThunk, RootState } from 'src/app/store';
-// import Web3 from 'web3';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from 'src/app/store';
 
-// export interface Web3State {
-//   value: Web3;
-// }
+export interface RoleState {
+  account: string;
+  role: string;
+}
 
-// const initialState: Web3State = {
-//   value: null,
-// };
+const initialState: RoleState = {
+  account: null,
+  role: null,
+};
 
-// export const headerSlice = createSlice({
-//   name: 'web3',
-//   initialState,
-//   reducers: {
-//     connect: (state, action: PayloadAction<Web3>) => {
-//       state.value = action.payload;
-//       console.log('Injected Web3');
-//     },
-//     disconnect: (state) => {
-//       state.value = null;
-//     },
-//   },
-// });
+export const headerSlice = createSlice({
+  name: 'web3',
+  initialState,
+  reducers: {
+    addRole: (state, action: PayloadAction<RoleState>) => {
+      state.account = action.payload.account;
+      state.role = action.payload.role;
+      console.log('Role: ', action.payload.role);
+      console.log('Account: ', action.payload.account);
+    },
+    removeRole: (state) => {
+      state.role = null;
+      state.account = null;
+    },
+  },
+});
 
-// export const { connect, disconnect } = headerSlice.actions;
+export const { addRole, removeRole } = headerSlice.actions;
 
-// export const selectWeb3 = (state: RootState) => state.web3.value;
+export const selectRole = (state: RootState) => state.role;
 
-// export const connectWeb3 =
-//   (web3: Web3): AppThunk =>
-//   (dispatch, getState) => {
-//     const currentValue = selectWeb3(getState());
-//     if (currentValue == null) {
-//       dispatch(connect(web3));
-//     }
-//   };
-
-// export default headerSlice.reducer;
-
-export const a = 'hello';
+export default headerSlice.reducer;
