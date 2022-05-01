@@ -27,7 +27,12 @@
     "noImplicitAny": false,
     "strictBindCallApply": false
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json", "config-overrides.js"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.json",
+    "config-overrides.js"
+  ],
   "exclude": ["node_modules"],
   "ts-node": {
     "require": ["tsconfig-paths/register"]

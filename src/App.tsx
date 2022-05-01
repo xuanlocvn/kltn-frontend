@@ -2,8 +2,8 @@ import React, { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './App.scss';
 import SpinnerApp from './components/shared/Spinner/Spinner';
-const Header = React.lazy(() => import('./components/shared/Header/Header'));
-const Router = React.lazy(() => import('./routes/routes'));
+import Header from './components/shared/Header/Header';
+import Router from './routes/routes';
 
 function App() {
   return (

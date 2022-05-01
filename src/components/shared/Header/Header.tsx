@@ -67,9 +67,9 @@ function Header() {
           {role.role == ROLE.STUDENT && (
             <>
               <Link to={'/mission'}>Nhiệm vụ</Link>
-              <Link to={'/student-info'}>Môn học</Link>
-              <Link to={'/student-info'}>Học bổng</Link>
-              <Link to={'/student-info'}>Học phí</Link>
+              <Link to={'/subject'}>Môn học</Link>
+              <Link to={'/scholarship'}>Học bổng</Link>
+              <Link to={'/tuition'}>Học phí</Link>
             </>
           )}
         </div>
