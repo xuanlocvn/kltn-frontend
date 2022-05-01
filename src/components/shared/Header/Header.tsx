@@ -5,7 +5,7 @@ import {
   connect,
   disconnect,
   selectWeb3,
-} from '../../../pages/Sign-in/SignInSlice';
+} from '../../../pages/sign-in/SignInSlice';
 import { CustomWindow } from 'src/utils/window';
 import { makeShotAccount } from 'src/utils';
 import './Header.scss';

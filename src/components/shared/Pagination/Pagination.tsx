@@ -20,10 +20,11 @@ Pagination.defaultProps = {
 function Pagination(props) {
   let { currentPage } = props;
   const { totalPage, onPaginate } = props;
-  const [pages, setPages] = useState([1]);
+  const [pages, setPages] = useState([]);
 
   useEffect(() => {
-    for (let i = 2; i <= totalPage; i++) {
+    setPages([]);
+    for (let i = 1; i <= totalPage; i++) {
       setPages((prev) => [...prev, i]);
     }
   }, [totalPage]);
