@@ -3,8 +3,6 @@ import { useSearchParams } from 'react-router-dom';
 
 function useList(props) {
   const SubjectList = props;
-  console.log(SubjectList);
-  console.log(props);
   const [totalPage, setTotalPage] = useState(null);
   const [page, setPage] = useState(null);
   const [filter, setFilter] = useState('all');
