@@ -11,9 +11,12 @@ const ScholarshipListPage = lazy(
   () => import('src/pages/scholarship/scholarship-list/ScholarshipListPage'),
 );
 const SignInPage = lazy(() => import('src/pages/sign-in/SignInPage'));
-const StudentPage = lazy(() => import('src/pages/student-infos/StudentPage'));
+const StudentPage = lazy(() => import('src/pages/student-info/StudentPage'));
 const SubjectListPage = lazy(
   () => import('src/pages/subject/subject-list/SubjectListPage'),
+);
+const TuitionListPage = lazy(
+  () => import('src/pages/tuition/tuition-list/TuitionListPage'),
 );
 
 function Router() {
@@ -31,6 +34,9 @@ function Router() {
 
       <Route path="/scholarship" element={<ScholarshipListPage />} />
       <Route path="/scholarship/:scholarshipId" element={<NotFound />} />
+
+      <Route path="/tuition" element={<TuitionListPage />} />
+      <Route path="/tuition/:tuitionId" element={<NotFound />} />
 
       <Route path="/not-found" element={<NotFound />} />
       <Route path="*" element={<NotFound />} />

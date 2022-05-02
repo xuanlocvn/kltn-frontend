@@ -1,0 +1,417 @@
+/** @format */
+table th,
+td {
+	padding: 5px;
+}
+
+.student {
+	margin-top: 20px;
+}
+
+.student_info {
+	width: 100%;
+	height: 300px;
+	border-radius: 20px;
+	box-shadow: 5px 6px 7px rgba(0, 0, 0, 0.3);
+}
+
+.student_info .infor_cover {
+	height: 50%;
+	width: 100%;
+	background-color: black;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	// background-image: url(https://khtc.uit.edu.vn/sites/all/themes/whitebull/images/slideshow/UIT.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-attachment: fixed;
+	background-position: 0px -100px;
+}
+
+.student_info .info_avt {
+	height: 50%;
+	background-color: #2c394c;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	position: relative;
+
+  .avt {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    margin-left: 70px;
+    position: relative;
+    top: -80px;
+  }
+
+  h2 {
+	  color: rgba(255, 255, 255, 0.9);
+  }
+
+  p {
+  	color: rgba(255, 255, 255, 0.9);
+  	font-size: 15px;
+  	margin-right: 100px;
+    justify-content: left;
+
+    span {
+	    font-weight: bolder;
+    }
+  }
+
+  .info {
+  	padding-left: 40px;
+  }
+}
+
+.form_tab p button {
+	width: 100%;
+	height: 55px;
+	border-style: none;
+	border-radius: 15px;
+	box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+	background-color: white;
+	font-weight: bolder;
+	font-size: 20px;
+}
+
+.form_tab p button:hover {
+	background-color: #33aaff;
+	transition: background-color 0.9s;
+	color: white;
+}
+
+.form_tab p button.active {
+	background-color: #33aaff;
+	cursor: text;
+	color: white;
+}
+
+.student .student_form .form_body {
+	padding-left: 40px;
+}
+
+.form_body h2 {
+	font-weight: bolder;
+}
+
+.form_body .body_form {
+	width: 100%;
+	padding: 50px;
+	border-radius: 15px;
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+	height: auto;
+}
+
+.form_body .body_form label {
+	font-weight: bold;
+	color: rgba(0, 0, 0, 0.7);
+}
+.form_body .body_form input,
+select {
+	border-radius: 10px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.4);
+	height: 45px;
+	padding-left: 15px;
+	align-items: center;
+	line-height: 40px;
+	outline: none;
+}
+
+.form_body .body_form input::placeholder {
+	font-size: 14px;
+}
+
+.form_body .body_form div div input:focus,
+select:focus {
+	outline: aquamarine solid 3px;
+	border-style: none;
+	transition: border-style 3s;
+	transition: outline 0.15s;
+}
+.form_body .body_form div div input:hover,
+select:hover {
+	outline: #33aaff solid 3px;
+	border-style: none;
+	transition: border-style 3s;
+	transition: outline 0.15s;
+}
+
+.form_body .body_form form button.submitbtn {
+	background-color: #33aaff;
+	border: none;
+	border-radius: 10px;
+	height: 50px;
+	margin-top: 20px;
+	font-weight: bolder;
+	color: white;
+	font-size: 20px;
+}
+
+.form_body .body_form form button.submitbtn:hover {
+	background-color: white;
+	color: black;
+	border: solid 1px black;
+	transition: background-color 0.3s;
+	transition: color 0.3s;
+}
+
+.studentAccount .body_form button.submitbtn {
+	position: relative;
+	bottom: -4px;
+	height: 45px !important;
+	font-size: 14px !important;
+	width: 80px;
+}
+
+.studentAccount .body_form input {
+	margin-right: 10px !important;
+}
+
+.studentAccount .body_form .amountToken {
+	font-size: 100px;
+	font-weight: 500;
+	color: #33aaff;
+}
+
+.studentAccount .body_form .historyTable {
+	border-radius: 15px;
+	border: solid 0.5px rgba(0, 0, 0, 0.3);
+	padding: 20px;
+}
+
+.body_form table {
+	width: 100%;
+}
+
+.studentAccount .body_form table tr th {
+	border-bottom: solid 2px;
+}
+
+.studentAccount .body_form table tr {
+	border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+}
+
+.studentAccount .body_form table tr:last-child {
+	border-bottom: solid 1px rgba(0, 0, 0, 0);
+}
+
+.confirmedInfo .body_form div {
+	height: 100%;
+	width: 100%;
+	overflow-y: scroll;
+	overflow-clip-margin: inherit;
+}
+
+/* width */
+.confirmedInfo .body_form div::-webkit-scrollbar {
+	margin-right: 5px;
+	width: 8px;
+}
+
+/* Track */
+.confirmedInfo .body_form div::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 20px;
+}
+
+/* Handle */
+.confirmedInfo .body_form div::-webkit-scrollbar-thumb {
+	background: #295592;
+	border-radius: 20px;
+}
+
+/* Handle on hover */
+.confirmedInfo .body_form div::-webkit-scrollbar-thumb:hover {
+	background: #128fe9;
+}
+
+.confirmedInfo .body_form .element {
+	box-shadow: 2px 2px 6px;
+	margin-bottom: 25px;
+	padding: 10px;
+	border-radius: 15px;
+	margin-right: 15px;
+}
+
+.confirmedInfo .body_form .element .subject {
+	border: solid 1px;
+	background-color: #33aaff;
+	box-shadow: 2px 2px 5px #2c394c;
+	border-radius: 10px;
+	color: white;
+	font-weight: bolder;
+	font-size: 20px;
+}
+
+.confirmedInfo .body_form .element td p {
+	margin-bottom: 0;
+}
+
+.list h2 {
+	font-weight: bolder;
+}
+
+.list_filter .filter_btn {
+	background-color: white;
+	border: solid 0.5px rgba(0, 0, 0, 0.3);
+	padding: 7px;
+	border-radius: 20px;
+	width: 130px;
+}
+.list_filter .filter_btn:hover {
+	background-color: #33aaff;
+	color: white;
+	border: none;
+	transition: background-color 0.3s;
+}
+
+.list_filter .filter_btn.active {
+	background-color: #33aaff;
+	color: white;
+	border: none;
+	transition: background-color 0.3s;
+}
+
+.list .mission .mission_element {
+	border: solid 1px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+	border-radius: 30px;
+	position: relative;
+	box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
+	border: none;
+	transform: none;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	width: 32%;
+}
+
+.list .mission .mission_element:nth-child(3n) {
+	margin-right: 0px;
+}
+
+.list .mission .mission_element p {
+	margin-bottom: 0;
+}
+
+.mission .mission_element .element_status {
+	color: green;
+}
+.mission .mission_element .join_btn {
+	background-color: #33aaff;
+	border-radius: 10px;
+	border: none;
+	padding: 5px;
+	color: white;
+	position: absolute;
+	right: 30px;
+	bottom: 25px;
+	width: 80px;
+}
+
+.mission .mission_element .join_btn:hover {
+	background-color: #0946a1;
+}
+.list .mission .mission_element:hover {
+	box-shadow: 3px 3px 5px 5px rgba(0, 0, 0, 0.3);
+	transition: box-shadow 0.3s;
+	transform: scale(1.01, 1.01);
+	transition: transform 0.3s;
+}
+
+.cancel_btn {
+	background-color: #7e8081 !important;
+}
+
+.pagination {
+	width: max-content;
+	margin: auto;
+	margin-top: 20px;
+}
+
+.pagination div {
+	font-size: 16px;
+	margin-right: 25px;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.products .products-filter .filter {
+	width: 90%;
+	border-radius: 15px;
+	border: solid 1px rgba(0, 0, 0, 0.5);
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+	padding: 15px;
+}
+
+.products .products-filter .filter .filter-item {
+	background-color: rgba(0, 0, 0, 0.03);
+	margin-bottom: 10px;
+	border-radius: 15px;
+	padding: 10px;
+}
+
+.filter-item input,
+select {
+	width: 100%;
+	border-radius: 10px;
+	border: none;
+	font-size: 13px;
+	padding: 5px 10px;
+}
+
+select .select-item {
+	border-radius: 10px;
+	border: 2px solid red;
+}
+
+.products-list .product-item {
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	padding: 0px;
+	border-radius: 20px;
+	width: 23%;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.products-list .product-item:nth-child(4n) {
+	margin-right: 0;
+}
+
+.products-list .product-item img {
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+
+.products-list .product-item .product-info {
+	background-color: rgba(0, 0, 0, 0.03);
+	width: 100%;
+	margin: 0;
+	padding: 10px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	font-size: 10px;
+}
+
+.products-list .product-item:hover {
+	box-shadow: 1px 3px 6px;
+}
+
+.products-list .product-item:hover img {
+	transform: scale(1.06, 1.06);
+	transition: transform 0.3s;
+}
+
+.mission {
+  .mission_element button.cancel{
+    background-color: #7e8081;
+  }
+  .mission_element button.cancel:hover{
+    background-color: black;
+  }
+  .mission_element a {
+    text-decoration: none;
+  }
+}

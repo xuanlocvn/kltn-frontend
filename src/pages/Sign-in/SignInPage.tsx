@@ -21,10 +21,6 @@ function SignInPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    web3 && account && navigate(`/student-info/${account}`);
-  });
-
-  useEffect(() => {
     const loadAccountFromWallet = async () => {
       const ethereum = window.ethereum;
       if (ethereum != undefined) {
@@ -47,6 +43,10 @@ function SignInPage() {
 
     loadAccountFromWallet();
   }, []);
+
+  useEffect(() => {
+    web3 && account && navigate(`/student-info/${account}`);
+  });
 
   const loadWeb3 = async () => {
     if (window.ethereum != undefined) {
