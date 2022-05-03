@@ -173,7 +173,7 @@ function SubjectListPage() {
               onClick={() => console.log('Hello')}
               style={{ height: '164px' }}
             >
-              <Link to={'/subject/' + subject.subjectId}>
+              <Link to={'/subjects/' + subject.subjectId}>
                 <h5>
                   <strong>{subject.name}</strong>
                 </h5>

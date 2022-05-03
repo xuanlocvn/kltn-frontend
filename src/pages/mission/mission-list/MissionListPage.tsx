@@ -172,7 +172,7 @@ function MissionListPage() {
               onClick={() => console.log('Hello')}
               style={{ height: '164px' }}
             >
-              <Link to={'/mission/' + mission.missionId}>
+              <Link to={'/missions/' + mission.missionId}>
                 <h5>
                   <strong>{mission.name}</strong>
                 </h5>

@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import ProductListPage from 'src/pages/product/product-list/ProductListPage';
 const NotFound = lazy(() => import('src/components/shared/NotFound/NotFound'));
 const MissionDetail = lazy(
   () => import('src/pages/mission/mission-detail/MissionDetail'),
@@ -30,17 +31,20 @@ function Router() {
       <Route path="/sign-in" element={<SignInPage />} />
       <Route path="/student-info/:address" element={<StudentPage />} />
 
-      <Route path="/mission" element={<MissionListPage />} />
-      <Route path="/mission/:missionId" element={<MissionDetail />} />
+      <Route path="/missions" element={<MissionListPage />} />
+      <Route path="/missions/:missionId" element={<MissionDetail />} />
 
-      <Route path="/subject" element={<SubjectListPage />} />
-      <Route path="/subject/:subjectId" element={<SubjectDetail />} />
+      <Route path="/subjects" element={<SubjectListPage />} />
+      <Route path="/subjects/:subjectId" element={<SubjectDetail />} />
 
-      <Route path="/scholarship" element={<ScholarshipListPage />} />
-      <Route path="/scholarship/:scholarshipId" element={<NotFound />} />
+      <Route path="/scholarships" element={<ScholarshipListPage />} />
+      <Route path="/scholarships/:scholarshipId" element={<NotFound />} />
 
-      <Route path="/tuition" element={<TuitionListPage />} />
-      <Route path="/tuition/:tuitionId" element={<NotFound />} />
+      <Route path="/tuitions" element={<TuitionListPage />} />
+      <Route path="/tuitions/:tuitionId" element={<NotFound />} />
+
+      <Route path="products" element={<ProductListPage />} />
+      <Route path="products/:productId" element={<NotFound />} />
 
       <Route path="/not-found" element={<NotFound />} />
       <Route path="*" element={<NotFound />} />

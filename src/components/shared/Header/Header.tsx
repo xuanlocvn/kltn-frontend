@@ -63,13 +63,14 @@ function Header() {
     <div className="header container header__account d-flex justify-content-between align-items-center">
       <h1 className="col col-5">BLOCK CHAIN</h1>
       <div className="col col-7 d-flex align-items-center justify-content-between">
-        <div className="col col-5 d-flex justify-content-between">
+        <div className="col col-7 d-flex justify-content-between">
           {role.role == ROLE.STUDENT && (
             <>
-              <Link to={'/mission'}>Nhiệm vụ</Link>
-              <Link to={'/subject'}>Môn học</Link>
-              <Link to={'/scholarship'}>Học bổng</Link>
-              <Link to={'/tuition'}>Học phí</Link>
+              <Link to={'/missions'}>Nhiệm vụ</Link>
+              <Link to={'/subjects'}>Môn học</Link>
+              <Link to={'/scholarships'}>Học bổng</Link>
+              <Link to={'/tuitions'}>Học phí</Link>
+              <Link to={'/products'}>Vật phẩm</Link>
             </>
           )}
         </div>
