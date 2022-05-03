@@ -19,6 +19,10 @@ const TuitionListPage = lazy(
   () => import('src/pages/tuition/tuition-list/TuitionListPage'),
 );
 
+const SubjectDetail = lazy(
+  () => import('src/pages/subject/subject-detail/SubjectDetail'),
+);
+
 function Router() {
   return (
     <Routes>
@@ -30,7 +34,7 @@ function Router() {
       <Route path="/mission/:missionId" element={<MissionDetail />} />
 
       <Route path="/subject" element={<SubjectListPage />} />
-      <Route path="/subject/:subjectId" element={<NotFound />} />
+      <Route path="/subject/:subjectId" element={<SubjectDetail />} />
 
       <Route path="/scholarship" element={<ScholarshipListPage />} />
       <Route path="/scholarship/:scholarshipId" element={<NotFound />} />

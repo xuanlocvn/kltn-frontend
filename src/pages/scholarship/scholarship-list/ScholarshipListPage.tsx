@@ -185,7 +185,7 @@ function ScholarshipListPage() {
               {subject.joined ? (
                 <button className="join_btn cancel">Hủy</button>
               ) : (
-                <button className="join_btn join">Tham gia</button>
+                <button className="join_btn join">Đăng ký</button>
               )}
             </div>
           ))}

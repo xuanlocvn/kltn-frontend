@@ -183,9 +183,9 @@ function TuitionListPage() {
                 <p className="element_status">{subject.status}</p>
               </Link>
               {subject.joined ? (
-                <button className="join_btn cancel">Hủy</button>
+                <button className="join_btn cancel">Đã đóng</button>
               ) : (
-                <button className="join_btn join">Tham gia</button>
+                <button className="join_btn join">Đóng</button>
               )}
             </div>
           ))}

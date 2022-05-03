@@ -3,45 +3,37 @@ import { Collapse } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from 'src/app/hooks';
 import { selectRole } from 'src/components/shared/Header/HeaderSlice';
-import './MissionDetail.scss';
+import './SubjectDetail.scss';
 
 const detailInfo = {
-  id: '123456',
-  name: 'Mùa Hè Xanh 2018',
+  id: 'IE212.M11',
+  name: 'Công nghệ Dữ liệu lớn',
   status: 'Đang mở',
+  lecturerName: 'Mai Nguyen Duc Tho',
+  faculty: 'KTTT',
   startTime: '9am - 02.01.2021',
   endTime: '9am - 02.06.2021',
   endTimeToRegister: '9am - 31.01.2021',
   numberOfParticipate: '50',
   totalJoindParticipate: '200',
-  object: 'Toàn thể sinh viên',
   totalToken: 100,
   unit: 'Đoàn trường',
-  description: `Mùa hè xanh là một hoạt động thường niên, do Hội Sinh viên Việt
-              Nam tổ chức, nhằm hướng sinh viên đến các hoạt động công ích xã
-              hội, như: làm đường, làm cầu, xây nhà tình thương, tham gia xóa mù
-              chữ và xóa mù tin học,... Hoạt động này được đông đảo sinh viên
-              tham gia, và hầu hết các trường đại học, cao đẳng, trung học
-              chuyên nghiệp ở Việt Nam đều tham gia.Mùa Hè Xanh là một chương
-              trình tình nguyện diễn ra trong kỳ nghỉ hè, là một trong những
-              hoạt động vô cùng ý nghĩa của các bạn học sinh, sinh viên. Nó
-              không chỉ đơn thuần là một chuyến đi dài mà còn là một chuỗi các
-              hoạt động xã hội mang ý nghĩa lớn lao và tính nhân văn sâu sắc.`,
+  description: `Môn học giới thiệu tổng quan về khái niệm, đặc trưng cũng như những thách thức của Big data (Khả năng phân tích, dự đoán nhằm trích xuất một giá trị lớn hơn từ dữ liệu). Giới thiệu một số phương pháp và công cụ phổ biến để khai thác và quản lý Big data (Hadoop, MapReduce và Spark).`,
 };
 
-function MissionDetail() {
-  const { missionId } = useParams();
+function SubjectDetail() {
+  const { subjectId } = useParams();
   const [open, setOpen] = useState(false);
   const role = useAppSelector(selectRole);
   const [detail, setDetail] = useState(null);
 
   useEffect(() => {
-    const getDetail = async (missionId: number | string) => {
-      console.log(missionId);
+    const getDetail = async (subjectId: number | string) => {
+      console.log(subjectId);
       setDetail(detailInfo);
     };
 
-    getDetail(missionId);
+    getDetail(subjectId);
   }, []);
 
   return (
@@ -49,18 +41,28 @@ function MissionDetail() {
       {detail != null && (
         <>
           <div className="detail-info">
-            <div className="d-flex justify-content-between">
-              <h2>Mùa Hè Xanh 2018</h2>
-              <div>
-                <p>
-                  <span className="status status__open">{detail.status}</span>
-                </p>
-                <p>
-                  <b>Mã nhiệm vụ: </b> {detail.id}
-                </p>
-              </div>
+            <div className="mb-5">
+              <h2>
+                {detail.name} - {detail.id}{' '}
+                <span className="status status__open">{detail.status}</span>
+              </h2>
             </div>
             <div className="d-flex justify-content-around">
+              <div>
+                <p>
+                  <b>Giảng viên: </b> {detail.lecturerName}
+                </p>
+                <p>
+                  <b>Sỉ số: </b> {detail.numberOfParticipate}/{' '}
+                  {detail.totalToken}
+                </p>
+                <p>
+                  <b>Khoa quản lý: </b> {detail.faculty}
+                </p>
+                <p>
+                  <b>Token nhận được: </b> {detail.totalToken} coin
+                </p>
+              </div>
               <div>
                 <p>
                   <b>Thời gian diễn ra: </b>
@@ -70,20 +72,8 @@ function MissionDetail() {
                 <p>
                   <b>Kết thúc đăng ký: </b> {detail.endTimeToRegister}
                 </p>
-              </div>
-              <div>
                 <p>
-                  <b>Số lượng tham gia: </b> {detail.numberOfParticipate}/{' '}
-                  {detail.totalToken}
-                </p>
-                <p>
-                  <b>Đối tượng: </b> {detail.object}
-                </p>
-                <p>
-                  <b>Token nhận được: </b> {detail.totalToken} coin
-                </p>
-                <p>
-                  <b>Đơn vị tổ chức: </b> {detail.unit}
+                  <b>Kết thúc đánh giá: </b> {detail.endTimeToRegister}
                 </p>
               </div>
             </div>
@@ -91,6 +81,7 @@ function MissionDetail() {
               <button className="disable">Tham gia ngay</button>
             </div>
           </div>
+
           <div
             className="detail-description mt-5"
             onClick={() => setOpen(!open)}
@@ -150,4 +141,4 @@ function MissionDetail() {
   );
 }
 
-export default MissionDetail;
+export default SubjectDetail;
