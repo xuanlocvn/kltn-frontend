@@ -60,7 +60,7 @@ function StudentCoverInfo(props) {
                 {props.class}
               </p>
               <p>
-                <span>Hệ đào tạo:</span>
+                <span>Khóa</span>
                 {props.system}
               </p>
             </div>

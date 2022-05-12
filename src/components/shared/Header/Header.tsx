@@ -13,7 +13,6 @@ import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { Link } from 'react-router-dom';
 import { addRole, removeRole, selectRole } from './HeaderSlice';
 import { ROLE } from 'src/utils/enum';
-
 declare let window: CustomWindow;
 
 function Header() {
@@ -60,37 +59,39 @@ function Header() {
   });
 
   return (
-    <div className="header container header__account d-flex justify-content-between align-items-center">
-      <h1 className="col col-5">BLOCK CHAIN</h1>
-      <div className="col col-7 d-flex align-items-center justify-content-between">
-        <div className="col col-7 d-flex justify-content-between">
-          {role.role == ROLE.STUDENT && (
-            <>
-              <Link to={'/missions'}>Nhiệm vụ</Link>
-              <Link to={'/subjects'}>Môn học</Link>
-              <Link to={'/scholarships'}>Học bổng</Link>
-              <Link to={'/tuitions'}>Học phí</Link>
-              <Link to={'/products'}>Vật phẩm</Link>
-            </>
-          )}
-        </div>
-        <div className="">
-          {account && (
-            <Link to={'/student-info/' + window.localStorage.account}>
-              <div className="d-flex align-items-center">
-                <span>{account}</span>
-                <img
-                  src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png"
-                  alt=""
-                  width={45}
-                  height={45}
-                />
-              </div>
-            </Link>
-          )}
+    <>
+      <div className="header container header__account d-flex justify-content-between align-items-center">
+        <h1 className="col col-5">BLOCK CHAIN</h1>
+        <div className="col col-7 d-flex align-items-center justify-content-between">
+          <div className="col col-7 d-flex justify-content-between">
+            {role.role == ROLE.STUDENT && (
+              <>
+                <Link to={'/missions'}>Nhiệm vụ</Link>
+                <Link to={'/subjects'}>Môn học</Link>
+                <Link to={'/scholarships'}>Học bổng</Link>
+                <Link to={'/tuitions'}>Học phí</Link>
+                <Link to={'/products'}>Vật phẩm</Link>
+              </>
+            )}
+          </div>
+          <div className="">
+            {account && (
+              <Link to={'/student-info/' + window.localStorage.account}>
+                <div className="d-flex align-items-center">
+                  <span>{account}</span>
+                  <img
+                    src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png"
+                    alt=""
+                    width={45}
+                    height={45}
+                  />
+                </div>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

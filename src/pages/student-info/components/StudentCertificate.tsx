@@ -59,7 +59,7 @@ function StudentCertificate(props: {
       </div>
       <div style={{ width: '100%', height: '500px', marginTop: '100px' }}>
         <div>
-          <h2>Chứng Chỉ</h2>
+          <h2>Chứng Chỉ Hoàn Thành Nhiệm Vụ</h2>
         </div>
         <div
           className="body_form mt-3"

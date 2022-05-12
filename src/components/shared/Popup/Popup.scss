@@ -1,0 +1,40 @@
+.pop-up_container {
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  .pop-up {
+    position: relative;
+    width: 50%;
+    margin: 11% auto;
+    height: min-content;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 10px 15px 15px rgba($color: #000000, $alpha: 0.3);
+
+    &__child {
+      position: relative;
+      padding: 50px 0;
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    &__close {
+      position: absolute; 
+      right: 20px;
+      top: 10px;
+      cursor: pointer;
+      color: rgba($color: #000000, $alpha: 0.3);
+      font-weight: 100;
+    }
+
+    &__close:hover {
+      color: black;
+    }
+  }
+}

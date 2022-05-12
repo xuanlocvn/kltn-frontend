@@ -47,7 +47,7 @@ function StudentAccount(props) {
         </form>
         <div>
           <div>
-            <label className="d-block">Số phần thưởng đã tích lũy</label>
+            <label className="d-block">Số dư token</label>
             <div className="d-flex justify-content-around">
               <div>
                 <p className="amountToken d-inline-block">{totalToken}</p>
@@ -61,8 +61,8 @@ function StudentAccount(props) {
             <table>
               <tbody>
                 <tr className="row">
-                  <th className="col col-3 text-center">Mã nhiệm vụ</th>
-                  <th className="col col-3 text-center">Tên nhiệm</th>
+                  <th className="col col-3 text-center">STT</th>
+                  <th className="col col-3 text-center">Tên</th>
                   <th className="col col-3 text-center">Biến động số dư</th>
                   <th className="col col-3 text-center">Thời gian</th>
                 </tr>

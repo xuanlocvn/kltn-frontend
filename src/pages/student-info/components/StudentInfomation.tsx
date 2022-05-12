@@ -97,7 +97,7 @@ function StudentInfomation(props) {
                   name="gender"
                   id="gender"
                   value={studentInfo.gender}
-                  onChange={() => console.log('changed')}
+                  // onChange={(e) => (studentInfo.gender = e.target.value)}
                 >
                   <option value="Nam">Nam</option>
                   <option value="Nữ">Nữ</option>
