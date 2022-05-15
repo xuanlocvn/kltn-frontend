@@ -6,12 +6,9 @@ import { CustomWindow } from 'src/utils/window';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { useNavigate } from 'react-router-dom';
 import './SignInPage.scss';
+import { ProviderConnectInfo } from 'src/interfaces';
 
 declare let window: CustomWindow;
-
-interface ProviderConnectInfo {
-  readonly chainId: string;
-}
 
 function SignInPage() {
   const web3 = useAppSelector(selectWeb3);
