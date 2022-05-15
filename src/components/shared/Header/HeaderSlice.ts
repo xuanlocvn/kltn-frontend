@@ -12,7 +12,7 @@ const initialState: RoleState = {
 };
 
 export const headerSlice = createSlice({
-  name: 'web3',
+  name: 'role',
   initialState,
   reducers: {
     addRole: (state, action: PayloadAction<RoleState>) => {

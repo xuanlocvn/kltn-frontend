@@ -13,6 +13,8 @@ import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { Link } from 'react-router-dom';
 import { addRole, removeRole, selectRole } from './HeaderSlice';
 import { ROLE } from 'src/utils/enum';
+import { accessControlContractService } from 'src/contracts/access-control.service';
+
 declare let window: CustomWindow;
 
 function Header() {
@@ -28,9 +30,12 @@ function Header() {
         dispatch(connect(new Web3(ethereum)));
         await window.ethereum
           .request({ method: 'eth_requestAccounts' })
-          .then((accounts) => {
+          .then(async (accounts) => {
             setAccount(makeShotAccount(accounts[0]));
-            dispatch(addRole({ account: accounts[0], role: ROLE.STUDENT }));
+            const role = await accessControlContractService.getRole(
+              accounts[0],
+            );
+            dispatch(addRole({ account: accounts[0], role: role }));
             window.localStorage.account = accounts[0];
           });
         ethereum.on('chainChanged', (chainId: string) => {
@@ -40,7 +45,8 @@ function Header() {
         ethereum.on('accountsChanged', async (accounts) => {
           console.log(`Account: ${accounts[0]}`);
           setAccount(makeShotAccount(accounts[0]));
-          dispatch(addRole({ account: accounts[0], role: ROLE.STUDENT }));
+          const role = await accessControlContractService.getRole(accounts[0]);
+          dispatch(addRole({ account: accounts[0], role: role }));
           window.localStorage.account = accounts[0];
           if (accounts[0] == 'undefined') setAccount(null);
           dispatch(connect(new Web3(ethereum)));
@@ -75,8 +81,12 @@ function Header() {
             )}
           </div>
           <div className="">
-            {account && (
-              <Link to={'/student-info/' + window.localStorage.account}>
+            {account && role.role && (
+              <Link
+                to={`/${role.role.toLocaleLowerCase()}/${
+                  window.localStorage.account
+                }`}
+              >
                 <div className="d-flex align-items-center">
                   <span>{account}</span>
                   <img

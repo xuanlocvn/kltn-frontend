@@ -16,6 +16,7 @@ export const signInSlice = createSlice({
   reducers: {
     connect: (state, action: PayloadAction<Web3>) => {
       state.value = action.payload;
+      console.log(state.value);
       console.log('Injected Web3');
     },
     disconnect: (state) => {

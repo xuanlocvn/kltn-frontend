@@ -1,10 +1,14 @@
 import ContractBase from './contract-base';
 import MarketplaceABI from './abi/Marketplace.json';
 import { transactionService } from './transaction.service';
+import { CONFIG } from 'src/configs/config.enum';
+import { configService } from 'src/configs/config.service';
 
 class MarketplaceContractService extends ContractBase {
-  readonly contractABI: any = MarketplaceABI;
-  readonly contractAddress: string = process.env.MARKETPLACE_ADDRESS;
+  readonly contractABI: any = MarketplaceABI.abi;
+  readonly contractAddress: string = configService.getConfig(
+    CONFIG.MARKETPLACE_ADDRESS,
+  );
 
   async list(
     _itemId: number | string,

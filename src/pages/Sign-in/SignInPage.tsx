@@ -7,11 +7,13 @@ import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { useNavigate } from 'react-router-dom';
 import './SignInPage.scss';
 import { ProviderConnectInfo } from 'src/interfaces';
+import { selectRole } from 'src/components/shared/Header/HeaderSlice';
 
 declare let window: CustomWindow;
 
 function SignInPage() {
   const web3 = useAppSelector(selectWeb3);
+  const role = useAppSelector(selectRole);
   const dispatch = useAppDispatch();
   const [account, setAccount] = useState(null);
   const [metamask, setMetamask] = useState(false);
@@ -42,7 +44,10 @@ function SignInPage() {
   }, []);
 
   useEffect(() => {
-    web3 && account && navigate(`/student-info/${account}`);
+    web3 &&
+      account &&
+      role.role &&
+      navigate(`/${role.role.toLocaleLowerCase()}/${account}`);
   });
 
   const loadWeb3 = async () => {

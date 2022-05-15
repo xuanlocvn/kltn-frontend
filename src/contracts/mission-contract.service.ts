@@ -3,7 +3,7 @@ import MissionContracABI from './abi/MissionContract.json';
 import { transactionService } from './transaction.service';
 
 class MissionContracService extends ContractBase {
-  readonly contractABI: any = MissionContracABI;
+  readonly contractABI: any = MissionContracABI.abi;
 
   async getParticipantList(_contractAddress: string) {
     const contract = await this.loadContract(_contractAddress);

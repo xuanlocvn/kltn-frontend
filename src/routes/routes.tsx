@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import AdminPage from 'src/pages/admin/AdminPage';
 import ProductListPage from 'src/pages/product/product-list/ProductListPage';
 const NotFound = lazy(() => import('src/components/shared/NotFound/NotFound'));
 const MissionDetail = lazy(
@@ -29,7 +30,7 @@ function Router() {
     <Routes>
       <Route path="/" element={<Navigate to="/sign-in" replace />} />
       <Route path="/sign-in" element={<SignInPage />} />
-      <Route path="/student-info/:address" element={<StudentPage />} />
+      <Route path="/student/:address" element={<StudentPage />} />
 
       <Route path="/missions" element={<MissionListPage />} />
       <Route path="/missions/:missionId" element={<MissionDetail />} />
@@ -45,6 +46,8 @@ function Router() {
 
       <Route path="products" element={<ProductListPage />} />
       <Route path="products/:productId" element={<NotFound />} />
+
+      <Route path="admin/:adminAddress" element={<AdminPage />} />
 
       <Route path="/not-found" element={<NotFound />} />
       <Route path="*" element={<NotFound />} />

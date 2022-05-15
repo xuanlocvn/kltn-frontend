@@ -4,10 +4,18 @@ td {
 	padding: 5px;
 }
 
+.header {
+	height: 60px;
+	background-color: #33aaff;
+}
+.header h1 {
+	color: white;
+	padding-left: 10px;
+}
+
 .student {
 	margin-top: 20px;
 }
-
 .student_info {
 	width: 100%;
 	height: 300px;
@@ -21,7 +29,7 @@ td {
 	background-color: black;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
-	// background-image: url(https://khtc.uit.edu.vn/sites/all/themes/whitebull/images/slideshow/UIT.jpg);
+	background-image: url(https://khtc.uit.edu.vn/sites/all/themes/whitebull/images/slideshow/UIT.jpg);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-attachment: fixed;
@@ -34,34 +42,31 @@ td {
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
 	position: relative;
+}
+.avt {
+	width: 200px;
+	height: 200px;
+	border-radius: 100px;
+	margin-left: 70px;
+	position: absolute;
+	top: -80px;
+}
 
-  .avt {
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
-    margin-left: 70px;
-    position: relative;
-    top: -80px;
-  }
+.student_info .info_avt h2 {
+	color: rgba(255, 255, 255, 0.9);
+}
 
-  h2 {
-	  color: rgba(255, 255, 255, 0.9);
-  }
+.student_info .info_avt p {
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 15px;
+	margin-right: 100px;
+}
+.student_info .info_avt .info {
+	padding-left: 40px;
+}
 
-  p {
-  	color: rgba(255, 255, 255, 0.9);
-  	font-size: 15px;
-  	margin-right: 100px;
-    justify-content: left;
-
-    span {
-	    font-weight: bolder;
-    }
-  }
-
-  .info {
-  	padding-left: 40px;
-  }
+.student_info .info_avt p span {
+	font-weight: bolder;
 }
 
 .form_tab p button {
@@ -89,6 +94,7 @@ td {
 
 .student .student_form .form_body {
 	padding-left: 40px;
+  padding-right: 0;
 }
 
 .form_body h2 {
@@ -110,8 +116,7 @@ td {
 .form_body .body_form input,
 .form_body .body_form select {
 	border-radius: 10px;
-	border-style: solid;
-	border-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.4);
 	height: 45px;
 	padding-left: 15px;
 	align-items: center;
@@ -139,10 +144,13 @@ select:hover {
 }
 
 .form_body .body_form form button.submitbtn {
+  display: inline-block;
 	background-color: #33aaff;
 	border: none;
 	border-radius: 10px;
 	height: 50px;
+  width: 100px;
+  margin-left: 10px;
 	margin-top: 20px;
 	font-weight: bolder;
 	color: white;
@@ -403,3 +411,8 @@ select .select-item {
 	transform: scale(1.06, 1.06);
 	transition: transform 0.3s;
 }
+
+.img-avt input{
+  display: none;
+}
+

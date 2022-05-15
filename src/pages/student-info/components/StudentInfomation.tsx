@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { StudentInfo } from 'src/utils/window';
 import { convertLocalTime } from 'src/utils';
@@ -37,6 +37,12 @@ StudentInfomation.defaultProps = {
 
 function StudentInfomation(props) {
   const { onSubmit, studentInfo } = props;
+
+  const [gender, setGender] = useState('Nam');
+
+  useEffect(() => {
+    setGender(studentInfo.gender);
+  }, [studentInfo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,8 +102,11 @@ function StudentInfomation(props) {
                 <select
                   name="gender"
                   id="gender"
-                  value={studentInfo.gender}
-                  // onChange={(e) => (studentInfo.gender = e.target.value)}
+                  value={gender}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    setGender(e.target.value);
+                  }}
                 >
                   <option value="Nam">Nam</option>
                   <option value="Nữ">Nữ</option>

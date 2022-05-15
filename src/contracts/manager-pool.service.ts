@@ -1,10 +1,14 @@
 import ContractBase from './contract-base';
 import ManagerPoolABI from './abi/ManagerPool.json';
 import { transactionService } from './transaction.service';
+import { CONFIG } from 'src/configs/config.enum';
+import { configService } from 'src/configs/config.service';
 
 class ManagerPoolContractService extends ContractBase {
-  readonly contractABI: any = ManagerPoolABI;
-  readonly contractAddress: string = process.env.MANAGER_POOL_ADDRESS;
+  readonly contractABI: any = ManagerPoolABI.abi;
+  readonly contractAddress: string = configService.getConfig(
+    CONFIG.MANAGER_POOL_ADDRESS,
+  );
 
   async studentInfo(studentAddress: string) {
     const contract = await this.loadContract(this.contractAddress);

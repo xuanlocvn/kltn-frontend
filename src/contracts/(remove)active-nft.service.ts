@@ -1,10 +1,14 @@
 import ContractBase from './contract-base';
 import ActiveNFTABI from './abi/ActiveNFT.json';
 import { transactionService } from './transaction.service';
+import { configService } from 'src/configs/config.service';
+import { CONFIG } from 'src/configs/config.enum';
 
 class ActiveNFTService extends ContractBase {
-  readonly contractABI: any = ActiveNFTABI;
-  readonly contractAddress: string = process.env.ACTIVE_NFT_ADDRESS;
+  readonly contractABI: any = ActiveNFTABI.abi;
+  readonly contractAddress: string = configService.getConfig(
+    CONFIG.ACTIVE_NFT_ADDRESS,
+  );
 
   async requestActiveNFT(_itemId: number | string, _amount: number | string) {
     const contract = await this.loadContract(this.contractAddress);

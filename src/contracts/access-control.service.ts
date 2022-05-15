@@ -2,16 +2,34 @@ import ContractBase from './contract-base';
 import AccessControllABI from './abi/AccessControl.json';
 import { ROLE_BYTES32 } from './enum/role.enum';
 import { transactionService } from './transaction.service';
+import { ROLE } from 'src/utils/enum';
+import { configService } from 'src/configs/config.service';
+import { CONFIG } from 'src/configs/config.enum';
 
 class AccessControlContractService extends ContractBase {
-  readonly contractABI: any = AccessControllABI;
-  readonly contractAddress: string = process.env.ACCESS_CONTROLL_ADDRESS;
+  readonly contractABI: any = AccessControllABI.abi;
+  readonly contractAddress: string = configService.getConfig(
+    CONFIG.ACCESS_CONTROLL_ADDRESS,
+  );
 
-  async hasRole(roleBytes32: ROLE_BYTES32, account: string): Promise<boolean> {
+  async getRole(account: string): Promise<string> {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
-    const isRole = await contract.methods.hasRole(roleBytes32, account).call();
-    return isRole;
+
+    let isRole = await contract.methods
+      .hasRole(ROLE_BYTES32.ADMIN, account)
+      .call();
+    if (isRole == false)
+      isRole = await contract.methods
+        .hasRole(ROLE_BYTES32.STUDENT, account)
+        .call();
+    else return ROLE.ADMIN;
+    if (isRole == false)
+      isRole = await contract.methods
+        .hasRole(ROLE_BYTES32.LECTURER, account)
+        .call();
+    else return ROLE.STUDENT;
+    if (isRole == true) return ROLE.LECTURER;
   }
 
   async grantRole(roleBytes32: ROLE_BYTES32, account: string) {

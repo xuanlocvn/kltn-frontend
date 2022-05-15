@@ -3,7 +3,7 @@ import TuitionContracABI from './abi/TuitionContract.json';
 import { transactionService } from './transaction.service';
 
 class TuitionContracService extends ContractBase {
-  readonly contractABI: any = TuitionContracABI;
+  readonly contractABI: any = TuitionContracABI.abi;
 
   async getParticipantList(_contractAddress: string) {
     const contract = await this.loadContract(_contractAddress);
