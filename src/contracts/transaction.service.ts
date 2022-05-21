@@ -1,13 +1,12 @@
-import ContractBase from './contract-base';
-
-export class TransactionService extends ContractBase {
+export class TransactionService {
   async estimateGas(
+    web3: any,
     from: string,
     to: string,
     data: string,
     value: string | number,
   ) {
-    const gas = await this.web3.eth
+    const gas = await web3.eth
       .estimateGas({
         from,
         to,
@@ -26,24 +25,27 @@ export class TransactionService extends ContractBase {
   }
 
   async sendTransaction(
+    web3: any,
     contract: any,
     value: number | string,
     method: string,
     ...args: any[]
   ) {
-    if (!this.web3) return null;
-    const from = this.web3.eth.getAccounts()[0];
+    if (!web3) return null;
+    const accounts = await web3.eth.getAccounts();
+    const from = accounts[0];
     const to = contract.options.address;
+    console.log(...args);
     const data = contract.methods[method](...args).encodeABI();
     try {
-      await this.estimateGas(from, to, data, value);
+      await this.estimateGas(web3, from, to, data, value);
     } catch (error) {
       console.error(error);
       return null;
     }
 
     const tx = await contract.methods[method](...args).send({
-      from: this.web3.eth.getAccounts()[0],
+      from: accounts[0],
     });
     return tx;
   }

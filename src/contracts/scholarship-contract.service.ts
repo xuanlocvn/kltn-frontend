@@ -19,6 +19,7 @@ class ScholarshipContractService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'addStudentToScholarship',
@@ -34,6 +35,7 @@ class ScholarshipContractService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'removeStudentFromScholarship',

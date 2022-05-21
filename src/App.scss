@@ -1,6 +1,31 @@
 .App {
 }
 
+body {
+  overflow-y: scroll;
+}
+/* width */
+body::-webkit-scrollbar {
+	width: 12px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 20px;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+	background: #3a78cf;
+	border-radius: 15px;
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+	background: #128fe9;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

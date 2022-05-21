@@ -5,6 +5,12 @@ import { selectWeb3 } from 'src/pages/sign-in/SignInSlice';
 import { useSearchParams } from 'react-router-dom';
 import AdminTab from './AdminTab';
 import GrantRoleStudent from './GrantRoleStudent';
+import GrantRoleLecturer from './GrantRoleLecturer';
+import CreateNewClass from './CreateNewClass';
+import CreateNewScholarShip from './CreateNewCholarship';
+import CreateNewMission from './CreateNewMission';
+import CreateNewTuition from './CreateNewTuition';
+import CreateNewProduct from './CreateNewProduct';
 
 AdminBody.propTypes = {
   walletAddress: PropTypes.string,
@@ -49,6 +55,12 @@ function AdminBody(props) {
       <AdminTab onTab={onTab} isOwnAdmin={isOwnAdmin} />
       <div className="col col-9">
         {tab == 1 && isOwnAdmin && <GrantRoleStudent />}
+        {tab == 2 && isOwnAdmin && <GrantRoleLecturer />}
+        {tab == 3 && isOwnAdmin && <CreateNewClass />}
+        {tab == 4 && isOwnAdmin && <CreateNewScholarShip />}
+        {tab == 5 && isOwnAdmin && <CreateNewMission />}
+        {tab == 6 && isOwnAdmin && <CreateNewTuition />}
+        {tab == 7 && isOwnAdmin && <CreateNewProduct />}
       </div>
     </div>
   );

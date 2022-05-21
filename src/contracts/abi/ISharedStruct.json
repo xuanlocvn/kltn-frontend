@@ -1,0 +1,253 @@
+{
+  "contractName": "ISharedStruct",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/common/interfaces/ISharedStruct.sol\":\"ISharedStruct\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/common/interfaces/ISharedStruct.sol\":{\"keccak256\":\"0x029d61ce531775ad00c833b8a898b523e081ef1093d478a6081c226667b5abee\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1a3e5e68b6369921343f13966e61759372f28ec1ce441c18ad1993b2d8acdd53\",\"dweb:/ipfs/QmeH9PSH49iFXQYCqoWQnMvxQSZJPkfvSG8SXcQCwfqvuj\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ninterface ISharedStruct {\r\n    struct NFTInfo {\r\n        string metadataInHash;\r\n        bool isCourseNFT;\r\n    }\r\n}\r\n\r\n\r\n// check if the NFT is Course of Items:\r\n// string memory empty = \"\";\r\n// keccak256(bytes(_nftInfo.moreInfo)) != keccak256(bytes(empty));",
+  "sourcePath": "E:\\KLTN\\KLTN\\KLTN-contracts\\contracts\\common\\interfaces\\ISharedStruct.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/common/interfaces/ISharedStruct.sol",
+    "exportedSymbols": {
+      "ISharedStruct": [
+        4598
+      ]
+    },
+    "id": 4599,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4592,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:34"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ISharedStruct",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": true,
+        "id": 4598,
+        "linearizedBaseContracts": [
+          4598
+        ],
+        "name": "ISharedStruct",
+        "nameLocation": "69:13:34",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ISharedStruct.NFTInfo",
+            "id": 4597,
+            "members": [
+              {
+                "constant": false,
+                "id": 4594,
+                "mutability": "mutable",
+                "name": "metadataInHash",
+                "nameLocation": "123:14:34",
+                "nodeType": "VariableDeclaration",
+                "scope": 4597,
+                "src": "116:21:34",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 4593,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "116:6:34",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4596,
+                "mutability": "mutable",
+                "name": "isCourseNFT",
+                "nameLocation": "153:11:34",
+                "nodeType": "VariableDeclaration",
+                "scope": 4597,
+                "src": "148:16:34",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 4595,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "148:4:34",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "NFTInfo",
+            "nameLocation": "97:7:34",
+            "nodeType": "StructDefinition",
+            "scope": 4598,
+            "src": "90:82:34",
+            "visibility": "public"
+          }
+        ],
+        "scope": 4599,
+        "src": "59:116:34",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:286:34"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/common/interfaces/ISharedStruct.sol",
+    "exportedSymbols": {
+      "ISharedStruct": [
+        4598
+      ]
+    },
+    "id": 4599,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4592,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:34"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ISharedStruct",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": true,
+        "id": 4598,
+        "linearizedBaseContracts": [
+          4598
+        ],
+        "name": "ISharedStruct",
+        "nameLocation": "69:13:34",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ISharedStruct.NFTInfo",
+            "id": 4597,
+            "members": [
+              {
+                "constant": false,
+                "id": 4594,
+                "mutability": "mutable",
+                "name": "metadataInHash",
+                "nameLocation": "123:14:34",
+                "nodeType": "VariableDeclaration",
+                "scope": 4597,
+                "src": "116:21:34",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 4593,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "116:6:34",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4596,
+                "mutability": "mutable",
+                "name": "isCourseNFT",
+                "nameLocation": "153:11:34",
+                "nodeType": "VariableDeclaration",
+                "scope": 4597,
+                "src": "148:16:34",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 4595,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "148:4:34",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "NFTInfo",
+            "nameLocation": "97:7:34",
+            "nodeType": "StructDefinition",
+            "scope": 4598,
+            "src": "90:82:34",
+            "visibility": "public"
+          }
+        ],
+        "scope": 4599,
+        "src": "59:116:34",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:286:34"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-05-21T07:58:15.314Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

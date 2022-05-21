@@ -3,6 +3,7 @@ import ManagerPoolABI from './abi/ManagerPool.json';
 import { transactionService } from './transaction.service';
 import { CONFIG } from 'src/configs/config.enum';
 import { configService } from 'src/configs/config.service';
+import { amountToValue } from './helpers';
 
 class ManagerPoolContractService extends ContractBase {
   readonly contractABI: any = ManagerPoolABI.abi;
@@ -32,6 +33,7 @@ class ManagerPoolContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'addStudentInfo',
@@ -45,6 +47,7 @@ class ManagerPoolContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'addLecturerInfo',
@@ -68,12 +71,13 @@ class ManagerPoolContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'createNewMission',
       _urlMetadata,
       _missionId,
-      _award,
+      amountToValue(Number(_award)),
       _maxEntrant,
       _persionInCharge,
       _startTime,
@@ -97,6 +101,7 @@ class ManagerPoolContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'createNewSubject',
@@ -122,12 +127,13 @@ class ManagerPoolContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'createNewScholarship',
       _urlMetadata,
       _scholarshipId,
-      _award,
+      amountToValue(Number(_award)),
       _startTime,
       _endTime,
     );
@@ -144,12 +150,13 @@ class ManagerPoolContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'createNewTuition',
       _urlMetadata,
       _tuitionId,
-      _feeByToken,
+      amountToValue(Number(_feeByToken)),
       _startTime,
       _endTime,
     );

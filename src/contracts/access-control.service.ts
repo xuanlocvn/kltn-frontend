@@ -36,6 +36,7 @@ class AccessControlContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const grantRoleTx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'grantRole',

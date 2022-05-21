@@ -26,6 +26,7 @@ class TuitionContracService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'addStudentToTuition',
@@ -41,6 +42,7 @@ class TuitionContracService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'removeStudentFromTuition',
@@ -53,6 +55,7 @@ class TuitionContracService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'paymentByToken',
@@ -64,6 +67,7 @@ class TuitionContracService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'paymentByCurrency',

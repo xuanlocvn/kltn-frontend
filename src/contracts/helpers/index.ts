@@ -11,9 +11,9 @@ export function numberToHex(input: number | string) {
 }
 
 export function amountToValue(amount: number) {
-  return Web3.utils.toWei(amount.toString());
+  return Web3.utils.toWei(amount.toString(), 'ether');
 }
 
 export function valueToAmount(value: string) {
-  return Web3.utils.fromWei(value);
+  return Web3.utils.fromWei(value, 'ether');
 }

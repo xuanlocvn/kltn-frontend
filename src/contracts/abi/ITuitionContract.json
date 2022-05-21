@@ -1,0 +1,2049 @@
+{
+  "contractName": "ITuitionContract",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "Close",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "CreatedNewTuition",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "student",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum ITuitionContract.PaymentMethod",
+          "name": "_method",
+          "type": "uint8"
+        }
+      ],
+      "name": "Payment",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_tuitionId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_urlMetadata",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "feeByToken",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_startTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_endTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "setBasicForTuition",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "start",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "_students",
+          "type": "address[]"
+        }
+      ],
+      "name": "addStudentToTuition",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_student",
+          "type": "address"
+        }
+      ],
+      "name": "removeStudentFromTuition",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "paymentByToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "paymentByCurrency",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "close",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getParticipantList",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"Close\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"CreatedNewTuition\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"student\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"enum ITuitionContract.PaymentMethod\",\"name\":\"_method\",\"type\":\"uint8\"}],\"name\":\"Payment\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_students\",\"type\":\"address[]\"}],\"name\":\"addStudentToTuition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"close\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getParticipantList\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paymentByCurrency\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paymentByToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_student\",\"type\":\"address\"}],\"name\":\"removeStudentFromTuition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_tuitionId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_urlMetadata\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"feeByToken\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_endTime\",\"type\":\"uint256\"}],\"name\":\"setBasicForTuition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"start\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/studentmanager/interfaces/ITuitionContract.sol\":\"ITuitionContract\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xbbc8ac883ac3c0078ce5ad3e288fbb3ffcc8a30c3a98c0fda0114d64fc44fca2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://87a7a5d2f6f63f84598af02b8c50ca2df2631cb8ba2453e8d95fcb17e4be9824\",\"dweb:/ipfs/QmR76hqtAcRqoFj33tmNjcWTLrgNsAaakYwnKZ8zoJtKei\"]},\"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol\":{\"keccak256\":\"0xc3d946432c0ddbb1f846a0d3985be71299df331b91d06732152117f62f0be2b5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4632c341a06ba5c079b51ca5a915efab4e6ab57735b37839b3e8365ff806a43e\",\"dweb:/ipfs/QmTHT3xHYed2wajEoA5qu7ii2BxLpPhQZHwAhtLK5Z7ANK\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0x2ccf9d2313a313d41a791505f2b5abfdc62191b5d4334f7f7a82691c088a1c87\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b3a57d0854b2fdce6ebff933a48dca2445643d1eccfc27f00292e937f26c6a58\",\"dweb:/ipfs/QmW45rZooS9TqR4YXUbjRbtf2Bpb5ouSarBvfW1LdGprvV\"]},\"project:/contracts/studentmanager/interfaces/ITuitionContract.sol\":{\"keccak256\":\"0xfe9744a7c1012ed3afd3793df2530f3066f2edf516281ee93d53c4b0e48d7680\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://c662aede0322974d2e00a206d71b37c7efbc4689cfdd6890f549a9debc9f30a6\",\"dweb:/ipfs/QmR7ztmPDXsV2DW5pyUrcUuBvEzigiyLLoPVCTSGU6KEwb\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: UNLICENSED\r\npragma solidity >=0.8.0;\r\n\r\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\r\nimport \"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol\";\r\n\r\ninterface ITuitionContract {\r\n    struct Tuition {\r\n        string Id;\r\n        string urlMetadata;\r\n        uint256 feeByToken;\r\n        uint256 startTime;\r\n        uint256 endTime;\r\n    }\r\n\r\n    enum Status {\r\n        Lock,\r\n        Open,\r\n        Close\r\n    }\r\n\r\n    enum PaymentMethod {\r\n        Token,\r\n        Currency\r\n    }\r\n\r\n    event CreatedNewTuition(uint256 indexed id);\r\n    event Payment(address student, uint256 timestamp, PaymentMethod _method);\r\n    event Close(uint256 timestamp);\r\n\r\n    function setBasicForTuition(\r\n        string memory _tuitionId,\r\n        string memory _urlMetadata,\r\n        uint256 feeByToken,\r\n        uint256 _startTime,\r\n        uint256 _endTime\r\n    ) external;\r\n\r\n    function start() external;\r\n\r\n    function addStudentToTuition(address[] memory _students) external;\r\n\r\n    function removeStudentFromTuition(address _student) external;\r\n\r\n    function paymentByToken() external;\r\n\r\n    function paymentByCurrency() external;\r\n\r\n    function close() external;\r\n\r\n    function getParticipantList() external view returns (address[] memory);\r\n}\r\n",
+  "sourcePath": "E:\\KLTN\\KLTN\\KLTN-contracts\\contracts\\studentmanager\\interfaces\\ITuitionContract.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/studentmanager/interfaces/ITuitionContract.sol",
+    "exportedSymbols": {
+      "Address": [
+        3682
+      ],
+      "IERC20": [
+        3138
+      ],
+      "ITuitionContract": [
+        10107
+      ],
+      "SafeERC20": [
+        3387
+      ]
+    },
+    "id": 10108,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10027,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:100"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 10028,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 10108,
+        "sourceUnit": 3139,
+        "src": "67:56:100",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+        "id": 10029,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 10108,
+        "sourceUnit": 3388,
+        "src": "125:65:100",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ITuitionContract",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 10107,
+        "linearizedBaseContracts": [
+          10107
+        ],
+        "name": "ITuitionContract",
+        "nameLocation": "204:16:100",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ITuitionContract.Tuition",
+            "id": 10040,
+            "members": [
+              {
+                "constant": false,
+                "id": 10031,
+                "mutability": "mutable",
+                "name": "Id",
+                "nameLocation": "261:2:100",
+                "nodeType": "VariableDeclaration",
+                "scope": 10040,
+                "src": "254:9:100",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 10030,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "254:6:100",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 10033,
+                "mutability": "mutable",
+                "name": "urlMetadata",
+                "nameLocation": "281:11:100",
+                "nodeType": "VariableDeclaration",
+                "scope": 10040,
+                "src": "274:18:100",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 10032,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "274:6:100",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 10035,
+                "mutability": "mutable",
+                "name": "feeByToken",
+                "nameLocation": "311:10:100",
+                "nodeType": "VariableDeclaration",
+                "scope": 10040,
+                "src": "303:18:100",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 10034,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "303:7:100",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 10037,
+                "mutability": "mutable",
+                "name": "startTime",
+                "nameLocation": "340:9:100",
+                "nodeType": "VariableDeclaration",
+                "scope": 10040,
+                "src": "332:17:100",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 10036,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "332:7:100",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 10039,
+                "mutability": "mutable",
+                "name": "endTime",
+                "nameLocation": "368:7:100",
+                "nodeType": "VariableDeclaration",
+                "scope": 10040,
+                "src": "360:15:100",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 10038,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "360:7:100",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Tuition",
+            "nameLocation": "235:7:100",
+            "nodeType": "StructDefinition",
+            "scope": 10107,
+            "src": "228:155:100",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "ITuitionContract.Status",
+            "id": 10044,
+            "members": [
+              {
+                "id": 10041,
+                "name": "Lock",
+                "nameLocation": "414:4:100",
+                "nodeType": "EnumValue",
+                "src": "414:4:100"
+              },
+              {
+                "id": 10042,
+                "name": "Open",
+                "nameLocation": "429:4:100",
+                "nodeType": "EnumValue",
+                "src": "429:4:100"
+              },
+              {
+                "id": 10043,
+                "name": "Close",
+                "nameLocation": "444:5:100",
+                "nodeType": "EnumValue",
+                "src": "444:5:100"
+              }
+            ],
+            "name": "Status",
+            "nameLocation": "396:6:100",
+            "nodeType": "EnumDefinition",
+            "src": "391:65:100"
+          },
+          {
+            "canonicalName": "ITuitionContract.PaymentMethod",
+            "id": 10047,
+            "members": [
+              {
+                "id": 10045,
+                "name": "Token",
+                "nameLocation": "494:5:100",
+                "nodeType": "EnumValue",
+                "src": "494:5:100"
+              },
+              {
+                "id": 10046,
+                "name": "Currency",
+                "nameLocation": "510:8:100",
+                "nodeType": "EnumValue",
+                "src": "510:8:100"
+              }
+            ],
+            "name": "PaymentMethod",
+            "nameLocation": "469:13:100",
+            "nodeType": "EnumDefinition",
+            "src": "464:61:100"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "3d7061d7bcc15ae3d115735ec7d552c372ab6afd3af4b1c28caf0a09691eb79c",
+            "id": 10051,
+            "name": "CreatedNewTuition",
+            "nameLocation": "539:17:100",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10050,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10049,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "573:2:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10051,
+                  "src": "557:18:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10048,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "557:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "556:20:100"
+            },
+            "src": "533:44:100"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "34f914f46f0a40eb0e7b1396063b87a1819f28ed7b5a63829d59f41eba61a1ae",
+            "id": 10060,
+            "name": "Payment",
+            "nameLocation": "589:7:100",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10059,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10053,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "student",
+                  "nameLocation": "605:7:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10060,
+                  "src": "597:15:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10052,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "597:7:100",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10055,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "timestamp",
+                  "nameLocation": "622:9:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10060,
+                  "src": "614:17:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10054,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "614:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10058,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_method",
+                  "nameLocation": "647:7:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10060,
+                  "src": "633:21:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_PaymentMethod_$10047",
+                    "typeString": "enum ITuitionContract.PaymentMethod"
+                  },
+                  "typeName": {
+                    "id": 10057,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 10056,
+                      "name": "PaymentMethod",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 10047,
+                      "src": "633:13:100"
+                    },
+                    "referencedDeclaration": 10047,
+                    "src": "633:13:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_PaymentMethod_$10047",
+                      "typeString": "enum ITuitionContract.PaymentMethod"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "596:59:100"
+            },
+            "src": "583:73:100"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "bf67515a38ee520223d32c1266d52101c30d936ed1f3e436c8caeb0a43cb06bf",
+            "id": 10064,
+            "name": "Close",
+            "nameLocation": "668:5:100",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10063,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10062,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "timestamp",
+                  "nameLocation": "682:9:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10064,
+                  "src": "674:17:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10061,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "674:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "673:19:100"
+            },
+            "src": "662:31:100"
+          },
+          {
+            "functionSelector": "0474f49c",
+            "id": 10077,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setBasicForTuition",
+            "nameLocation": "710:18:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10075,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10066,
+                  "mutability": "mutable",
+                  "name": "_tuitionId",
+                  "nameLocation": "753:10:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10077,
+                  "src": "739:24:100",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 10065,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "739:6:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10068,
+                  "mutability": "mutable",
+                  "name": "_urlMetadata",
+                  "nameLocation": "788:12:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10077,
+                  "src": "774:26:100",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 10067,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "774:6:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10070,
+                  "mutability": "mutable",
+                  "name": "feeByToken",
+                  "nameLocation": "819:10:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10077,
+                  "src": "811:18:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10069,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "811:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10072,
+                  "mutability": "mutable",
+                  "name": "_startTime",
+                  "nameLocation": "848:10:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10077,
+                  "src": "840:18:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10071,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "840:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10074,
+                  "mutability": "mutable",
+                  "name": "_endTime",
+                  "nameLocation": "877:8:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10077,
+                  "src": "869:16:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10073,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "869:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "728:164:100"
+            },
+            "returnParameters": {
+              "id": 10076,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "901:0:100"
+            },
+            "scope": 10107,
+            "src": "701:201:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "be9a6555",
+            "id": 10080,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "start",
+            "nameLocation": "919:5:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10078,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "924:2:100"
+            },
+            "returnParameters": {
+              "id": 10079,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "935:0:100"
+            },
+            "scope": 10107,
+            "src": "910:26:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "04227ab8",
+            "id": 10086,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addStudentToTuition",
+            "nameLocation": "953:19:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10084,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10083,
+                  "mutability": "mutable",
+                  "name": "_students",
+                  "nameLocation": "990:9:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10086,
+                  "src": "973:26:100",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 10081,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "973:7:100",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 10082,
+                    "nodeType": "ArrayTypeName",
+                    "src": "973:9:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "972:28:100"
+            },
+            "returnParameters": {
+              "id": 10085,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1009:0:100"
+            },
+            "scope": 10107,
+            "src": "944:66:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "727cb110",
+            "id": 10091,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeStudentFromTuition",
+            "nameLocation": "1027:24:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10089,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10088,
+                  "mutability": "mutable",
+                  "name": "_student",
+                  "nameLocation": "1060:8:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10091,
+                  "src": "1052:16:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10087,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1052:7:100",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1051:18:100"
+            },
+            "returnParameters": {
+              "id": 10090,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1078:0:100"
+            },
+            "scope": 10107,
+            "src": "1018:61:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "633d8390",
+            "id": 10094,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "paymentByToken",
+            "nameLocation": "1096:14:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10092,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1110:2:100"
+            },
+            "returnParameters": {
+              "id": 10093,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1121:0:100"
+            },
+            "scope": 10107,
+            "src": "1087:35:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "9846a1a0",
+            "id": 10097,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "paymentByCurrency",
+            "nameLocation": "1139:17:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10095,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1156:2:100"
+            },
+            "returnParameters": {
+              "id": 10096,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1167:0:100"
+            },
+            "scope": 10107,
+            "src": "1130:38:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "43d726d6",
+            "id": 10100,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "close",
+            "nameLocation": "1185:5:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10098,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1190:2:100"
+            },
+            "returnParameters": {
+              "id": 10099,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1201:0:100"
+            },
+            "scope": 10107,
+            "src": "1176:26:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "ed214fff",
+            "id": 10106,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getParticipantList",
+            "nameLocation": "1219:18:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10101,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1237:2:100"
+            },
+            "returnParameters": {
+              "id": 10105,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10104,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10106,
+                  "src": "1263:16:100",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 10102,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1263:7:100",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 10103,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1263:9:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1262:18:100"
+            },
+            "scope": 10107,
+            "src": "1210:71:100",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 10108,
+        "src": "194:1090:100",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1247:100"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/studentmanager/interfaces/ITuitionContract.sol",
+    "exportedSymbols": {
+      "Address": [
+        3682
+      ],
+      "IERC20": [
+        3138
+      ],
+      "ITuitionContract": [
+        10107
+      ],
+      "SafeERC20": [
+        3387
+      ]
+    },
+    "id": 10108,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10027,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:100"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 10028,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 10108,
+        "sourceUnit": 3139,
+        "src": "67:56:100",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+        "id": 10029,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 10108,
+        "sourceUnit": 3388,
+        "src": "125:65:100",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ITuitionContract",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 10107,
+        "linearizedBaseContracts": [
+          10107
+        ],
+        "name": "ITuitionContract",
+        "nameLocation": "204:16:100",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ITuitionContract.Tuition",
+            "id": 10040,
+            "members": [
+              {
+                "constant": false,
+                "id": 10031,
+                "mutability": "mutable",
+                "name": "Id",
+                "nameLocation": "261:2:100",
+                "nodeType": "VariableDeclaration",
+                "scope": 10040,
+                "src": "254:9:100",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 10030,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "254:6:100",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 10033,
+                "mutability": "mutable",
+                "name": "urlMetadata",
+                "nameLocation": "281:11:100",
+                "nodeType": "VariableDeclaration",
+                "scope": 10040,
+                "src": "274:18:100",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 10032,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "274:6:100",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 10035,
+                "mutability": "mutable",
+                "name": "feeByToken",
+                "nameLocation": "311:10:100",
+                "nodeType": "VariableDeclaration",
+                "scope": 10040,
+                "src": "303:18:100",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 10034,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "303:7:100",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 10037,
+                "mutability": "mutable",
+                "name": "startTime",
+                "nameLocation": "340:9:100",
+                "nodeType": "VariableDeclaration",
+                "scope": 10040,
+                "src": "332:17:100",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 10036,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "332:7:100",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 10039,
+                "mutability": "mutable",
+                "name": "endTime",
+                "nameLocation": "368:7:100",
+                "nodeType": "VariableDeclaration",
+                "scope": 10040,
+                "src": "360:15:100",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 10038,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "360:7:100",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Tuition",
+            "nameLocation": "235:7:100",
+            "nodeType": "StructDefinition",
+            "scope": 10107,
+            "src": "228:155:100",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "ITuitionContract.Status",
+            "id": 10044,
+            "members": [
+              {
+                "id": 10041,
+                "name": "Lock",
+                "nameLocation": "414:4:100",
+                "nodeType": "EnumValue",
+                "src": "414:4:100"
+              },
+              {
+                "id": 10042,
+                "name": "Open",
+                "nameLocation": "429:4:100",
+                "nodeType": "EnumValue",
+                "src": "429:4:100"
+              },
+              {
+                "id": 10043,
+                "name": "Close",
+                "nameLocation": "444:5:100",
+                "nodeType": "EnumValue",
+                "src": "444:5:100"
+              }
+            ],
+            "name": "Status",
+            "nameLocation": "396:6:100",
+            "nodeType": "EnumDefinition",
+            "src": "391:65:100"
+          },
+          {
+            "canonicalName": "ITuitionContract.PaymentMethod",
+            "id": 10047,
+            "members": [
+              {
+                "id": 10045,
+                "name": "Token",
+                "nameLocation": "494:5:100",
+                "nodeType": "EnumValue",
+                "src": "494:5:100"
+              },
+              {
+                "id": 10046,
+                "name": "Currency",
+                "nameLocation": "510:8:100",
+                "nodeType": "EnumValue",
+                "src": "510:8:100"
+              }
+            ],
+            "name": "PaymentMethod",
+            "nameLocation": "469:13:100",
+            "nodeType": "EnumDefinition",
+            "src": "464:61:100"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "3d7061d7bcc15ae3d115735ec7d552c372ab6afd3af4b1c28caf0a09691eb79c",
+            "id": 10051,
+            "name": "CreatedNewTuition",
+            "nameLocation": "539:17:100",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10050,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10049,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "573:2:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10051,
+                  "src": "557:18:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10048,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "557:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "556:20:100"
+            },
+            "src": "533:44:100"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "34f914f46f0a40eb0e7b1396063b87a1819f28ed7b5a63829d59f41eba61a1ae",
+            "id": 10060,
+            "name": "Payment",
+            "nameLocation": "589:7:100",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10059,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10053,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "student",
+                  "nameLocation": "605:7:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10060,
+                  "src": "597:15:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10052,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "597:7:100",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10055,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "timestamp",
+                  "nameLocation": "622:9:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10060,
+                  "src": "614:17:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10054,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "614:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10058,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_method",
+                  "nameLocation": "647:7:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10060,
+                  "src": "633:21:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_PaymentMethod_$10047",
+                    "typeString": "enum ITuitionContract.PaymentMethod"
+                  },
+                  "typeName": {
+                    "id": 10057,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 10056,
+                      "name": "PaymentMethod",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 10047,
+                      "src": "633:13:100"
+                    },
+                    "referencedDeclaration": 10047,
+                    "src": "633:13:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_PaymentMethod_$10047",
+                      "typeString": "enum ITuitionContract.PaymentMethod"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "596:59:100"
+            },
+            "src": "583:73:100"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "bf67515a38ee520223d32c1266d52101c30d936ed1f3e436c8caeb0a43cb06bf",
+            "id": 10064,
+            "name": "Close",
+            "nameLocation": "668:5:100",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10063,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10062,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "timestamp",
+                  "nameLocation": "682:9:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10064,
+                  "src": "674:17:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10061,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "674:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "673:19:100"
+            },
+            "src": "662:31:100"
+          },
+          {
+            "functionSelector": "0474f49c",
+            "id": 10077,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setBasicForTuition",
+            "nameLocation": "710:18:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10075,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10066,
+                  "mutability": "mutable",
+                  "name": "_tuitionId",
+                  "nameLocation": "753:10:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10077,
+                  "src": "739:24:100",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 10065,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "739:6:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10068,
+                  "mutability": "mutable",
+                  "name": "_urlMetadata",
+                  "nameLocation": "788:12:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10077,
+                  "src": "774:26:100",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 10067,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "774:6:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10070,
+                  "mutability": "mutable",
+                  "name": "feeByToken",
+                  "nameLocation": "819:10:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10077,
+                  "src": "811:18:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10069,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "811:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10072,
+                  "mutability": "mutable",
+                  "name": "_startTime",
+                  "nameLocation": "848:10:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10077,
+                  "src": "840:18:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10071,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "840:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10074,
+                  "mutability": "mutable",
+                  "name": "_endTime",
+                  "nameLocation": "877:8:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10077,
+                  "src": "869:16:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10073,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "869:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "728:164:100"
+            },
+            "returnParameters": {
+              "id": 10076,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "901:0:100"
+            },
+            "scope": 10107,
+            "src": "701:201:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "be9a6555",
+            "id": 10080,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "start",
+            "nameLocation": "919:5:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10078,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "924:2:100"
+            },
+            "returnParameters": {
+              "id": 10079,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "935:0:100"
+            },
+            "scope": 10107,
+            "src": "910:26:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "04227ab8",
+            "id": 10086,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addStudentToTuition",
+            "nameLocation": "953:19:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10084,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10083,
+                  "mutability": "mutable",
+                  "name": "_students",
+                  "nameLocation": "990:9:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10086,
+                  "src": "973:26:100",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 10081,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "973:7:100",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 10082,
+                    "nodeType": "ArrayTypeName",
+                    "src": "973:9:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "972:28:100"
+            },
+            "returnParameters": {
+              "id": 10085,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1009:0:100"
+            },
+            "scope": 10107,
+            "src": "944:66:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "727cb110",
+            "id": 10091,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeStudentFromTuition",
+            "nameLocation": "1027:24:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10089,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10088,
+                  "mutability": "mutable",
+                  "name": "_student",
+                  "nameLocation": "1060:8:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10091,
+                  "src": "1052:16:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10087,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1052:7:100",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1051:18:100"
+            },
+            "returnParameters": {
+              "id": 10090,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1078:0:100"
+            },
+            "scope": 10107,
+            "src": "1018:61:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "633d8390",
+            "id": 10094,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "paymentByToken",
+            "nameLocation": "1096:14:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10092,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1110:2:100"
+            },
+            "returnParameters": {
+              "id": 10093,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1121:0:100"
+            },
+            "scope": 10107,
+            "src": "1087:35:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "9846a1a0",
+            "id": 10097,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "paymentByCurrency",
+            "nameLocation": "1139:17:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10095,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1156:2:100"
+            },
+            "returnParameters": {
+              "id": 10096,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1167:0:100"
+            },
+            "scope": 10107,
+            "src": "1130:38:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "43d726d6",
+            "id": 10100,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "close",
+            "nameLocation": "1185:5:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10098,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1190:2:100"
+            },
+            "returnParameters": {
+              "id": 10099,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1201:0:100"
+            },
+            "scope": 10107,
+            "src": "1176:26:100",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "ed214fff",
+            "id": 10106,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getParticipantList",
+            "nameLocation": "1219:18:100",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10101,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1237:2:100"
+            },
+            "returnParameters": {
+              "id": 10105,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10104,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10106,
+                  "src": "1263:16:100",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 10102,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1263:7:100",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 10103,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1263:9:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1262:18:100"
+            },
+            "scope": 10107,
+            "src": "1210:71:100",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 10108,
+        "src": "194:1090:100",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1247:100"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-05-21T07:58:16.191Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -15,3 +15,8 @@ export function convertLocalTime(timestamp: number) {
 
   return yyyy + '-' + mm + '-' + dd;
 }
+
+export function convertDateToTimestamp(myDate: string) {
+  const newDate = new Date(myDate);
+  return newDate.getTime() / 1000;
+}

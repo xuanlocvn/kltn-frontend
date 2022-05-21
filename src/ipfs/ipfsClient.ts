@@ -6,6 +6,12 @@ export const AddDataToIPFS = async (obj: any): Promise<string> => {
   const added = await ipfsClient.add(JSON.stringify(obj));
   return added.path;
 };
+
+export const AddImgToIPFS = async (obj: any): Promise<string> => {
+  const added = await ipfsClient.add(obj);
+  return added.path;
+};
+
 export const ipfsBaseURL = 'https://ipfs.infura.io/ipfs/';
 
 export default ipfsClient;

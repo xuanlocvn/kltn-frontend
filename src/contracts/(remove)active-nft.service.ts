@@ -14,6 +14,7 @@ class ActiveNFTService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'requestActiveNFT',
@@ -27,6 +28,7 @@ class ActiveNFTService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'cancelRequestActiveNFT',
@@ -39,6 +41,7 @@ class ActiveNFTService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'activeNFT',

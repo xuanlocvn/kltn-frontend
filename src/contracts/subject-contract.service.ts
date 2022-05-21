@@ -26,6 +26,7 @@ class SubjectContracService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'addStudentToSubject',
@@ -38,6 +39,7 @@ class SubjectContracService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'register',
@@ -49,6 +51,7 @@ class SubjectContracService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'cancelRegister',
@@ -63,6 +66,7 @@ class SubjectContracService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'confirmCompletedAddress',
@@ -78,6 +82,7 @@ class SubjectContracService extends ContractBase {
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'unConfirmCompletedAddress',

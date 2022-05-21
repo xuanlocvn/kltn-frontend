@@ -20,5 +20,5 @@ module.exports = function override(config, env) {
       Buffer: ['buffer', 'Buffer'],
     }),
   );
-  return { config };
+  return config;
 };

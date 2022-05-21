@@ -124,6 +124,15 @@ td {
 	outline: none;
 }
 
+.form_body .body_form textarea {
+	border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+	padding-left: 15px;
+	align-items: center;
+	line-height: 40px;
+	outline: none;
+}
+
 .form_body .body_form input::placeholder {
 	font-size: 14px;
 }
@@ -415,4 +424,22 @@ select .select-item {
 .img-avt input{
   display: none;
 }
+
+.img-avt img {
+  height: 180px;
+  width: 180px;
+  border-radius: 180px;
+  border: solid 0.05px rgb(105, 104, 104);
+}
+
+.img-avt p{
+  text-align: center;
+}
+
+.img-avt i{
+  font-size: 10px;
+  font-weight: 200;
+
+}
+
 

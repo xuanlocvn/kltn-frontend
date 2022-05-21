@@ -1,0 +1,183 @@
+{
+  "contractName": "IGeneralContract",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "close",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"close\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/studentmanager/interfaces/IGeneralContract.sol\":\"IGeneralContract\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/studentmanager/interfaces/IGeneralContract.sol\":{\"keccak256\":\"0x003b12e054827cbd9a8a2c85c0ff137d4f7c46b1c60fe9d28d4af6de508476e7\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://0e53927f4a1d015676b2365def4220a073a30f5f2f17d324ef101930b2c951f2\",\"dweb:/ipfs/QmZjBRPWBcx48q54FT7ezVG8tfNn6b5pqZaX2oHyfntCfV\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: UNLICENSED\r\npragma solidity >=0.8.0;\r\n\r\ninterface IGeneralContract {\r\n    function close() external;\r\n}\r\n",
+  "sourcePath": "E:\\KLTN\\KLTN\\KLTN-contracts\\contracts\\studentmanager\\interfaces\\IGeneralContract.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/studentmanager/interfaces/IGeneralContract.sol",
+    "exportedSymbols": {
+      "IGeneralContract": [
+        9603
+      ]
+    },
+    "id": 9604,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 9599,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:91"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IGeneralContract",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 9603,
+        "linearizedBaseContracts": [
+          9603
+        ],
+        "name": "IGeneralContract",
+        "nameLocation": "77:16:91",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "43d726d6",
+            "id": 9602,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "close",
+            "nameLocation": "110:5:91",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9600,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "115:2:91"
+            },
+            "returnParameters": {
+              "id": 9601,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "126:0:91"
+            },
+            "scope": 9603,
+            "src": "101:26:91",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 9604,
+        "src": "67:63:91",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:93:91"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/studentmanager/interfaces/IGeneralContract.sol",
+    "exportedSymbols": {
+      "IGeneralContract": [
+        9603
+      ]
+    },
+    "id": 9604,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 9599,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:91"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IGeneralContract",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 9603,
+        "linearizedBaseContracts": [
+          9603
+        ],
+        "name": "IGeneralContract",
+        "nameLocation": "77:16:91",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "43d726d6",
+            "id": 9602,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "close",
+            "nameLocation": "110:5:91",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9600,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "115:2:91"
+            },
+            "returnParameters": {
+              "id": 9601,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "126:0:91"
+            },
+            "scope": 9603,
+            "src": "101:26:91",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 9604,
+        "src": "67:63:91",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:93:91"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-05-21T07:58:16.153Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

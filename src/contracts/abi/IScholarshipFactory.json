@@ -1,0 +1,433 @@
+{
+  "contractName": "IScholarshipFactory",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_accessControll",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_rewardDistributor",
+          "type": "address"
+        }
+      ],
+      "name": "createNewScholarship",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_accessControll\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_rewardDistributor\",\"type\":\"address\"}],\"name\":\"createNewScholarship\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/studentmanager/interfaces/IScholarshipFactory.sol\":\"IScholarshipFactory\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/studentmanager/interfaces/IScholarshipFactory.sol\":{\"keccak256\":\"0x89713cb8d678dd501a9c26f18b6d965524103537b0ed2a7b03e9111607a1ef0c\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://6637cf1d64347c0abbd39cee530c5f8f8e5117bbedd18709d4f8041a3f763227\",\"dweb:/ipfs/QmQwDDqDWaY2dpwMMqVkbE1PsYBjpgTjHQWaep1KMHaV48\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.8.0;\r\n\r\ninterface IScholarshipFactory {\r\n    function createNewScholarship(\r\n        address owner,\r\n        address _accessControll,\r\n        address _rewardDistributor\r\n    ) external returns (address);\r\n}\r\n",
+  "sourcePath": "E:\\KLTN\\KLTN\\KLTN-contracts\\contracts\\studentmanager\\interfaces\\IScholarshipFactory.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/studentmanager/interfaces/IScholarshipFactory.sol",
+    "exportedSymbols": {
+      "IScholarshipFactory": [
+        9914
+      ]
+    },
+    "id": 9915,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 9902,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "40:23:97"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IScholarshipFactory",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 9914,
+        "linearizedBaseContracts": [
+          9914
+        ],
+        "name": "IScholarshipFactory",
+        "nameLocation": "77:19:97",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "378ac245",
+            "id": 9913,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createNewScholarship",
+            "nameLocation": "113:20:97",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9909,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9904,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nameLocation": "152:5:97",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9913,
+                  "src": "144:13:97",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9903,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "144:7:97",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9906,
+                  "mutability": "mutable",
+                  "name": "_accessControll",
+                  "nameLocation": "176:15:97",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9913,
+                  "src": "168:23:97",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9905,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "168:7:97",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9908,
+                  "mutability": "mutable",
+                  "name": "_rewardDistributor",
+                  "nameLocation": "210:18:97",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9913,
+                  "src": "202:26:97",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9907,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "202:7:97",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "133:102:97"
+            },
+            "returnParameters": {
+              "id": 9912,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9911,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9913,
+                  "src": "254:7:97",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9910,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "254:7:97",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "253:9:97"
+            },
+            "scope": 9914,
+            "src": "104:159:97",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 9915,
+        "src": "67:199:97",
+        "usedErrors": []
+      }
+    ],
+    "src": "40:228:97"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/studentmanager/interfaces/IScholarshipFactory.sol",
+    "exportedSymbols": {
+      "IScholarshipFactory": [
+        9914
+      ]
+    },
+    "id": 9915,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 9902,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "40:23:97"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IScholarshipFactory",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 9914,
+        "linearizedBaseContracts": [
+          9914
+        ],
+        "name": "IScholarshipFactory",
+        "nameLocation": "77:19:97",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "378ac245",
+            "id": 9913,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createNewScholarship",
+            "nameLocation": "113:20:97",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9909,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9904,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nameLocation": "152:5:97",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9913,
+                  "src": "144:13:97",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9903,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "144:7:97",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9906,
+                  "mutability": "mutable",
+                  "name": "_accessControll",
+                  "nameLocation": "176:15:97",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9913,
+                  "src": "168:23:97",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9905,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "168:7:97",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9908,
+                  "mutability": "mutable",
+                  "name": "_rewardDistributor",
+                  "nameLocation": "210:18:97",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9913,
+                  "src": "202:26:97",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9907,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "202:7:97",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "133:102:97"
+            },
+            "returnParameters": {
+              "id": 9912,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9911,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9913,
+                  "src": "254:7:97",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9910,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "254:7:97",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "253:9:97"
+            },
+            "scope": 9914,
+            "src": "104:159:97",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 9915,
+        "src": "67:199:97",
+        "usedErrors": []
+      }
+    ],
+    "src": "40:228:97"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-05-21T07:58:16.180Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

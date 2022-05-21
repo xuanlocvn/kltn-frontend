@@ -1,0 +1,681 @@
+{
+  "contractName": "IRewardDistributor",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "distributor",
+          "type": "address"
+        }
+      ],
+      "name": "addDistributorsAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "distributor",
+          "type": "address"
+        }
+      ],
+      "name": "removeDistributorsAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "distributeReward",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getUITTokenAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"distributor\",\"type\":\"address\"}],\"name\":\"addDistributorsAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"distributeReward\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getUITTokenAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"distributor\",\"type\":\"address\"}],\"name\":\"removeDistributorsAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/studentmanager/interfaces/IRewardDistributor.sol\":\"IRewardDistributor\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/studentmanager/interfaces/IRewardDistributor.sol\":{\"keccak256\":\"0xcd62ce98cee72fd67e261377c8539f2aa10a43bbfa3968d59ac5415083957aee\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c32e7029886ead52d1d05ef9fbfe572f6803cf81bc259d6fc7664460fbfe13bf\",\"dweb:/ipfs/QmeQyrJ5doPtL5TzqREASE31jJk8x4DtFTm5bajWB3Sxb4\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\ninterface IRewardDistributor {\r\n    function addDistributorsAddress(address distributor) external;\r\n\r\n    function removeDistributorsAddress(address distributor) external;\r\n\r\n    function distributeReward(address account, uint256 amount) external;\r\n\r\n    function getUITTokenAddress()external view returns(address);\r\n}\r\n",
+  "sourcePath": "E:\\KLTN\\KLTN\\KLTN-contracts\\contracts\\studentmanager\\interfaces\\IRewardDistributor.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/studentmanager/interfaces/IRewardDistributor.sol",
+    "exportedSymbols": {
+      "IRewardDistributor": [
+        9824
+      ]
+    },
+    "id": 9825,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 9801,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "34:23:95"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IRewardDistributor",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 9824,
+        "linearizedBaseContracts": [
+          9824
+        ],
+        "name": "IRewardDistributor",
+        "nameLocation": "71:18:95",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "05380898",
+            "id": 9806,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addDistributorsAddress",
+            "nameLocation": "106:22:95",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9804,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9803,
+                  "mutability": "mutable",
+                  "name": "distributor",
+                  "nameLocation": "137:11:95",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9806,
+                  "src": "129:19:95",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9802,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "129:7:95",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "128:21:95"
+            },
+            "returnParameters": {
+              "id": 9805,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "158:0:95"
+            },
+            "scope": 9824,
+            "src": "97:62:95",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "3cb7b3bb",
+            "id": 9811,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeDistributorsAddress",
+            "nameLocation": "176:25:95",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9809,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9808,
+                  "mutability": "mutable",
+                  "name": "distributor",
+                  "nameLocation": "210:11:95",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9811,
+                  "src": "202:19:95",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9807,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "202:7:95",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "201:21:95"
+            },
+            "returnParameters": {
+              "id": 9810,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "231:0:95"
+            },
+            "scope": 9824,
+            "src": "167:65:95",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "1ec8bb8c",
+            "id": 9818,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "distributeReward",
+            "nameLocation": "249:16:95",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9816,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9813,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "274:7:95",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9818,
+                  "src": "266:15:95",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9812,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "266:7:95",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9815,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "291:6:95",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9818,
+                  "src": "283:14:95",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 9814,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "283:7:95",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "265:33:95"
+            },
+            "returnParameters": {
+              "id": 9817,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "307:0:95"
+            },
+            "scope": 9824,
+            "src": "240:68:95",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "c59671c1",
+            "id": 9823,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getUITTokenAddress",
+            "nameLocation": "325:18:95",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9819,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "343:2:95"
+            },
+            "returnParameters": {
+              "id": 9822,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9821,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9823,
+                  "src": "367:7:95",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9820,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "367:7:95",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "366:9:95"
+            },
+            "scope": 9824,
+            "src": "316:60:95",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 9825,
+        "src": "61:318:95",
+        "usedErrors": []
+      }
+    ],
+    "src": "34:347:95"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/studentmanager/interfaces/IRewardDistributor.sol",
+    "exportedSymbols": {
+      "IRewardDistributor": [
+        9824
+      ]
+    },
+    "id": 9825,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 9801,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "34:23:95"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IRewardDistributor",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 9824,
+        "linearizedBaseContracts": [
+          9824
+        ],
+        "name": "IRewardDistributor",
+        "nameLocation": "71:18:95",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "05380898",
+            "id": 9806,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addDistributorsAddress",
+            "nameLocation": "106:22:95",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9804,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9803,
+                  "mutability": "mutable",
+                  "name": "distributor",
+                  "nameLocation": "137:11:95",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9806,
+                  "src": "129:19:95",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9802,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "129:7:95",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "128:21:95"
+            },
+            "returnParameters": {
+              "id": 9805,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "158:0:95"
+            },
+            "scope": 9824,
+            "src": "97:62:95",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "3cb7b3bb",
+            "id": 9811,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeDistributorsAddress",
+            "nameLocation": "176:25:95",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9809,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9808,
+                  "mutability": "mutable",
+                  "name": "distributor",
+                  "nameLocation": "210:11:95",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9811,
+                  "src": "202:19:95",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9807,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "202:7:95",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "201:21:95"
+            },
+            "returnParameters": {
+              "id": 9810,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "231:0:95"
+            },
+            "scope": 9824,
+            "src": "167:65:95",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "1ec8bb8c",
+            "id": 9818,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "distributeReward",
+            "nameLocation": "249:16:95",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9816,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9813,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "274:7:95",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9818,
+                  "src": "266:15:95",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9812,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "266:7:95",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9815,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "291:6:95",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9818,
+                  "src": "283:14:95",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 9814,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "283:7:95",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "265:33:95"
+            },
+            "returnParameters": {
+              "id": 9817,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "307:0:95"
+            },
+            "scope": 9824,
+            "src": "240:68:95",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "c59671c1",
+            "id": 9823,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getUITTokenAddress",
+            "nameLocation": "325:18:95",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9819,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "343:2:95"
+            },
+            "returnParameters": {
+              "id": 9822,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9821,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9823,
+                  "src": "367:7:95",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9820,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "367:7:95",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "366:9:95"
+            },
+            "scope": 9824,
+            "src": "316:60:95",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 9825,
+        "src": "61:318:95",
+        "usedErrors": []
+      }
+    ],
+    "src": "34:347:95"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-05-21T07:58:16.170Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -1,26 +1,42 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import { managerPoolContractService } from 'src/contracts/manager-pool.service';
+import useAvata from 'src/hooks/useAvata';
+import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
+import { convertDateToTimestamp } from 'src/utils';
 
 GrantRoleStudent.propTypes = {};
 
 function GrantRoleStudent() {
   const [faculty, setFaculty] = useState('');
+  const [gender, setGender] = useState('Nam');
+  const { onChangeAvt, defaultAvt } = useAvata();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target);
-    // const studentInfoForm: StudentInfo = {
-    //   name: e.target.name.value,
-    //   dateOfBirth: e.target.dateOfBirth.value,
-    //   gender: e.target.gender.value,
-    //   placeOfBirth: e.target.placeOfBirth.value,
-    //   nation: e.target.nation.value,
-    //   cmnd: e.target.cmnd.value,
-    //   issuanceDate: e.target.issuanceDate.value,
-    //   issuancePlace: e.target.issuancePlace.value,
-    //   address1: e.target.address1.value,
-    //   address2: e.target.address2.value,
-    // };
+    const studentInfoForm = {
+      imgUrl: defaultAvt,
+      name: e.target.name.value.trim(),
+      studentId: e.target.studentId.value.trim(),
+      birthday: convertDateToTimestamp(e.target.birthday.value),
+      placeOfBirth: e.target.placeOfBirth.value.trim(),
+      gender: e.target.gender.value.trim(),
+      nation: e.target.nation.value.trim(),
+      cmnd: e.target.cmnd.value.trim(),
+      issuancePlace: e.target.issuancePlace.value.trim(),
+      issuranceDate: convertDateToTimestamp(e.target.issuranceDate.value),
+      address: e.target.address.value.trim(),
+      faculty: e.target.faculty.value.trim(),
+      schoolYear: e.target.schoolYear.value.trim(),
+      class: e.target.class.value.trim(),
+      walletAddress: e.target.walletAddress.value.trim(),
+    };
+    console.log(studentInfoForm);
+    const hash = await AddDataToIPFS(studentInfoForm);
+    console.log(hash);
+    await managerPoolContractService.addStudentInfo(
+      studentInfoForm.walletAddress,
+      hash,
+    );
   };
   return (
     <div className="form_body container">
@@ -30,73 +46,185 @@ function GrantRoleStudent() {
       <div className="body_form mt-3">
         <form className="d-flex" onSubmit={handleSubmit}>
           <div className="col col-4 img-avt d-flex flex-column align-items-center">
-            <label htmlFor="img-file">
-              <img
-                src="https://pic.onlinewebfonts.com/svg/img_212908.png"
-                alt=""
-                width="150"
-              />
+            <label htmlFor="myImage">
+              <img src={defaultAvt} alt="" />
+              <p>
+                <i>Nhấn để chọn ảnh mới</i>
+              </p>
             </label>
             <input
               type="file"
-              id="img-file"
+              id="myImage"
               name="myImage"
               accept="image/png, image/gif, image/jpeg"
+              onChange={(e) => onChangeAvt(e)}
             />
           </div>
           <div className="col col-8">
-            <div className="d-flex flex-column">
-              <label htmlFor="name">
-                Họ và tên <span style={{ color: 'red' }}>*</span>
-              </label>
-              <input type="text" placeholder="Họ và tên" name="name" />
+            <div className="d-flex mb-2 row">
+              <div className="d-flex flex-column col col-6">
+                <label htmlFor="name">
+                  Họ và tên <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Họ và tên"
+                  name="name"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column col col-6">
+                <label htmlFor="studentId">
+                  Mã số sinh viên <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Mã số sinh viên"
+                  name="studentId"
+                  required
+                />
+              </div>
             </div>
-            <div className="d-flex flex-column">
-              <label htmlFor="dateOfBirth">
-                Ngày sinh <span style={{ color: 'red' }}>*</span>
-              </label>
-              <input type="date" placeholder="Ngày sinh" name="dateOfBirth" />
+            <div className="d-flex mb-2 row">
+              <div className="d-flex flex-column col col-3">
+                <label htmlFor="birthday">
+                  Ngày sinh <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="date"
+                  placeholder="Ngày sinh"
+                  name="birthday"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column col col-3">
+                <label htmlFor="gender">
+                  Giới tính <span style={{ color: 'red' }}>*</span>
+                </label>
+                <select
+                  name="gender"
+                  id="gender"
+                  value={gender}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    setGender(e.target.value);
+                  }}
+                >
+                  <option value="Nam">Nam</option>
+                  <option value="Nữ">Nữ</option>
+                </select>
+              </div>
+              <div className="d-flex flex-column col col-3">
+                <label htmlFor="placeOfBirth">
+                  Nơi sinh <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Nơi sinh"
+                  name="placeOfBirth"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column col col-3">
+                <label htmlFor="nation">
+                  Dân tộc <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Dân tộc"
+                  name="nation"
+                  required
+                />
+              </div>
             </div>
-            <div className="d-flex flex-column">
-              <label htmlFor="studentId">
-                Mã số sinh viên <span style={{ color: 'red' }}>*</span>
+            <div className="d-flex justify-content-between row">
+              <div className="d-flex flex-column mb-2 col col-4">
+                <label htmlFor="cmnd">
+                  CMND/CCCD <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="CMND/CCCD"
+                  name="cmnd"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column mb-2 col col-4">
+                <label htmlFor="issuranceDate">
+                  Ngày cấp <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="date"
+                  placeholder="Ngày sinh"
+                  name="issuranceDate"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column col col-4">
+                <label htmlFor="issuancePlace">
+                  Nơi cấp <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Nơi cấp"
+                  name="issuancePlace"
+                  required
+                />
+              </div>
+            </div>
+            <div className="d-flex flex-column mb-2 ">
+              <label htmlFor="address">
+                Địa chỉ thường trú <span style={{ color: 'red' }}>*</span>
               </label>
               <input
                 type="text"
-                placeholder="Mã số sinh viên"
-                name="studentId"
+                placeholder="Địa chỉ thường trú"
+                name="address"
+                required
               />
             </div>
-            <div className="d-flex flex-column">
-              <label htmlFor="faculty">
-                Khoa <span style={{ color: 'red' }}>*</span>
-              </label>
-              <select
-                name="faculty"
-                id="faculty"
-                value={faculty}
-                onChange={(e) => {
-                  setFaculty(e.target.value);
-                }}
-              >
-                <option value="KTTT">Khoa học và kỹ thuật thông tin</option>
-                <option value="KTPM">Kỹ thuật phần mềm</option>
-                <option value="KTMT">Kỹ thuật máy tính</option>
-                <option value="KHMT">Khoa học máy tính</option>
-                <option value="HTTT">Hệ thống thông tin</option>
-              </select>
-            </div>
-            <div className="d-flex flex-column">
-              <label htmlFor="schoolYear">
-                Khóa đào tạo <span style={{ color: 'red' }}>*</span>
-              </label>
-              <input type="text" placeholder="Khóa đào tạo" name="schoolYear" />
-            </div>
-            <div className="d-flex flex-column">
-              <label htmlFor="class">
-                Lớp sinh hoạt <span style={{ color: 'red' }}>*</span>
-              </label>
-              <input type="text" placeholder="Lớp sinh hoạt" name="class" />
+            <div className="d-flex justify-content-between mb-2 row">
+              <div className="d-flex flex-column col col-6">
+                <label htmlFor="faculty">
+                  Khoa <span style={{ color: 'red' }}>*</span>
+                </label>
+                <select
+                  name="faculty"
+                  id="faculty"
+                  value={faculty}
+                  onChange={(e) => {
+                    setFaculty(e.target.value);
+                  }}
+                >
+                  <option value="KTTT">Khoa học và kỹ thuật thông tin</option>
+                  <option value="KTPM">Kỹ thuật phần mềm</option>
+                  <option value="KTMT">Kỹ thuật máy tính</option>
+                  <option value="KHMT">Khoa học máy tính</option>
+                  <option value="HTTT">Hệ thống thông tin</option>
+                </select>
+              </div>
+              <div className="d-flex flex-column col col-3">
+                <label htmlFor="schoolYear">
+                  Khóa đào tạo <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Khóa đào tạo"
+                  name="schoolYear"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column col col-3">
+                <label htmlFor="class">
+                  Lớp sinh hoạt <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Lớp sinh hoạt"
+                  name="class"
+                  required
+                />
+              </div>
             </div>
             <div className="d-flex flex-column">
               <label htmlFor="walletAddress">
@@ -106,6 +234,7 @@ function GrantRoleStudent() {
                 type="text"
                 placeholder="Địa chỉ ví"
                 name="walletAddress"
+                required
               />
             </div>
             <div className="d-flex flex-row-reverse">

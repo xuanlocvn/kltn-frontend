@@ -1,0 +1,372 @@
+{
+  "contractName": "ISubjectFactory",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_accessControll",
+          "type": "address"
+        }
+      ],
+      "name": "createNewMission",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_accessControll\",\"type\":\"address\"}],\"name\":\"createNewMission\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/studentmanager/interfaces/ISubjectFactory.sol\":\"ISubjectFactory\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/studentmanager/interfaces/ISubjectFactory.sol\":{\"keccak256\":\"0xbeec611f018fa053b6fd3bc7e825e12958a3c2f7f6dd675502d78b69b97f8dfe\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://bc877702550a3913d07a423ae52d5503a0e345358a6b871b403a10a7190b21df\",\"dweb:/ipfs/Qma2q24duu9XWjArVZg2G5YSXc1Q6rdBf8cPZBbt5JjHMN\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.8.0;\r\n\r\ninterface ISubjectFactory {\r\n    function createNewMission(address owner,address _accessControll)\r\n        external\r\n        returns (address);\r\n}\r\n",
+  "sourcePath": "E:\\KLTN\\KLTN\\KLTN-contracts\\contracts\\studentmanager\\interfaces\\ISubjectFactory.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/studentmanager/interfaces/ISubjectFactory.sol",
+    "exportedSymbols": {
+      "ISubjectFactory": [
+        10025
+      ]
+    },
+    "id": 10026,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10015,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "40:23:99"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ISubjectFactory",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 10025,
+        "linearizedBaseContracts": [
+          10025
+        ],
+        "name": "ISubjectFactory",
+        "nameLocation": "77:15:99",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "89d0bc1e",
+            "id": 10024,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createNewMission",
+            "nameLocation": "109:16:99",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10020,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10017,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nameLocation": "134:5:99",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10024,
+                  "src": "126:13:99",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10016,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "126:7:99",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10019,
+                  "mutability": "mutable",
+                  "name": "_accessControll",
+                  "nameLocation": "148:15:99",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10024,
+                  "src": "140:23:99",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10018,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "140:7:99",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "125:39:99"
+            },
+            "returnParameters": {
+              "id": 10023,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10022,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10024,
+                  "src": "201:7:99",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10021,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "201:7:99",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "200:9:99"
+            },
+            "scope": 10025,
+            "src": "100:110:99",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 10026,
+        "src": "67:146:99",
+        "usedErrors": []
+      }
+    ],
+    "src": "40:175:99"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/studentmanager/interfaces/ISubjectFactory.sol",
+    "exportedSymbols": {
+      "ISubjectFactory": [
+        10025
+      ]
+    },
+    "id": 10026,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10015,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "40:23:99"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ISubjectFactory",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 10025,
+        "linearizedBaseContracts": [
+          10025
+        ],
+        "name": "ISubjectFactory",
+        "nameLocation": "77:15:99",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "89d0bc1e",
+            "id": 10024,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createNewMission",
+            "nameLocation": "109:16:99",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10020,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10017,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nameLocation": "134:5:99",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10024,
+                  "src": "126:13:99",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10016,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "126:7:99",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10019,
+                  "mutability": "mutable",
+                  "name": "_accessControll",
+                  "nameLocation": "148:15:99",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10024,
+                  "src": "140:23:99",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10018,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "140:7:99",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "125:39:99"
+            },
+            "returnParameters": {
+              "id": 10023,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10022,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10024,
+                  "src": "201:7:99",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10021,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "201:7:99",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "200:9:99"
+            },
+            "scope": 10025,
+            "src": "100:110:99",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 10026,
+        "src": "67:146:99",
+        "usedErrors": []
+      }
+    ],
+    "src": "40:175:99"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-05-21T07:58:16.188Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

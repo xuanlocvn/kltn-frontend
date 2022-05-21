@@ -32,7 +32,7 @@ export default class ContractBase {
       return null;
     }
     const accounts = await this.web3.eth.getAccounts();
-    console.log('address wallet:', accounts[0]);
+    console.log('from:', accounts[0]);
     const contract = new this.web3.eth.Contract(
       this.contractABI,
       contractAddress,

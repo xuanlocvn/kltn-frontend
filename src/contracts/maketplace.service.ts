@@ -3,6 +3,7 @@ import MarketplaceABI from './abi/Marketplace.json';
 import { transactionService } from './transaction.service';
 import { CONFIG } from 'src/configs/config.enum';
 import { configService } from 'src/configs/config.service';
+import { amountToValue } from './helpers';
 
 class MarketplaceContractService extends ContractBase {
   readonly contractABI: any = MarketplaceABI.abi;
@@ -18,12 +19,13 @@ class MarketplaceContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'list',
       _itemId,
       _oneItemPrice,
-      _amount,
+      amountToValue(Number(_amount)),
     );
     return tx;
   }
@@ -32,6 +34,7 @@ class MarketplaceContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'deList',
@@ -44,11 +47,12 @@ class MarketplaceContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'updatePrice',
       _itemId,
-      _oneItemPrice,
+      amountToValue(Number(_oneItemPrice)),
     );
     return tx;
   }
@@ -61,6 +65,7 @@ class MarketplaceContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'buy',
@@ -79,12 +84,13 @@ class MarketplaceContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'createAndListNFT',
       _nftInfo,
       _oneItemPrice,
-      _amount,
+      amountToValue(Number(_amount)),
     );
     return tx;
   }
@@ -93,6 +99,7 @@ class MarketplaceContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'updateAmountNFT',
@@ -106,6 +113,7 @@ class MarketplaceContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'requestActiveNFT',
@@ -119,6 +127,7 @@ class MarketplaceContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'cancelRequestActiveNFT',
@@ -131,6 +140,7 @@ class MarketplaceContractService extends ContractBase {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(
+      this.web3,
       contract,
       0,
       'activeNFTByAdmin',
