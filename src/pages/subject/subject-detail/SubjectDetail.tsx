@@ -3,10 +3,13 @@ import { Collapse } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from 'src/app/hooks';
 import { selectRole } from 'src/components/shared/Header/HeaderSlice';
+import { subjectContracService } from 'src/contracts/subject-contract.service';
 import './SubjectDetail.scss';
 
 const detailInfo = {
   id: 'IE212.M11',
+  joined: false,
+  contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   name: 'Công nghệ Dữ liệu lớn',
   status: 'Đang mở',
   lecturerName: 'Mai Nguyen Duc Tho',
@@ -35,6 +38,14 @@ function SubjectDetail() {
 
     getDetail(subjectId);
   }, []);
+
+  const handleRegister = async (contractAddress: string) => {
+    await subjectContracService.register(contractAddress);
+  };
+
+  const handleCancelRegister = async (contractAddress: string) => {
+    await subjectContracService.cancelRegister(contractAddress);
+  };
 
   return (
     <div className="mt-5">
@@ -78,7 +89,21 @@ function SubjectDetail() {
               </div>
             </div>
             <div className="d-flex flex-row-reverse">
-              <button className="disable">Tham gia ngay</button>
+              {detail.joined ? (
+                <button
+                  className="join_btn cancel"
+                  onClick={() => handleCancelRegister(detail.contractAddress)}
+                >
+                  Hủy
+                </button>
+              ) : (
+                <button
+                  className="join_btn join"
+                  onClick={() => handleRegister(detail.contractAddress)}
+                >
+                  Tham gia
+                </button>
+              )}
             </div>
           </div>
 
@@ -96,7 +121,7 @@ function SubjectDetail() {
         </>
       )}
 
-      {role.role == 'STUDENT' && (
+      {role.role == 'LECTURER' && (
         <div className="historyTable mt-5">
           <h2>Bảng đánh giá sinh viên</h2>
           <form>

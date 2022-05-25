@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from 'src/components/shared/Pagination/Pagination';
+import { missionContracService } from 'src/contracts/mission-contract.service';
 import useList from 'src/hooks/useList';
 import './MissionListPage.scss';
 
@@ -13,6 +14,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang mở',
       joined: true,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 2,
@@ -21,6 +23,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang đóng',
       joined: false,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 3,
@@ -29,6 +32,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang đóng',
       joined: true,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 4,
@@ -37,6 +41,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang mở',
       joined: false,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 5,
@@ -45,6 +50,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang đóng',
       joined: false,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 6,
@@ -53,6 +59,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang mở',
       joined: true,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 7,
@@ -61,6 +68,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang mở',
       joined: true,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 8,
@@ -69,6 +77,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang mở',
       joined: true,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 9,
@@ -77,6 +86,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang mở',
       joined: true,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 10,
@@ -85,6 +95,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang mở',
       joined: true,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 11,
@@ -93,6 +104,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang mở',
       joined: true,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 12,
@@ -101,6 +113,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang mở',
       joined: true,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
     {
       missionId: 13,
@@ -109,6 +122,7 @@ function MissionListPage() {
       joinedAmount: 20,
       status: 'Đang mở',
       joined: true,
+      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
     },
   ];
   const {
@@ -136,6 +150,14 @@ function MissionListPage() {
     const page = searchParams.get('page') ? searchParams.get('page') : '1';
     setSearchParams({ filter, page });
     setFilter(filter);
+  };
+
+  const handleRegister = async (contractAddress: string) => {
+    await missionContracService.register(contractAddress);
+  };
+
+  const handleCancelRegister = async (contractAddress: string) => {
+    await missionContracService.cancelRegister(contractAddress);
   };
 
   return (
@@ -182,9 +204,19 @@ function MissionListPage() {
                 <p className="element_status">{mission.status}</p>
               </Link>
               {mission.joined ? (
-                <button className="join_btn cancel">Hủy</button>
+                <button
+                  className="join_btn cancel"
+                  onClick={() => handleCancelRegister(mission.contractAddress)}
+                >
+                  Hủy
+                </button>
               ) : (
-                <button className="join_btn join">Tham gia</button>
+                <button
+                  className="join_btn join"
+                  onClick={() => handleRegister(mission.contractAddress)}
+                >
+                  Tham gia
+                </button>
               )}
             </div>
           ))}

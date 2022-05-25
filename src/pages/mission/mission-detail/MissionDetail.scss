@@ -83,3 +83,26 @@
     margin-right: 15px;
   }
 }
+
+.join_btn {
+	background-color: #33aaff;
+	border-radius: 10px;
+	border: none;
+	padding: 5px;
+	color: white;
+	position: absolute;
+	right: 30px;
+	bottom: 25px;
+	width: max-content;
+}
+
+.join_btn:hover {
+	background-color: #0946a1;
+}
+
+button.cancel{
+    background-color: #7e8081;
+  }
+button.cancel:hover{
+    background-color: black;
+  }

@@ -8,6 +8,7 @@ GrantRoleStudent.propTypes = {};
 
 function GrantRoleStudent() {
   const [faculty, setFaculty] = useState('');
+  const [major, setMajor] = useState('');
   const [gender, setGender] = useState('Nam');
   const { onChangeAvt, defaultAvt } = useAvata();
 
@@ -26,6 +27,7 @@ function GrantRoleStudent() {
       issuranceDate: convertDateToTimestamp(e.target.issuranceDate.value),
       address: e.target.address.value.trim(),
       faculty: e.target.faculty.value.trim(),
+      major: e.target.major.value,
       schoolYear: e.target.schoolYear.value.trim(),
       class: e.target.class.value.trim(),
       walletAddress: e.target.walletAddress.value.trim(),
@@ -213,6 +215,25 @@ function GrantRoleStudent() {
                   name="schoolYear"
                   required
                 />
+              </div>
+              <div className="d-flex flex-column col col-3">
+                <label htmlFor="major">
+                  Ngành <span style={{ color: 'red' }}>*</span>
+                </label>
+                <select
+                  name="major"
+                  id="major"
+                  value={major}
+                  onChange={(e) => {
+                    setMajor(e.target.value);
+                  }}
+                >
+                  <option value="CNTT">Công nghệ thông tin</option>
+                  <option value="KTPM">Kỹ thuật phần mềm</option>
+                  <option value="KTMT">Kỹ thuật máy tính</option>
+                  <option value="KHMT">Khoa học máy tính</option>
+                  <option value="HTTT">Hệ thống thông tin</option>
+                </select>
               </div>
               <div className="d-flex flex-column col col-3">
                 <label htmlFor="class">

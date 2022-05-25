@@ -1,65 +1,94 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { StudentInfo } from 'src/utils/window';
-import { convertLocalTime } from 'src/utils';
+import { convertDateToTimestamp, convertLocalTime } from 'src/utils';
+import useAvata from 'src/hooks/useAvata';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
+import { managerPoolContractService } from 'src/contracts/manager-pool.service';
 
 StudentInfomation.propTypes = {
-  onSubmit: PropTypes.func,
   studentInfo: PropTypes.shape({
+    imgUrl: PropTypes.string,
     name: PropTypes.string.isRequired,
-    dateOfBirth: PropTypes.string.isRequired,
-    gender: PropTypes.string.isRequired,
+    studentId: PropTypes.string.isRequired,
+    birthday: PropTypes.string.isRequired,
     placeOfBirth: PropTypes.string.isRequired,
+    gender: PropTypes.string.isRequired,
     nation: PropTypes.string.isRequired,
     cmnd: PropTypes.string.isRequired,
-    issuanceDate: PropTypes.string.isRequired,
     issuancePlace: PropTypes.string.isRequired,
-    address1: PropTypes.string,
-    address2: PropTypes.string,
+    issuranceDate: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    faculty: PropTypes.string.isRequired,
+    major: PropTypes.string.isRequired,
+    schoolYear: PropTypes.string.isRequired,
+    class: PropTypes.string.isRequired,
+    walletAddress: PropTypes.string.isRequired,
   }),
 };
 
 StudentInfomation.defaultProps = {
-  onSubmit: null,
   studentInfo: {
     name: 'Mai Nguyen Duc Tho',
-    dateOfBirth: convertLocalTime(1650438993),
     gender: 'Nữ',
     placeOfBirth: 'Long An',
     nation: 'Kinh',
     cmnd: '123456789',
     issuanceDate: convertLocalTime(1450017483),
     issuancePlace: 'Long An',
-    address1: 'Long An',
-    address2: 'Long An',
+    address: 'Long An',
+    imgUrl:
+      'https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg',
+    studentId: '18520369',
+    birthday: convertLocalTime(1650438993),
+    faculty: 'KTTT',
+    major: 'CNNT',
+    schoolYear: '2018',
+    class: 'CNTT2018',
+    walletAddress: '0xa68a621367346bedb9a0325087856598903c9c70',
   },
 };
 
 function StudentInfomation(props) {
-  const { onSubmit, studentInfo } = props;
-
+  const { studentInfo } = props;
+  const { onChangeAvt, defaultAvt, setDefaultAvt } = useAvata();
   const [gender, setGender] = useState('Nam');
 
   useEffect(() => {
     setGender(studentInfo.gender);
+    setDefaultAvt(
+      'https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg',
+    );
   }, [studentInfo]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target);
-    const studentInfoForm: StudentInfo = {
-      name: e.target.name.value,
-      dateOfBirth: e.target.dateOfBirth.value,
-      gender: e.target.gender.value,
-      placeOfBirth: e.target.placeOfBirth.value,
-      nation: e.target.nation.value,
-      cmnd: e.target.cmnd.value,
-      issuanceDate: e.target.issuanceDate.value,
-      issuancePlace: e.target.issuancePlace.value,
-      address1: e.target.address1.value,
-      address2: e.target.address2.value,
+    const studentInfoForm = {
+      imgUrl: defaultAvt,
+      name: e.target.name.value.trim(),
+      studentId: studentInfo.studentId,
+      birthday: convertDateToTimestamp(e.target.birthday.value),
+      placeOfBirth: e.target.placeOfBirth.value.trim(),
+      gender: e.target.gender.value.trim(),
+      nation: e.target.nation.value.trim(),
+      cmnd: e.target.cmnd.value.trim(),
+      issuancePlace: e.target.issuancePlace.value.trim(),
+      issuranceDate: convertDateToTimestamp(e.target.issuranceDate.value),
+      address: e.target.address.value.trim(),
+      faculty: studentInfo.faculty,
+      major: studentInfo.major,
+      schoolYear: studentInfo.schoolYear,
+      class: studentInfo.class,
+      walletAddress: studentInfo.walletAddress,
     };
-    onSubmit(studentInfoForm);
+    console.log(studentInfoForm);
+    const hash = await AddDataToIPFS(studentInfoForm);
+    console.log(hash);
+    await managerPoolContractService.update(
+      studentInfoForm.walletAddress,
+      hash,
+    );
   };
 
   return (
@@ -70,6 +99,21 @@ function StudentInfomation(props) {
       <div className="body_form mt-3">
         <form className="d-flex flex-column" onSubmit={handleSubmit}>
           <div>
+            <div className="col col-4 img-avt d-flex flex-column align-items-center">
+              <label htmlFor="myImage">
+                <img src={defaultAvt} alt="" />
+                <p>
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                </p>
+              </label>
+              <input
+                type="file"
+                id="myImage"
+                name="myImage"
+                accept="image/png, image/gif, image/jpeg"
+                onChange={(e) => onChangeAvt(e)}
+              />
+            </div>
             <div className="d-flex flex-column mb-2 row">
               <div className="d-flex flex-column">
                 <label htmlFor="name">
@@ -91,8 +135,8 @@ function StudentInfomation(props) {
                 <input
                   type="date"
                   placeholder="Ngày sinh"
-                  name="dateOfBirth"
-                  defaultValue={studentInfo.dateOfBirth}
+                  name="birthday"
+                  defaultValue={studentInfo.birthday}
                 />
               </div>
               <div className="d-flex flex-column col col-3">
@@ -148,15 +192,15 @@ function StudentInfomation(props) {
                 />
               </div>
               <div className="d-flex flex-column mb-2 col col-4">
-                <label htmlFor="issuanceDate">
+                <label htmlFor="issuranceDate">
                   Ngày cấp <span style={{ color: 'red' }}>*</span>
                 </label>
                 <input
                   type="date"
-                  name="issuanceDate"
+                  name="issuranceDate"
                   defaultValue={
-                    studentInfo.issuanceDate != ''
-                      ? studentInfo.issuanceDate
+                    studentInfo.issuranceDate != ''
+                      ? studentInfo.issuranceDate
                       : 'today'
                   }
                 />
@@ -175,30 +219,21 @@ function StudentInfomation(props) {
             </div>
             <div className="d-flex flex-column mb-2 row">
               <div className="d-flex flex-column">
-                <label htmlFor="address1">Địa chỉ tạm trú</label>
+                <label htmlFor="address">Địa chỉ</label>
                 <input
                   type="text"
-                  placeholder="Địa chỉ tập trú"
-                  name="address1"
-                  defaultValue={studentInfo.address1}
-                />
-              </div>
-            </div>
-            <div className="d-flex flex-column row">
-              <div className="d-flex flex-column">
-                <label htmlFor="address2">Địa chỉ thường trú</label>
-                <input
-                  type="text"
-                  placeholder="Địa chỉ thường trú"
-                  name="address2"
-                  defaultValue={studentInfo.address2}
+                  placeholder="Địa chỉ"
+                  name="address"
+                  defaultValue={studentInfo.address}
                 />
               </div>
             </div>
           </div>
-          <button className="submitbtn" type="submit">
-            Cập nhật
-          </button>
+          <div className="d-flex flex-row-reverse">
+            <button className="submitbtn" type="submit">
+              Cập nhật
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -16,6 +16,7 @@ function useAvata() {
   return {
     onChangeAvt,
     defaultAvt,
+    setDefaultAvt,
   };
 }
 

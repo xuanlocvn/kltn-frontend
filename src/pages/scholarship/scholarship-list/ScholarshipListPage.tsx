@@ -12,6 +12,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 2,
@@ -20,6 +21,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang đóng',
     joined: false,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 3,
@@ -28,6 +30,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang đóng',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 4,
@@ -36,6 +39,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: false,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 5,
@@ -44,6 +48,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang đóng',
     joined: false,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 6,
@@ -52,6 +57,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 7,
@@ -60,6 +66,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 8,
@@ -68,6 +75,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 9,
@@ -76,6 +84,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 10,
@@ -84,6 +93,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 11,
@@ -92,6 +102,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 12,
@@ -100,6 +111,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 13,
@@ -108,6 +120,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
 ];
 

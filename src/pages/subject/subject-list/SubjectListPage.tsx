@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from 'src/components/shared/Pagination/Pagination';
+import { subjectContracService } from 'src/contracts/subject-contract.service';
 import useList from 'src/hooks/useList';
 import './SubjectListPage.scss';
 
@@ -12,6 +13,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 2,
@@ -20,6 +22,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang đóng',
     joined: false,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 3,
@@ -28,6 +31,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang đóng',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 4,
@@ -36,6 +40,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: false,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 5,
@@ -44,6 +49,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang đóng',
     joined: false,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 6,
@@ -52,6 +58,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 7,
@@ -60,6 +67,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 8,
@@ -68,6 +76,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 9,
@@ -76,6 +85,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 10,
@@ -84,6 +94,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 11,
@@ -92,6 +103,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 12,
@@ -100,6 +112,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
   {
     subjectId: 13,
@@ -108,6 +121,7 @@ const SubjectList = [
     joinedAmount: 20,
     status: 'Đang mở',
     joined: true,
+    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   },
 ];
 
@@ -137,6 +151,14 @@ function SubjectListPage() {
     const page = searchParams.get('page') ? searchParams.get('page') : '1';
     setSearchParams({ filter, page });
     setFilter(filter);
+  };
+
+  const handleRegister = async (contractAddress: string) => {
+    await subjectContracService.register(contractAddress);
+  };
+
+  const handleCancelRegister = async (contractAddress: string) => {
+    await subjectContracService.cancelRegister(contractAddress);
   };
 
   return (
@@ -183,9 +205,19 @@ function SubjectListPage() {
                 <p className="element_status">{subject.status}</p>
               </Link>
               {subject.joined ? (
-                <button className="join_btn cancel">Hủy</button>
+                <button
+                  className="join_btn cancel"
+                  onClick={() => handleCancelRegister(subject.contractAddress)}
+                >
+                  Hủy
+                </button>
               ) : (
-                <button className="join_btn join">Tham gia</button>
+                <button
+                  className="join_btn join"
+                  onClick={() => handleRegister(subject.contractAddress)}
+                >
+                  Tham gia
+                </button>
               )}
             </div>
           ))}

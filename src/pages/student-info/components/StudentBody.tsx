@@ -21,18 +21,7 @@ function StudentBody(props: { walletAddress: string }) {
   const [isOwnStdudent, setIsOwnStudent] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams({});
   const [tab, setTab] = useState(1);
-  const [studentInfo, setStudentInfo] = useState({
-    name: '',
-    dateOfBirth: '',
-    gender: '',
-    placeOfBirth: '',
-    nation: '',
-    cmnd: '',
-    issuanceDate: '',
-    issuancePlace: '',
-    address1: '',
-    address2: '',
-  });
+  const [studentInfo, setStudentInfo] = useState({});
 
   const [totalToken, setTotaToken] = useState(0);
 
@@ -126,18 +115,25 @@ function StudentBody(props: { walletAddress: string }) {
   }, [tab == 3]);
 
   useEffect(() => {
-    const getStudentInfoByAddress = (address: string): StudentInfo => {
+    const getStudentInfoByAddress = (walletAddress: string) => {
       return {
         name: 'Mai Nguyen Duc Tho',
-        dateOfBirth: convertLocalTime(1650438993),
         gender: 'Nữ',
         placeOfBirth: 'Long An',
         nation: 'Kinh',
         cmnd: '123456789',
         issuanceDate: convertLocalTime(1450017483),
         issuancePlace: 'Long An',
-        address1: 'Long An',
-        address2: 'Long An',
+        address: 'Long An',
+        imgUrl:
+          'https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg',
+        studentId: '18520369',
+        birthday: convertLocalTime(1650438993),
+        faculty: 'KTTT',
+        major: 'CNNT',
+        schoolYear: '2018',
+        class: 'CNTT2018',
+        walletAddress: walletAddress,
       };
     };
     const getAccount = async () => {
@@ -167,16 +163,12 @@ function StudentBody(props: { walletAddress: string }) {
     setTab(tabNumber);
   };
 
-  const onSubmit = (object: any) => {
-    console.log(object);
-  };
-
   return (
     <div className="student_form mt-5 d-flex">
       <StudentTab onTab={onTab} isOwnStdudent={isOwnStdudent} />
       <div className="form_body d-flex flex-column col col-9">
         {tab == 1 && isOwnStdudent && (
-          <StudentInfomation onSubmit={onSubmit} studentInfo={studentInfo} />
+          <StudentInfomation studentInfo={studentInfo} />
         )}
         {tab == 2 && isOwnStdudent && (
           <StudentAccount

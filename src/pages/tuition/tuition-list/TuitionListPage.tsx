@@ -3,6 +3,7 @@ import Pagination from 'src/components/shared/Pagination/Pagination';
 import { Link } from 'react-router-dom';
 import useList from 'src/hooks/useList';
 import './TuitionListPage.scss';
+// import { tuitionContracService } from 'src/contracts/tuition-contract.service';
 
 const SubjectList = [
   {
@@ -138,6 +139,14 @@ function TuitionListPage() {
     setSearchParams({ filter, page });
     setFilter(filter);
   };
+
+  // const paymentByToken = async (contractAddress: string) => {
+  //   await tuitionContracService.paymentByToken(contractAddress);
+  // };
+
+  // const paymen = async (contractAddress: string) => {
+  //   await tuitionContracService.paymentByToken(contractAddress);
+  // };
 
   return (
     <div className="list mt-5">

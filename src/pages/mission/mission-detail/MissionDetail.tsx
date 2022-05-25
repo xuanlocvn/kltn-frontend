@@ -3,10 +3,13 @@ import { Collapse } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from 'src/app/hooks';
 import { selectRole } from 'src/components/shared/Header/HeaderSlice';
+import { missionContracService } from 'src/contracts/mission-contract.service';
 import './MissionDetail.scss';
 
 const detailInfo = {
   id: '123456',
+  joined: false,
+  contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
   name: 'Mùa Hè Xanh 2018',
   status: 'Đang mở',
   startTime: '9am - 02.01.2021',
@@ -43,6 +46,14 @@ function MissionDetail() {
 
     getDetail(missionId);
   }, []);
+
+  const handleRegister = async (contractAddress: string) => {
+    await missionContracService.register(contractAddress);
+  };
+
+  const handleCancelRegister = async (contractAddress: string) => {
+    await missionContracService.cancelRegister(contractAddress);
+  };
 
   return (
     <div className="mt-5">
@@ -88,7 +99,21 @@ function MissionDetail() {
               </div>
             </div>
             <div className="d-flex flex-row-reverse">
-              <button className="disable">Tham gia ngay</button>
+              {detail.joined ? (
+                <button
+                  className="join_btn cancel"
+                  onClick={() => handleCancelRegister(detail.contractAddress)}
+                >
+                  Hủy
+                </button>
+              ) : (
+                <button
+                  className="join_btn join"
+                  onClick={() => handleRegister(detail.contractAddress)}
+                >
+                  Tham gia
+                </button>
+              )}
             </div>
           </div>
           <div
@@ -105,7 +130,7 @@ function MissionDetail() {
         </>
       )}
 
-      {role.role == 'STUDENT' && (
+      {role.role == 'LECTURER' && (
         <div className="historyTable mt-5">
           <h2>Bảng đánh giá sinh viên</h2>
           <form>

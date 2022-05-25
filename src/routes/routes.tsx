@@ -24,6 +24,9 @@ const TuitionListPage = lazy(
 const SubjectDetail = lazy(
   () => import('src/pages/subject/subject-detail/SubjectDetail'),
 );
+const ProductDetail = lazy(
+  () => import('src/pages/product/product-detail/ProductDetail'),
+);
 
 function Router() {
   return (
@@ -45,7 +48,7 @@ function Router() {
       <Route path="/tuitions/:tuitionId" element={<NotFound />} />
 
       <Route path="products" element={<ProductListPage />} />
-      <Route path="products/:productId" element={<NotFound />} />
+      <Route path="products/:productId" element={<ProductDetail />} />
 
       <Route path="admin/:adminAddress" element={<AdminPage />} />
 

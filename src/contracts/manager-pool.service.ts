@@ -43,6 +43,20 @@ class ManagerPoolContractService extends ContractBase {
     return tx;
   }
 
+  async update(studentAddr: string, hashInfo: string) {
+    const contract = await this.loadContract(this.contractAddress);
+    if (!contract) return;
+    const tx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      'update',
+      studentAddr,
+      hashInfo,
+    );
+    return tx;
+  }
+
   async addLecturerInfo(lecturerAddr: string, hashInfo: string) {
     const contract = await this.loadContract(this.contractAddress);
     if (!contract) return;

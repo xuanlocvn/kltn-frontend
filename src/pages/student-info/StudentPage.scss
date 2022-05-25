@@ -403,3 +403,25 @@ select .select-item {
 	transform: scale(1.06, 1.06);
 	transition: transform 0.3s;
 }
+
+.body_form .img-avt{
+  position: relative;
+  top: -408px;
+  left: -46%;
+  height: 0;
+
+  img {
+    width: 200px;
+    height: 200px;
+    border: none;
+  }
+
+  label p {
+    position: relative;
+    top: -59px;
+    right: -55px;
+    font-size: 40px;
+    color: #888585;
+    font-weight: 100;
+  }
+}
