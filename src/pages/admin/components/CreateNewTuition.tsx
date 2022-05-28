@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { managerPoolContractService } from 'src/contracts/manager-pool.service';
 import useAvata from 'src/hooks/useAvata';
 import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
 import { convertDateToTimestamp } from 'src/utils';
+import { getLecturerList } from '../../../api/lecturerApi';
 // import PropTypes from 'prop-types';
 
 CreateNewTuition.propTypes = {};
@@ -10,6 +11,15 @@ CreateNewTuition.propTypes = {};
 function CreateNewTuition() {
   const [faculty, setFaculty] = useState('');
   const { onChangeAvt, defaultAvt } = useAvata();
+  const [lecturerList, setLecturerList] = useState([]);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const response = await getLecturerList();
+      setLecturerList(response.data.result);
+    };
+    fetchApi();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,15 +108,11 @@ function CreateNewTuition() {
                   setFaculty(e.target.value);
                 }}
               >
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">
-                  Mai Nguyễn Đức Thọ
-                </option>
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">
-                  Mai Nguyễn Đức Thọ
-                </option>
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">
-                  Mai Nguyễn Đức Thọ
-                </option>
+                {lecturerList.map((lecturer, index) => (
+                  <option key={index} value={lecturer.lecturerAddress}>
+                    {lecturer.lecturerName}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="d-flex justify-content-between row mb-2">

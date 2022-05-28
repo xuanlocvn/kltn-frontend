@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import StudentTab from './StudentTab';
 import StudentInfomation from './StudentInfomation';
-import { StudentInfo } from 'src/utils/window';
 import { convertLocalTime } from 'src/utils';
 import StudentAccount from './StudentAccount';
 import { useSearchParams } from 'react-router-dom';
@@ -13,18 +12,16 @@ import StudentCertificate from './StudentCertificate';
 
 StudentBody.propTypes = {
   walletAddress: PropTypes.string,
+  studentInfo: PropTypes.object,
 };
 
-function StudentBody(props: { walletAddress: string }) {
-  const { walletAddress } = props;
+function StudentBody(props: { walletAddress: string; studentInfo: any }) {
+  const { walletAddress, studentInfo } = props;
   const web3 = useAppSelector(selectWeb3);
   const [isOwnStdudent, setIsOwnStudent] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams({});
   const [tab, setTab] = useState(1);
-  const [studentInfo, setStudentInfo] = useState({});
-
   const [totalToken, setTotaToken] = useState(0);
-
   const [certificateList, setCertificatList] = useState({
     subjectList: [],
     certificateList: [],
@@ -115,27 +112,6 @@ function StudentBody(props: { walletAddress: string }) {
   }, [tab == 3]);
 
   useEffect(() => {
-    const getStudentInfoByAddress = (walletAddress: string) => {
-      return {
-        name: 'Mai Nguyen Duc Tho',
-        gender: 'Nữ',
-        placeOfBirth: 'Long An',
-        nation: 'Kinh',
-        cmnd: '123456789',
-        issuanceDate: convertLocalTime(1450017483),
-        issuancePlace: 'Long An',
-        address: 'Long An',
-        imgUrl:
-          'https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg',
-        studentId: '18520369',
-        birthday: convertLocalTime(1650438993),
-        faculty: 'KTTT',
-        major: 'CNNT',
-        schoolYear: '2018',
-        class: 'CNTT2018',
-        walletAddress: walletAddress,
-      };
-    };
     const getAccount = async () => {
       if (web3) {
         const accounts = await web3.eth.getAccounts();
@@ -145,19 +121,19 @@ function StudentBody(props: { walletAddress: string }) {
     };
 
     getAccount().then((account) => {
+      console.log('Helloooooooooooooooooooooo');
       if (account == null) return;
-      if (account.toLowerCase() == walletAddress.toLocaleLowerCase()) {
+      if (account.toLowerCase() == walletAddress.toLowerCase()) {
         setIsOwnStudent(true);
         const t = Number(searchParams.get('t'));
-        t != 0 && setTab(t);
-        setStudentInfo(getStudentInfoByAddress(walletAddress));
+        t != 0 ? setTab(t) : setTab(1);
       } else {
         setIsOwnStudent(false);
         setTab(3);
         setSearchParams({ t: '3' });
       }
     });
-  }, [web3]);
+  }, [studentInfo]);
 
   const onTab = (tabNumber: number) => {
     setTab(tabNumber);

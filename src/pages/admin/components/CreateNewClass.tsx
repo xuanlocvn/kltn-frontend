@@ -1,17 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  getAllDepartment,
+  getSubjectByDepartment,
+} from 'src/api/departmentAPI';
+import { getLecturerList } from 'src/api/lecturerApi';
 import { managerPoolContractService } from 'src/contracts/manager-pool.service';
 import useAvata from 'src/hooks/useAvata';
 import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
 import { convertDateToTimestamp } from 'src/utils';
-// import PropTypes from 'prop-types';
-
-CreateNewClass.propTypes = {};
 
 function CreateNewClass() {
   const [faculty, setFaculty] = useState('');
   const [lecturer, setLecturer] = useState('');
   const [subject, setSubject] = useState('');
   const { onChangeAvt, defaultAvt } = useAvata();
+  const [departmentList, setDepartmentList] = useState([]);
+  const [subjectList, setSubjectList] = useState([]);
+  const [lecturerList, setLecturerList] = useState([]);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      let response = await getAllDepartment();
+      setDepartmentList(response.data.result);
+      setFaculty(response.data.result[0].departmentShortenName);
+
+      response = await getLecturerList();
+      setLecturerList(response.data.result);
+    };
+    fetchApi();
+  }, []);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const response = await getSubjectByDepartment(faculty);
+      setSubjectList(response.data.result);
+    };
+    fetchApi();
+  }, [faculty]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,11 +109,11 @@ function CreateNewClass() {
                   setFaculty(e.target.value);
                 }}
               >
-                <option value="KTTT">Khoa học và kỹ thuật thông tin</option>
-                <option value="KTPM">Kỹ thuật phần mềm</option>
-                <option value="KTMT">Kỹ thuật máy tính</option>
-                <option value="KHMT">Khoa học máy tính</option>
-                <option value="HTTT">Hệ thống thông tin</option>
+                {departmentList.map((department, index) => (
+                  <option key={index} value={department.departmentShortenName}>
+                    {department.departmentName}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="d-flex flex-column mb-2">
@@ -103,9 +128,11 @@ function CreateNewClass() {
                   setSubject(e.target.value);
                 }}
               >
-                <option value="NMLT">Nhập môn lập trình</option>
-                <option value="NMLT">Nhập môn lập trình</option>
-                <option value="NMLT">Nhập môn lập trình</option>
+                {subjectList.map((subject, index) => (
+                  <option key={index} value={subject.subjectHash}>
+                    {subject.subjectName}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="d-flex flex-column mb-2">
@@ -138,15 +165,11 @@ function CreateNewClass() {
                   setLecturer(e.target.value);
                 }}
               >
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">
-                  Mai Nguyễn Đức Thọ
-                </option>
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">
-                  Mai Nguyễn Đức Thọ
-                </option>
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">
-                  Mai Nguyễn Đức Thọ
-                </option>
+                {lecturerList.map((lecturer, index) => (
+                  <option key={index} value={lecturer.lecturerAddress}>
+                    {lecturer.lecturerName}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="d-flex justify-content-between row  mb-2">

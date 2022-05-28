@@ -10,7 +10,7 @@ StudentCoverInfo.propTypes = {
   studentMajor: PropTypes.string,
   class: PropTypes.string,
   faculty: PropTypes.string,
-  system: PropTypes.string,
+  schoolYear: PropTypes.string,
 };
 
 StudentCoverInfo.defaultProps = {
@@ -23,7 +23,7 @@ StudentCoverInfo.defaultProps = {
   studentMajor: 'Loading',
   class: 'Loading',
   faculty: 'Loading',
-  system: 'Loading',
+  schoolYear: 'Loading',
 };
 
 function StudentCoverInfo(props) {
@@ -46,27 +46,27 @@ function StudentCoverInfo(props) {
           <div className="d-flex justify-content-between">
             <div>
               <p>
-                <span>Mã số sinh viên:</span>
+                <span>Mã số sinh viên: </span>
                 {props.studentId}
               </p>
               <p>
-                <span>Ngành học:</span>
+                <span>Ngành học: </span>
                 {props.studentMajor}
               </p>
             </div>
             <div>
               <p>
-                <span>Lớp sinh hoạt:</span>
+                <span>Lớp sinh hoạt: </span>
                 {props.class}
               </p>
               <p>
-                <span>Khóa</span>
-                {props.system}
+                <span>Khóa: </span>
+                {props.schoolYear}
               </p>
             </div>
             <div>
               <p>
-                <span>Khoa:</span>
+                <span>Khoa: </span>
                 {props.faculty}
               </p>
             </div>

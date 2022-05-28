@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getAllDepartment } from 'src/api/departmentAPI';
 import { managerPoolContractService } from 'src/contracts/manager-pool.service';
 import useAvata from 'src/hooks/useAvata';
 import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
@@ -12,6 +13,17 @@ function GrantRoleStudent() {
   const [major, setMajor] = useState('');
   const [gender, setGender] = useState('Nam');
   const { onChangeAvt, defaultAvt } = useAvata();
+  const [departmentList, setDepartmentList] = useState([]);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const response = await getAllDepartment();
+      console.log(response.data.result);
+      setDepartmentList(response.data.result);
+    };
+
+    fetchApi();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -200,11 +212,14 @@ function GrantRoleStudent() {
                     setFaculty(e.target.value);
                   }}
                 >
-                  <option value="KTTT">Khoa học và kỹ thuật thông tin</option>
-                  <option value="KTPM">Kỹ thuật phần mềm</option>
-                  <option value="KTMT">Kỹ thuật máy tính</option>
-                  <option value="KHMT">Khoa học máy tính</option>
-                  <option value="HTTT">Hệ thống thông tin</option>
+                  {departmentList.map((department, index) => (
+                    <option
+                      key={index}
+                      value={department.departmentShortenName}
+                    >
+                      {department.departmentName}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="d-flex flex-column col col-3">

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { managerPoolContractService } from 'src/contracts/manager-pool.service';
 import useAvata from 'src/hooks/useAvata';
 import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
 import { convertDateToTimestamp } from 'src/utils';
+import { getLecturerList } from '../../../api/lecturerApi';
 // import PropTypes from 'prop-types';
 
 CreateNewMission.propTypes = {};
@@ -10,6 +11,15 @@ CreateNewMission.propTypes = {};
 function CreateNewMission() {
   const [faculty, setFaculty] = useState('');
   const { onChangeAvt, defaultAvt } = useAvata();
+  const [lecturerList, setLecturerList] = useState([]);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const response = await getLecturerList();
+      setLecturerList(response.data.result);
+    };
+    fetchApi();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,7 +88,7 @@ function CreateNewMission() {
               </label>
               <input
                 type="text"
-                placeholder="Tên môn học"
+                placeholder="Tên nhiệm vụ"
                 name="name"
                 required
               />
@@ -120,15 +130,11 @@ function CreateNewMission() {
                   console.log(e.target.options[e.target.selectedIndex].text);
                 }}
               >
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">
-                  Mai Nguyễn Đức Thọ n
-                </option>
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F82D">
-                  Mai Nguyễn Đức Thọ l
-                </option>
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F83D">
-                  Mai Nguyễn Đức Thọ s
-                </option>
+                {lecturerList.map((lecturer, index) => (
+                  <option key={index} value={lecturer.lecturerAddress}>
+                    {lecturer.lecturerName}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="d-flex justify-content-between row  mb-2">

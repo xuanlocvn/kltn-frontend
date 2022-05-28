@@ -1,14 +1,59 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import StudentCoverInfo from './components/StudentCoverInfo';
 import { useNavigate, useParams } from 'react-router-dom';
 import './StudentPage.scss';
 import StudentBody from './components/StudentBody';
 import { accessControlContractService } from 'src/contracts/access-control.service';
 import { ROLE } from 'src/utils/enum';
+import { getStudentByAddress } from 'src/api/studentApi';
+import { convertLocalTime } from 'src/utils';
+import { useAppSelector } from 'src/app/hooks';
+import { selectWeb3 } from 'src/pages/sign-in/SignInSlice';
 
 function StudentPage() {
   const { address } = useParams();
   const navigate = useNavigate();
+  const [studentInfo, setStudentInfo] = useState({});
+  const [studentCover, setStudentCover] = useState({});
+  const web3 = useAppSelector(selectWeb3);
+
+  useEffect(() => {
+    const getStudentInfoByAddress = async (walletAddress: string) => {
+      const response = await getStudentByAddress(walletAddress);
+      const result = response.data.result;
+      setStudentInfo({
+        name: result.studentName,
+        gender: result.sex,
+        placeOfBirth: result.birthPlace,
+        nation: result.ethnic,
+        cmnd: result.nationalId,
+        issuranceDate: convertLocalTime(result.dateOfNationalId),
+        issuancePlace: result.placeOfNationalId,
+        address: result.permanentAddress,
+        imgUrl:
+          result.studentImg ||
+          'https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg',
+        studentId: result.studentId,
+        birthday: convertLocalTime(result.dateOfBirth),
+        faculty: result.departmentName,
+        major: result.majorName,
+        schoolYear: result.schoolYear.toString(),
+        class: result.classroomName,
+        walletAddress: walletAddress,
+      });
+
+      setStudentCover({
+        studentName: result.studentName,
+        studentId: result.studentId,
+        studentMajor: result.majorName,
+        class: result.classroomName,
+        faculty: result.departmentName,
+        schoolYear: result.schoolYear.toString(),
+      });
+    };
+    getStudentInfoByAddress(address);
+  }, [web3, address]);
+
   useEffect(() => {
     const getRole = async () => {
       return await accessControlContractService.getRole(address);
@@ -20,18 +65,10 @@ function StudentPage() {
     });
   }, [address]);
 
-  const studentInfo = {
-    studentName: 'Mai Nguyen Duc Tho',
-    studentId: '18520369',
-    studentMajor: 'CNTT',
-    class: 'CNTT2018',
-    faculty: 'KTTT',
-    system: 'Chinh Quy',
-  };
   return (
     <div className="student">
-      <StudentCoverInfo {...studentInfo} />
-      <StudentBody walletAddress={address} />
+      <StudentCoverInfo {...studentCover} />
+      <StudentBody walletAddress={address} studentInfo={studentInfo} />
     </div>
   );
 }

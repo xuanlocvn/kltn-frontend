@@ -1,10 +1,6 @@
 import axiosClient from './axiosClient';
 
-const studentApi = {
-  get: (params) => {
-    const url = 'student';
-    return axiosClient.get(url, params);
-  },
+export const getStudentByAddress = (studentAddress: string) => {
+  const url = `api/student/${studentAddress}`;
+  return axiosClient.get(url);
 };
-
-export default studentApi;

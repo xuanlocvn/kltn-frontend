@@ -83,7 +83,7 @@ function Header() {
           <div className="">
             {account && role.role && (
               <Link
-                to={`/${role.role.toLocaleLowerCase()}/${
+                to={`/${role.role.toLowerCase()}/${
                   window.localStorage.account
                 }`}
               >

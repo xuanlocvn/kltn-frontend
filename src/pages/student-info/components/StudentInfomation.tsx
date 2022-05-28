@@ -10,45 +10,45 @@ import { managerPoolContractService } from 'src/contracts/manager-pool.service';
 StudentInfomation.propTypes = {
   studentInfo: PropTypes.shape({
     imgUrl: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    studentId: PropTypes.string.isRequired,
-    birthday: PropTypes.string.isRequired,
-    placeOfBirth: PropTypes.string.isRequired,
-    gender: PropTypes.string.isRequired,
-    nation: PropTypes.string.isRequired,
-    cmnd: PropTypes.string.isRequired,
-    issuancePlace: PropTypes.string.isRequired,
-    issuranceDate: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-    faculty: PropTypes.string.isRequired,
-    major: PropTypes.string.isRequired,
-    schoolYear: PropTypes.string.isRequired,
-    class: PropTypes.string.isRequired,
-    walletAddress: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    studentId: PropTypes.string,
+    birthday: PropTypes.string,
+    placeOfBirth: PropTypes.string,
+    gender: PropTypes.string,
+    nation: PropTypes.string,
+    cmnd: PropTypes.string,
+    issuancePlace: PropTypes.string,
+    issuranceDate: PropTypes.string,
+    address: PropTypes.string,
+    faculty: PropTypes.string,
+    major: PropTypes.string,
+    schoolYear: PropTypes.string,
+    class: PropTypes.string,
+    walletAddress: PropTypes.string,
   }),
 };
 
-StudentInfomation.defaultProps = {
-  studentInfo: {
-    name: 'Mai Nguyen Duc Tho',
-    gender: 'Nữ',
-    placeOfBirth: 'Long An',
-    nation: 'Kinh',
-    cmnd: '123456789',
-    issuanceDate: convertLocalTime(1450017483),
-    issuancePlace: 'Long An',
-    address: 'Long An',
-    imgUrl:
-      'https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg',
-    studentId: '18520369',
-    birthday: convertLocalTime(1650438993),
-    faculty: 'KTTT',
-    major: 'CNNT',
-    schoolYear: '2018',
-    class: 'CNTT2018',
-    walletAddress: '0xa68a621367346bedb9a0325087856598903c9c70',
-  },
-};
+// StudentInfomation.defaultProps = {
+//   studentInfo: {
+//     name: 'Mai Nguyen Duc Tho',
+//     gender: 'Nữ',
+//     placeOfBirth: 'Long An',
+//     nation: 'Kinh',
+//     cmnd: '123456789',
+//     issuanceDate: convertLocalTime(1450017483),
+//     issuancePlace: 'Long An',
+//     address: 'Long An',
+//     imgUrl:
+//       'https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg',
+//     studentId: '18520369',
+//     birthday: convertLocalTime(1650438993),
+//     faculty: 'KTTT',
+//     major: 'CNNT',
+//     schoolYear: '2018',
+//     class: 'CNTT2018',
+//     walletAddress: '0xa68a621367346bedb9a0325087856598903c9c70',
+//   },
+// };
 
 function StudentInfomation(props) {
   const { studentInfo } = props;
@@ -57,9 +57,7 @@ function StudentInfomation(props) {
 
   useEffect(() => {
     setGender(studentInfo.gender);
-    setDefaultAvt(
-      'https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg',
-    );
+    setDefaultAvt(studentInfo.imgUrl);
   }, [studentInfo]);
 
   const handleSubmit = async (e) => {
