@@ -19,6 +19,10 @@ function CreateNewScholarShip() {
       award: e.target.award.value,
       scholarshipId: e.target.scholarshipId.value,
       lecturerInCharge: e.target.lecturerInCharge.value,
+      lecturerName:
+        e.target.lecturerInCharge.options[
+          e.target.lecturerInCharge.selectedIndex
+        ].text,
       startTime: convertDateToTimestamp(e.target.startTime.value),
       endTime: convertDateToTimestamp(e.target.endTime.value),
       description: e.target.description.value,

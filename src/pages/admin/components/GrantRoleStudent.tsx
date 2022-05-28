@@ -3,6 +3,7 @@ import { managerPoolContractService } from 'src/contracts/manager-pool.service';
 import useAvata from 'src/hooks/useAvata';
 import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
 import { convertDateToTimestamp } from 'src/utils';
+import { FACULTY } from 'src/utils/enum';
 
 GrantRoleStudent.propTypes = {};
 
@@ -26,7 +27,8 @@ function GrantRoleStudent() {
       issuancePlace: e.target.issuancePlace.value.trim(),
       issuranceDate: convertDateToTimestamp(e.target.issuranceDate.value),
       address: e.target.address.value.trim(),
-      faculty: e.target.faculty.value.trim(),
+      faculty: FACULTY[e.target.faculty.value.trim()],
+      facultyShortName: e.target.faculty.value.trim(),
       major: e.target.major.value,
       schoolYear: e.target.schoolYear.value.trim(),
       class: e.target.class.value.trim(),

@@ -9,6 +9,7 @@ CreateNewClass.propTypes = {};
 
 function CreateNewClass() {
   const [faculty, setFaculty] = useState('');
+  const [lecturer, setLecturer] = useState('');
   const [subject, setSubject] = useState('');
   const { onChangeAvt, defaultAvt } = useAvata();
 
@@ -17,9 +18,15 @@ function CreateNewClass() {
     const classInfoForm = {
       img: defaultAvt,
       name: e.target.name.value,
+      shortName: e.target.name.options[e.target.name.selectedIndex].text,
       classId: e.target.classId.value,
       maxEntrant: e.target.maxEntrant.value,
       lecturerInCharge: e.target.lecturerInCharge.value,
+      lecturerName:
+        e.target.lecturerInCharge.options[
+          e.target.lecturerInCharge.selectedIndex
+        ].text,
+      faculty: '',
       startTime: convertDateToTimestamp(e.target.startTime.value),
       endTime: convertDateToTimestamp(e.target.endTime.value),
       endTimeToRegister: convertDateToTimestamp(
@@ -65,6 +72,25 @@ function CreateNewClass() {
             />
           </div>
           <div className="col col-8">
+            <div className="d-flex flex-column">
+              <label htmlFor="faculty">
+                Khoa <span style={{ color: 'red' }}>*</span>
+              </label>
+              <select
+                name="faculty"
+                id="faculty"
+                value={faculty}
+                onChange={(e) => {
+                  setFaculty(e.target.value);
+                }}
+              >
+                <option value="KTTT">Khoa học và kỹ thuật thông tin</option>
+                <option value="KTPM">Kỹ thuật phần mềm</option>
+                <option value="KTMT">Kỹ thuật máy tính</option>
+                <option value="KHMT">Khoa học máy tính</option>
+                <option value="HTTT">Hệ thống thông tin</option>
+              </select>
+            </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="name">
                 Tên môn học <span style={{ color: 'red' }}>*</span>
@@ -107,9 +133,9 @@ function CreateNewClass() {
               <select
                 name="lecturerInCharge"
                 id="lecturerInCharge"
-                value={faculty}
+                value={lecturer}
                 onChange={(e) => {
-                  setFaculty(e.target.value);
+                  setLecturer(e.target.value);
                 }}
               >
                 <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">

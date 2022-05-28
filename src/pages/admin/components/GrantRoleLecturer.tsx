@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { managerPoolContractService } from 'src/contracts/manager-pool.service';
 import useAvata from 'src/hooks/useAvata';
 import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
+import { FACULTY } from 'src/utils/enum';
 // import PropTypes from 'prop-types';
 
 GrantRoleLecturer.propTypes = {};
@@ -9,16 +10,19 @@ GrantRoleLecturer.propTypes = {};
 function GrantRoleLecturer() {
   const [faculty, setFaculty] = useState('');
   const { onChangeAvt, defaultAvt } = useAvata();
+  const [gender, setGender] = useState('Nam');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target);
     const lecturerInfoForm = {
+      img: defaultAvt,
       name: e.target.name.value.trim(),
       dateOfBirth: e.target.dateOfBirth.value.trim(),
       lecturerId: e.target.lecturerId.value.trim(),
-      faculty: e.target.faculty.value.trim(),
+      faculty: FACULTY[e.target.faculty.value.trim()],
       walletAddress: e.target.walletAddress.value.trim(),
+      gender: e.target.gender.value,
+      facultyShortName: e.target.faculty.value.trim(),
     };
     console.log(lecturerInfoForm);
     const hash = await AddDataToIPFS(lecturerInfoForm);
@@ -51,33 +55,58 @@ function GrantRoleLecturer() {
             />
           </div>
           <div className="col col-8">
-            <div className="d-flex flex-column mb-2">
-              <label htmlFor="name">
-                Họ và tên <span style={{ color: 'red' }}>*</span>
-              </label>
-              <input type="text" placeholder="Họ và tên" name="name" required />
+            <div className="d-flex justify-content-between mb-2 row">
+              <div className="d-flex flex-column col col-6">
+                <label htmlFor="name">
+                  Họ và tên <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Họ và tên"
+                  name="name"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column col col-6">
+                <label htmlFor="lecturerId">
+                  Mã giảng viên <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Mã giảng viên"
+                  name="lecturerId"
+                  required
+                />
+              </div>
             </div>
-            <div className="d-flex flex-column  mb-2">
-              <label htmlFor="dateOfBirth">
-                Ngày sinh <span style={{ color: 'red' }}>*</span>
-              </label>
-              <input
-                type="date"
-                placeholder="Ngày sinh"
-                name="dateOfBirth"
-                required
-              />
-            </div>
-            <div className="d-flex flex-column  mb-2">
-              <label htmlFor="lecturerId">
-                Mã giảng viên <span style={{ color: 'red' }}>*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Mã giảng viên"
-                name="lecturerId"
-                required
-              />
+            <div className="d-flex justify-content-between mb-2 row">
+              <div className="d-flex flex-column col col-6">
+                <label htmlFor="dateOfBirth">
+                  Ngày sinh <span style={{ color: 'red' }}>*</span>
+                </label>
+                <input
+                  type="date"
+                  placeholder="Ngày sinh"
+                  name="dateOfBirth"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column col col-6">
+                <label htmlFor="gender">
+                  Giới tính <span style={{ color: 'red' }}>*</span>
+                </label>
+                <select
+                  name="gender"
+                  id="gender"
+                  value={gender}
+                  onChange={(e) => {
+                    setGender(e.target.value);
+                  }}
+                >
+                  <option value="Nam">Nam</option>
+                  <option value="Nữ">Nữ</option>
+                </select>
+              </div>
             </div>
             <div className="d-flex flex-column  mb-2">
               <label htmlFor="faculty">

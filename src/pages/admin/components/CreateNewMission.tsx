@@ -13,13 +13,19 @@ function CreateNewMission() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(e.target);
     const missionInfoForm = {
       img: defaultAvt,
       name: e.target.name.value,
       award: e.target.award.value,
       missionId: e.target.missionId.value,
       maxEntrant: e.target.maxEntrant.value,
+      faculty: 'Doan Khoa',
       lecturerInCharge: e.target.lecturerInCharge.value,
+      lecturerName:
+        e.target.lecturerInCharge.options[
+          e.target.lecturerInCharge.selectedIndex
+        ].text,
       startTime: convertDateToTimestamp(e.target.startTime.value),
       endTime: convertDateToTimestamp(e.target.endTime.value),
       endTimeToRegister: convertDateToTimestamp(
@@ -110,16 +116,18 @@ function CreateNewMission() {
                 value={faculty}
                 onChange={(e) => {
                   setFaculty(e.target.value);
+                  console.log(e.target.value);
+                  console.log(e.target.options[e.target.selectedIndex].text);
                 }}
               >
                 <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">
-                  Mai Nguyễn Đức Thọ
+                  Mai Nguyễn Đức Thọ n
                 </option>
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">
-                  Mai Nguyễn Đức Thọ
+                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F82D">
+                  Mai Nguyễn Đức Thọ l
                 </option>
-                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F81D">
-                  Mai Nguyễn Đức Thọ
+                <option value="0xaFc15374b980F7aeb7f63123E94aee915d11F83D">
+                  Mai Nguyễn Đức Thọ s
                 </option>
               </select>
             </div>

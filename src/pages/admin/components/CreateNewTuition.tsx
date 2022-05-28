@@ -18,6 +18,10 @@ function CreateNewTuition() {
       name: e.target.name.value,
       tuitionId: e.target.tuitionId.value,
       lecturerInCharge: e.target.lecturerInCharge.value,
+      lecturerName:
+        e.target.lecturerInCharge.options[
+          e.target.lecturerInCharge.selectedIndex
+        ].text,
       amountToken: e.target.amountToken.value,
       amountCurency: e.target.amountCurency.value,
       startTime: convertDateToTimestamp(e.target.startTime.value),
