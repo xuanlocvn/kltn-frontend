@@ -1,130 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { CustomWindow } from 'src/utils/window';
 import Pagination from 'src/components/shared/Pagination/Pagination';
 import { missionContracService } from 'src/contracts/mission-contract.service';
 import useList from 'src/hooks/useList';
+import { getMissionList } from '../../../api/missionApi';
 import './MissionListPage.scss';
+import { IMissionInstance } from '../../../utils/window';
+
+declare let window: CustomWindow;
 
 function MissionListPage() {
-  const MissionList = [
-    {
-      missionId: 1,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang mở',
-      joined: true,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 2,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang đóng',
-      joined: false,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 3,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang đóng',
-      joined: true,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 4,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang mở',
-      joined: false,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 5,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang đóng',
-      joined: false,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 6,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang mở',
-      joined: true,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 7,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang mở',
-      joined: true,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 8,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang mở',
-      joined: true,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 9,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang mở',
-      joined: true,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 10,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang mở',
-      joined: true,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 11,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang mở',
-      joined: true,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 12,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang mở',
-      joined: true,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-    {
-      missionId: 13,
-      name: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-      amount: 45,
-      joinedAmount: 20,
-      status: 'Đang mở',
-      joined: true,
-      contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-    },
-  ];
+  // const MissionList = [
+  //   {
+  //     missionId: 1,
+  //     missionName: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
+  //     maxStudentAmount: 45,
+  //     joinedStudentAmount: 20,
+  //     missionStatus: 'Đang mở',
+  //     isJoined: true,
+  //     missionAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
+  //     missionShortenName: 'MHX',
+  //     startTime: 123456789,
+  //   },
+  // ];
   const {
     searchParams,
     setSearchParams,
@@ -134,7 +33,18 @@ function MissionListPage() {
     filter,
     setFilter,
     renderList,
-  } = useList(MissionList);
+    setTotalList,
+  } = useList<IMissionInstance>();
+
+  useEffect(() => {
+    const fetchMissionList = async (walletAddress: string) => {
+      const response = await getMissionList(walletAddress);
+      const result: IMissionInstance[] = response.data.result;
+      setTotalList(result);
+    };
+    window.localStorage.account &&
+      fetchMissionList(window.localStorage.account);
+  }, []);
 
   const onPaginate = (page: number) => {
     const filter = searchParams.get('filter')
@@ -194,26 +104,41 @@ function MissionListPage() {
               onClick={() => console.log('Hello')}
               style={{ height: '164px' }}
             >
-              <Link to={'/missions/' + mission.missionId}>
+              <Link to={'/missions/' + mission.missionAddress}>
                 <h5>
-                  <strong>{mission.name}</strong>
+                  <strong>{mission.missionName}</strong>
                 </h5>
                 <p>
-                  <b>Số lượng:</b> {mission.joinedAmount}/{mission.amount}
+                  <b>Số lượng:</b> {mission.joinedStudentAmount}/
+                  {mission.maxStudentAmount}
                 </p>
-                <p className="element_status">{mission.status}</p>
+                <p className="element_status">{mission.missionStatus}</p>
               </Link>
-              {mission.joined ? (
+              {mission.isJoined ? (
                 <button
-                  className="join_btn cancel"
-                  onClick={() => handleCancelRegister(mission.contractAddress)}
+                  className={
+                    mission.missionStatus != 'Closed'
+                      ? 'join_btn cancel'
+                      : 'join_btn cancel btn-disabled'
+                  }
+                  onClick={() =>
+                    mission.missionStatus != 'Closed' &&
+                    handleCancelRegister(mission.missionAddress)
+                  }
                 >
                   Hủy
                 </button>
               ) : (
                 <button
-                  className="join_btn join"
-                  onClick={() => handleRegister(mission.contractAddress)}
+                  className={
+                    mission.missionStatus != 'Closed'
+                      ? 'join_btn join'
+                      : 'join_btn join btn-disabled'
+                  }
+                  onClick={() => {
+                    mission.missionStatus != 'Closed' &&
+                      handleRegister(mission.missionAddress);
+                  }}
                 >
                   Tham gia
                 </button>

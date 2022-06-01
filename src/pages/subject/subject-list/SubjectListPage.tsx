@@ -1,129 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from 'src/components/shared/Pagination/Pagination';
 import { subjectContracService } from 'src/contracts/subject-contract.service';
 import useList from 'src/hooks/useList';
+import { getSubjectList } from '../../../api/subjectApi';
+import { ISubjectInstance } from '../../../utils/window';
 import './SubjectListPage.scss';
+import { CustomWindow } from 'src/utils/window';
 
-const SubjectList = [
-  {
-    subjectId: 1,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang mở',
-    joined: true,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 2,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang đóng',
-    joined: false,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 3,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang đóng',
-    joined: true,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 4,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang mở',
-    joined: false,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 5,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang đóng',
-    joined: false,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 6,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang mở',
-    joined: true,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 7,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang mở',
-    joined: true,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 8,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang mở',
-    joined: true,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 9,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang mở',
-    joined: true,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 10,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang mở',
-    joined: true,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 11,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang mở',
-    joined: true,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 12,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang mở',
-    joined: true,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-  {
-    subjectId: 13,
-    name: 'Nhập môn lập trình - IT001',
-    amount: 45,
-    joinedAmount: 20,
-    status: 'Đang mở',
-    joined: true,
-    contractAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  },
-];
+declare let window: CustomWindow;
 
 function SubjectListPage() {
   const {
@@ -135,7 +20,18 @@ function SubjectListPage() {
     filter,
     setFilter,
     renderList,
-  } = useList(SubjectList);
+    setTotalList,
+  } = useList<ISubjectInstance>();
+
+  useEffect(() => {
+    const fetchSubjectList = async (walletAddress: string) => {
+      const response = await getSubjectList(walletAddress);
+      const result: ISubjectInstance[] = response.data.result;
+      setTotalList(result);
+    };
+    window.localStorage.account &&
+      fetchSubjectList(window.localStorage.account);
+  }, []);
 
   const onPaginate = (page: number) => {
     const filter = searchParams.get('filter')
@@ -195,26 +91,42 @@ function SubjectListPage() {
               onClick={() => console.log('Hello')}
               style={{ height: '164px' }}
             >
-              <Link to={'/subjects/' + subject.subjectId}>
+              <Link to={'/subjects/' + subject.subjectAddress}>
                 <h5>
-                  <strong>{subject.name}</strong>
+                  <strong>{subject.subjectName}</strong>
                 </h5>
                 <p>
-                  <b>Số lượng:</b> {subject.joinedAmount}/{subject.amount}
+                  <b>Số lượng:</b> {subject.joinedStudentAmount}/
+                  {subject.maxStudentAmount}
                 </p>
-                <p className="element_status">{subject.status}</p>
+                <p className="element_status">{subject.subjectStatus}</p>
               </Link>
-              {subject.joined ? (
+              {subject.isJoined ? (
                 <button
-                  className="join_btn cancel"
-                  onClick={() => handleCancelRegister(subject.contractAddress)}
+                  className={
+                    subject.subjectStatus != 'Closed'
+                      ? 'join_btn cancel'
+                      : 'join_btn cancel btn-disabled'
+                  }
+                  onClick={() =>
+                    subject.subjectStatus != 'Closed' &&
+                    handleCancelRegister(subject.subjectAddress)
+                  }
+                  disabled
                 >
                   Hủy
                 </button>
               ) : (
                 <button
-                  className="join_btn join"
-                  onClick={() => handleRegister(subject.contractAddress)}
+                  className={
+                    subject.subjectStatus != 'Closed'
+                      ? 'join_btn join'
+                      : 'join_btn join btn-disabled'
+                  }
+                  onClick={() =>
+                    subject.subjectStatus != 'Closed' &&
+                    handleRegister(subject.subjectAddress)
+                  }
                 >
                   Tham gia
                 </button>

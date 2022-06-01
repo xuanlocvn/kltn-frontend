@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IStudentCertificate } from 'src/utils/window';
+import { convertLocalTime } from 'src/utils';
+import { Link } from 'react-router-dom';
 
 StudentCertificate.propTypes = {
   subjectList: PropTypes.array,
@@ -25,33 +27,40 @@ function StudentCertificate(props: {
           <div>
             <table style={{ width: '95%', margin: 'auto' }}>
               <tbody>
-                {subjectList.map((subject, index) => (
-                  <tr
-                    className="element d-flex row align-items-center"
-                    key={index}
-                  >
-                    <td className="col col-2 text-center">
-                      <p>
-                        <span className="fw-bolder fs-5 text-success">
-                          &#10003;
-                        </span>
-                      </p>
-                    </td>
+                {subjectList.length == 0 ? (
+                  <div className="text-center align-center">
+                    <i>Trống</i>
+                  </div>
+                ) : (
+                  subjectList.map((subject, index) => (
+                    <tr
+                      className="element d-flex row align-items-center"
+                      key={index}
+                    >
+                      <td className="col col-2 text-center">
+                        <p>
+                          <span className="fw-bolder fs-5 text-success">
+                            &#10003;
+                          </span>
+                        </p>
+                      </td>
 
-                    <td className="col col-4 align-content-center text-center">
-                      <p>
-                        <b>Từ ngày:</b> 1/1/2021
-                      </p>
-                      <p>
-                        <b>Đến ngày:</b> 22/2/2021
-                      </p>
-                    </td>
-
-                    <td className="subject col col-6 text-center">
-                      Nhập môn lập trình
-                    </td>
-                  </tr>
-                ))}
+                      <td className="col col-4 align-content-center text-center">
+                        <p>
+                          <b>Từ ngày:</b> {convertLocalTime(subject.startTime)}
+                        </p>
+                        <p>
+                          <b>Đến ngày:</b> {convertLocalTime(subject.endTime)}
+                        </p>
+                      </td>
+                      <Link to={`/${subject.type}/${subject.contractAddress}`}>
+                        <td className="subject col col-6 text-center">
+                          {subject.certificateName}
+                        </td>
+                      </Link>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -68,33 +77,40 @@ function StudentCertificate(props: {
           <div>
             <table style={{ width: '95%', margin: 'auto' }}>
               <tbody>
-                {certificateList.map((subject, index) => (
-                  <tr
-                    className="element d-flex row align-items-center"
-                    key={index}
-                  >
-                    <td className="col col-2 text-center">
-                      <p>
-                        <span className="fw-bolder fs-5 text-success">
-                          &#10003;
-                        </span>
-                      </p>
-                    </td>
+                {certificateList.length == 0 ? (
+                  <div className="text-center align-center">
+                    <i>Trống</i>
+                  </div>
+                ) : (
+                  certificateList.map((subject, index) => (
+                    <tr
+                      className="element d-flex row align-items-center"
+                      key={index}
+                    >
+                      <td className="col col-2 text-center">
+                        <p>
+                          <span className="fw-bolder fs-5 text-success">
+                            &#10003;
+                          </span>
+                        </p>
+                      </td>
 
-                    <td className="col col-4 align-content-center text-center">
-                      <p>
-                        <b>Từ ngày:</b> 1/1/2021
-                      </p>
-                      <p>
-                        <b>Đến ngày:</b> 22/2/2021
-                      </p>
-                    </td>
-
-                    <td className="subject col col-6 text-center">
-                      Nhập môn lập trình
-                    </td>
-                  </tr>
-                ))}
+                      <td className="col col-4 align-content-center text-center">
+                        <p>
+                          <b>Từ ngày:</b> {convertLocalTime(subject.startTime)}
+                        </p>
+                        <p>
+                          <b>Đến ngày:</b> {convertLocalTime(subject.endTime)}
+                        </p>
+                      </td>
+                      <Link to={`/${subject.type}/${subject.contractAddress}`}>
+                        <td className="subject col col-6 text-center">
+                          {subject.certificateName}
+                        </td>
+                      </Link>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

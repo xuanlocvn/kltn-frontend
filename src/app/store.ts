@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import signInReducer from '../pages/sign-in/SignInSlice';
-import headerReducer from 'src/components/shared/Header/HeaderSlice';
+import headerReducer from '../components/shared/Header/HeaderSlice';
+import popupReducer from '../components/shared/Popup/PopupSlice';
 
 export const store = configureStore({
   reducer: {
     web3: signInReducer,
     role: headerReducer,
+    popup: popupReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

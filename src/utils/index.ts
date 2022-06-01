@@ -7,6 +7,15 @@ export function makeShotAccount(account: string): string {
   return null;
 }
 
+export function makeShotTransactionHash(hash: string): string {
+  if (hash) {
+    const s1 = hash.slice(0, 7);
+    const s2 = hash.slice(-7);
+    return s1 + '...' + s2;
+  }
+  return null;
+}
+
 export function convertLocalTime(timestamp: number) {
   const date = new Date(timestamp * 1000);
   const dd = String(date.getDate()).padStart(2, '0');

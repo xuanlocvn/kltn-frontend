@@ -17,6 +17,7 @@ function CreateNewClass() {
   const [departmentList, setDepartmentList] = useState([]);
   const [subjectList, setSubjectList] = useState([]);
   const [lecturerList, setLecturerList] = useState([]);
+  const [sujectId, SetSubjectId] = useState('IE208');
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -34,16 +35,23 @@ function CreateNewClass() {
     const fetchApi = async () => {
       const response = await getSubjectByDepartment(faculty);
       setSubjectList(response.data.result);
+      SetSubjectId(response.data.result[0].subjectHash);
     };
     fetchApi();
   }, [faculty]);
+
+  useEffect(() => {
+    subjectList.forEach((x) => {
+      if (x.subjectName == subject) SetSubjectId(x.subjectHash);
+    });
+  }, [subject]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const classInfoForm = {
       img: defaultAvt,
-      name: e.target.name.value,
-      shortName: e.target.name.options[e.target.name.selectedIndex].text,
+      name: e.target.name.options[e.target.name.selectedIndex].text,
+      shortName: e.target.name.value,
       classId: e.target.classId.value,
       maxEntrant: e.target.maxEntrant.value,
       lecturerInCharge: e.target.lecturerInCharge.value,
@@ -139,7 +147,13 @@ function CreateNewClass() {
               <label htmlFor="classId">
                 Mã lớp <span style={{ color: 'red' }}>*</span>
               </label>
-              <input type="text" placeholder="Mã lớp" name="classId" required />
+              <input
+                type="text"
+                placeholder="Mã lớp"
+                value={sujectId}
+                name="classId"
+                required
+              />
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="maxEntrant">

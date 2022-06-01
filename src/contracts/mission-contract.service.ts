@@ -36,6 +36,7 @@ class MissionContracService extends ContractBase {
   }
 
   async register(_contractAddress: string) {
+    console.log(_contractAddress);
     const contract = await this.loadContract(_contractAddress);
     if (!contract) return;
     const tx = await transactionService.sendTransaction(

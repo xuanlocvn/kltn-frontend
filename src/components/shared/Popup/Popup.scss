@@ -1,5 +1,5 @@
 .pop-up_container {
-  position: absolute;
+  position: fixed;
   z-index: 9999;
   width: 100%;
   background-color: rgba($color: #000000, $alpha: 0.3);
@@ -10,9 +10,9 @@
 
   .pop-up {
     position: relative;
-    width: 50%;
-    margin: 11% auto;
-    height: min-content;
+    width: 30rem;
+    margin: 15% auto;
+    
     border-radius: 20px;
     background-color: white;
     box-shadow: 10px 15px 15px rgba($color: #000000, $alpha: 0.3);
@@ -20,8 +20,11 @@
     &__child {
       position: relative;
       padding: 50px 0;
-      width: 500px;
+      width: 80%;
       margin: 0 auto;
+      h2 {
+        justify-content: center;
+      }
     }
 
     &__close {

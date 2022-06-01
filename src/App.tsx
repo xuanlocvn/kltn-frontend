@@ -4,6 +4,7 @@ import './App.scss';
 import SpinnerApp from './components/shared/Spinner/Spinner';
 import Header from './components/shared/Header/Header';
 import Router from './routes/routes';
+import Popup from './components/shared/Popup/Popup';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <BrowserRouter>
             <Header />
             <Router />
+            <Popup></Popup>
           </BrowserRouter>
         </div>
       </Suspense>

@@ -9,6 +9,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useAppSelector } from 'src/app/hooks';
 import { selectWeb3 } from 'src/pages/sign-in/SignInSlice';
 import StudentCertificate from './StudentCertificate';
+import { getMissionsOfStudent, getSubjectsOfStudent } from 'src/api/studentApi';
 
 StudentBody.propTypes = {
   walletAddress: PropTypes.string,
@@ -32,83 +33,17 @@ function StudentBody(props: { walletAddress: string; studentInfo: any }) {
   });
 
   useEffect(() => {
-    const subjectList = [
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-    ];
+    const getCertificates = async (studentAddress: string) => {
+      const subjectResponse = await getSubjectsOfStudent(studentAddress);
+      const missionResponse = await getMissionsOfStudent(studentAddress);
 
-    const certificateList = [
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-      {
-        from: convertLocalTime(1650438993),
-        to: convertLocalTime(1650438993),
-        name: 'Nhap Mon Lap Trinh',
-      },
-    ];
+      setCertificatList({
+        subjectList: subjectResponse.data.result,
+        certificateList: missionResponse.data.result,
+      });
+    };
 
-    setCertificatList({ subjectList, certificateList });
+    getCertificates(walletAddress);
   }, [tab == 3]);
 
   useEffect(() => {

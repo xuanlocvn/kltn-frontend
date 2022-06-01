@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { getBalanceHistoriesOfStudent } from 'src/api/studentApi';
+import { convertLocalTime } from 'src/utils';
+import { Link } from 'react-router-dom';
 
 StudentAccount.propTypes = {
   walletAddress: PropTypes.string,
@@ -13,6 +16,24 @@ StudentAccount.defaultProps = {
 
 function StudentAccount(props) {
   const { walletAddress, totalToken } = props;
+  const [historyList, setHistoryList] = useState<
+    {
+      type: string;
+      contractAddress: string;
+      historyName: string;
+      amount: number;
+      submitTime: number | string;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    const getBalanceHistories = async (studentddress: string) => {
+      const response = await getBalanceHistoriesOfStudent(studentddress);
+      setHistoryList(response.data.result);
+    };
+
+    getBalanceHistories(walletAddress);
+  });
 
   return (
     <div className="studentAccount">
@@ -66,22 +87,33 @@ function StudentAccount(props) {
                   <th className="col col-3 text-center">Biến động số dư</th>
                   <th className="col col-3 text-center">Thời gian</th>
                 </tr>
-                <tr className="row">
-                  <td className="col col-3 text-center">123</td>
-                  <td className="col col-3 text-center">Mùa Hè Xanh</td>
-                  <td className="col col-3 text-center">
-                    <span className="text-success fw-bold">+50</span>
-                  </td>
-                  <td className="col col-3 text-center">13/12/2000</td>
-                </tr>
-                <tr className="row">
-                  <td className="col col-3 text-center">123</td>
-                  <td className="col col-3 text-center">Học phí học kỳ I</td>
-                  <td className="col col-3 text-center">
-                    <span className="text-danger fw-bold">-500</span>
-                  </td>
-                  <td className="col col-3 text-center">13/12/2000</td>
-                </tr>
+                {historyList.length == 0 ? (
+                  <div className="m-5 text-center">
+                    <i>...Trống...</i>
+                  </div>
+                ) : (
+                  historyList.map((history, index) => (
+                    <tr key={index} className="row">
+                      <td className="col col-3 text-center">{index}</td>
+                      <td className="col col-3 text-center">
+                        {history.historyName}
+                      </td>
+                      <td className="col col-3 text-center">
+                        <span className="text-success fw-bold">
+                          {history.amount > 0 && '+'}
+                          {history.amount}
+                        </span>
+                      </td>
+                      <td className="col col-3 text-center">
+                        <Link
+                          to={`/${history.type}/${history.contractAddress}`}
+                        >
+                          {convertLocalTime(Number(history.submitTime))}
+                        </Link>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

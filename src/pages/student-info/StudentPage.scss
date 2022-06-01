@@ -198,7 +198,7 @@ select:hover {
 }
 
 .confirmedInfo .body_form div {
-	height: 100%;
+	height: max-content;
 	width: 100%;
 	overflow-y: scroll;
 	overflow-clip-margin: inherit;

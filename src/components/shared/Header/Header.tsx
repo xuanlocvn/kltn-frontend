@@ -41,6 +41,8 @@ function Header() {
         ethereum.on('chainChanged', (chainId: string) => {
           console.log(`On Chain ID: ${chainId}`);
           dispatch(connect(new Web3(ethereum)));
+          // eslint-disable-next-line no-undef
+          window.location.reload();
         });
         ethereum.on('accountsChanged', async (accounts) => {
           console.log(`Account: ${accounts[0]}`);
@@ -50,6 +52,8 @@ function Header() {
           window.localStorage.account = accounts[0];
           if (accounts[0] == 'undefined') setAccount(null);
           dispatch(connect(new Web3(ethereum)));
+          // eslint-disable-next-line no-undef
+          window.location.reload();
         });
         ethereum.on('disconnect', (code, reason) => {
           console.log(`Ethereum Provider connection disconnect: ${reason}`);

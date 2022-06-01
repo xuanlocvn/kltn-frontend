@@ -415,3 +415,15 @@ select .select-item {
     text-decoration: none;
   }
 }
+
+.mission{
+  a{
+    color: black;
+  }
+
+  .btn-disabled {
+    cursor: not-allowed;
+    background-color: rgb(49, 47, 47)!important;
+  }
+}
+

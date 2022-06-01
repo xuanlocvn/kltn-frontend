@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-function useList(props) {
-  const SubjectList = props;
-  const [totalPage, setTotalPage] = useState(null);
-  const [page, setPage] = useState(null);
+function useList<T>() {
+  const [totalPage, setTotalPage] = useState(1);
+  const [page, setPage] = useState(1);
   const [filter, setFilter] = useState('all');
-  const [subjectList, setSubjectList] = useState([]);
-  const [renderList, setRenderList] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams({});
+  const [totalList, setTotalList] = useState([]);
+  const [renderList, setRenderList] = useState<T[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    setSubjectList(SubjectList);
-  }, []);
+    setRenderList(totalList);
+  }, [totalList]);
 
   useEffect(() => {
     const filter = searchParams.get('filter')
@@ -21,17 +20,17 @@ function useList(props) {
     const p = searchParams.get('page') ? Number(searchParams.get('page')) : 1;
     const getListByFilter = (filter: string) => {
       if (filter == 'joined') {
-        const joinedSubjectList = subjectList.filter(
-          (subject) => subject.joined == true,
+        const joinedSubjectList = totalList.filter(
+          (subject) => subject.isJoined == true,
         );
         return joinedSubjectList;
       } else if (filter == 'notjoin') {
-        const notJoinedSubjectList = subjectList.filter(
-          (subject) => subject.joined == false,
+        const notJoinedSubjectList = totalList.filter(
+          (subject) => subject.isJoined == false,
         );
         return notJoinedSubjectList;
       }
-      return subjectList;
+      return totalList;
     };
 
     const getListByPage = (list: any[], page: number) => {
@@ -60,10 +59,6 @@ function useList(props) {
     }
   }, [page, filter]);
 
-  useEffect(() => {
-    console.log('render: ', renderList);
-  }, [renderList]);
-
   return {
     searchParams,
     setSearchParams,
@@ -73,6 +68,7 @@ function useList(props) {
     filter,
     setFilter,
     renderList,
+    setTotalList,
   };
 }
 

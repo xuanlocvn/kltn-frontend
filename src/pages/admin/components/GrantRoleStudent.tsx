@@ -14,6 +14,7 @@ function GrantRoleStudent() {
   const [gender, setGender] = useState('Nam');
   const { onChangeAvt, defaultAvt } = useAvata();
   const [departmentList, setDepartmentList] = useState([]);
+  const [schoolYear, setSchoolYear] = useState(2022);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -22,6 +23,13 @@ function GrantRoleStudent() {
       setDepartmentList(response.data.result);
     };
 
+    const getYear = () => {
+      const datetime = new Date(Date.now() / 1000);
+      const year = datetime.getFullYear();
+      setSchoolYear(year);
+    };
+
+    getYear();
     fetchApi();
   }, []);
 
@@ -222,18 +230,19 @@ function GrantRoleStudent() {
                   ))}
                 </select>
               </div>
-              <div className="d-flex flex-column col col-3">
+              <div className="d-flex flex-column col col-6">
                 <label htmlFor="schoolYear">
                   Khóa đào tạo <span style={{ color: 'red' }}>*</span>
                 </label>
                 <input
                   type="text"
                   placeholder="Khóa đào tạo"
+                  defaultValue={schoolYear}
                   name="schoolYear"
                   required
                 />
               </div>
-              <div className="d-flex flex-column col col-3">
+              <div className="d-flex flex-column col col-6">
                 <label htmlFor="major">
                   Ngành <span style={{ color: 'red' }}>*</span>
                 </label>
@@ -252,7 +261,7 @@ function GrantRoleStudent() {
                   <option value="HTTT">Hệ thống thông tin</option>
                 </select>
               </div>
-              <div className="d-flex flex-column col col-3">
+              <div className="d-flex flex-column col col-6">
                 <label htmlFor="class">
                   Lớp sinh hoạt <span style={{ color: 'red' }}>*</span>
                 </label>
