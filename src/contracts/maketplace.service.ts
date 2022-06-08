@@ -1,60 +1,60 @@
-import ContractBase from './contract-base';
-import MarketplaceABI from './abi/Marketplace.json';
-import { transactionService } from './transaction.service';
-import { CONFIG } from 'src/configs/config.enum';
-import { configService } from 'src/configs/config.service';
-import { amountToValue } from './helpers';
+import ContractBase from "./contract-base"
+import MarketplaceABI from "./abi/Marketplace.json"
+import { transactionService } from "./transaction.service"
+import { CONFIG } from "src/configs/config.enum"
+import { configService } from "src/configs/config.service"
+import { amountToValue } from "./helpers"
 
 class MarketplaceContractService extends ContractBase {
-  readonly contractABI: any = MarketplaceABI.abi;
+  readonly contractABI: any = MarketplaceABI.abi
   readonly contractAddress: string = configService.getConfig(
     CONFIG.MARKETPLACE_ADDRESS,
-  );
+  )
 
   async list(
     _itemId: number | string,
     _oneItemPrice: number | string,
     _amount: number | string,
   ) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'list',
+      "list",
       _itemId,
-      _oneItemPrice,
-      amountToValue(Number(_amount)),
-    );
-    return tx;
+      amountToValue(Number(_oneItemPrice)),
+      _amount,
+    )
+    return tx
   }
 
   async deList(_itemId: number | string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'deList',
+      "deList",
       _itemId,
-    );
-    return tx;
+    )
+    return tx
   }
 
   async updatePrice(_itemId: number | string, _oneItemPrice: number | string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'updatePrice',
+      "updatePrice",
       _itemId,
       amountToValue(Number(_oneItemPrice)),
-    );
-    return tx;
+    )
+    return tx
   }
 
   async buy(
@@ -62,18 +62,18 @@ class MarketplaceContractService extends ContractBase {
     _seller: string,
     _amount: number | string,
   ) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'buy',
+      "buy",
       _itemId,
       _seller,
       _amount,
-    );
-    return tx;
+    )
+    return tx
   }
 
   async createAndListNFT(
@@ -81,73 +81,73 @@ class MarketplaceContractService extends ContractBase {
     _oneItemPrice: number | string,
     _amount: number | string,
   ) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'createAndListNFT',
+      "createAndListNFT",
       _nftInfo,
-      _oneItemPrice,
-      amountToValue(Number(_amount)),
-    );
-    return tx;
+      amountToValue(Number(_oneItemPrice)),
+      _amount,
+    )
+    return tx
   }
 
   async updateAmountNFT(_itemId: number | string, _amount: number | string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'updateAmountNFT',
+      "updateAmountNFT",
       _itemId,
       _amount,
-    );
-    return tx;
+    )
+    return tx
   }
 
-  async requestActiveNFT(_itemId: number | string, _amount: number | string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+  async requestActivateNFT(_itemId: number | string, _amount: number | string) {
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'requestActiveNFT',
+      "requestActivateNFT",
       _itemId,
       _amount,
-    );
-    return tx;
+    )
+    return tx
   }
 
-  async cancelRequestActiveNFT(_activeId: number | string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+  async cancelRequestActivateNFT(_activeId: (number | string)[]) {
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'cancelRequestActiveNFT',
+      "cancelRequestActivateNFT",
       _activeId,
-    );
-    return tx;
+    )
+    return tx
   }
 
-  async activeNFTByAdmin(_activeId: number | string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+  async activateNFTByAdmin(_activeId: (number | string)[]) {
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'activeNFTByAdmin',
+      "activateNFTByAdmin",
       _activeId,
-    );
-    return tx;
+    )
+    return tx
   }
 }
 
-export const marketplaceContractService = new MarketplaceContractService();
+export const marketplaceContractService = new MarketplaceContractService()

@@ -98,3 +98,11 @@ button.cancel{
 button.cancel:hover{
     background-color: black;
   }
+
+input[type="radio"] {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+    transform: scale(1.7);
+    vertical-align: middle;
+    margin-left: 30px;
+}

@@ -1,40 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { getAllDepartment } from 'src/api/departmentAPI';
-import { managerPoolContractService } from 'src/contracts/manager-pool.service';
-import useAvata from 'src/hooks/useAvata';
-import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
-import { convertDateToTimestamp } from 'src/utils';
-import { FACULTY } from 'src/utils/enum';
+import React, { useEffect, useState } from "react"
+import { getAllDepartment } from "src/api/departmentAPI"
+import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import useAvata from "src/hooks/useAvata"
+import { AddDataToIPFS } from "src/ipfs/ipfsClient"
+import { convertDateToTimestamp } from "src/utils"
+import { FACULTY } from "src/utils/enum"
 
-GrantRoleStudent.propTypes = {};
+GrantRoleStudent.propTypes = {}
 
 function GrantRoleStudent() {
-  const [faculty, setFaculty] = useState('');
-  const [major, setMajor] = useState('');
-  const [gender, setGender] = useState('Nam');
-  const { onChangeAvt, defaultAvt } = useAvata();
-  const [departmentList, setDepartmentList] = useState([]);
-  const [schoolYear, setSchoolYear] = useState(2022);
+  const [faculty, setFaculty] = useState("")
+  const [major, setMajor] = useState("")
+  const [gender, setGender] = useState("Nam")
+  const { onChangeAvt, defaultAvt } = useAvata()
+  const [departmentList, setDepartmentList] = useState([])
+  const [schoolYear, setSchoolYear] = useState(2022)
 
   useEffect(() => {
     const fetchApi = async () => {
-      const response = await getAllDepartment();
-      console.log(response.data.result);
-      setDepartmentList(response.data.result);
-    };
+      const response = await getAllDepartment()
+      console.log(response.data.result)
+      setDepartmentList(response.data.result)
+    }
 
     const getYear = () => {
-      const datetime = new Date(Date.now() / 1000);
-      const year = datetime.getFullYear();
-      setSchoolYear(year);
-    };
+      const datetime = new Date(Date.now() / 1000)
+      const year = datetime.getFullYear()
+      setSchoolYear(year)
+    }
 
-    getYear();
-    fetchApi();
-  }, []);
+    getYear()
+    fetchApi()
+  }, [])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const studentInfoForm = {
       imgUrl: defaultAvt,
       name: e.target.name.value.trim(),
@@ -53,15 +53,15 @@ function GrantRoleStudent() {
       schoolYear: e.target.schoolYear.value.trim(),
       class: e.target.class.value.trim(),
       walletAddress: e.target.walletAddress.value.trim(),
-    };
-    console.log(studentInfoForm);
-    const hash = await AddDataToIPFS(studentInfoForm);
-    console.log(hash);
+    }
+    console.log(studentInfoForm)
+    const hash = await AddDataToIPFS(studentInfoForm)
+    console.log(hash)
     await managerPoolContractService.addStudentInfo(
       studentInfoForm.walletAddress,
       hash,
-    );
-  };
+    )
+  }
   return (
     <div className="form_body container">
       <div>
@@ -88,7 +88,7 @@ function GrantRoleStudent() {
             <div className="d-flex mb-2 row">
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="name">
-                  Họ và tên <span style={{ color: 'red' }}>*</span>
+                  Họ và tên <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -99,7 +99,7 @@ function GrantRoleStudent() {
               </div>
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="studentId">
-                  Mã số sinh viên <span style={{ color: 'red' }}>*</span>
+                  Mã số sinh viên <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -112,7 +112,7 @@ function GrantRoleStudent() {
             <div className="d-flex mb-2 row">
               <div className="d-flex flex-column col col-3">
                 <label htmlFor="birthday">
-                  Ngày sinh <span style={{ color: 'red' }}>*</span>
+                  Ngày sinh <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="date"
@@ -123,15 +123,15 @@ function GrantRoleStudent() {
               </div>
               <div className="d-flex flex-column col col-3">
                 <label htmlFor="gender">
-                  Giới tính <span style={{ color: 'red' }}>*</span>
+                  Giới tính <span style={{ color: "red" }}>*</span>
                 </label>
                 <select
                   name="gender"
                   id="gender"
                   value={gender}
                   onChange={(e) => {
-                    console.log(e.target.value);
-                    setGender(e.target.value);
+                    console.log(e.target.value)
+                    setGender(e.target.value)
                   }}
                 >
                   <option value="Nam">Nam</option>
@@ -140,7 +140,7 @@ function GrantRoleStudent() {
               </div>
               <div className="d-flex flex-column col col-3">
                 <label htmlFor="placeOfBirth">
-                  Nơi sinh <span style={{ color: 'red' }}>*</span>
+                  Nơi sinh <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -151,7 +151,7 @@ function GrantRoleStudent() {
               </div>
               <div className="d-flex flex-column col col-3">
                 <label htmlFor="nation">
-                  Dân tộc <span style={{ color: 'red' }}>*</span>
+                  Dân tộc <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -164,7 +164,7 @@ function GrantRoleStudent() {
             <div className="d-flex justify-content-between row">
               <div className="d-flex flex-column mb-2 col col-4">
                 <label htmlFor="cmnd">
-                  CMND/CCCD <span style={{ color: 'red' }}>*</span>
+                  CMND/CCCD <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -175,7 +175,7 @@ function GrantRoleStudent() {
               </div>
               <div className="d-flex flex-column mb-2 col col-4">
                 <label htmlFor="issuranceDate">
-                  Ngày cấp <span style={{ color: 'red' }}>*</span>
+                  Ngày cấp <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="date"
@@ -186,7 +186,7 @@ function GrantRoleStudent() {
               </div>
               <div className="d-flex flex-column col col-4">
                 <label htmlFor="issuancePlace">
-                  Nơi cấp <span style={{ color: 'red' }}>*</span>
+                  Nơi cấp <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -198,7 +198,7 @@ function GrantRoleStudent() {
             </div>
             <div className="d-flex flex-column mb-2 ">
               <label htmlFor="address">
-                Địa chỉ thường trú <span style={{ color: 'red' }}>*</span>
+                Địa chỉ thường trú <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
@@ -210,14 +210,14 @@ function GrantRoleStudent() {
             <div className="d-flex justify-content-between mb-2 row">
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="faculty">
-                  Khoa <span style={{ color: 'red' }}>*</span>
+                  Khoa <span style={{ color: "red" }}>*</span>
                 </label>
                 <select
                   name="faculty"
                   id="faculty"
                   value={faculty}
                   onChange={(e) => {
-                    setFaculty(e.target.value);
+                    setFaculty(e.target.value)
                   }}
                 >
                   {departmentList.map((department, index) => (
@@ -232,7 +232,7 @@ function GrantRoleStudent() {
               </div>
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="schoolYear">
-                  Khóa đào tạo <span style={{ color: 'red' }}>*</span>
+                  Khóa đào tạo <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -244,14 +244,14 @@ function GrantRoleStudent() {
               </div>
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="major">
-                  Ngành <span style={{ color: 'red' }}>*</span>
+                  Ngành <span style={{ color: "red" }}>*</span>
                 </label>
                 <select
                   name="major"
                   id="major"
                   value={major}
                   onChange={(e) => {
-                    setMajor(e.target.value);
+                    setMajor(e.target.value)
                   }}
                 >
                   <option value="CNTT">Công nghệ thông tin</option>
@@ -263,7 +263,7 @@ function GrantRoleStudent() {
               </div>
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="class">
-                  Lớp sinh hoạt <span style={{ color: 'red' }}>*</span>
+                  Lớp sinh hoạt <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -275,7 +275,7 @@ function GrantRoleStudent() {
             </div>
             <div className="d-flex flex-column">
               <label htmlFor="walletAddress">
-                Địa chỉ ví <span style={{ color: 'red' }}>*</span>
+                Địa chỉ ví <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
@@ -294,7 +294,7 @@ function GrantRoleStudent() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default GrantRoleStudent;
+export default GrantRoleStudent

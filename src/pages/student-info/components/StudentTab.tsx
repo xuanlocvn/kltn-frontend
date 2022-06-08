@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
+import { useSearchParams } from "react-router-dom"
 
 StudentTab.propTypes = {
   onTab: PropTypes.func,
   isOwnStdudent: PropTypes.bool,
-};
+}
 
 StudentTab.defaultProps = {
   onTab: null,
   isOwnStdudent: false,
-};
+}
 
 function StudentTab(props) {
-  const [activeButton, setActiveButton] = useState(0);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { onTab, isOwnStdudent } = props;
+  const [activeButton, setActiveButton] = useState(0)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const { onTab, isOwnStdudent } = props
 
   useEffect(() => {
-    const tab = searchParams.get('t');
+    const tab = searchParams.get("t")
     if (Number(tab) != 0) {
-      setActiveButton(Number(tab));
-      onTab(Number(tab));
+      setActiveButton(Number(tab))
+      onTab(Number(tab))
     } else {
-      setActiveButton(1);
-      onTab(1);
+      setActiveButton(1)
+      onTab(1)
     }
-  }, [searchParams]);
+  }, [searchParams])
 
   const handleActive = (tabNumber: number) => {
-    setActiveButton(tabNumber);
-  };
+    setActiveButton(tabNumber)
+  }
 
   return (
     <div className="form_tab col col-3">
@@ -38,11 +38,11 @@ function StudentTab(props) {
         <>
           <p>
             <button
-              className={activeButton == 1 ? 'active' : ''}
+              className={activeButton == 1 ? "active" : ""}
               onClick={() => {
-                onTab(1);
-                handleActive(1);
-                setSearchParams({ t: '1' });
+                onTab(1)
+                handleActive(1)
+                setSearchParams({ t: "1" })
               }}
             >
               Thông tin sinh viên
@@ -50,11 +50,11 @@ function StudentTab(props) {
           </p>
           <p>
             <button
-              className={activeButton == 2 ? 'active' : ''}
+              className={activeButton == 2 ? "active" : ""}
               onClick={() => {
-                onTab(2);
-                handleActive(2);
-                setSearchParams({ t: '2' });
+                onTab(2)
+                handleActive(2)
+                setSearchParams({ t: "2" })
               }}
             >
               Tài khoản
@@ -62,11 +62,11 @@ function StudentTab(props) {
           </p>
           <p>
             <button
-              className={activeButton == 3 ? 'active' : ''}
+              className={activeButton == 3 ? "active" : ""}
               onClick={() => {
-                onTab(3);
-                handleActive(3);
-                setSearchParams({ t: '3' });
+                onTab(3)
+                handleActive(3)
+                setSearchParams({ t: "3" })
               }}
             >
               Chứng nhận
@@ -76,11 +76,11 @@ function StudentTab(props) {
       ) : (
         <p>
           <button
-            className={activeButton == 3 ? 'active' : ''}
+            className={activeButton == 3 ? "active" : ""}
             onClick={() => {
-              onTab(3);
-              handleActive(3);
-              setSearchParams({ t: '3' });
+              onTab(3)
+              handleActive(3)
+              setSearchParams({ t: "3" })
             }}
           >
             Chứng nhận
@@ -88,7 +88,7 @@ function StudentTab(props) {
         </p>
       )}
     </div>
-  );
+  )
 }
 
-export default StudentTab;
+export default StudentTab

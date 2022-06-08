@@ -1,57 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import './Pagination.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
+import "./Pagination.scss"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons"
 
 Pagination.propTypes = {
   currentPage: PropTypes.number,
   totalPage: PropTypes.number,
   onPaginate: PropTypes.func,
-};
+}
 
 Pagination.defaultProps = {
   currentPage: 1,
   totalPage: 1,
   onPaginate: null,
-};
+}
 
 function Pagination(props) {
-  let { currentPage } = props;
-  const { totalPage, onPaginate } = props;
-  const [pages, setPages] = useState([]);
-  const [isHiden, setIshiden] = useState(true);
+  let { currentPage } = props
+  const { totalPage, onPaginate } = props
+  const [pages, setPages] = useState([])
+  const [isHiden, setIshiden] = useState(true)
 
   useEffect(() => {
-    setPages([]);
-    if (totalPage <= 1) setIshiden(true);
+    setPages([])
+    if (totalPage <= 1) setIshiden(true)
     else {
-      setIshiden(false);
+      setIshiden(false)
       for (let i = 1; i <= totalPage; i++) {
-        setPages((prev) => [...prev, i]);
+        setPages((prev) => [...prev, i])
       }
     }
-  }, [totalPage]);
+  }, [totalPage])
 
   useEffect(() => {
-    if (currentPage > totalPage) currentPage = totalPage;
-  }, [currentPage]);
+    if (currentPage > totalPage) currentPage = totalPage
+  }, [currentPage])
 
   const onFirstPage = () => {
-    onPaginate(1);
-  };
+    onPaginate(1)
+  }
 
   const onLastPage = () => {
-    onPaginate(totalPage);
-  };
+    onPaginate(totalPage)
+  }
 
   const onPrevPage = () => {
-    onPaginate(--currentPage);
-  };
+    onPaginate(--currentPage)
+  }
 
   const onNextPage = () => {
-    onPaginate(++currentPage);
-  };
+    onPaginate(++currentPage)
+  }
 
   return (
     <>
@@ -85,10 +85,10 @@ function Pagination(props) {
             <div
               key={index}
               onClick={() => {
-                onPaginate(p);
+                onPaginate(p)
               }}
             >
-              <p className={currentPage == p ? 'active' : ''}>{p}</p>
+              <p className={currentPage == p ? "active" : ""}>{p}</p>
             </div>
           ))}
           <div></div>
@@ -118,7 +118,7 @@ function Pagination(props) {
         </div>
       )}
     </>
-  );
+  )
 }
 
-export default Pagination;
+export default Pagination

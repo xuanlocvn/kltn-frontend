@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { convertDateToTimestamp, convertLocalTime } from 'src/utils';
-import useAvata from 'src/hooks/useAvata';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
-import { managerPoolContractService } from 'src/contracts/manager-pool.service';
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
+import { convertDateToTimestamp } from "src/utils"
+import useAvata from "src/hooks/useAvata"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
+import { AddDataToIPFS } from "src/ipfs/ipfsClient"
+import { managerPoolContractService } from "src/contracts/manager-pool.service"
 
 StudentInfomation.propTypes = {
   studentInfo: PropTypes.shape({
@@ -26,7 +26,7 @@ StudentInfomation.propTypes = {
     class: PropTypes.string,
     walletAddress: PropTypes.string,
   }),
-};
+}
 
 // StudentInfomation.defaultProps = {
 //   studentInfo: {
@@ -51,17 +51,17 @@ StudentInfomation.propTypes = {
 // };
 
 function StudentInfomation(props) {
-  const { studentInfo } = props;
-  const { onChangeAvt, defaultAvt, setDefaultAvt } = useAvata();
-  const [gender, setGender] = useState('Nam');
+  const { studentInfo } = props
+  const { onChangeAvt, defaultAvt, setDefaultAvt } = useAvata()
+  const [gender, setGender] = useState("Nam")
 
   useEffect(() => {
-    setGender(studentInfo.gender);
-    setDefaultAvt(studentInfo.imgUrl);
-  }, [studentInfo]);
+    setGender(studentInfo.gender)
+    setDefaultAvt(studentInfo.imgUrl)
+  }, [studentInfo])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const studentInfoForm = {
       imgUrl: defaultAvt,
       name: e.target.name.value.trim(),
@@ -79,15 +79,12 @@ function StudentInfomation(props) {
       schoolYear: studentInfo.schoolYear,
       class: studentInfo.class,
       walletAddress: studentInfo.walletAddress,
-    };
-    console.log(studentInfoForm);
-    const hash = await AddDataToIPFS(studentInfoForm);
-    console.log(hash);
-    await managerPoolContractService.update(
-      studentInfoForm.walletAddress,
-      hash,
-    );
-  };
+    }
+    console.log(studentInfoForm)
+    const hash = await AddDataToIPFS(studentInfoForm)
+    console.log(hash)
+    await managerPoolContractService.update(studentInfoForm.walletAddress, hash)
+  }
 
   return (
     <div className="studentInformation">
@@ -115,7 +112,7 @@ function StudentInfomation(props) {
             <div className="d-flex flex-column mb-2 row">
               <div className="d-flex flex-column">
                 <label htmlFor="name">
-                  Họ và tên <span style={{ color: 'red' }}>*</span>
+                  Họ và tên <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -128,7 +125,7 @@ function StudentInfomation(props) {
             <div className="d-flex mb-2 row">
               <div className="d-flex flex-column col col-3">
                 <label htmlFor="birthday">
-                  Ngày sinh <span style={{ color: 'red' }}>*</span>
+                  Ngày sinh <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="date"
@@ -139,15 +136,15 @@ function StudentInfomation(props) {
               </div>
               <div className="d-flex flex-column col col-3">
                 <label htmlFor="gender">
-                  Giới tính <span style={{ color: 'red' }}>*</span>
+                  Giới tính <span style={{ color: "red" }}>*</span>
                 </label>
                 <select
                   name="gender"
                   id="gender"
                   value={gender}
                   onChange={(e) => {
-                    console.log(e.target.value);
-                    setGender(e.target.value);
+                    console.log(e.target.value)
+                    setGender(e.target.value)
                   }}
                 >
                   <option value="Nam">Nam</option>
@@ -156,7 +153,7 @@ function StudentInfomation(props) {
               </div>
               <div className="d-flex flex-column col col-3">
                 <label htmlFor="placeOfBirth">
-                  Nơi sinh <span style={{ color: 'red' }}>*</span>
+                  Nơi sinh <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -167,7 +164,7 @@ function StudentInfomation(props) {
               </div>
               <div className="d-flex flex-column col col-3">
                 <label htmlFor="nation">
-                  Dân tộc <span style={{ color: 'red' }}>*</span>
+                  Dân tộc <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -180,7 +177,7 @@ function StudentInfomation(props) {
             <div className="d-flex justify-content-between row">
               <div className="d-flex flex-column mb-2 col col-4">
                 <label htmlFor="cmnd">
-                  CMND/CCCD <span style={{ color: 'red' }}>*</span>
+                  CMND/CCCD <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -191,21 +188,21 @@ function StudentInfomation(props) {
               </div>
               <div className="d-flex flex-column mb-2 col col-4">
                 <label htmlFor="issuranceDate">
-                  Ngày cấp <span style={{ color: 'red' }}>*</span>
+                  Ngày cấp <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="date"
                   name="issuranceDate"
                   defaultValue={
-                    studentInfo.issuranceDate != ''
+                    studentInfo.issuranceDate != ""
                       ? studentInfo.issuranceDate
-                      : 'today'
+                      : "today"
                   }
                 />
               </div>
               <div className="d-flex flex-column col col-4">
                 <label htmlFor="issuancePlace">
-                  Nơi cấp <span style={{ color: 'red' }}>*</span>
+                  Nơi cấp <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -235,7 +232,7 @@ function StudentInfomation(props) {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default StudentInfomation;
+export default StudentInfomation

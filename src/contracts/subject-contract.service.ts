@@ -1,95 +1,95 @@
-import ContractBase from './contract-base';
-import SubjectContracABI from './abi/SubjectContract.json';
-import { transactionService } from './transaction.service';
+import ContractBase from "./contract-base"
+import SubjectContracABI from "./abi/SubjectContract.json"
+import { transactionService } from "./transaction.service"
 
 class SubjectContracService extends ContractBase {
-  readonly contractABI: any = SubjectContracABI.abi;
+  readonly contractABI: any = SubjectContracABI.abi
 
   async getParticipantList(_contractAddress: string) {
-    const contract = await this.loadContract(_contractAddress);
-    if (!contract) return;
-    const list = await contract.methods.getParticipantList().call();
-    return list;
+    const contract = await this.loadContract(_contractAddress)
+    if (!contract) return
+    const list = await contract.methods.getParticipantList().call()
+    return list
   }
 
   async getParticipantListCompleted(_contractAddress: string) {
-    const contract = await this.loadContract(_contractAddress);
-    if (!contract) return;
-    const list = await contract.methods.getParticipantListCompleted().call();
-    return list;
+    const contract = await this.loadContract(_contractAddress)
+    if (!contract) return
+    const list = await contract.methods.getParticipantListCompleted().call()
+    return list
   }
 
   async addStudentToSubject(
     _contractAddress: string,
     studentsAddress: string[],
   ) {
-    const contract = await this.loadContract(_contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(_contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'addStudentToSubject',
+      "addStudentToSubject",
       studentsAddress,
-    );
-    return tx;
+    )
+    return tx
   }
 
   async register(_contractAddress: string) {
-    const contract = await this.loadContract(_contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(_contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'register',
-    );
-    return tx;
+      "register",
+    )
+    return tx
   }
 
   async cancelRegister(_contractAddress: string) {
-    const contract = await this.loadContract(_contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(_contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'cancelRegister',
-    );
-    return tx;
+      "cancelRegister",
+    )
+    return tx
   }
 
   async confirmCompletedAddress(
     _contractAddress: string,
     _studentsAddress: string[],
   ) {
-    const contract = await this.loadContract(_contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(_contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'confirmCompletedAddress',
+      "confirmCompletedAddress",
       _studentsAddress,
-    );
-    return tx;
+    )
+    return tx
   }
 
   async unConfirmCompletedAddress(
     _contractAddress: string,
     _studentAddress: string,
   ) {
-    const contract = await this.loadContract(_contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(_contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'unConfirmCompletedAddress',
+      "unConfirmCompletedAddress",
       _studentAddress,
-    );
-    return tx;
+    )
+    return tx
   }
 }
 
-export const subjectContracService = new SubjectContracService();
+export const subjectContracService = new SubjectContracService()

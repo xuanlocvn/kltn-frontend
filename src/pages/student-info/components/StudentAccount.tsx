@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { getBalanceHistoriesOfStudent } from 'src/api/studentApi';
-import { convertLocalTime } from 'src/utils';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
+import { getBalanceHistoriesOfStudent } from "src/api/studentApi"
+import { convertLocalTime } from "src/utils"
+import { Link } from "react-router-dom"
 
 StudentAccount.propTypes = {
   walletAddress: PropTypes.string,
   totalToken: PropTypes.number,
-};
+}
 
 StudentAccount.defaultProps = {
-  walletAddress: '',
+  walletAddress: "",
   totalToken: 0,
-};
+}
 
 function StudentAccount(props) {
-  const { walletAddress, totalToken } = props;
+  const { walletAddress, totalToken } = props
   const [historyList, setHistoryList] = useState<
     {
-      type: string;
-      contractAddress: string;
-      historyName: string;
-      amount: number;
-      submitTime: number | string;
+      type: string
+      contractAddress: string
+      historyName: string
+      amount: number
+      submitTime: number | string
     }[]
-  >([]);
+  >([])
 
   useEffect(() => {
     const getBalanceHistories = async (studentddress: string) => {
-      const response = await getBalanceHistoriesOfStudent(studentddress);
-      setHistoryList(response.data.result);
-    };
+      const response = await getBalanceHistoriesOfStudent(studentddress)
+      setHistoryList(response.data.result)
+    }
 
-    getBalanceHistories(walletAddress);
-  });
+    getBalanceHistories(walletAddress)
+  })
 
   return (
     <div className="studentAccount">
@@ -45,22 +45,22 @@ function StudentAccount(props) {
           <div className="d-flex mb-2">
             <div className="d-flex flex-column flex-grow-1">
               <label htmlFor="walletAddress">
-                Địa chỉ ví<span style={{ color: 'red' }}>*</span>
+                Địa chỉ ví<span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
                 placeholder="0x1a2C3..."
                 name="walletAddress"
                 disabled
-                defaultValue={walletAddress != '' ? walletAddress : ''}
-                style={{ cursor: 'not-allowed' }}
+                defaultValue={walletAddress != "" ? walletAddress : ""}
+                style={{ cursor: "not-allowed" }}
               />
             </div>
             <button
               className="submitbtn"
               type="submit"
               disabled
-              style={{ cursor: 'not-allowed' }}
+              style={{ cursor: "not-allowed" }}
             >
               Cập nhật
             </button>
@@ -72,7 +72,7 @@ function StudentAccount(props) {
             <div className="d-flex justify-content-around">
               <div>
                 <p className="amountToken d-inline-block">{totalToken}</p>
-                <p className="d-inline-block" style={{ fontWeight: 'bold' }}>
+                <p className="d-inline-block" style={{ fontWeight: "bold" }}>
                   Token
                 </p>
               </div>
@@ -100,7 +100,7 @@ function StudentAccount(props) {
                       </td>
                       <td className="col col-3 text-center">
                         <span className="text-success fw-bold">
-                          {history.amount > 0 && '+'}
+                          {history.amount > 0 && "+"}
                           {history.amount}
                         </span>
                       </td>
@@ -120,7 +120,7 @@ function StudentAccount(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default StudentAccount;
+export default StudentAccount

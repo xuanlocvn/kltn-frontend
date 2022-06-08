@@ -1,6 +1,6 @@
-import axiosClient from './axiosClient';
+import axiosClient from "./axiosClient"
 
 export const getLecturerList = () => {
-  const url = 'api/lecturer';
-  return axiosClient.get(url);
-};
+  const url = "api/lecturer"
+  return axiosClient.get(url)
+}

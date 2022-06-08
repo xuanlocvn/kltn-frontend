@@ -1,67 +1,67 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import Web3 from 'web3';
-import { connect, disconnect, selectWeb3 } from './SignInSlice';
-import { CustomWindow } from 'src/utils/window';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { useNavigate } from 'react-router-dom';
-import './SignInPage.scss';
-import { ProviderConnectInfo } from 'src/interfaces';
-import { selectRole } from 'src/components/shared/Header/HeaderSlice';
+import React from "react"
+import { useEffect, useState } from "react"
+import Web3 from "web3"
+import { connect, disconnect, selectWeb3 } from "./SignInSlice"
+import { CustomWindow } from "src/utils/window"
+import { useAppDispatch, useAppSelector } from "src/app/hooks"
+import { useNavigate } from "react-router-dom"
+import "./SignInPage.scss"
+import { ProviderConnectInfo } from "src/interfaces"
+import { selectRole } from "src/components/shared/Header/HeaderSlice"
 
-declare let window: CustomWindow;
+declare let window: CustomWindow
 
 function SignInPage() {
-  const web3 = useAppSelector(selectWeb3);
-  const role = useAppSelector(selectRole);
-  const dispatch = useAppDispatch();
-  const [account, setAccount] = useState(null);
-  const [metamask, setMetamask] = useState(false);
-  const navigate = useNavigate();
+  const web3 = useAppSelector(selectWeb3)
+  const role = useAppSelector(selectRole)
+  const dispatch = useAppDispatch()
+  const [account, setAccount] = useState(null)
+  const [metamask, setMetamask] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const loadAccountFromWallet = async () => {
-      const ethereum = window.ethereum;
+      const ethereum = window.ethereum
       if (ethereum != undefined) {
-        dispatch(connect(new Web3(ethereum)));
-        ethereum.on('connect', (connectInfo: ProviderConnectInfo) => {
-          console.log(connectInfo.chainId);
-          dispatch(connect(new Web3(ethereum)));
-        });
-        setMetamask(true);
+        dispatch(connect(new Web3(ethereum)))
+        ethereum.on("connect", (connectInfo: ProviderConnectInfo) => {
+          console.log(connectInfo.chainId)
+          dispatch(connect(new Web3(ethereum)))
+        })
+        setMetamask(true)
         await window.ethereum
-          .request({ method: 'eth_requestAccounts' })
+          .request({ method: "eth_requestAccounts" })
           .then((result) => {
-            setAccount(result[0]);
-          });
+            setAccount(result[0])
+          })
       } else {
-        web3 != null && dispatch(disconnect());
-        setMetamask(false);
+        web3 != null && dispatch(disconnect())
+        setMetamask(false)
       }
-    };
+    }
 
-    loadAccountFromWallet();
-  }, []);
+    loadAccountFromWallet()
+  }, [])
 
   useEffect(() => {
     web3 &&
       account &&
       role.role &&
-      navigate(`/${role.role.toLocaleLowerCase()}/${account}`);
-  });
+      navigate(`/${role.role.toLocaleLowerCase()}/${account}`)
+  })
 
   const loadWeb3 = async () => {
     if (window.ethereum != undefined) {
-      dispatch(connect(new Web3(window.ethereum)));
+      dispatch(connect(new Web3(window.ethereum)))
       await window.ethereum
-        .request({ method: 'eth_requestAccounts' })
+        .request({ method: "eth_requestAccounts" })
         .then((result) => {
-          setAccount(result[0]);
-        });
+          setAccount(result[0])
+        })
     } else {
-      web3 != null && dispatch(disconnect());
+      web3 != null && dispatch(disconnect())
     }
-  };
+  }
 
   return (
     <div className="sign-in">
@@ -89,7 +89,7 @@ function SignInPage() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default SignInPage;
+export default SignInPage

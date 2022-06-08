@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
-import { marketplaceContractService } from 'src/contracts/maketplace.service';
-import useAvata from 'src/hooks/useAvata';
-import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
+import React, { useEffect, useState } from "react"
+import { getProductType } from "src/api/productApi"
+import { marketplaceContractService } from "src/contracts/maketplace.service"
+import useAvata from "src/hooks/useAvata"
+import { AddDataToIPFS } from "src/ipfs/ipfsClient"
+import { IProductTypeInstance } from "src/utils/window"
+import { Editor } from "react-draft-wysiwyg"
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import { convertToRaw } from "draft-js"
+import draftToHtml from "draftjs-to-html"
 
 function CreateNewProduct() {
-  const [faculty, setFaculty] = useState('');
-  const { onChangeAvt, defaultAvt } = useAvata();
+  const [faculty, setFaculty] = useState("")
+  const { onChangeAvt, defaultAvt } = useAvata()
+  const [productType, setProductType] = useState<IProductTypeInstance[]>([])
+  const [description, SetDescription] = useState("")
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const response = await getProductType()
+      setProductType(response.data.result)
+    }
+    fetchApi()
+  }, [])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(e.target);
+    e.preventDefault()
+    console.log(e.target)
     const productInfoForm = {
       img: defaultAvt,
       name: e.target.name.value,
@@ -17,17 +33,22 @@ function CreateNewProduct() {
       productType: e.target.productType.value,
       amount: e.target.amount.value,
       price: e.target.price.value,
-      description: e.target.description.value,
-    };
-    console.log(productInfoForm);
-    const hash = await AddDataToIPFS(productInfoForm);
-    console.log(hash);
+      description: description,
+    }
+    console.log(productInfoForm)
+    const hash = await AddDataToIPFS(productInfoForm)
+    console.log(hash)
     await marketplaceContractService.createAndListNFT(
-      [hash, productInfoForm.productType === 'course'],
+      [hash, productInfoForm.productType === "course"],
       productInfoForm.price,
       productInfoForm.amount,
-    );
-  };
+    )
+  }
+
+  const onEditorStateChange = (editorState) => {
+    SetDescription(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+  }
+
   return (
     <div className="form_body container">
       <div>
@@ -53,7 +74,7 @@ function CreateNewProduct() {
           <div className="col col-8">
             <div className="d-flex flex-column mb-2">
               <label htmlFor="name">
-                Tên vật phẩm <span style={{ color: 'red' }}>*</span>
+                Tên vật phẩm <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
@@ -64,7 +85,7 @@ function CreateNewProduct() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="productId">
-                Mã vật phẩm <span style={{ color: 'red' }}>*</span>
+                Mã vật phẩm <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
@@ -75,26 +96,29 @@ function CreateNewProduct() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="productType">
-                Loại vật phẩm<span style={{ color: 'red' }}>*</span>
+                Loại vật phẩm<span style={{ color: "red" }}>*</span>
               </label>
               <select
                 name="productType"
                 id="productType"
                 value={faculty}
                 onChange={(e) => {
-                  setFaculty(e.target.value);
+                  setFaculty(e.target.value)
                 }}
               >
-                <option value="course">Khóa học</option>
-                <option value="items">Vật phẩm</option>
-                <option value="Khác">Khác</option>
+                {productType &&
+                  productType.map((type, index) => (
+                    <option key={index} value={type.productTypeAlias}>
+                      {type.productTypeName}
+                    </option>
+                  ))}
               </select>
             </div>
             <div className="d-flex justify-content-between row mb-2">
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="amount">
                   Số lượng vật phẩm
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="number"
@@ -106,7 +130,7 @@ function CreateNewProduct() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="price">
                   Giá mỗi vật phẩm
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="number"
@@ -118,9 +142,19 @@ function CreateNewProduct() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="description">
-                Mô tả <span style={{ color: 'red' }}>*</span>
+                Mô tả <span style={{ color: "red" }}>*</span>
               </label>
-              <textarea placeholder="Mô tả" name="description" rows={5} />
+              {/* <textarea placeholder="Mô tả" name="description" rows={5} /> */}
+              <Editor
+                toolbarClassName="toolbarClassName"
+                wrapperClassName="wrapperClassName"
+                editorClassName="editorClassName"
+                wrapperStyle={{
+                  border: "1px solid rgba(0,0,0,0.3)",
+                  borderRadius: "20px",
+                }}
+                onEditorStateChange={onEditorStateChange}
+              />
             </div>
             <div className="d-flex flex-row-reverse">
               <button className="submitbtn" type="submit">
@@ -132,7 +166,7 @@ function CreateNewProduct() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default CreateNewProduct;
+export default CreateNewProduct

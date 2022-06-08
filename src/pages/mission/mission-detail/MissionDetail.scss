@@ -54,13 +54,16 @@
 
 .historyTable {
   table {
-    border-radius: 20px;
-    box-shadow: 1px 1px 8px 8px rgb(179, 177, 177);
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
+    border-radius: 0.5px solid rgba(49, 47, 47, 0.3);
+    padding: 100px;
+    border-radius: 20px;
 
     td, th {
-      padding: 10px;
+      padding: 10px 0;
+
+      border-bottom: 0.5px solid rgba(49, 47, 47, 0.3);
     }
   }
 
@@ -105,4 +108,9 @@ button.cancel{
   }
 button.cancel:hover{
     background-color: black;
+  }
+
+    button.btn-disabled {
+    cursor: not-allowed;
+    background-color: rgb(49, 47, 47)!important;
   }

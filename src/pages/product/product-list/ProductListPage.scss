@@ -261,9 +261,9 @@ select:hover {
 .list_filter .filter_btn {
 	background-color: white;
 	border: solid 0.5px rgba(0, 0, 0, 0.3);
-	padding: 7px;
 	border-radius: 20px;
-	width: 130px;
+	width: max-content;
+  padding: 7px 15px;
 }
 .list_filter .filter_btn:hover {
 	background-color: #33aaff;
@@ -388,11 +388,13 @@ select .select-item {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
+  height: 40%;
 }
 
 .products-list .product-item .product-info {
 	background-color: rgba(0, 0, 0, 0.03);
 	width: 100%;
+  height: 60%;
 	margin: 0;
 	padding: 10px;
 	border-bottom-left-radius: 20px;
@@ -409,6 +411,69 @@ select .select-item {
 	transition: transform 0.3s;
 }
 
+.products-list {
+  a {
+    color: black!important;
+  }
+  
+  .item-disabled {
+    cursor: not-allowed;
+    background-color: rgb(49, 47, 47)!important;
+  }
+}
+
 a {
   text-decoration: none;
+}
+
+.btn{
+  width: 150px;
+  background-color: #33aaff;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-sell{
+  background-color: aqua;
+}
+
+.product-item{
+  position: relative;
+
+  .item-disable{
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    cursor: not-allowed;
+  }
+
+  .checkout {
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    margin-left: 15px;
+    margin-top: 10px;
+
+    input{
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+form.accept-all {
+  position: relative;
+
+  .btn-all{
+    position: absolute;
+    z-index: 999;
+    top: -63px;
+    right: 0;
+    border-radius: 20px;
+    padding: 7px 15px;
+  }
 }

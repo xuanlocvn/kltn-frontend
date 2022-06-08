@@ -1,17 +1,17 @@
-import { create } from 'ipfs-http-client';
+import { create } from "ipfs-http-client"
 
-const ipfsClient = create({ url: 'https://ipfs.infura.io:5001/api/v0' });
+const ipfsClient = create({ url: "https://ipfs.infura.io:5001/api/v0" })
 
 export const AddDataToIPFS = async (obj: any): Promise<string> => {
-  const added = await ipfsClient.add(JSON.stringify(obj));
-  return added.path;
-};
+  const added = await ipfsClient.add(JSON.stringify(obj))
+  return added.path
+}
 
 export const AddImgToIPFS = async (obj: any): Promise<string> => {
-  const added = await ipfsClient.add(obj);
-  return added.path;
-};
+  const added = await ipfsClient.add(obj)
+  return added.path
+}
 
-export const ipfsBaseURL = 'https://ipfs.infura.io/ipfs/';
+export const ipfsBaseURL = "https://ipfs.infura.io/ipfs/"
 
-export default ipfsClient;
+export default ipfsClient

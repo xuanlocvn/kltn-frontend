@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react"
 
-NotFound.propTypes = {};
+NotFound.propTypes = {}
 
 function NotFound() {
-  return <div className="notfound">Oopss... Not found</div>;
+  return <div className="notfound">Oopss... Not found</div>
 }
 
-export default NotFound;
+export default NotFound

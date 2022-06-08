@@ -1,74 +1,74 @@
-import ContractBase from './contract-base';
-import ManagerPoolABI from './abi/ManagerPool.json';
-import { transactionService } from './transaction.service';
-import { CONFIG } from 'src/configs/config.enum';
-import { configService } from 'src/configs/config.service';
-import { amountToValue } from './helpers';
+import ContractBase from "./contract-base"
+import ManagerPoolABI from "./abi/ManagerPool.json"
+import { transactionService } from "./transaction.service"
+import { CONFIG } from "src/configs/config.enum"
+import { configService } from "src/configs/config.service"
+import { amountToValue } from "./helpers"
 
 class ManagerPoolContractService extends ContractBase {
-  readonly contractABI: any = ManagerPoolABI.abi;
+  readonly contractABI: any = ManagerPoolABI.abi
   readonly contractAddress: string = configService.getConfig(
     CONFIG.MANAGER_POOL_ADDRESS,
-  );
+  )
 
   async studentInfo(studentAddress: string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const studentInfoHash = await contract.methods
       .studentInfo(studentAddress)
-      .call();
-    return studentInfoHash;
+      .call()
+    return studentInfoHash
   }
 
   async lecturerInfo(lectureAddress: string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const studentInfoHash = await contract.methods
       .lecturerInfo(lectureAddress)
-      .call();
-    return studentInfoHash;
+      .call()
+    return studentInfoHash
   }
 
   async addStudentInfo(studentAddr: string, hashInfo: string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'addStudentInfo',
+      "addStudentInfo",
       studentAddr,
       hashInfo,
-    );
-    return tx;
+    )
+    return tx
   }
 
   async update(studentAddr: string, hashInfo: string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'update',
+      "update",
       studentAddr,
       hashInfo,
-    );
-    return tx;
+    )
+    return tx
   }
 
   async addLecturerInfo(lecturerAddr: string, hashInfo: string) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'addLecturerInfo',
+      "addLecturerInfo",
       lecturerAddr,
       hashInfo,
-    );
-    return tx;
+    )
+    return tx
   }
 
   async createNewMission(
@@ -82,13 +82,13 @@ class ManagerPoolContractService extends ContractBase {
     _endTime: number | string,
     _endTimeToConfirm: number | string,
   ) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'createNewMission',
+      "createNewMission",
       _urlMetadata,
       _missionId,
       amountToValue(Number(_award)),
@@ -98,8 +98,8 @@ class ManagerPoolContractService extends ContractBase {
       _endTimeToRegister,
       _endTime,
       _endTimeToConfirm,
-    );
-    return tx;
+    )
+    return tx
   }
 
   async createNewSubject(
@@ -112,13 +112,13 @@ class ManagerPoolContractService extends ContractBase {
     _endTime: number | string,
     _endTimeToConfirm: number | string,
   ) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'createNewSubject',
+      "createNewSubject",
       _urlMetadata,
       _subjectId,
       _maxEntrant,
@@ -127,8 +127,8 @@ class ManagerPoolContractService extends ContractBase {
       _endTimeToRegister,
       _endTime,
       _endTimeToConfirm,
-    );
-    return tx;
+    )
+    return tx
   }
 
   async createNewScholarship(
@@ -138,20 +138,20 @@ class ManagerPoolContractService extends ContractBase {
     _startTime: number | string,
     _endTime: number | string,
   ) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'createNewScholarship',
+      "createNewScholarship",
       _urlMetadata,
       _scholarshipId,
       amountToValue(Number(_award)),
       _startTime,
       _endTime,
-    );
-    return tx;
+    )
+    return tx
   }
 
   async createNewTuition(
@@ -161,21 +161,21 @@ class ManagerPoolContractService extends ContractBase {
     _startTime: number | string,
     _endTime: number | string,
   ) {
-    const contract = await this.loadContract(this.contractAddress);
-    if (!contract) return;
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
     const tx = await transactionService.sendTransaction(
       this.web3,
       contract,
       0,
-      'createNewTuition',
+      "createNewTuition",
       _urlMetadata,
       _tuitionId,
       amountToValue(Number(_feeByToken)),
       _startTime,
       _endTime,
-    );
-    return tx;
+    )
+    return tx
   }
 }
 
-export const managerPoolContractService = new ManagerPoolContractService();
+export const managerPoolContractService = new ManagerPoolContractService()

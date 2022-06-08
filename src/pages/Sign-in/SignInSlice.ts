@@ -1,41 +1,41 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk, RootState } from 'src/app/store';
-import Web3 from 'web3';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { AppThunk, RootState } from "src/app/store"
+import Web3 from "web3"
 
 export interface Web3State {
-  value: Web3;
+  value: Web3
 }
 
 const initialState: Web3State = {
   value: null,
-};
+}
 
 export const signInSlice = createSlice({
-  name: 'web3',
+  name: "web3",
   initialState,
   reducers: {
     connect: (state, action: PayloadAction<Web3>) => {
-      state.value = action.payload;
-      console.log(state.value);
-      console.log('Injected Web3');
+      state.value = action.payload
+      console.log(state.value)
+      console.log("Injected Web3")
     },
     disconnect: (state) => {
-      state.value = null;
+      state.value = null
     },
   },
-});
+})
 
-export const { connect, disconnect } = signInSlice.actions;
+export const { connect, disconnect } = signInSlice.actions
 
-export const selectWeb3 = (state: RootState) => state.web3.value;
+export const selectWeb3 = (state: RootState) => state.web3.value
 
 export const connectWeb3 =
   (web3: Web3): AppThunk =>
   (dispatch, getState) => {
-    const currentValue = selectWeb3(getState());
+    const currentValue = selectWeb3(getState())
     if (currentValue == null) {
-      dispatch(connect(web3));
+      dispatch(connect(web3))
     }
-  };
+  }
 
-export default signInSlice.reducer;
+export default signInSlice.reducer

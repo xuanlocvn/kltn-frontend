@@ -1,31 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { IStudentCertificate } from 'src/utils/window';
-import { convertLocalTime } from 'src/utils';
-import { Link } from 'react-router-dom';
+import React from "react"
+import PropTypes from "prop-types"
+import { IStudentCertificate } from "src/utils/window"
+import { convertLocalTime } from "src/utils"
+import { Link } from "react-router-dom"
 
 StudentCertificate.propTypes = {
   subjectList: PropTypes.array,
   certificateList: PropTypes.array,
-};
+}
 
 function StudentCertificate(props: {
-  subjectList: IStudentCertificate[];
-  certificateList: IStudentCertificate[];
+  subjectList: IStudentCertificate[]
+  certificateList: IStudentCertificate[]
 }) {
-  const { subjectList, certificateList } = props;
+  const { subjectList, certificateList } = props
   return (
     <div className="confirmedInfo">
-      <div style={{ width: '100%', height: '500px' }}>
+      <div style={{ width: "100%", height: "500px" }}>
         <div>
           <h2>Môn Học Hoàn Thành</h2>
         </div>
         <div
           className="body_form mt-3"
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: "100%", height: "100%" }}
         >
           <div>
-            <table style={{ width: '95%', margin: 'auto' }}>
+            <table style={{ width: "95%", margin: "auto" }}>
               <tbody>
                 {subjectList.length == 0 ? (
                   <div className="text-center align-center">
@@ -66,16 +66,16 @@ function StudentCertificate(props: {
           </div>
         </div>
       </div>
-      <div style={{ width: '100%', height: '500px', marginTop: '100px' }}>
+      <div style={{ width: "100%", height: "500px", marginTop: "100px" }}>
         <div>
           <h2>Chứng Chỉ Hoàn Thành Nhiệm Vụ</h2>
         </div>
         <div
           className="body_form mt-3"
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: "100%", height: "100%" }}
         >
           <div>
-            <table style={{ width: '95%', margin: 'auto' }}>
+            <table style={{ width: "95%", margin: "auto" }}>
               <tbody>
                 {certificateList.length == 0 ? (
                   <div className="text-center align-center">
@@ -117,7 +117,7 @@ function StudentCertificate(props: {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default StudentCertificate;
+export default StudentCertificate

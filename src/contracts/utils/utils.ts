@@ -1,23 +1,23 @@
 export class Util {
   static dtoToTuple(dtos: any | any[], params: string[]) {
-    const tuple = [];
+    const tuple = []
     if (Array.isArray(dtos)) {
       dtos.forEach((dto) => {
-        const item = [];
+        const item = []
         params.forEach((param) => {
-          item.push(dto[param]);
-        });
-        tuple.push(item);
-      });
+          item.push(dto[param])
+        })
+        tuple.push(item)
+      })
     } else {
-      const dto = dtos;
+      const dto = dtos
       params.forEach((param) => {
-        tuple.push(dto[param]);
-      });
+        tuple.push(dto[param])
+      })
     }
-    return tuple;
+    return tuple
   }
   static isZeroAddress(address: string) {
-    return address === '0x0000000000000000000000000000000000000000';
+    return address === "0x0000000000000000000000000000000000000000"
   }
 }

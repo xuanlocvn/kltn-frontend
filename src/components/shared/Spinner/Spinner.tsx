@@ -1,5 +1,5 @@
-import React from 'react';
-import Spinner from 'react-bootstrap/Spinner';
+import React from "react"
+import Spinner from "react-bootstrap/Spinner"
 
 function SpinnerApp() {
   return (
@@ -15,7 +15,7 @@ function SpinnerApp() {
         <Spinner animation="grow" variant="dark" />
       </div>
     </div>
-  );
+  )
 }
 
-export default SpinnerApp;
+export default SpinnerApp

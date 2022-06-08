@@ -1,36 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { managerPoolContractService } from 'src/contracts/manager-pool.service';
-import useAvata from 'src/hooks/useAvata';
-import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
-import { convertDateToTimestamp } from 'src/utils';
-import { getLecturerList } from '../../../api/lecturerApi';
-// import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react"
+import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import useAvata from "src/hooks/useAvata"
+import { AddDataToIPFS } from "src/ipfs/ipfsClient"
+import { convertDateToTimestamp } from "src/utils"
+import { getLecturerList } from "../../../api/lecturerApi"
+import { Editor } from "react-draft-wysiwyg"
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import { convertToRaw } from "draft-js"
+import draftToHtml from "draftjs-to-html"
 
-CreateNewMission.propTypes = {};
+CreateNewMission.propTypes = {}
 
 function CreateNewMission() {
-  const [faculty, setFaculty] = useState('');
-  const { onChangeAvt, defaultAvt } = useAvata();
-  const [lecturerList, setLecturerList] = useState([]);
+  const [faculty, setFaculty] = useState("")
+  const { onChangeAvt, defaultAvt } = useAvata()
+  const [lecturerList, setLecturerList] = useState([])
+  const [description, SetDescription] = useState("")
 
   useEffect(() => {
     const fetchApi = async () => {
-      const response = await getLecturerList();
-      setLecturerList(response.data.result);
-    };
-    fetchApi();
-  }, []);
+      const response = await getLecturerList()
+      setLecturerList(response.data.result)
+    }
+    fetchApi()
+  }, [])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(e.target);
+    e.preventDefault()
+    console.log(e.target)
     const missionInfoForm = {
       img: defaultAvt,
       name: e.target.name.value,
       award: e.target.award.value,
       missionId: e.target.missionId.value,
       maxEntrant: e.target.maxEntrant.value,
-      faculty: 'Doan Khoa',
+      faculty: "Doan Khoa",
       lecturerInCharge: e.target.lecturerInCharge.value,
       lecturerName:
         e.target.lecturerInCharge.options[
@@ -42,11 +46,11 @@ function CreateNewMission() {
         e.target.endTimeToRegister.value,
       ),
       endTimeToConfirm: convertDateToTimestamp(e.target.endTimeToConfirm.value),
-      description: e.target.description.value,
-    };
-    console.log(missionInfoForm);
-    const hash = await AddDataToIPFS(missionInfoForm);
-    console.log(hash);
+      description: description,
+    }
+    console.log(missionInfoForm)
+    const hash = await AddDataToIPFS(missionInfoForm)
+    console.log(hash)
     await managerPoolContractService.createNewMission(
       hash,
       missionInfoForm.missionId,
@@ -57,8 +61,13 @@ function CreateNewMission() {
       missionInfoForm.endTimeToRegister,
       missionInfoForm.endTime,
       missionInfoForm.endTimeToConfirm,
-    );
-  };
+    )
+  }
+
+  const onEditorStateChange = (editorState) => {
+    SetDescription(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+  }
+
   return (
     <div className="form_body container">
       <div>
@@ -84,7 +93,7 @@ function CreateNewMission() {
           <div className="col col-8">
             <div className="d-flex flex-column mb-2">
               <label htmlFor="name">
-                Tên nhiệm vụ <span style={{ color: 'red' }}>*</span>
+                Tên nhiệm vụ <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
@@ -95,7 +104,7 @@ function CreateNewMission() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="missionId">
-                Mã nhiệm vụ <span style={{ color: 'red' }}>*</span>
+                Mã nhiệm vụ <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
@@ -106,8 +115,8 @@ function CreateNewMission() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="maxEntrant">
-                Số lượng sinh viên tối đa{' '}
-                <span style={{ color: 'red' }}>*</span>
+                Số lượng sinh viên tối đa{" "}
+                <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="number"
@@ -118,16 +127,16 @@ function CreateNewMission() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="lecturerInCharge">
-                Người phụ trách chính<span style={{ color: 'red' }}>*</span>
+                Người phụ trách chính<span style={{ color: "red" }}>*</span>
               </label>
               <select
                 name="lecturerInCharge"
                 id="lecturerInCharge"
                 value={faculty}
                 onChange={(e) => {
-                  setFaculty(e.target.value);
-                  console.log(e.target.value);
-                  console.log(e.target.options[e.target.selectedIndex].text);
+                  setFaculty(e.target.value)
+                  console.log(e.target.value)
+                  console.log(e.target.options[e.target.selectedIndex].text)
                 }}
               >
                 {lecturerList.map((lecturer, index) => (
@@ -141,7 +150,7 @@ function CreateNewMission() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="startTime">
                   Bắt đầu
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="datetime-local"
@@ -153,7 +162,7 @@ function CreateNewMission() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="endTime">
                   Kêt thúc
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="datetime-local"
@@ -167,7 +176,7 @@ function CreateNewMission() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="endTimeToRegister">
                   Kết thúc đăng ký
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="datetime-local"
@@ -179,7 +188,7 @@ function CreateNewMission() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="endTimeToConfirm ">
                   Đánh giá
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="datetime-local"
@@ -191,7 +200,7 @@ function CreateNewMission() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="award">
-                Phần thưởng <span style={{ color: 'red' }}>*</span>
+                Phần thưởng <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="number"
@@ -202,9 +211,18 @@ function CreateNewMission() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="description">
-                Mô tả <span style={{ color: 'red' }}>*</span>
+                Mô tả <span style={{ color: "red" }}>*</span>
               </label>
-              <textarea placeholder="Mô tả" name="description" rows={5} />
+              <Editor
+                toolbarClassName="toolbarClassName"
+                wrapperClassName="wrapperClassName"
+                editorClassName="editorClassName"
+                wrapperStyle={{
+                  border: "1px solid rgba(0,0,0,0.3)",
+                  borderRadius: "20px",
+                }}
+                onEditorStateChange={onEditorStateChange}
+              />
             </div>
             <div className="d-flex flex-row-reverse">
               <button className="submitbtn" type="submit">
@@ -216,7 +234,7 @@ function CreateNewMission() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default CreateNewMission;
+export default CreateNewMission

@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { getAllDepartment } from 'src/api/departmentAPI';
-import { managerPoolContractService } from 'src/contracts/manager-pool.service';
-import useAvata from 'src/hooks/useAvata';
-import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
-import { FACULTY } from 'src/utils/enum';
+import React, { useEffect, useState } from "react"
+import { getAllDepartment } from "src/api/departmentAPI"
+import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import useAvata from "src/hooks/useAvata"
+import { AddDataToIPFS } from "src/ipfs/ipfsClient"
+import { FACULTY } from "src/utils/enum"
 // import PropTypes from 'prop-types';
 
-GrantRoleLecturer.propTypes = {};
+GrantRoleLecturer.propTypes = {}
 
 function GrantRoleLecturer() {
-  const [faculty, setFaculty] = useState('');
-  const { onChangeAvt, defaultAvt } = useAvata();
-  const [gender, setGender] = useState('Nam');
-  const [departmentList, setDepartmentList] = useState([]);
+  const [faculty, setFaculty] = useState("")
+  const { onChangeAvt, defaultAvt } = useAvata()
+  const [gender, setGender] = useState("Nam")
+  const [departmentList, setDepartmentList] = useState([])
 
   useEffect(() => {
     const fetchApi = async () => {
-      const response = await getAllDepartment();
-      console.log(response.data.result);
-      setDepartmentList(response.data.result);
-    };
+      const response = await getAllDepartment()
+      console.log(response.data.result)
+      setDepartmentList(response.data.result)
+    }
 
-    fetchApi();
-  }, []);
+    fetchApi()
+  }, [])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const lecturerInfoForm = {
       img: defaultAvt,
       name: e.target.name.value.trim(),
@@ -35,15 +35,15 @@ function GrantRoleLecturer() {
       walletAddress: e.target.walletAddress.value.trim(),
       gender: e.target.gender.value,
       facultyShortName: e.target.faculty.value.trim(),
-    };
-    console.log(lecturerInfoForm);
-    const hash = await AddDataToIPFS(lecturerInfoForm);
-    console.log(hash);
+    }
+    console.log(lecturerInfoForm)
+    const hash = await AddDataToIPFS(lecturerInfoForm)
+    console.log(hash)
     await managerPoolContractService.addLecturerInfo(
       lecturerInfoForm.walletAddress,
       hash,
-    );
-  };
+    )
+  }
   return (
     <div className="form_body container">
       <div>
@@ -70,7 +70,7 @@ function GrantRoleLecturer() {
             <div className="d-flex justify-content-between mb-2 row">
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="name">
-                  Họ và tên <span style={{ color: 'red' }}>*</span>
+                  Họ và tên <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -81,7 +81,7 @@ function GrantRoleLecturer() {
               </div>
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="lecturerId">
-                  Mã giảng viên <span style={{ color: 'red' }}>*</span>
+                  Mã giảng viên <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -94,7 +94,7 @@ function GrantRoleLecturer() {
             <div className="d-flex justify-content-between mb-2 row">
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="dateOfBirth">
-                  Ngày sinh <span style={{ color: 'red' }}>*</span>
+                  Ngày sinh <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="date"
@@ -105,14 +105,14 @@ function GrantRoleLecturer() {
               </div>
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="gender">
-                  Giới tính <span style={{ color: 'red' }}>*</span>
+                  Giới tính <span style={{ color: "red" }}>*</span>
                 </label>
                 <select
                   name="gender"
                   id="gender"
                   value={gender}
                   onChange={(e) => {
-                    setGender(e.target.value);
+                    setGender(e.target.value)
                   }}
                 >
                   <option value="Nam">Nam</option>
@@ -122,14 +122,14 @@ function GrantRoleLecturer() {
             </div>
             <div className="d-flex flex-column  mb-2">
               <label htmlFor="faculty">
-                Khoa <span style={{ color: 'red' }}>*</span>
+                Khoa <span style={{ color: "red" }}>*</span>
               </label>
               <select
                 name="faculty"
                 id="faculty"
                 value={faculty}
                 onChange={(e) => {
-                  setFaculty(e.target.value);
+                  setFaculty(e.target.value)
                 }}
               >
                 {departmentList.map((department, index) => (
@@ -141,7 +141,7 @@ function GrantRoleLecturer() {
             </div>
             <div className="d-flex flex-column  mb-2">
               <label htmlFor="walletAddress">
-                Địa chỉ ví <span style={{ color: 'red' }}>*</span>
+                Địa chỉ ví <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
@@ -160,7 +160,7 @@ function GrantRoleLecturer() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default GrantRoleLecturer;
+export default GrantRoleLecturer

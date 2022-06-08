@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import '../StudentPage.scss';
+import React from "react"
+import PropTypes from "prop-types"
+import "../StudentPage.scss"
 
 StudentCoverInfo.propTypes = {
   avataImage: PropTypes.string,
@@ -11,20 +11,20 @@ StudentCoverInfo.propTypes = {
   class: PropTypes.string,
   faculty: PropTypes.string,
   schoolYear: PropTypes.string,
-};
+}
 
 StudentCoverInfo.defaultProps = {
   avataImage:
-    'https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg',
+    "https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg",
   coverImage:
-    'https://khtc.uit.edu.vn/sites/all/themes/whitebull/images/slideshow/UIT.jpg',
-  studentName: 'UNKNOW',
-  studentId: 'Loading',
-  studentMajor: 'Loading',
-  class: 'Loading',
-  faculty: 'Loading',
-  schoolYear: 'Loading',
-};
+    "https://khtc.uit.edu.vn/sites/all/themes/whitebull/images/slideshow/UIT.jpg",
+  studentName: "UNKNOW",
+  studentId: "Loading",
+  studentMajor: "Loading",
+  class: "Loading",
+  faculty: "Loading",
+  schoolYear: "Loading",
+}
 
 function StudentCoverInfo(props) {
   return (
@@ -74,7 +74,7 @@ function StudentCoverInfo(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default StudentCoverInfo;
+export default StudentCoverInfo

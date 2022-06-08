@@ -1,42 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
+import { useSearchParams } from "react-router-dom"
 
 AdminTab.propTypes = {
   onTab: PropTypes.func,
   isOwnAdmin: PropTypes.bool,
-};
+}
 
 function AdminTab(props) {
-  const [activeButton, setActiveButton] = useState(0);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { onTab, isOwnAdmin } = props;
+  const [activeButton, setActiveButton] = useState(0)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const { onTab, isOwnAdmin } = props
 
   useEffect(() => {
-    const tab = searchParams.get('t');
+    const tab = searchParams.get("t")
     if (Number(tab) != 0) {
-      setActiveButton(Number(tab));
-      onTab(Number(tab));
+      setActiveButton(Number(tab))
+      onTab(Number(tab))
     } else {
-      setActiveButton(1);
-      onTab(1);
+      setActiveButton(1)
+      onTab(1)
     }
-  }, [searchParams]);
+  }, [searchParams])
 
   const handleActive = (tabNumber: number) => {
-    setActiveButton(tabNumber);
-  };
+    setActiveButton(tabNumber)
+  }
   return (
     <div className="form_tab col col-3">
       {isOwnAdmin && (
         <>
           <p>
             <button
-              className={activeButton == 1 ? 'active' : ''}
+              className={activeButton == 1 ? "active" : ""}
               onClick={() => {
-                onTab(1);
-                handleActive(1);
-                setSearchParams({ t: '1' });
+                onTab(1)
+                handleActive(1)
+                setSearchParams({ t: "1" })
               }}
             >
               Phân quyền sinh viên
@@ -44,11 +44,11 @@ function AdminTab(props) {
           </p>
           <p>
             <button
-              className={activeButton == 2 ? 'active' : ''}
+              className={activeButton == 2 ? "active" : ""}
               onClick={() => {
-                onTab(2);
-                handleActive(2);
-                setSearchParams({ t: '2' });
+                onTab(2)
+                handleActive(2)
+                setSearchParams({ t: "2" })
               }}
             >
               Phân quyền giảng viên
@@ -56,11 +56,11 @@ function AdminTab(props) {
           </p>
           <p>
             <button
-              className={activeButton == 3 ? 'active' : ''}
+              className={activeButton == 3 ? "active" : ""}
               onClick={() => {
-                onTab(3);
-                handleActive(3);
-                setSearchParams({ t: '3' });
+                onTab(3)
+                handleActive(3)
+                setSearchParams({ t: "3" })
               }}
             >
               Tạo lớp học
@@ -68,11 +68,11 @@ function AdminTab(props) {
           </p>
           <p>
             <button
-              className={activeButton == 4 ? 'active' : ''}
+              className={activeButton == 4 ? "active" : ""}
               onClick={() => {
-                onTab(4);
-                handleActive(4);
-                setSearchParams({ t: '4' });
+                onTab(4)
+                handleActive(4)
+                setSearchParams({ t: "4" })
               }}
             >
               Tạo đợt nhận học bổng
@@ -80,11 +80,11 @@ function AdminTab(props) {
           </p>
           <p>
             <button
-              className={activeButton == 5 ? 'active' : ''}
+              className={activeButton == 5 ? "active" : ""}
               onClick={() => {
-                onTab(5);
-                handleActive(5);
-                setSearchParams({ t: '5' });
+                onTab(5)
+                handleActive(5)
+                setSearchParams({ t: "5" })
               }}
             >
               Tạo nhiệm vụ
@@ -92,11 +92,11 @@ function AdminTab(props) {
           </p>
           <p>
             <button
-              className={activeButton == 6 ? 'active' : ''}
+              className={activeButton == 6 ? "active" : ""}
               onClick={() => {
-                onTab(6);
-                handleActive(6);
-                setSearchParams({ t: '6' });
+                onTab(6)
+                handleActive(6)
+                setSearchParams({ t: "6" })
               }}
             >
               Tạo đợt đóng học phí
@@ -104,11 +104,11 @@ function AdminTab(props) {
           </p>
           <p>
             <button
-              className={activeButton == 7 ? 'active' : ''}
+              className={activeButton == 7 ? "active" : ""}
               onClick={() => {
-                onTab(7);
-                handleActive(7);
-                setSearchParams({ t: '7' });
+                onTab(7)
+                handleActive(7)
+                setSearchParams({ t: "7" })
               }}
             >
               Tạo vật phẩm đăng bán
@@ -117,7 +117,7 @@ function AdminTab(props) {
         </>
       )}
     </div>
-  );
+  )
 }
 
-export default AdminTab;
+export default AdminTab

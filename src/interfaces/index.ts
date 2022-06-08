@@ -1,3 +1,3 @@
 export interface ProviderConnectInfo {
-  readonly chainId: string;
+  readonly chainId: string
 }

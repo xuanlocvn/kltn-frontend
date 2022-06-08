@@ -1,32 +1,32 @@
-import React, { lazy } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import AdminPage from 'src/pages/admin/AdminPage';
-import ProductListPage from 'src/pages/product/product-list/ProductListPage';
-const NotFound = lazy(() => import('src/components/shared/NotFound/NotFound'));
+import React, { lazy } from "react"
+import { Navigate, Route, Routes } from "react-router-dom"
+import AdminPage from "src/pages/admin/AdminPage"
+import ProductListPage from "src/pages/product/product-list/ProductListPage"
+const NotFound = lazy(() => import("src/components/shared/NotFound/NotFound"))
 const MissionDetail = lazy(
-  () => import('src/pages/mission/mission-detail/MissionDetail'),
-);
+  () => import("src/pages/mission/mission-detail/MissionDetail"),
+)
 const MissionListPage = lazy(
-  () => import('src/pages/mission/mission-list/MissionListPage'),
-);
+  () => import("src/pages/mission/mission-list/MissionListPage"),
+)
 const ScholarshipListPage = lazy(
-  () => import('src/pages/scholarship/scholarship-list/ScholarshipListPage'),
-);
-const SignInPage = lazy(() => import('src/pages/sign-in/SignInPage'));
-const StudentPage = lazy(() => import('src/pages/student-info/StudentPage'));
+  () => import("src/pages/scholarship/scholarship-list/ScholarshipListPage"),
+)
+const SignInPage = lazy(() => import("src/pages/sign-in/SignInPage"))
+const StudentPage = lazy(() => import("src/pages/student-info/StudentPage"))
 const SubjectListPage = lazy(
-  () => import('src/pages/subject/subject-list/SubjectListPage'),
-);
+  () => import("src/pages/subject/subject-list/SubjectListPage"),
+)
 const TuitionListPage = lazy(
-  () => import('src/pages/tuition/tuition-list/TuitionListPage'),
-);
+  () => import("src/pages/tuition/tuition-list/TuitionListPage"),
+)
 
 const SubjectDetail = lazy(
-  () => import('src/pages/subject/subject-detail/SubjectDetail'),
-);
+  () => import("src/pages/subject/subject-detail/SubjectDetail"),
+)
 const ProductDetail = lazy(
-  () => import('src/pages/product/product-detail/ProductDetail'),
-);
+  () => import("src/pages/product/product-detail/ProductDetail"),
+)
 
 function Router() {
   return (
@@ -55,7 +55,7 @@ function Router() {
       <Route path="/not-found" element={<NotFound />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-  );
+  )
 }
 
-export default Router;
+export default Router

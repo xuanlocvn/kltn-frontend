@@ -1,29 +1,16 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { CustomWindow } from 'src/utils/window';
-import Pagination from 'src/components/shared/Pagination/Pagination';
-import { missionContracService } from 'src/contracts/mission-contract.service';
-import useList from 'src/hooks/useList';
-import { getMissionList } from '../../../api/missionApi';
-import './MissionListPage.scss';
-import { IMissionInstance } from '../../../utils/window';
+import React, { useEffect } from "react"
+import { Link } from "react-router-dom"
+import { CustomWindow } from "src/utils/window"
+import Pagination from "src/components/shared/Pagination/Pagination"
+import { missionContractService } from "src/contracts/mission-contract.service"
+import useList from "src/hooks/useList"
+import { getMissionList } from "src/api/missionApi"
+import "./MissionListPage.scss"
+import { IMissionInstance } from "src/utils/window"
 
-declare let window: CustomWindow;
+declare let window: CustomWindow
 
 function MissionListPage() {
-  // const MissionList = [
-  //   {
-  //     missionId: 1,
-  //     missionName: 'Thăm viếng nghĩa trang liệt sĩ - MS212356',
-  //     maxStudentAmount: 45,
-  //     joinedStudentAmount: 20,
-  //     missionStatus: 'Đang mở',
-  //     isJoined: true,
-  //     missionAddress: '0x4B116B61DDFA9F0642B1EF430dE2CEB33A55915B',
-  //     missionShortenName: 'MHX',
-  //     startTime: 123456789,
-  //   },
-  // ];
   const {
     searchParams,
     setSearchParams,
@@ -34,41 +21,40 @@ function MissionListPage() {
     setFilter,
     renderList,
     setTotalList,
-  } = useList<IMissionInstance>();
+  } = useList<IMissionInstance>()
 
   useEffect(() => {
     const fetchMissionList = async (walletAddress: string) => {
-      const response = await getMissionList(walletAddress);
-      const result: IMissionInstance[] = response.data.result;
-      setTotalList(result);
-    };
-    window.localStorage.account &&
-      fetchMissionList(window.localStorage.account);
-  }, []);
+      const response = await getMissionList(walletAddress)
+      const result: IMissionInstance[] = response.data.result
+      setTotalList(result)
+    }
+    window.localStorage.account && fetchMissionList(window.localStorage.account)
+  }, [])
 
   const onPaginate = (page: number) => {
-    const filter = searchParams.get('filter')
-      ? searchParams.get('filter')
-      : 'all';
-    if (page > totalPage) page = totalPage;
-    const params = { filter, page: page.toString() };
-    setSearchParams(params);
-    setPage(page);
-  };
+    const filter = searchParams.get("filter")
+      ? searchParams.get("filter")
+      : "all"
+    if (page > totalPage) page = totalPage > 0 ? totalPage : 1
+    const params = { filter, page: page.toString() }
+    setSearchParams(params)
+    setPage(page)
+  }
 
   const onFilter = (filter: string) => {
-    const page = searchParams.get('page') ? searchParams.get('page') : '1';
-    setSearchParams({ filter, page });
-    setFilter(filter);
-  };
+    const page = searchParams.get("page") ? searchParams.get("page") : "1"
+    setSearchParams({ filter, page })
+    setFilter(filter)
+  }
 
   const handleRegister = async (contractAddress: string) => {
-    await missionContracService.register(contractAddress);
-  };
+    await missionContractService.register(contractAddress)
+  }
 
   const handleCancelRegister = async (contractAddress: string) => {
-    await missionContracService.cancelRegister(contractAddress);
-  };
+    await missionContractService.cancelRegister(contractAddress)
+  }
 
   return (
     <div className="list mt-5">
@@ -77,34 +63,34 @@ function MissionListPage() {
       </div>
       <div className="list_filter">
         <button
-          className={`filter_btn ${filter == 'all' ? 'active' : ''}`}
-          onClick={() => onFilter('all')}
+          className={`filter_btn ${filter == "all" ? "active" : ""}`}
+          onClick={() => onFilter("all")}
         >
           Tất cả
         </button>
         <button
-          className={`filter_btn ${filter == 'joined' ? 'active' : ''}`}
-          onClick={() => onFilter('joined')}
+          className={`filter_btn ${filter == "joined" ? "active" : ""}`}
+          onClick={() => onFilter("joined")}
         >
           Đã tham gia
         </button>
         <button
-          className={`filter_btn ${filter == 'notjoin' ? 'active' : ''}`}
-          onClick={() => onFilter('notjoin')}
+          className={`filter_btn ${filter == "notjoin" ? "active" : ""}`}
+          onClick={() => onFilter("notjoin")}
         >
           Chưa tham gia
         </button>
       </div>
-      <div style={{ height: '552px' }}>
+      <div style={{ height: "552px" }}>
         <div className="mission mt-4 d-flex flex-wrap">
           {renderList.map((mission, index) => (
             <div
               key={index}
               className="mission_element col-4"
-              onClick={() => console.log('Hello')}
-              style={{ height: '164px' }}
+              onClick={() => console.log("Hello")}
+              style={{ height: "164px" }}
             >
-              <Link to={'/missions/' + mission.missionAddress}>
+              <Link to={"/missions/" + mission.missionAddress}>
                 <h5>
                   <strong>{mission.missionName}</strong>
                 </h5>
@@ -117,12 +103,12 @@ function MissionListPage() {
               {mission.isJoined ? (
                 <button
                   className={
-                    mission.missionStatus != 'Closed'
-                      ? 'join_btn cancel'
-                      : 'join_btn cancel btn-disabled'
+                    mission.missionStatus != "Closed"
+                      ? "join_btn cancel"
+                      : "join_btn cancel btn-disabled"
                   }
                   onClick={() =>
-                    mission.missionStatus != 'Closed' &&
+                    mission.missionStatus != "Closed" &&
                     handleCancelRegister(mission.missionAddress)
                   }
                 >
@@ -131,13 +117,13 @@ function MissionListPage() {
               ) : (
                 <button
                   className={
-                    mission.missionStatus != 'Closed'
-                      ? 'join_btn join'
-                      : 'join_btn join btn-disabled'
+                    mission.missionStatus != "Closed"
+                      ? "join_btn join"
+                      : "join_btn join btn-disabled"
                   }
                   onClick={() => {
-                    mission.missionStatus != 'Closed' &&
-                      handleRegister(mission.missionAddress);
+                    mission.missionStatus != "Closed" &&
+                      handleRegister(mission.missionAddress)
                   }}
                 >
                   Tham gia
@@ -154,7 +140,7 @@ function MissionListPage() {
         onPaginate={onPaginate}
       />
     </div>
-  );
+  )
 }
 
-export default MissionListPage;
+export default MissionListPage

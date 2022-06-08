@@ -1,34 +1,34 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import React, { useEffect } from "react"
+import PropTypes from "prop-types"
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js"
 
 PaypalComponent.propTypes = {
   currency: PropTypes.string,
   showSpinner: PropTypes.bool,
   amount: PropTypes.string,
-};
+}
 
 function PaypalComponent(props) {
-  const { currency, showSpinner, amount } = props;
-  const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+  const { currency, showSpinner, amount } = props
+  const [{ options, isPending }, dispatch] = usePayPalScriptReducer()
 
   useEffect(() => {
     dispatch({
-      type: 'resetOptions',
+      type: "resetOptions",
       value: {
         ...options,
         currency: currency,
       },
-    });
-  }, [currency, showSpinner]);
+    })
+  }, [currency, showSpinner])
 
   return (
     <>
       {showSpinner && isPending && <div className="spinner" />}
       <PayPalButtons
-        style={{ layout: 'horizontal', tagline: false, color: 'silver' }}
+        style={{ layout: "horizontal", tagline: false, color: "silver" }}
         disabled={false}
-        forceReRender={[amount, currency, { layout: 'horizontal' }]}
+        forceReRender={[amount, currency, { layout: "horizontal" }]}
         fundingSource={undefined}
         createOrder={(data, actions) => {
           return actions.order
@@ -44,17 +44,17 @@ function PaypalComponent(props) {
             })
             .then((orderId) => {
               // Your code here after create the order
-              return orderId;
-            });
+              return orderId
+            })
         }}
         onApprove={function (data, actions) {
           return actions.order.capture().then(function () {
             // Your code here after capture the order
-          });
+          })
         }}
       />
     </>
-  );
+  )
 }
 
-export default PaypalComponent;
+export default PaypalComponent

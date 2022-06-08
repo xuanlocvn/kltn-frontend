@@ -3,5 +3,5 @@ export enum Status {
   Open,
   End,
   Refund,
-  Non_Eligible
+  Non_Eligible,
 }

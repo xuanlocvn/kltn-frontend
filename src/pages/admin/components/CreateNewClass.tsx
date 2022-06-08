@@ -1,53 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import {
-  getAllDepartment,
-  getSubjectByDepartment,
-} from 'src/api/departmentAPI';
-import { getLecturerList } from 'src/api/lecturerApi';
-import { managerPoolContractService } from 'src/contracts/manager-pool.service';
-import useAvata from 'src/hooks/useAvata';
-import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
-import { convertDateToTimestamp } from 'src/utils';
+import React, { useEffect, useState } from "react"
+import { getAllDepartment, getSubjectByDepartment } from "src/api/departmentAPI"
+import { getLecturerList } from "src/api/lecturerApi"
+import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import useAvata from "src/hooks/useAvata"
+import { AddDataToIPFS } from "src/ipfs/ipfsClient"
+import { convertDateToTimestamp } from "src/utils"
+import { Editor } from "react-draft-wysiwyg"
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import { convertToRaw } from "draft-js"
+import draftToHtml from "draftjs-to-html"
 
 function CreateNewClass() {
-  const [faculty, setFaculty] = useState('');
-  const [lecturer, setLecturer] = useState('');
-  const [subject, setSubject] = useState('');
-  const { onChangeAvt, defaultAvt } = useAvata();
-  const [departmentList, setDepartmentList] = useState([]);
-  const [subjectList, setSubjectList] = useState([]);
-  const [lecturerList, setLecturerList] = useState([]);
-  const [sujectId, SetSubjectId] = useState('IE208');
+  const [faculty, setFaculty] = useState("")
+  const [lecturer, setLecturer] = useState("")
+  const [subject, setSubject] = useState("")
+  const { onChangeAvt, defaultAvt } = useAvata()
+  const [departmentList, setDepartmentList] = useState([])
+  const [subjectList, setSubjectList] = useState([])
+  const [lecturerList, setLecturerList] = useState([])
+  const [sujectId, SetSubjectId] = useState("IE208")
+  const [description, SetDescription] = useState("")
 
   useEffect(() => {
     const fetchApi = async () => {
-      let response = await getAllDepartment();
-      setDepartmentList(response.data.result);
-      setFaculty(response.data.result[0].departmentShortenName);
+      let response = await getAllDepartment()
+      setDepartmentList(response.data.result)
+      setFaculty(response.data.result[0].departmentShortenName)
 
-      response = await getLecturerList();
-      setLecturerList(response.data.result);
-    };
-    fetchApi();
-  }, []);
+      response = await getLecturerList()
+      setLecturerList(response.data.result)
+    }
+    fetchApi()
+  }, [])
 
   useEffect(() => {
     const fetchApi = async () => {
-      const response = await getSubjectByDepartment(faculty);
-      setSubjectList(response.data.result);
-      SetSubjectId(response.data.result[0].subjectHash);
-    };
-    fetchApi();
-  }, [faculty]);
+      const response = await getSubjectByDepartment(faculty)
+      setSubjectList(response.data.result)
+      SetSubjectId(response.data.result[0].subjectHash)
+    }
+    fetchApi()
+  }, [faculty])
 
   useEffect(() => {
     subjectList.forEach((x) => {
-      if (x.subjectName == subject) SetSubjectId(x.subjectHash);
-    });
-  }, [subject]);
+      if (x.subjectName == subject) SetSubjectId(x.subjectHash)
+    })
+  }, [subject])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const classInfoForm = {
       img: defaultAvt,
       name: e.target.name.options[e.target.name.selectedIndex].text,
@@ -59,18 +61,18 @@ function CreateNewClass() {
         e.target.lecturerInCharge.options[
           e.target.lecturerInCharge.selectedIndex
         ].text,
-      faculty: '',
+      faculty: "",
       startTime: convertDateToTimestamp(e.target.startTime.value),
       endTime: convertDateToTimestamp(e.target.endTime.value),
       endTimeToRegister: convertDateToTimestamp(
         e.target.endTimeToRegister.value,
       ),
       endTimeToConfirm: convertDateToTimestamp(e.target.endTimeToConfirm.value),
-      description: e.target.description.value,
-    };
-    console.log(classInfoForm);
-    const hash = await AddDataToIPFS(classInfoForm);
-    console.log(hash);
+      description: description,
+    }
+    console.log(classInfoForm)
+    const hash = await AddDataToIPFS(classInfoForm)
+    console.log(hash)
     await managerPoolContractService.createNewSubject(
       hash,
       classInfoForm.classId,
@@ -80,8 +82,12 @@ function CreateNewClass() {
       classInfoForm.endTimeToRegister,
       classInfoForm.endTime,
       classInfoForm.endTimeToConfirm,
-    );
-  };
+    )
+  }
+  const onEditorStateChange = (editorState) => {
+    SetDescription(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+  }
+
   return (
     <div className="form_body container">
       <div>
@@ -107,14 +113,14 @@ function CreateNewClass() {
           <div className="col col-8">
             <div className="d-flex flex-column">
               <label htmlFor="faculty">
-                Khoa <span style={{ color: 'red' }}>*</span>
+                Khoa <span style={{ color: "red" }}>*</span>
               </label>
               <select
                 name="faculty"
                 id="faculty"
                 value={faculty}
                 onChange={(e) => {
-                  setFaculty(e.target.value);
+                  setFaculty(e.target.value)
                 }}
               >
                 {departmentList.map((department, index) => (
@@ -126,14 +132,14 @@ function CreateNewClass() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="name">
-                Tên môn học <span style={{ color: 'red' }}>*</span>
+                Tên môn học <span style={{ color: "red" }}>*</span>
               </label>
               <select
                 name="name"
                 id="name"
                 value={subject}
                 onChange={(e) => {
-                  setSubject(e.target.value);
+                  setSubject(e.target.value)
                 }}
               >
                 {subjectList.map((subject, index) => (
@@ -145,7 +151,7 @@ function CreateNewClass() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="classId">
-                Mã lớp <span style={{ color: 'red' }}>*</span>
+                Mã lớp <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
@@ -157,8 +163,8 @@ function CreateNewClass() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="maxEntrant">
-                Số lượng sinh viên tối đa{' '}
-                <span style={{ color: 'red' }}>*</span>
+                Số lượng sinh viên tối đa{" "}
+                <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="number"
@@ -169,14 +175,14 @@ function CreateNewClass() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="lecturerInCharge">
-                Giảng viên phụ trách <span style={{ color: 'red' }}>*</span>
+                Giảng viên phụ trách <span style={{ color: "red" }}>*</span>
               </label>
               <select
                 name="lecturerInCharge"
                 id="lecturerInCharge"
                 value={lecturer}
                 onChange={(e) => {
-                  setLecturer(e.target.value);
+                  setLecturer(e.target.value)
                 }}
               >
                 {lecturerList.map((lecturer, index) => (
@@ -190,7 +196,7 @@ function CreateNewClass() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="startTime">
                   Bắt đầu
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="datetime-local"
@@ -202,7 +208,7 @@ function CreateNewClass() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="endTime">
                   Kêt thúc
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="datetime-local"
@@ -216,7 +222,7 @@ function CreateNewClass() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="endTimeToRegister">
                   Kết thúc đăng ký
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="datetime-local"
@@ -228,7 +234,7 @@ function CreateNewClass() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="endTimeToConfirm ">
                   Đánh giá
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="datetime-local"
@@ -240,9 +246,18 @@ function CreateNewClass() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="description">
-                Mô tả <span style={{ color: 'red' }}>*</span>
+                Mô tả <span style={{ color: "red" }}>*</span>
               </label>
-              <textarea placeholder="Mô tả" name="description" rows={5} />
+              <Editor
+                toolbarClassName="toolbarClassName"
+                wrapperClassName="wrapperClassName"
+                editorClassName="editorClassName"
+                wrapperStyle={{
+                  border: "1px solid rgba(0,0,0,0.3)",
+                  borderRadius: "20px",
+                }}
+                onEditorStateChange={onEditorStateChange}
+              />
             </div>
             <div className="d-flex flex-row-reverse">
               <button className="submitbtn" type="submit">
@@ -254,7 +269,7 @@ function CreateNewClass() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default CreateNewClass;
+export default CreateNewClass

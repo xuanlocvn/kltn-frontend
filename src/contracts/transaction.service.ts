@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { store } from 'src/app/store';
+import { store } from "src/app/store"
 import {
   PopupState,
   showPopup,
   updatePopup,
-} from '../components/shared/Popup/PopupSlice';
+} from "../components/shared/Popup/PopupSlice"
 import {
   faCircleCheck,
   faCircleExclamation,
-} from '@fortawesome/free-solid-svg-icons';
-import { makeShotTransactionHash } from 'src/utils';
+} from "@fortawesome/free-solid-svg-icons"
+import { makeShotTransactionHash } from "src/utils"
 
 /* eslint-disable no-undef */
 export class TransactionService {
@@ -23,11 +23,11 @@ export class TransactionService {
   ) {
     const newState: PopupState = {
       isShowed: true,
-      message: 'Đang tính toán gas...',
-      style: 'primary',
+      message: "Đang tính toán gas...",
+      style: "primary",
       icon: null,
-    };
-    store.dispatch(showPopup(newState));
+    }
+    store.dispatch(showPopup(newState))
     const gas = await web3.eth
       .estimateGas({
         from,
@@ -36,18 +36,18 @@ export class TransactionService {
         data,
       })
       .catch((error) => {
-        console.log('hello', error.message);
+        console.log("hello", error.message)
         const newState: PopupState = {
           isShowed: true,
           message: `Đã có lỗi xảy ra: ${error.message}`,
-          style: 'red',
+          style: "red",
           icon: faCircleExclamation,
-        };
-        store.dispatch(updatePopup(newState));
-        throw error;
-      });
+        }
+        store.dispatch(updatePopup(newState))
+        throw error
+      })
     if (gas > 0) {
-      return gas;
+      return gas
     }
     // else {
     //   const newState: PopupState = {
@@ -68,88 +68,88 @@ export class TransactionService {
     method: string,
     ...args: any[]
   ) {
-    if (!web3) return null;
-    const accounts = await web3.eth.getAccounts();
-    const from = accounts[0];
-    const to = contract.options.address;
-    console.log(...args);
-    const data = contract.methods[method](...args).encodeABI();
+    if (!web3) return null
+    const accounts = await web3.eth.getAccounts()
+    const from = accounts[0]
+    const to = contract.options.address
+    console.log(...args)
+    const data = contract.methods[method](...args).encodeABI()
     try {
-      await this.estimateGas(web3, from, to, data, value);
+      await this.estimateGas(web3, from, to, data, value)
     } catch (error) {
-      console.error(error);
-      return null;
+      console.error(error)
+      return null
     }
 
     const tx = await contract.methods[method](...args)
       .send({
         from: accounts[0],
       })
-      .on('sending', (payload) => {
+      .once("sending", (payload) => {
         const newState: PopupState = {
           isShowed: true,
-          message: 'Đang tạo giao dịch...',
-          style: 'primary',
+          message: "Đang tạo giao dịch...",
+          style: "primary",
           icon: null,
-        };
-        store.dispatch(showPopup(newState));
+        }
+        store.dispatch(showPopup(newState))
       })
-      .on('sent', (payload) => {
+      .once("sent", (payload) => {
         const newState: PopupState = {
           isShowed: true,
-          message: 'Giao dịch đã được gửi đi...',
-          style: 'info',
+          message: "Giao dịch đã được gửi đi...",
+          style: "info",
           icon: null,
-        };
-        store.dispatch(updatePopup(newState));
+        }
+        store.dispatch(updatePopup(newState))
       })
-      .on('transactionHash', function (hash) {
-        console.log(hash);
+      .once("transactionHash", function (hash) {
+        console.log(hash)
         const newState: PopupState = {
           isShowed: true,
           message: `Giao dịch đã được gửi đi với mã hash ${makeShotTransactionHash(
             hash,
           )}`,
-          style: 'info',
+          style: "info",
           icon: null,
-        };
-        store.dispatch(updatePopup(newState));
+        }
+        store.dispatch(updatePopup(newState))
       })
-      .on('confirmation', function (confirmationNumber, receipt) {
-        console.log(receipt);
+      .once("receipt", function (receipt) {
         const newState: PopupState = {
           isShowed: true,
-          message: 'Giao dịch thành công',
-          style: 'success',
+          message: "Giao dịch thành công",
+          style: "success",
           icon: null,
-        };
-        store.dispatch(updatePopup(newState));
+        }
+        store.dispatch(updatePopup(newState))
       })
-      .on('receipt', function (receipt) {
-        console.log(receipt);
+      .on("confirmation", function (confirmationNumber, receipt) {
         const newState: PopupState = {
           isShowed: true,
-          message: 'Hoàn tất',
-          style: 'green',
+          message: "Hoàn tất",
+          style: "green",
           icon: faCircleCheck,
-        };
-        store.dispatch(updatePopup(newState));
-        // const timerId = setTimeout(() => console.log(1), 5000);
-        // clearTimeout(timerId);
-        // window.location.reload();
+        }
+        store.dispatch(updatePopup(newState))
+        setInterval(() => {
+          window.location.reload()
+        }, 5000)
+        // ;
       })
-      .on('error', function (error: Error, receipt) {
-        console.log(receipt);
+      .once("error", function (error: Error, receipt) {
+        console.log(receipt)
         const newState: PopupState = {
           isShowed: true,
           message: `Đã có lỗi xảy ra: ${error.message}`,
-          style: 'red',
+          style: "red",
           icon: faCircleExclamation,
-        };
-        store.dispatch(updatePopup(newState));
-      });
-    return tx;
+        }
+        store.dispatch(updatePopup(newState))
+      })
+      .then((receipt) => console.log("finished"))
+    return tx
   }
 }
 
-export const transactionService = new TransactionService();
+export const transactionService = new TransactionService()

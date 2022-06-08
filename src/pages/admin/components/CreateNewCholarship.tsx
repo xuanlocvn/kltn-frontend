@@ -1,28 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { managerPoolContractService } from 'src/contracts/manager-pool.service';
-import useAvata from 'src/hooks/useAvata';
-import { AddDataToIPFS } from 'src/ipfs/ipfsClient';
-import { convertDateToTimestamp } from 'src/utils';
-import { getLecturerList } from '../../../api/lecturerApi';
-// import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react"
+import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import useAvata from "src/hooks/useAvata"
+import { AddDataToIPFS } from "src/ipfs/ipfsClient"
+import { convertDateToTimestamp } from "src/utils"
+import { getLecturerList } from "../../../api/lecturerApi"
+import { Editor } from "react-draft-wysiwyg"
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import { convertToRaw } from "draft-js"
+import draftToHtml from "draftjs-to-html"
 
-CreateNewScholarShip.propTypes = {};
+CreateNewScholarShip.propTypes = {}
 
 function CreateNewScholarShip() {
-  const [faculty, setFaculty] = useState('');
-  const { onChangeAvt, defaultAvt } = useAvata();
-  const [lecturerList, setLecturerList] = useState([]);
+  const [faculty, setFaculty] = useState("")
+  const { onChangeAvt, defaultAvt } = useAvata()
+  const [lecturerList, setLecturerList] = useState([])
+  const [description, SetDescription] = useState("")
 
   useEffect(() => {
     const fetchApi = async () => {
-      const response = await getLecturerList();
-      setLecturerList(response.data.result);
-    };
-    fetchApi();
-  }, []);
+      const response = await getLecturerList()
+      setLecturerList(response.data.result)
+    }
+    fetchApi()
+  }, [])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const scholarshipInfoForm = {
       img: defaultAvt,
       name: e.target.name.value,
@@ -35,20 +39,25 @@ function CreateNewScholarShip() {
         ].text,
       startTime: convertDateToTimestamp(e.target.startTime.value),
       endTime: convertDateToTimestamp(e.target.endTime.value),
-      description: e.target.description.value,
-    };
+      description: description,
+    }
 
-    console.log(scholarshipInfoForm);
-    const hash = await AddDataToIPFS(scholarshipInfoForm);
-    console.log(hash);
+    console.log(scholarshipInfoForm)
+    const hash = await AddDataToIPFS(scholarshipInfoForm)
+    console.log(hash)
     await managerPoolContractService.createNewScholarship(
       hash,
       scholarshipInfoForm.scholarshipId,
       scholarshipInfoForm.award,
       scholarshipInfoForm.startTime,
       scholarshipInfoForm.endTime,
-    );
-  };
+    )
+  }
+
+  const onEditorStateChange = (editorState) => {
+    SetDescription(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+  }
+
   return (
     <div className="form_body container">
       <div>
@@ -74,7 +83,7 @@ function CreateNewScholarShip() {
           <div className="col col-8">
             <div className="d-flex flex-column mb-2">
               <label htmlFor="name">
-                Tên học bổng <span style={{ color: 'red' }}>*</span>
+                Tên học bổng <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
@@ -85,7 +94,7 @@ function CreateNewScholarShip() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="scholarshipId">
-                Mã học bổng <span style={{ color: 'red' }}>*</span>
+                Mã học bổng <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="text"
@@ -96,14 +105,14 @@ function CreateNewScholarShip() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="lecturerInCharge">
-                Người phụ trách chính<span style={{ color: 'red' }}>*</span>
+                Người phụ trách chính<span style={{ color: "red" }}>*</span>
               </label>
               <select
                 name="lecturerInCharge"
                 id="lecturerInCharge"
                 value={faculty}
                 onChange={(e) => {
-                  setFaculty(e.target.value);
+                  setFaculty(e.target.value)
                 }}
               >
                 {lecturerList.map((lecturer, index) => (
@@ -117,7 +126,7 @@ function CreateNewScholarShip() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="startTime">
                   Bắt đầu
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="datetime-local"
@@ -129,7 +138,7 @@ function CreateNewScholarShip() {
               <div className="d-flex flex-column col col-6">
                 <label htmlFor="endTime">
                   Kêt thúc
-                  <span style={{ color: 'red' }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
                   type="datetime-local"
@@ -141,7 +150,7 @@ function CreateNewScholarShip() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="award">
-                Phần thưởng <span style={{ color: 'red' }}>*</span>
+                Phần thưởng <span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="number"
@@ -152,9 +161,18 @@ function CreateNewScholarShip() {
             </div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="description">
-                Mô tả <span style={{ color: 'red' }}>*</span>
+                Mô tả <span style={{ color: "red" }}>*</span>
               </label>
-              <textarea placeholder="Mô tả" name="description" rows={5} />
+              <Editor
+                toolbarClassName="toolbarClassName"
+                wrapperClassName="wrapperClassName"
+                editorClassName="editorClassName"
+                wrapperStyle={{
+                  border: "1px solid rgba(0,0,0,0.3)",
+                  borderRadius: "20px",
+                }}
+                onEditorStateChange={onEditorStateChange}
+              />
             </div>
             <div className="d-flex flex-row-reverse">
               <button className="submitbtn" type="submit">
@@ -166,7 +184,7 @@ function CreateNewScholarShip() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default CreateNewScholarShip;
+export default CreateNewScholarShip
