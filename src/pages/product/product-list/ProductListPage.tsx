@@ -244,7 +244,7 @@ function ProductListPage() {
               className={`filter_btn ${filter == "requested" ? "active" : ""}`}
               onClick={() => onFilter("requested")}
             >
-              {role.role == "ADMIN" ? "Danh sách các yêu cầu" : "Đã yêu cầu"}
+              {role.role == "ADMIN" ? "Các yêu cầu" : "Đã yêu cầu"}
             </button>
             <button
               className={`filter_btn ${filter == "activated" ? "active" : ""}`}

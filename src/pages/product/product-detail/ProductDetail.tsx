@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react"
 import "./ProductDetail.scss"
-// import { PayPalScriptProvider } from "@paypal/react-paypal-js"
-// import PaypalComponent from "src/components/paypal/PaypalComponent"
 import { marketplaceContractService } from "src/contracts/maketplace.service"
 import { erc1155ContractService } from "src/contracts/erc1155.service"
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
+import { makeShotAccount } from "src/utils/index"
+import { selectRole } from "src/components/shared/Header/HeaderSlice"
+import { useAppSelector } from "src/app/hooks"
+import { erc20ContractService } from "src/contracts/erc20.service"
+import { configService } from "src/configs/config.service"
+import { CONFIG } from "src/configs/config.enum"
+import { activeNFTService } from "src/contracts/(remove)active-nft.service"
 import {
   getDetailProductsOffSale,
   getDetailProductsOnSale,
@@ -16,13 +21,6 @@ import {
   IProductDetail,
   ISellerOnSaleInstance,
 } from "src/utils/window"
-import { makeShotAccount } from "src/utils/index"
-import { selectRole } from "src/components/shared/Header/HeaderSlice"
-import { useAppSelector } from "src/app/hooks"
-import { erc20ContractService } from "src/contracts/erc20.service"
-import { configService } from "src/configs/config.service"
-import { CONFIG } from "src/configs/config.enum"
-import { activeNFTService } from "src/contracts/(remove)active-nft.service"
 
 declare let window: CustomWindow
 
@@ -39,6 +37,7 @@ function ProductDetail() {
   const [searchParams, setSearchParams] = useSearchParams({})
   const [filter, setFilter] = useState("all")
   const [style, setStyle] = useState({})
+  const [open, setOpen] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -87,10 +86,6 @@ function ProductDetail() {
     setSearchParams({ filter: f })
     setFilter(f)
   }, [productId])
-
-  // This values are the props in the UI
-  // const amount = "2"
-  // const currency = "USD"
 
   const handleList = async (e) => {
     e.preventDefault()
@@ -355,20 +350,6 @@ function ProductDetail() {
                         </div>
                       )}
                   </div>
-                  {/* <PayPalScriptProvider
-                      options={{
-                        "client-id": "test",
-                        components: "buttons",
-                        currency: "USD",
-                      }}
-                    >
-                      <button className="payment-btn">Metamask</button>
-                      <PaypalComponent
-                        currency={currency}
-                        showSpinner={false}
-                        amount={amount}
-                      />
-                    </PayPalScriptProvider> */}
                 </div>
               </div>
               <div className="col col-5">
@@ -399,10 +380,51 @@ function ProductDetail() {
                       : `${productDetail.amount} ${productDetail.status}`}
                   </p>
                 </div>
-                <div className="d-flex justify-content-around">
-                  Mô tả:{productDetail.productDescription}
-                </div>
               </div>
+            </div>
+            <div
+              className="mt-5"
+              onClick={() => setOpen(!open)}
+              style={
+                open == false
+                  ? { height: "480px", overflow: "hidden" }
+                  : { height: "auto" }
+              }
+            >
+              <h2>Mô tả</h2>
+              <div
+                style={
+                  open == false
+                    ? { height: "400px", overflow: "hidden" }
+                    : { height: "auto" }
+                }
+                dangerouslySetInnerHTML={{
+                  __html: productDetail.productDescription,
+                }}
+              ></div>
+              {!open && (
+                <div
+                  onClick={() => setOpen(!open)}
+                  style={{
+                    position: "relative",
+                    top: "-200px",
+                    height: "200px",
+                    backgroundImage:
+                      "linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))",
+                  }}
+                >
+                  <p
+                    className="text-center"
+                    style={{
+                      position: "absolute",
+                      bottom: "0",
+                      left: "45%",
+                    }}
+                  >
+                    Nhấn để mở rộng
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         )}

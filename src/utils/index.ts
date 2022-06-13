@@ -25,6 +25,17 @@ export function convertLocalTime(timestamp: number) {
   return yyyy + "-" + mm + "-" + dd
 }
 
+export function convertLocalTimeFullFormat(timestamp: number) {
+  const date = new Date(timestamp * 1000)
+  const min = String(date.getMinutes()).padStart(2, "0")
+  const hh = String(date.getHours()).padStart(2, "0")
+  const dd = String(date.getDate()).padStart(2, "0")
+  const mm = String(date.getMonth() + 1).padStart(2, "0") //January is 0!
+  const yyyy = date.getFullYear()
+
+  return `${dd}/${mm}/${yyyy} ${hh}:${min}`
+}
+
 export function convertDateToTimestamp(myDate: string) {
   const newDate = new Date(myDate)
   return newDate.getTime() / 1000

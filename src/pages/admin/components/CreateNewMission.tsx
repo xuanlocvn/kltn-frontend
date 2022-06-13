@@ -74,141 +74,145 @@ function CreateNewMission() {
         <h2>Tạo nhiệm vụ</h2>
       </div>
       <div className="body_form mt-3">
-        <form className="d-flex" onSubmit={handleSubmit}>
-          <div className="col col-4 img-avt d-flex flex-column align-items-center">
-            <label htmlFor="myImage">
-              <img src={defaultAvt} alt="" />
-              <p>
-                <i>Nhấn để chọn ảnh mới</i>
-              </p>
-            </label>
-            <input
-              type="file"
-              id="myImage"
-              name="myImage"
-              accept="image/png, image/gif, image/jpeg"
-              onChange={(e) => onChangeAvt(e)}
-            />
+        <form onSubmit={handleSubmit}>
+          <div className="d-flex">
+            <div className="col col-4 img-avt d-flex flex-column align-items-center">
+              <label htmlFor="myImage">
+                <img src={defaultAvt} alt="" />
+                <p>
+                  <i>Nhấn để chọn ảnh mới</i>
+                </p>
+              </label>
+              <input
+                type="file"
+                id="myImage"
+                name="myImage"
+                accept="image/png, image/gif, image/jpeg"
+                onChange={(e) => onChangeAvt(e)}
+              />
+            </div>
+            <div className="col col-8">
+              <div className="d-flex flex-column mb-2">
+                <label htmlFor="name">
+                  Tên nhiệm vụ <span style={{ color: "red" }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Tên nhiệm vụ"
+                  name="name"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column mb-2">
+                <label htmlFor="missionId">
+                  Mã nhiệm vụ <span style={{ color: "red" }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Mã nhiệm vụ"
+                  name="missionId"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column mb-2">
+                <label htmlFor="maxEntrant">
+                  Số lượng sinh viên tối đa{" "}
+                  <span style={{ color: "red" }}>*</span>
+                </label>
+                <input
+                  type="number"
+                  placeholder="Số lượng sinh viên tối đa"
+                  name="maxEntrant"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column mb-2">
+                <label htmlFor="lecturerInCharge">
+                  Người phụ trách chính<span style={{ color: "red" }}>*</span>
+                </label>
+                <select
+                  name="lecturerInCharge"
+                  id="lecturerInCharge"
+                  value={faculty}
+                  onChange={(e) => {
+                    setFaculty(e.target.value)
+                    console.log(e.target.value)
+                    console.log(e.target.options[e.target.selectedIndex].text)
+                  }}
+                >
+                  {lecturerList.map((lecturer, index) => (
+                    <option key={index} value={lecturer.lecturerAddress}>
+                      {lecturer.lecturerName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="d-flex justify-content-between row  mb-2">
+                <div className="d-flex flex-column col col-6">
+                  <label htmlFor="startTime">
+                    Bắt đầu
+                    <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <input
+                    type="datetime-local"
+                    placeholder="Thời gian bắt đầu"
+                    name="startTime"
+                    required
+                  />
+                </div>
+                <div className="d-flex flex-column col col-6">
+                  <label htmlFor="endTime">
+                    Kêt thúc
+                    <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <input
+                    type="datetime-local"
+                    placeholder="Thời gian kết thúc"
+                    name="endTime"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="d-flex justify-content-between row mb-2">
+                <div className="d-flex flex-column col col-6">
+                  <label htmlFor="endTimeToRegister">
+                    Kết thúc đăng ký
+                    <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <input
+                    type="datetime-local"
+                    placeholder="Thời gian kết thúc đăng ký"
+                    name="endTimeToRegister"
+                    required
+                  />
+                </div>
+                <div className="d-flex flex-column col col-6">
+                  <label htmlFor="endTimeToConfirm ">
+                    Đánh giá
+                    <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <input
+                    type="datetime-local"
+                    placeholder="Thời gian kết thúc đánh giá"
+                    name="endTimeToConfirm"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="d-flex flex-column mb-2">
+                <label htmlFor="award">
+                  Phần thưởng <span style={{ color: "red" }}>*</span>
+                </label>
+                <input
+                  type="number"
+                  placeholder="Phần thưởng"
+                  name="award"
+                  required
+                />
+              </div>
+            </div>
           </div>
-          <div className="col col-8">
-            <div className="d-flex flex-column mb-2">
-              <label htmlFor="name">
-                Tên nhiệm vụ <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Tên nhiệm vụ"
-                name="name"
-                required
-              />
-            </div>
-            <div className="d-flex flex-column mb-2">
-              <label htmlFor="missionId">
-                Mã nhiệm vụ <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Mã nhiệm vụ"
-                name="missionId"
-                required
-              />
-            </div>
-            <div className="d-flex flex-column mb-2">
-              <label htmlFor="maxEntrant">
-                Số lượng sinh viên tối đa{" "}
-                <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                type="number"
-                placeholder="Số lượng sinh viên tối đa"
-                name="maxEntrant"
-                required
-              />
-            </div>
-            <div className="d-flex flex-column mb-2">
-              <label htmlFor="lecturerInCharge">
-                Người phụ trách chính<span style={{ color: "red" }}>*</span>
-              </label>
-              <select
-                name="lecturerInCharge"
-                id="lecturerInCharge"
-                value={faculty}
-                onChange={(e) => {
-                  setFaculty(e.target.value)
-                  console.log(e.target.value)
-                  console.log(e.target.options[e.target.selectedIndex].text)
-                }}
-              >
-                {lecturerList.map((lecturer, index) => (
-                  <option key={index} value={lecturer.lecturerAddress}>
-                    {lecturer.lecturerName}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="d-flex justify-content-between row  mb-2">
-              <div className="d-flex flex-column col col-6">
-                <label htmlFor="startTime">
-                  Bắt đầu
-                  <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="datetime-local"
-                  placeholder="Thời gian bắt đầu"
-                  name="startTime"
-                  required
-                />
-              </div>
-              <div className="d-flex flex-column col col-6">
-                <label htmlFor="endTime">
-                  Kêt thúc
-                  <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="datetime-local"
-                  placeholder="Thời gian kết thúc"
-                  name="endTime"
-                  required
-                />
-              </div>
-            </div>
-            <div className="d-flex justify-content-between row mb-2">
-              <div className="d-flex flex-column col col-6">
-                <label htmlFor="endTimeToRegister">
-                  Kết thúc đăng ký
-                  <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="datetime-local"
-                  placeholder="Thời gian kết thúc đăng ký"
-                  name="endTimeToRegister"
-                  required
-                />
-              </div>
-              <div className="d-flex flex-column col col-6">
-                <label htmlFor="endTimeToConfirm ">
-                  Đánh giá
-                  <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="datetime-local"
-                  placeholder="Thời gian kết thúc đánh giá"
-                  name="endTimeToConfirm"
-                  required
-                />
-              </div>
-            </div>
-            <div className="d-flex flex-column mb-2">
-              <label htmlFor="award">
-                Phần thưởng <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                type="number"
-                placeholder="Phần thưởng"
-                name="award"
-                required
-              />
-            </div>
+          <div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="description">
                 Mô tả <span style={{ color: "red" }}>*</span>

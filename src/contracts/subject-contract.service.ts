@@ -77,7 +77,7 @@ class SubjectContracService extends ContractBase {
 
   async unConfirmCompletedAddress(
     _contractAddress: string,
-    _studentAddress: string,
+    _studentAddress: string[],
   ) {
     const contract = await this.loadContract(_contractAddress)
     if (!contract) return

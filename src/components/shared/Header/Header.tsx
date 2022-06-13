@@ -12,7 +12,6 @@ import "./Header.scss"
 import { useAppDispatch, useAppSelector } from "src/app/hooks"
 import { Link } from "react-router-dom"
 import { addRole, removeRole, selectRole } from "./HeaderSlice"
-import { ROLE } from "src/utils/enum"
 import { accessControlContractService } from "src/contracts/access-control.service"
 
 declare let window: CustomWindow
@@ -72,15 +71,13 @@ function Header() {
         <h1 className="col col-5">BLOCK CHAIN</h1>
         <div className="col col-7 d-flex align-items-center justify-content-between">
           <div className="col col-7 d-flex justify-content-between">
-            {(role.role == ROLE.STUDENT || role.role == ROLE.LECTURER) && (
-              <>
-                <Link to={"/missions"}>Nhiệm vụ</Link>
-                <Link to={"/subjects"}>Môn học</Link>
-                <Link to={"/scholarships"}>Học bổng</Link>
-                <Link to={"/tuitions"}>Học phí</Link>
-                <Link to={"/products"}>Vật phẩm</Link>
-              </>
-            )}
+            <>
+              <Link to={"/missions"}>Nhiệm vụ</Link>
+              <Link to={"/subjects"}>Môn học</Link>
+              <Link to={"/scholarships"}>Học bổng</Link>
+              <Link to={"/tuitions"}>Học phí</Link>
+              <Link to={"/products"}>Vật phẩm</Link>
+            </>
           </div>
           <div className="">
             {account && role.role && (

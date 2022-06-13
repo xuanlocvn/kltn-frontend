@@ -37,7 +37,7 @@ class TuitionContracService extends ContractBase {
 
   async removeStudentFromTuition(
     _contractAddress: string,
-    _studentAddress: string,
+    _studentAddress: string[],
   ) {
     const contract = await this.loadContract(_contractAddress)
     if (!contract) return
@@ -63,7 +63,7 @@ class TuitionContracService extends ContractBase {
     return tx
   }
 
-  async paymentByCurrency(_contractAddress: string) {
+  async paymentByCurrency(_contractAddress: string, studentAddress: string) {
     const contract = await this.loadContract(_contractAddress)
     if (!contract) return
     const tx = await transactionService.sendTransaction(
@@ -71,6 +71,7 @@ class TuitionContracService extends ContractBase {
       contract,
       0,
       "paymentByCurrency",
+      studentAddress,
     )
     return tx
   }

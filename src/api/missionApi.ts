@@ -1,7 +1,14 @@
 import axiosClient from "./axiosClient"
 
-export const getMissionList = (studentAddress: string) => {
-  const url = `api/mission?studentAddress=${studentAddress}`
+export const getMissionList = (studentAddress?: string) => {
+  const url = studentAddress
+    ? `api/mission?studentAddress=${studentAddress}`
+    : `api/mission`
+  return axiosClient.get(url)
+}
+
+export const getMissionListByLecturer = (lecturerAddress: string) => {
+  const url = `api/mission/lecturer/${lecturerAddress}`
   return axiosClient.get(url)
 }
 

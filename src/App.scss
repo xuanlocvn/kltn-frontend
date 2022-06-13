@@ -1,6 +1,14 @@
 .App {
 }
 
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    // font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
 body {
   overflow-y: scroll;
 }
@@ -74,18 +82,6 @@ body::-webkit-scrollbar-thumb:hover {
   100% {
     transform: translateY(0px);
   }
-}
-
-.join_btn {
-	background-color: #33aaff;
-	border-radius: 10px;
-	border: none;
-	padding: 5px;
-	color: white;
-	position: absolute;
-	right: 30px;
-	bottom: 25px;
-	width: max-content;
 }
 
 .join_btn:hover {

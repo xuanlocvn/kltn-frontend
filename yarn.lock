@@ -1791,25 +1791,25 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
-"@paypal/paypal-js@^5.0.5":
-  "integrity" "sha512-OV+0Z2MgHVj6dQiE58x9vq6upWWvajbyuwYlDQ4aBkwj6sLLsdkXO8HDuYJPYoVzbX3+/Di6fNKvlUlCJiv+zA=="
-  "resolved" "https://registry.npmjs.org/@paypal/paypal-js/-/paypal-js-5.0.5.tgz"
-  "version" "5.0.5"
+"@paypal/paypal-js@^5.0.6":
+  "integrity" "sha512-q40h/Rc2Dus5p7Ctgq8EQyyqWGVCdfaezi4D5eWSIl2+p0FHL1mBA4XnXYgv9FPYejrVUmnIATdbqBdEYwasYg=="
+  "resolved" "https://registry.npmjs.org/@paypal/paypal-js/-/paypal-js-5.0.6.tgz"
+  "version" "5.0.6"
   dependencies:
     "promise-polyfill" "^8.2.3"
 
-"@paypal/react-paypal-js@^7.7.0":
-  "integrity" "sha512-f+SXVtyO4Yr0IkV6UVAlHC3GlpRxTNyP9EUUFLhBjyW0z9paMJ47XsG6QcqSoj2Y+YEpdVTVhfvji2K0Gpy7lA=="
-  "resolved" "https://registry.npmjs.org/@paypal/react-paypal-js/-/react-paypal-js-7.7.0.tgz"
-  "version" "7.7.0"
+"@paypal/react-paypal-js@^7.8.1":
+  "integrity" "sha512-+cAa0QLJUO1TUlFk/xqJsfEm6Ywtg3kvMmxf2EJcmVJDkNHc6+7Qq2o6Gt1mTn16ZG4/2uWRROeKcoXFFdNrQA=="
+  "resolved" "https://registry.npmjs.org/@paypal/react-paypal-js/-/react-paypal-js-7.8.1.tgz"
+  "version" "7.8.1"
   dependencies:
-    "@paypal/paypal-js" "^5.0.5"
+    "@paypal/paypal-js" "^5.0.6"
     "@paypal/sdk-constants" "^1.0.116"
 
 "@paypal/sdk-constants@^1.0.116":
-  "integrity" "sha512-XNEpRzwbRXvmazOT/DmhmQ+3+Eg+O+yGpAiM6+gwBHYnBqDTZ8FKSIYTwvmdYnP9zrCFVslF965fdvsowboAqQ=="
-  "resolved" "https://registry.npmjs.org/@paypal/sdk-constants/-/sdk-constants-1.0.121.tgz"
-  "version" "1.0.121"
+  "integrity" "sha512-bxML2CX9acBGuigb5aCz1E8wcxtRpuXuY2hvfQKAG9fB0zG9d8nEcRiSYavbx4n2UM5TqwEcFo/roPD3aqykOg=="
+  "resolved" "https://registry.npmjs.org/@paypal/sdk-constants/-/sdk-constants-1.0.122.tgz"
+  "version" "1.0.122"
   dependencies:
     "hi-base32" "^0.5.0"
 
@@ -8404,6 +8404,11 @@
   "integrity" "sha512-qYvlv/exQ4+svI3UOvPUpLDF0OMX5euvUH0Ny4N5QyRyhNdgAgUrVH3iUINSzEPLvx0kbo/Bp28GJKIqvE7URw=="
   "resolved" "https://registry.npmjs.org/mock-fs/-/mock-fs-4.14.0.tgz"
   "version" "4.14.0"
+
+"moment@^2.29.3":
+  "integrity" "sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.3.tgz"
+  "version" "2.29.3"
 
 "ms@^2.1.1", "ms@2.1.2":
   "integrity" "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="

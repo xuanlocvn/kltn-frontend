@@ -17669,7 +17669,7 @@
         2438
       ],
       "IAccessControl": [
-        10623
+        11085
       ],
       "IActivateNFT": [
         5358
@@ -17690,7 +17690,7 @@
         5430
       ],
       "IUITNFTToken": [
-        11903
+        12410
       ],
       "Ownable": [
         2092
@@ -17739,7 +17739,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 5284,
-        "sourceUnit": 10624,
+        "sourceUnit": 11086,
         "src": "100:57:34",
         "symbolAliases": [],
         "unitAlias": ""
@@ -17751,7 +17751,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 5284,
-        "sourceUnit": 11904,
+        "sourceUnit": 12411,
         "src": "159:46:34",
         "symbolAliases": [],
         "unitAlias": ""
@@ -18762,10 +18762,10 @@
                               "name": "IAccessControl",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 10623,
+                              "referencedDeclaration": 11085,
                               "src": "1629:14:34",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_type$_t_contract$_IAccessControl_$10623_$",
+                                "typeIdentifier": "t_type$_t_contract$_IAccessControl_$11085_$",
                                 "typeString": "type(contract IAccessControl)"
                               }
                             },
@@ -18780,7 +18780,7 @@
                             "src": "1629:29:34",
                             "tryCall": false,
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_IAccessControl_$10623",
+                              "typeIdentifier": "t_contract$_IAccessControl_$11085",
                               "typeString": "contract IAccessControl"
                             }
                           },
@@ -18791,7 +18791,7 @@
                           "lValueRequested": false,
                           "memberName": "hasRole",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 10586,
+                          "referencedDeclaration": 11048,
                           "src": "1629:37:34",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$_t_bytes32_$_t_address_$returns$_t_bool_$",
@@ -19880,10 +19880,10 @@
                           "name": "IUITNFTToken",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 11903,
+                          "referencedDeclaration": 12410,
                           "src": "2917:12:34",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_IUITNFTToken_$11903_$",
+                            "typeIdentifier": "t_type$_t_contract$_IUITNFTToken_$12410_$",
                             "typeString": "type(contract IUITNFTToken)"
                           }
                         },
@@ -19898,7 +19898,7 @@
                         "src": "2917:20:34",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IUITNFTToken_$11903",
+                          "typeIdentifier": "t_contract$_IUITNFTToken_$12410",
                           "typeString": "contract IUITNFTToken"
                         }
                       },
@@ -19909,7 +19909,7 @@
                       "lValueRequested": false,
                       "memberName": "getNFTInfo",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 11809,
+                      "referencedDeclaration": 12316,
                       "src": "2917:31:34",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$_t_struct$_NFTInfo_$5429_memory_ptr_$",
@@ -22531,10 +22531,10 @@
                                 "name": "IUITNFTToken",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 11903,
+                                "referencedDeclaration": 12410,
                                 "src": "5799:12:34",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_type$_t_contract$_IUITNFTToken_$11903_$",
+                                  "typeIdentifier": "t_type$_t_contract$_IUITNFTToken_$12410_$",
                                   "typeString": "type(contract IUITNFTToken)"
                                 }
                               },
@@ -22549,7 +22549,7 @@
                               "src": "5799:20:34",
                               "tryCall": false,
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_IUITNFTToken_$11903",
+                                "typeIdentifier": "t_contract$_IUITNFTToken_$12410",
                                 "typeString": "contract IUITNFTToken"
                               }
                             },
@@ -22560,7 +22560,7 @@
                             "lValueRequested": false,
                             "memberName": "getNFTInfo",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 11809,
+                            "referencedDeclaration": 12316,
                             "src": "5799:31:34",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$_t_struct$_NFTInfo_$5429_memory_ptr_$",
@@ -23616,7 +23616,7 @@
         2438
       ],
       "IAccessControl": [
-        10623
+        11085
       ],
       "IActivateNFT": [
         5358
@@ -23637,7 +23637,7 @@
         5430
       ],
       "IUITNFTToken": [
-        11903
+        12410
       ],
       "Ownable": [
         2092
@@ -23686,7 +23686,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 5284,
-        "sourceUnit": 10624,
+        "sourceUnit": 11086,
         "src": "100:57:34",
         "symbolAliases": [],
         "unitAlias": ""
@@ -23698,7 +23698,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 5284,
-        "sourceUnit": 11904,
+        "sourceUnit": 12411,
         "src": "159:46:34",
         "symbolAliases": [],
         "unitAlias": ""
@@ -24709,10 +24709,10 @@
                               "name": "IAccessControl",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 10623,
+                              "referencedDeclaration": 11085,
                               "src": "1629:14:34",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_type$_t_contract$_IAccessControl_$10623_$",
+                                "typeIdentifier": "t_type$_t_contract$_IAccessControl_$11085_$",
                                 "typeString": "type(contract IAccessControl)"
                               }
                             },
@@ -24727,7 +24727,7 @@
                             "src": "1629:29:34",
                             "tryCall": false,
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_IAccessControl_$10623",
+                              "typeIdentifier": "t_contract$_IAccessControl_$11085",
                               "typeString": "contract IAccessControl"
                             }
                           },
@@ -24738,7 +24738,7 @@
                           "lValueRequested": false,
                           "memberName": "hasRole",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 10586,
+                          "referencedDeclaration": 11048,
                           "src": "1629:37:34",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$_t_bytes32_$_t_address_$returns$_t_bool_$",
@@ -25827,10 +25827,10 @@
                           "name": "IUITNFTToken",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 11903,
+                          "referencedDeclaration": 12410,
                           "src": "2917:12:34",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_IUITNFTToken_$11903_$",
+                            "typeIdentifier": "t_type$_t_contract$_IUITNFTToken_$12410_$",
                             "typeString": "type(contract IUITNFTToken)"
                           }
                         },
@@ -25845,7 +25845,7 @@
                         "src": "2917:20:34",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IUITNFTToken_$11903",
+                          "typeIdentifier": "t_contract$_IUITNFTToken_$12410",
                           "typeString": "contract IUITNFTToken"
                         }
                       },
@@ -25856,7 +25856,7 @@
                       "lValueRequested": false,
                       "memberName": "getNFTInfo",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 11809,
+                      "referencedDeclaration": 12316,
                       "src": "2917:31:34",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$_t_struct$_NFTInfo_$5429_memory_ptr_$",
@@ -28478,10 +28478,10 @@
                                 "name": "IUITNFTToken",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 11903,
+                                "referencedDeclaration": 12410,
                                 "src": "5799:12:34",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_type$_t_contract$_IUITNFTToken_$11903_$",
+                                  "typeIdentifier": "t_type$_t_contract$_IUITNFTToken_$12410_$",
                                   "typeString": "type(contract IUITNFTToken)"
                                 }
                               },
@@ -28496,7 +28496,7 @@
                               "src": "5799:20:34",
                               "tryCall": false,
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_IUITNFTToken_$11903",
+                                "typeIdentifier": "t_contract$_IUITNFTToken_$12410",
                                 "typeString": "contract IUITNFTToken"
                               }
                             },
@@ -28507,7 +28507,7 @@
                             "lValueRequested": false,
                             "memberName": "getNFTInfo",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 11809,
+                            "referencedDeclaration": 12316,
                             "src": "5799:31:34",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$_t_struct$_NFTInfo_$5429_memory_ptr_$",
@@ -29550,14 +29550,159 @@
   },
   "networks": {
     "97": {
-      "events": {},
+      "events": {
+        "0x8e9a7d43b9ff0515fbe8f1db68c5ec8c07de5a37206d115f6d418de434ac1ab9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256[]",
+              "name": "_activateIds",
+              "type": "uint256[]"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_cancelRequestTime",
+              "type": "uint256"
+            }
+          ],
+          "name": "ActivateNFTRequestCanceled",
+          "type": "event"
+        },
+        "0x54dcb3e9f95f49fa68a8c81df673aab73f65de00ce9c87c639fbf8b53bb2a3c7": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_activateId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_itemId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_requestedTime",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_owner",
+              "type": "address"
+            }
+          ],
+          "name": "ActivateNFTRequested",
+          "type": "event"
+        },
+        "0xa6339fcd095f8d8805782f31fcb3075eaee0ca2ec6a09f047ce3a188bee5fbe0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_activateId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_itemId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_activatedTime",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_owner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "_isCourseNFT",
+              "type": "bool"
+            }
+          ],
+          "name": "NFTActivated",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Paused",
+          "type": "event"
+        },
+        "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Unpaused",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x1CFd3aF02B1c012d22cc5D06a56BA5001FaA8ae0",
-      "transactionHash": "0x0cd83f49741644369014008caa6709fcc1c59f5a01ac76b8a383f78a0f0c23e7"
+      "address": "0x1c54D3a3D880F4CfD8cC1d3F456B0AB54fbF180E",
+      "transactionHash": "0x525eeb3d14765ec24e4b64746213062e9ed34e6d3c2c8cf5e6b19094e0efbe5c"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-06-05T07:44:56.932Z",
+  "updatedAt": "2022-06-13T07:53:06.541Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

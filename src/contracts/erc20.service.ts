@@ -1,4 +1,4 @@
-import ERC20_ABI from "./abi/erc20.json"
+import ERC20_ABI from "./abi/ERC20.json"
 import ContractBase from "./contract-base"
 import { amountToValue, valueToAmount } from "./helpers"
 

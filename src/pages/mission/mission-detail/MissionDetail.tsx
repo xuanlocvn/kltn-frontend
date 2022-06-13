@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { Collapse } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import { useAppSelector } from "src/app/hooks"
 import { selectRole } from "src/components/shared/Header/HeaderSlice"
@@ -7,11 +6,14 @@ import { missionContractService } from "src/contracts/mission-contract.service"
 import { getMissionDetail } from "src/api/missionApi"
 import "./MissionDetail.scss"
 import { CustomWindow, IMissionDetail } from "src/utils/window"
-import { convertLocalTime } from "src/utils"
 import useCheckbox from "src/hooks/useCheckbox"
 import { CSVLink } from "react-csv"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faDownload } from "@fortawesome/free-solid-svg-icons"
+import TimeLine from "../../../components/timeline/TimeLine"
+import Countdown from "../../../components/countdown/CountDown"
+import useNow from "../../../hooks/useNow"
+import { managerPoolContractService } from "src/contracts/manager-pool.service"
 
 declare let window: CustomWindow
 
@@ -29,6 +31,7 @@ function MissionDetail() {
   const [detail, setDetail] = useState<IMissionDetail>(null)
   const { selectList, handleChange } = useCheckbox()
   const [data, setData] = useState([{}])
+  const { now } = useNow()
 
   useEffect(() => {
     const getDetail = async (missionAddress: string) => {
@@ -77,94 +80,197 @@ function MissionDetail() {
     )
   }
 
+  const handleLock = async (address?: string) => {
+    await managerPoolContractService.lockMission([address])
+  }
+
   return (
     <div className="mt-5">
       {detail != null && (
         <>
-          <div className="detail-info">
-            <div className="d-flex justify-content-between">
-              <h2>{detail.missionName}</h2>
-              <div>
-                <p>
-                  <span className="status status__open">
-                    {detail.missionStatus}
-                  </span>
-                </p>
-                <p>
-                  <b>Mã nhiệm vụ: </b> {detail.missionId}
-                </p>
-              </div>
-            </div>
-            <div className="d-flex justify-content-around">
-              <div>
-                <p>
-                  <b>Thời gian diễn ra: </b>
-                </p>
-                <p>Bắt đầu: {convertLocalTime(detail.startTime)}</p>
-                <p>Kết thúc: {convertLocalTime(detail.endTime)}</p>
-                <p>
-                  <b>Kết thúc đăng ký: </b>{" "}
-                  {convertLocalTime(detail.endTimeToResigter)}
-                </p>
-              </div>
-              <div>
-                <p>
-                  <b>Số lượng tham gia: </b> {detail.joinedStudentAmount}/
-                  {detail.maxStudentAmount}
-                </p>
-                <p>
-                  <b>Đối tượng: </b> Sinh viên toàn trường
-                </p>
-                <p>
-                  <b>Token nhận được: </b> {detail.tokenAmount} coin
-                </p>
-                <p>
-                  <b>Đơn vị tổ chức: </b> {detail.departmentName}
-                </p>
-              </div>
-            </div>
-            <div className="d-flex flex-row-reverse">
-              {detail.isJoined ? (
-                <button
-                  className={
-                    detail.missionStatus != "Closed"
-                      ? "join_btn cancel"
-                      : "join_btn cancel btn-disabled"
-                  }
-                  onClick={() =>
-                    detail.missionStatus != "Closed" &&
-                    handleCancelRegister(missionId)
-                  }
+          <div
+            className="detail-info"
+            style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
+          >
+            <div className="banner-mission"></div>
+            <div className="d-flex">
+              <div className="col col-6">
+                <TimeLine
+                  startTime={detail.startTime}
+                  endTimeToRegister={detail.endTimeToResigter || 0}
+                  endTime={detail.endTime}
+                  endTimeToConfirm={detail.endTimeToComFirm || 0}
+                />
+                <div
+                  style={{
+                    position: "relative",
+                    top: "-80px",
+                    height: "5px",
+                  }}
                 >
-                  Hủy
-                </button>
-              ) : (
-                <button
-                  className={
-                    detail.missionStatus != "Closed"
-                      ? "join_btn join"
-                      : "join_btn join btn-disabled"
-                  }
-                  onClick={() =>
-                    detail.missionStatus != "Closed" &&
-                    handleRegister(missionId)
-                  }
+                  {now <= detail.endTimeToResigter && (
+                    <>
+                      <Countdown
+                        timestamp={detail.endTimeToResigter}
+                        size={2}
+                        title="Thời gian còn lại để đăng ký..."
+                      />
+                    </>
+                  )}
+                  {detail.endTimeToResigter < now && now <= detail.endTime && (
+                    <>
+                      <Countdown
+                        timestamp={detail.endTime}
+                        size={2}
+                        title="Nhiệm vụ đang diễn ra..."
+                      />
+                    </>
+                  )}
+                  {detail.endTime < now && now <= detail.endTimeToComFirm && (
+                    <>
+                      <Countdown
+                        timestamp={detail.endTimeToComFirm}
+                        size={2}
+                        title="Nhiệm vụ đã kết thúc và đang chờ xác nhận..."
+                      />
+                    </>
+                  )}
+                  {now > detail.endTimeToComFirm && (
+                    <>
+                      <Countdown
+                        timestamp={detail.endTimeToComFirm}
+                        size={2}
+                        title="Kết thúc"
+                      />
+                    </>
+                  )}
+                </div>
+              </div>
+              <div className="col col-6">
+                <h2 className="mb-4">
+                  {detail.missionName} - {detail.missionId}{" "}
+                </h2>
+                <div
+                  className="d-flex justify-content-between"
+                  style={{ padding: "0px" }}
                 >
-                  Tham gia
-                </button>
-              )}
+                  <div>
+                    <p>
+                      <b>Giảng viên: </b> {detail.lecturerName}
+                    </p>
+                    <p>
+                      <b>Khoa quản lý: </b> {detail.departmentName}
+                    </p>
+                    <p>
+                      <b>Số lượng tham gia: </b> {detail.joinedStudentAmount}/
+                      {detail.maxStudentAmount}
+                    </p>
+                    <p>
+                      <b>Đối tượng: </b> Sinh viên toàn trường
+                    </p>
+                  </div>
+                  <div>
+                    <p>
+                      <b>Token nhận được: </b> {detail.tokenAmount} coin
+                    </p>
+                    <p>
+                      <b>Đơn vị tổ chức: </b> {detail.departmentName}
+                    </p>
+                  </div>
+                  {detail.isJoined
+                    ? role.role == "STUDENT" && (
+                        <button
+                          className={
+                            detail.missionStatus != "Closed"
+                              ? "join_btn cancel"
+                              : "join_btn cancel btn-disabled"
+                          }
+                          onClick={() =>
+                            detail.missionStatus != "Closed" &&
+                            handleCancelRegister(detail.missionAddress)
+                          }
+                        >
+                          Hủy
+                        </button>
+                      )
+                    : role.role == "STUDENT" && (
+                        <button
+                          className={
+                            detail.missionStatus != "Closed"
+                              ? "join_btn join"
+                              : "join_btn join btn-disabled"
+                          }
+                          onClick={() =>
+                            detail.missionStatus != "Closed" &&
+                            handleRegister(detail.missionAddress)
+                          }
+                        >
+                          Tham gia
+                        </button>
+                      )}
+                  {role.role == "ADMIN" && (
+                    <button
+                      className={
+                        detail.missionStatus != "Closed"
+                          ? "join_btn join"
+                          : "join_btn join btn-disabled"
+                      }
+                      onClick={() =>
+                        detail.missionStatus != "Closed" &&
+                        handleLock(missionId)
+                      }
+                    >
+                      Khoá
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
+
           <div
-            className="detail-description mt-5"
+            className="mt-5 detail-description pb-5"
             onClick={() => setOpen(!open)}
+            style={
+              open == false
+                ? { height: "300px", overflow: "hidden", fontSize: "20px" }
+                : { height: "auto", fontSize: "20px" }
+            }
           >
-            <h3>Mô tả</h3>
-            <Collapse in={open}>
-              <div id="example-collapse-text" style={{ fontSize: "20px" }}>
-                {detail.missionDescription}
+            <h2>Mô tả</h2>
+            <div
+              style={
+                open == false
+                  ? { height: "200px", overflow: "hidden" }
+                  : { height: "auto" }
+              }
+              dangerouslySetInnerHTML={{
+                __html: detail.missionDescription,
+              }}
+            ></div>
+            {!open && (
+              <div
+                onClick={() => setOpen(!open)}
+                style={{
+                  position: "relative",
+                  top: "-250px",
+                  height: "250px",
+                  backgroundImage:
+                    "linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))",
+                }}
+              >
+                <p
+                  className="text-center"
+                  style={{
+                    position: "absolute",
+                    bottom: "0",
+                    left: "45%",
+                  }}
+                >
+                  Nhấn để mở rộng
+                </p>
               </div>
-            </Collapse>
+            )}
           </div>
 
           {role.role && (
@@ -190,7 +296,9 @@ function MissionDetail() {
                   {detail &&
                   detail.joinedStudentList &&
                   detail.joinedStudentList.length == 0 ? (
-                    <i>Danh sách trống</i>
+                    <p className="text-center p-5">
+                      <i>Danh sách trống</i>
+                    </p>
                   ) : (
                     detail.joinedStudentList.map((student, index) => (
                       <tr key={index} className="row">

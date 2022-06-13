@@ -1,6 +1,7 @@
 export interface CustomWindow extends Window {
   ethereum: any
   web3: any
+  paypal: any
 }
 
 export interface StudentInfo {
@@ -25,47 +26,91 @@ export interface IStudentCertificate {
 }
 
 export interface IMissionInstance {
+  chainNetworkId: number
   missionId: string
+  missionImg: string
+  missionAddress: string
   missionName: string
+  lecturerAddress: string
+  missionShortenName: string
+  missionDescription: string
+  missionStatus: string
+  departmentName: string
+  startTime: number
+  endTime: number
+  endTimeToResigter: number
+  endTimeToComFirm: number
   maxStudentAmount: number
   joinedStudentAmount: number
-  missionStatus: string
+  lecturerName: string
+  tokenAmount: number
+  joinedStudentList: IStudentJoined[]
   isJoined: boolean
-  missionAddress: string
-  missionShortenName: string
-  startTime: number | string
 }
 
 export interface ISubjectInstance {
+  chainNetworkId: number
   subjectId: string
-  subjectName: string
-  maxStudentAmount: number
-  joinedStudentAmount: number
-  subjectStatus: string
-  isJoined: boolean
   subjectAddress: string
+  subjectName: string
   subjectShortenName: string
-  startTime: number | string
+  subjectImg: string
+  subjectDescription: string
+  subjectStatus: string
+  subjectHashIPFS: string
+  departmentName: string
+  startTime: number
+  endTime: number
+  endTimeToResigter: number
+  endTimeToComFirm: number
+  maxStudentAmount: number
+  lecturerAddress: string
+  lecturerName: string
+  joinedStudentAmount: number
+  joinedStudentList: IStudentJoined
+  isJoined: boolean
 }
 
 export interface IScholarshipInstance {
+  chainNetworkId: number
+  scholarshipImg: string
   scholarshipId: string
-  scholarshipName: string
-  joinedStudentAmount: number
-  scholarshipStatus: string
-  isJoined: boolean
   scholarshipAddress: string
-  startTime: number | string
+  scholarshipName: string
+  scholarshipStatus: string
+  scholarshipHashIPFS: string
+  scholarShipDescription: string
+  startTime: number
+  endTimeToResigter: number
+  endTimeToComFirm: number
+  endTime: number
+  lecturerInCharge: string
+  lecturerName: string
+  tokenAmount: number
+  joinedStudentAmount: number
+  joinedStudentList: IStudentJoined[]
+  isJoined: boolean
 }
 
 export interface ITuitionInstance {
+  chainNetworkId: number
+  imgURL: string
   tuitionId: string
   tuitionName: string
-  joinedStudentAmount: number
-  tuitionStatus: string
-  isJoined: boolean
   tuitionAddress: string
-  startTime: number | string
+  tuitionStatus: string
+  tuitionDescription: string
+  tuitionHashIPFS: string
+  schoolYear: number
+  startTime: number
+  endTime: number
+  tokenAmount: number
+  currencyAmount: number
+  lecturerInCharge: string
+  lecturerName: string
+  joinedStudentList: IStudentJoined[]
+  joinedStudentAmount: number
+  isJoined: boolean
   isCompleted: boolean
 }
 
@@ -94,6 +139,71 @@ export interface IMissionDetail {
   tokenAmount: number
   joinedStudentList: IStudentJoined[]
   isJoined: boolean
+}
+
+export interface IScholarshipDetail {
+  scholarshipAddress
+  scholarshipId
+  scholarshipHashIPFS
+  scholarShipDescription
+  lecturerInCharge
+  scholarshipName
+  scholarshipStatus
+  departmentName
+  startTime
+  endTime
+  endTimeToResigter
+  endTimeToComFirm
+  joinedStudentAmount
+  lecturerName
+  tokenAmount
+  joinedStudentList: IStudentJoined[]
+  isJoined: boolean
+}
+
+export interface ISubjectDetail {
+  chainNetworkId
+  subjectId
+  subjectAddress
+  subjectName
+  subjectShortenName
+  subjectImg
+  subjectDescription
+  subjectStatus
+  subjectHashIPFS
+  departmentName
+  startTime
+  endTime
+  endTimeToResigter
+  endTimeToComFirm
+  maxStudentAmount
+  lecturerAddress
+  lecturerName
+  joinedStudentAmount
+  joinedStudentList: IStudentJoined[]
+  isJoined: boolean
+}
+
+export interface ITuitionDetail {
+  chainNetworkId: number
+  imgURL: string
+  tuitionId: string
+  tuitionName: string
+  tuitionAddress: string
+  tuitionStatus: string
+  tuitionDescription: string
+  tuitionHashIPFS: string
+  schoolYear: number
+  startTime: number
+  endTime: number
+  tokenAmount: number
+  currencyAmount: number
+  lecturerInCharge: string
+  lecturerName: string
+  joinedStudentAmount: number
+  joinedStudentList: IStudentJoined[]
+  isJoined: boolean
+  isCompleted: boolean
 }
 
 export interface IProductTypeInstance {

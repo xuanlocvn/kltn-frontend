@@ -15,15 +15,15 @@
     "absolutePath": "project:/contracts/common/interfaces/ISharedStruct.sol",
     "exportedSymbols": {
       "ISharedStruct": [
-        4598
+        5430
       ]
     },
-    "id": 4599,
+    "id": 5431,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4592,
+        "id": 5424,
         "literals": [
           "solidity",
           "^",
@@ -31,7 +31,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:23:34"
+        "src": "32:23:37"
       },
       {
         "abstract": false,
@@ -40,27 +40,27 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": true,
-        "id": 4598,
+        "id": 5430,
         "linearizedBaseContracts": [
-          4598
+          5430
         ],
         "name": "ISharedStruct",
-        "nameLocation": "69:13:34",
+        "nameLocation": "69:13:37",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "ISharedStruct.NFTInfo",
-            "id": 4597,
+            "id": 5429,
             "members": [
               {
                 "constant": false,
-                "id": 4594,
+                "id": 5426,
                 "mutability": "mutable",
                 "name": "metadataInHash",
-                "nameLocation": "123:14:34",
+                "nameLocation": "123:14:37",
                 "nodeType": "VariableDeclaration",
-                "scope": 4597,
-                "src": "116:21:34",
+                "scope": 5429,
+                "src": "116:21:37",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -68,10 +68,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 4593,
+                  "id": 5425,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "116:6:34",
+                  "src": "116:6:37",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -81,13 +81,13 @@
               },
               {
                 "constant": false,
-                "id": 4596,
+                "id": 5428,
                 "mutability": "mutable",
                 "name": "isCourseNFT",
-                "nameLocation": "153:11:34",
+                "nameLocation": "153:11:37",
                 "nodeType": "VariableDeclaration",
-                "scope": 4597,
-                "src": "148:16:34",
+                "scope": 5429,
+                "src": "148:16:37",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -95,10 +95,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 4595,
+                  "id": 5427,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "148:4:34",
+                  "src": "148:4:37",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -108,33 +108,33 @@
               }
             ],
             "name": "NFTInfo",
-            "nameLocation": "97:7:34",
+            "nameLocation": "97:7:37",
             "nodeType": "StructDefinition",
-            "scope": 4598,
-            "src": "90:82:34",
+            "scope": 5430,
+            "src": "90:82:37",
             "visibility": "public"
           }
         ],
-        "scope": 4599,
-        "src": "59:116:34",
+        "scope": 5431,
+        "src": "59:116:37",
         "usedErrors": []
       }
     ],
-    "src": "32:286:34"
+    "src": "32:286:37"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/common/interfaces/ISharedStruct.sol",
     "exportedSymbols": {
       "ISharedStruct": [
-        4598
+        5430
       ]
     },
-    "id": 4599,
+    "id": 5431,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4592,
+        "id": 5424,
         "literals": [
           "solidity",
           "^",
@@ -142,7 +142,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:23:34"
+        "src": "32:23:37"
       },
       {
         "abstract": false,
@@ -151,27 +151,27 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": true,
-        "id": 4598,
+        "id": 5430,
         "linearizedBaseContracts": [
-          4598
+          5430
         ],
         "name": "ISharedStruct",
-        "nameLocation": "69:13:34",
+        "nameLocation": "69:13:37",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "ISharedStruct.NFTInfo",
-            "id": 4597,
+            "id": 5429,
             "members": [
               {
                 "constant": false,
-                "id": 4594,
+                "id": 5426,
                 "mutability": "mutable",
                 "name": "metadataInHash",
-                "nameLocation": "123:14:34",
+                "nameLocation": "123:14:37",
                 "nodeType": "VariableDeclaration",
-                "scope": 4597,
-                "src": "116:21:34",
+                "scope": 5429,
+                "src": "116:21:37",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -179,10 +179,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 4593,
+                  "id": 5425,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "116:6:34",
+                  "src": "116:6:37",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -192,13 +192,13 @@
               },
               {
                 "constant": false,
-                "id": 4596,
+                "id": 5428,
                 "mutability": "mutable",
                 "name": "isCourseNFT",
-                "nameLocation": "153:11:34",
+                "nameLocation": "153:11:37",
                 "nodeType": "VariableDeclaration",
-                "scope": 4597,
-                "src": "148:16:34",
+                "scope": 5429,
+                "src": "148:16:37",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -206,10 +206,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 4595,
+                  "id": 5427,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "148:4:34",
+                  "src": "148:4:37",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -219,19 +219,19 @@
               }
             ],
             "name": "NFTInfo",
-            "nameLocation": "97:7:34",
+            "nameLocation": "97:7:37",
             "nodeType": "StructDefinition",
-            "scope": 4598,
-            "src": "90:82:34",
+            "scope": 5430,
+            "src": "90:82:37",
             "visibility": "public"
           }
         ],
-        "scope": 4599,
-        "src": "59:116:34",
+        "scope": 5431,
+        "src": "59:116:37",
         "usedErrors": []
       }
     ],
-    "src": "32:286:34"
+    "src": "32:286:37"
   },
   "compiler": {
     "name": "solc",
@@ -239,7 +239,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-05-21T07:58:15.314Z",
+  "updatedAt": "2022-06-13T07:41:46.401Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

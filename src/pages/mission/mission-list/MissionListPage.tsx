@@ -4,9 +4,15 @@ import { CustomWindow } from "src/utils/window"
 import Pagination from "src/components/shared/Pagination/Pagination"
 import { missionContractService } from "src/contracts/mission-contract.service"
 import useList from "src/hooks/useList"
-import { getMissionList } from "src/api/missionApi"
+import { getMissionList, getMissionListByLecturer } from "src/api/missionApi"
 import "./MissionListPage.scss"
 import { IMissionInstance } from "src/utils/window"
+import img from "src/assets/images/Mission.png"
+import { selectRole } from "../../../components/shared/Header/HeaderSlice"
+import { useAppSelector } from "src/app/hooks"
+import Countdown from "../../../components/countdown/CountDown"
+import useNow from "../../../hooks/useNow"
+import { managerPoolContractService } from "src/contracts/manager-pool.service"
 
 declare let window: CustomWindow
 
@@ -22,15 +28,27 @@ function MissionListPage() {
     renderList,
     setTotalList,
   } = useList<IMissionInstance>()
+  const role = useAppSelector(selectRole)
+  const { now } = useNow()
 
   useEffect(() => {
     const fetchMissionList = async (walletAddress: string) => {
-      const response = await getMissionList(walletAddress)
+      let response
+      switch (role.role) {
+        case "LECTURER":
+          response = await await getMissionListByLecturer(walletAddress)
+          break
+        case "STUDENT":
+          response = await getMissionList(walletAddress)
+          break
+        default:
+          response = await getMissionList()
+      }
       const result: IMissionInstance[] = response.data.result
       setTotalList(result)
     }
     window.localStorage.account && fetchMissionList(window.localStorage.account)
-  }, [])
+  }, [role])
 
   const onPaginate = (page: number) => {
     const filter = searchParams.get("filter")
@@ -54,6 +72,10 @@ function MissionListPage() {
 
   const handleCancelRegister = async (contractAddress: string) => {
     await missionContractService.cancelRegister(contractAddress)
+  }
+
+  const handleLock = async (address?: string) => {
+    await managerPoolContractService.lockMission([address])
   }
 
   return (
@@ -87,46 +109,108 @@ function MissionListPage() {
             <div
               key={index}
               className="mission_element col-4"
-              onClick={() => console.log("Hello")}
-              style={{ height: "164px" }}
+              style={{ height: "200px" }}
             >
               <Link to={"/missions/" + mission.missionAddress}>
-                <h5>
-                  <strong>{mission.missionName}</strong>
-                </h5>
-                <p>
-                  <b>Số lượng:</b> {mission.joinedStudentAmount}/
-                  {mission.maxStudentAmount}
-                </p>
-                <p className="element_status">{mission.missionStatus}</p>
-              </Link>
-              {mission.isJoined ? (
-                <button
-                  className={
-                    mission.missionStatus != "Closed"
-                      ? "join_btn cancel"
-                      : "join_btn cancel btn-disabled"
-                  }
-                  onClick={() =>
-                    mission.missionStatus != "Closed" &&
-                    handleCancelRegister(mission.missionAddress)
-                  }
+                <div className="img">
+                  <img src={img} alt="mission" />
+                </div>
+                <div
+                  style={{ position: "relative", top: "-80px", height: "5px" }}
                 >
-                  Hủy
-                </button>
-              ) : (
+                  {now <= mission.endTimeToResigter && (
+                    <>
+                      <Countdown
+                        timestamp={mission.endTimeToResigter}
+                        size={1}
+                        title="Thời gian còn lại để đăng ký..."
+                      />
+                    </>
+                  )}
+                  {mission.endTimeToResigter < now && now <= mission.endTime && (
+                    <>
+                      <Countdown
+                        timestamp={mission.endTime}
+                        size={1}
+                        title="Nhiệm vụ đang diễn ra..."
+                      />
+                    </>
+                  )}
+                  {mission.endTime < now && now <= mission.endTimeToComFirm && (
+                    <>
+                      <Countdown
+                        timestamp={mission.endTimeToComFirm}
+                        size={1}
+                        title="Nhiệm vụ đã kết thúc và đang chờ xác nhận..."
+                      />
+                    </>
+                  )}
+                  {now > mission.endTimeToComFirm && (
+                    <>
+                      <Countdown
+                        timestamp={mission.endTimeToComFirm}
+                        size={1}
+                        title="Kết thúc"
+                      />
+                    </>
+                  )}
+                </div>
+                <div className="p-3">
+                  <h5>
+                    <strong>{mission.missionName}</strong>
+                  </h5>
+                  <p>
+                    <b>Số lượng:</b> {mission.joinedStudentAmount}/
+                    {mission.maxStudentAmount}
+                  </p>
+                  <p className="element_status">{mission.missionStatus}</p>
+                </div>
+              </Link>
+              {mission.isJoined
+                ? role.role == "STUDENT" && (
+                    <button
+                      className={
+                        mission.missionStatus != "Closed"
+                          ? "join_btn cancel"
+                          : "join_btn cancel btn-disabled"
+                      }
+                      onClick={() =>
+                        mission.missionStatus != "Closed" &&
+                        handleCancelRegister(mission.missionAddress)
+                      }
+                    >
+                      Hủy
+                    </button>
+                  )
+                : role.role == "STUDENT" && (
+                    <button
+                      className={
+                        mission.missionStatus != "Closed"
+                          ? "join_btn join"
+                          : "join_btn join btn-disabled"
+                      }
+                      onClick={() => {
+                        mission.missionStatus != "Closed" &&
+                          handleRegister(mission.missionAddress)
+                      }}
+                    >
+                      Tham gia
+                    </button>
+                  )}
+
+              {role.role == "ADMIN" && (
                 <button
                   className={
                     mission.missionStatus != "Closed"
                       ? "join_btn join"
                       : "join_btn join btn-disabled"
                   }
-                  onClick={() => {
+                  onClick={() =>
                     mission.missionStatus != "Closed" &&
-                      handleRegister(mission.missionAddress)
-                  }}
+                    handleLock(mission.missionAddress)
+                  }
                 >
-                  Tham gia
+                  Khoá
                 </button>
               )}
             </div>

@@ -1,8 +1,6 @@
 .detail-info {
   border-radius: 20px;
-  padding: 50px;
-    border: 0.5px solid #8a8b8b;
-  // box-shadow: 1px 1px 8px 8px rgb(179, 177, 177);
+  border: 0.5px solid #8a8b8b;
   position: relative;
 
   p {
@@ -11,7 +9,6 @@
 
   .status {
     padding: 5px 10px;
-    font-weight: 600;
     font-size: 20px;
     border-radius: 10px;
 
@@ -91,12 +88,13 @@
 	background-color: #33aaff;
 	border-radius: 10px;
 	border: none;
-	padding: 5px;
+	padding: 10px 50px;
 	color: white;
 	position: absolute;
-	right: 30px;
-	bottom: 25px;
+	right: 80px;
+	bottom: 40px;
 	width: max-content;
+  font-size: 20px;
 }
 
 .join_btn:hover {
@@ -114,3 +112,26 @@ button.cancel:hover{
     cursor: not-allowed;
     background-color: rgb(49, 47, 47)!important;
   }
+
+.detail-info{
+  padding: 0!important;
+  height: 600px;
+  overflow: hidden;
+
+  div {
+    padding: 0 10px;
+    margin-bottom: 10px ;
+  }
+  
+  .banner-mission{
+    padding: 0!important;
+    width: 100%;
+    height: 40%;
+    overflow: hidden;
+    background-image: url("../../../assets/images/Mission.png");
+      background-repeat: no-repeat;
+	    background-size: 100%;
+	    background-attachment: fixed;
+	    background-position: 0px -40px;
+  }
+}

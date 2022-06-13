@@ -276,7 +276,6 @@ select:hover {
 
 .list .mission .mission_element {
 	border: solid 1px rgba(0, 0, 0, 0.3);
-	padding: 30px;
 	border-radius: 30px;
 	position: relative;
 	box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
@@ -285,6 +284,7 @@ select:hover {
 	margin-right: 20px;
 	margin-bottom: 20px;
 	width: 32%;
+  padding: 0;
 }
 
 .list .mission .mission_element:nth-child(3n) {
@@ -413,6 +413,21 @@ select .select-item {
   }
   .mission_element a {
     text-decoration: none;
+  }
+
+  .mission_element{
+    position: relative;
+    padding: 0px;
+    overflow: hidden;
+    .img {
+      height: 40%;
+      overflow: hidden;
+      img{
+        position: relative;
+        top: -30px;
+        width: 100%;
+      }
+    }
   }
 }
 

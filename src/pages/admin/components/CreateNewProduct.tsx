@@ -30,7 +30,8 @@ function CreateNewProduct() {
       img: defaultAvt,
       name: e.target.name.value,
       productId: e.target.productId.value,
-      productType: e.target.productType.value,
+      productType:
+        e.target.productType.options[e.target.productType.selectedIndex].text,
       amount: e.target.amount.value,
       price: e.target.price.value,
       description: description,
@@ -55,96 +56,99 @@ function CreateNewProduct() {
         <h2>Tạo vật phẩm</h2>
       </div>
       <div className="body_form mt-3">
-        <form className="d-flex" onSubmit={handleSubmit}>
-          <div className="col col-4 img-avt d-flex flex-column align-items-center">
-            <label htmlFor="myImage">
-              <img src={defaultAvt} alt="" />
-              <p>
-                <i>Nhấn để chọn ảnh mới</i>
-              </p>
-            </label>
-            <input
-              type="file"
-              id="myImage"
-              name="myImage"
-              accept="image/png, image/gif, image/jpeg"
-              onChange={(e) => onChangeAvt(e)}
-            />
+        <form onSubmit={handleSubmit}>
+          <div className="d-flex">
+            <div className="col col-4 img-avt d-flex flex-column align-items-center">
+              <label htmlFor="myImage">
+                <img src={defaultAvt} alt="" />
+                <p>
+                  <i>Nhấn để chọn ảnh mới</i>
+                </p>
+              </label>
+              <input
+                type="file"
+                id="myImage"
+                name="myImage"
+                accept="image/png, image/gif, image/jpeg"
+                onChange={(e) => onChangeAvt(e)}
+              />
+            </div>
+            <div className="col col-8">
+              <div className="d-flex flex-column mb-2">
+                <label htmlFor="name">
+                  Tên vật phẩm <span style={{ color: "red" }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Tên vật phẩm"
+                  name="name"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column mb-2">
+                <label htmlFor="productId">
+                  Mã vật phẩm <span style={{ color: "red" }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Mã vật phẩm"
+                  name="productId"
+                  required
+                />
+              </div>
+              <div className="d-flex flex-column mb-2">
+                <label htmlFor="productType">
+                  Loại vật phẩm<span style={{ color: "red" }}>*</span>
+                </label>
+                <select
+                  name="productType"
+                  id="productType"
+                  value={faculty}
+                  onChange={(e) => {
+                    setFaculty(e.target.value)
+                  }}
+                >
+                  {productType &&
+                    productType.map((type, index) => (
+                      <option key={index} value={type.productTypeAlias}>
+                        {type.productTypeName}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div className="d-flex justify-content-between row mb-2">
+                <div className="d-flex flex-column col col-6">
+                  <label htmlFor="amount">
+                    Số lượng vật phẩm
+                    <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Số lượng vật phẩm"
+                    name="amount"
+                    required
+                  />
+                </div>
+                <div className="d-flex flex-column col col-6">
+                  <label htmlFor="price">
+                    Giá mỗi vật phẩm
+                    <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Giá mỗi vật phẩm"
+                    name="price"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="col col-8">
-            <div className="d-flex flex-column mb-2">
-              <label htmlFor="name">
-                Tên vật phẩm <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Tên vật phẩm"
-                name="name"
-                required
-              />
-            </div>
-            <div className="d-flex flex-column mb-2">
-              <label htmlFor="productId">
-                Mã vật phẩm <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Mã vật phẩm"
-                name="productId"
-                required
-              />
-            </div>
-            <div className="d-flex flex-column mb-2">
-              <label htmlFor="productType">
-                Loại vật phẩm<span style={{ color: "red" }}>*</span>
-              </label>
-              <select
-                name="productType"
-                id="productType"
-                value={faculty}
-                onChange={(e) => {
-                  setFaculty(e.target.value)
-                }}
-              >
-                {productType &&
-                  productType.map((type, index) => (
-                    <option key={index} value={type.productTypeAlias}>
-                      {type.productTypeName}
-                    </option>
-                  ))}
-              </select>
-            </div>
-            <div className="d-flex justify-content-between row mb-2">
-              <div className="d-flex flex-column col col-6">
-                <label htmlFor="amount">
-                  Số lượng vật phẩm
-                  <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="number"
-                  placeholder="Số lượng vật phẩm"
-                  name="amount"
-                  required
-                />
-              </div>
-              <div className="d-flex flex-column col col-6">
-                <label htmlFor="price">
-                  Giá mỗi vật phẩm
-                  <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="number"
-                  placeholder="Giá mỗi vật phẩm"
-                  name="price"
-                  required
-                />
-              </div>
-            </div>
+          <div>
             <div className="d-flex flex-column mb-2">
               <label htmlFor="description">
                 Mô tả <span style={{ color: "red" }}>*</span>
               </label>
-              {/* <textarea placeholder="Mô tả" name="description" rows={5} /> */}
               <Editor
                 toolbarClassName="toolbarClassName"
                 wrapperClassName="wrapperClassName"

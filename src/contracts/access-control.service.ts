@@ -45,6 +45,20 @@ class AccessControlContractService extends ContractBase {
     )
     return grantRoleTx
   }
+
+  async revokeRole(roleBytes32: ROLE_BYTES32, account: string) {
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
+    const grantRoleTx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      "revokeRole",
+      roleBytes32,
+      account,
+    )
+    return grantRoleTx
+  }
 }
 
 export const accessControlContractService = new AccessControlContractService()

@@ -2,6 +2,8 @@ import React, { lazy } from "react"
 import { Navigate, Route, Routes } from "react-router-dom"
 import AdminPage from "src/pages/admin/AdminPage"
 import ProductListPage from "src/pages/product/product-list/ProductListPage"
+import ScholarshipDetail from "../pages/scholarship/scholarship-detail/ScholarshipDetail"
+import TuitionDetail from "../pages/tuition/tuition-detail/TuitionDetail"
 const NotFound = lazy(() => import("src/components/shared/NotFound/NotFound"))
 const MissionDetail = lazy(
   () => import("src/pages/mission/mission-detail/MissionDetail"),
@@ -42,10 +44,13 @@ function Router() {
       <Route path="/subjects/:subjectId" element={<SubjectDetail />} />
 
       <Route path="/scholarships" element={<ScholarshipListPage />} />
-      <Route path="/scholarships/:scholarshipId" element={<NotFound />} />
+      <Route
+        path="/scholarships/:scholarshipId"
+        element={<ScholarshipDetail />}
+      />
 
       <Route path="/tuitions" element={<TuitionListPage />} />
-      <Route path="/tuitions/:tuitionId" element={<NotFound />} />
+      <Route path="/tuitions/:tuitionId" element={<TuitionDetail />} />
 
       <Route path="products" element={<ProductListPage />} />
       <Route path="products/:productId" element={<ProductDetail />} />

@@ -1,60 +1,51 @@
-import React, { useEffect } from "react"
+import React, { useRef, useEffect } from "react"
+import { CustomWindow } from "src/utils/window"
 import PropTypes from "prop-types"
-import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js"
 
-PaypalComponent.propTypes = {
-  currency: PropTypes.string,
-  showSpinner: PropTypes.bool,
-  amount: PropTypes.string,
+declare let window: CustomWindow
+
+Paypal.propTypes = {
+  value: PropTypes.string,
+  message: PropTypes.string,
+  callback: PropTypes.func,
 }
 
-function PaypalComponent(props) {
-  const { currency, showSpinner, amount } = props
-  const [{ options, isPending }, dispatch] = usePayPalScriptReducer()
+export default function Paypal(props) {
+  const { value, message, callback } = props
+  const paypal = useRef()
 
   useEffect(() => {
-    dispatch({
-      type: "resetOptions",
-      value: {
-        ...options,
-        currency: currency,
-      },
-    })
-  }, [currency, showSpinner])
+    window.paypal
+      .Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            intent: "CAPTURE",
+            purchase_units: [
+              {
+                description: message,
+                amount: {
+                  currency_code: "USD",
+                  value: value,
+                },
+              },
+            ],
+          })
+        },
+        onApprove: async (data, actions) => {
+          const order = await actions.order.capture()
+          console.log(order)
+          callback()
+        },
+        onError: (err) => {
+          console.log(err)
+        },
+      })
+      .render(paypal.current)
+  }, [])
 
   return (
-    <>
-      {showSpinner && isPending && <div className="spinner" />}
-      <PayPalButtons
-        style={{ layout: "horizontal", tagline: false, color: "silver" }}
-        disabled={false}
-        forceReRender={[amount, currency, { layout: "horizontal" }]}
-        fundingSource={undefined}
-        createOrder={(data, actions) => {
-          return actions.order
-            .create({
-              purchase_units: [
-                {
-                  amount: {
-                    currency_code: currency,
-                    value: amount,
-                  },
-                },
-              ],
-            })
-            .then((orderId) => {
-              // Your code here after create the order
-              return orderId
-            })
-        }}
-        onApprove={function (data, actions) {
-          return actions.order.capture().then(function () {
-            // Your code here after capture the order
-          })
-        }}
-      />
-    </>
+    <div>
+      <div ref={paypal}></div>
+    </div>
   )
 }
-
-export default PaypalComponent

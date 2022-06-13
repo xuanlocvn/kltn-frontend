@@ -28,9 +28,34 @@ class ScholarshipContractService extends ContractBase {
     return tx
   }
 
-  async removeStudentFromScholarship(
+  async register(_contractAddress: string) {
+    console.log(_contractAddress)
+    const contract = await this.loadContract(_contractAddress)
+    if (!contract) return
+    const tx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      "register",
+    )
+    return tx
+  }
+
+  async cancelRegister(_contractAddress: string) {
+    const contract = await this.loadContract(_contractAddress)
+    if (!contract) return
+    const tx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      "cancelRegister",
+    )
+    return tx
+  }
+
+  async confirmCompletedAddress(
     _contractAddress: string,
-    _studentAddress: string,
+    _studentsAddress: string[],
   ) {
     const contract = await this.loadContract(_contractAddress)
     if (!contract) return
@@ -38,7 +63,23 @@ class ScholarshipContractService extends ContractBase {
       this.web3,
       contract,
       0,
-      "removeStudentFromScholarship",
+      "confirmCompletedAddress",
+      _studentsAddress,
+    )
+    return tx
+  }
+
+  async unConfirmCompletedAddress(
+    _contractAddress: string,
+    _studentAddress: string[],
+  ) {
+    const contract = await this.loadContract(_contractAddress)
+    if (!contract) return
+    const tx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      "unConfirmCompletedAddress",
       _studentAddress,
     )
     return tx

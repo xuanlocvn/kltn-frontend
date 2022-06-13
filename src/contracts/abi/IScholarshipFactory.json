@@ -45,15 +45,15 @@
     "absolutePath": "project:/contracts/studentmanager/interfaces/IScholarshipFactory.sol",
     "exportedSymbols": {
       "IScholarshipFactory": [
-        9914
+        11525
       ]
     },
-    "id": 9915,
+    "id": 11526,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 9902,
+        "id": 11513,
         "literals": [
           "solidity",
           "^",
@@ -61,7 +61,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "40:23:97"
+        "src": "40:23:73"
       },
       {
         "abstract": false,
@@ -70,36 +70,36 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 9914,
+        "id": 11525,
         "linearizedBaseContracts": [
-          9914
+          11525
         ],
         "name": "IScholarshipFactory",
-        "nameLocation": "77:19:97",
+        "nameLocation": "77:19:73",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "378ac245",
-            "id": 9913,
+            "id": 11524,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createNewScholarship",
-            "nameLocation": "113:20:97",
+            "nameLocation": "113:20:73",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9909,
+              "id": 11520,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9904,
+                  "id": 11515,
                   "mutability": "mutable",
                   "name": "owner",
-                  "nameLocation": "152:5:97",
+                  "nameLocation": "152:5:73",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9913,
-                  "src": "144:13:97",
+                  "scope": 11524,
+                  "src": "144:13:73",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -107,10 +107,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9903,
+                    "id": 11514,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "144:7:97",
+                    "src": "144:7:73",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -121,13 +121,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 9906,
+                  "id": 11517,
                   "mutability": "mutable",
                   "name": "_accessControll",
-                  "nameLocation": "176:15:97",
+                  "nameLocation": "176:15:73",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9913,
-                  "src": "168:23:97",
+                  "scope": 11524,
+                  "src": "168:23:73",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -135,10 +135,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9905,
+                    "id": 11516,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "168:7:97",
+                    "src": "168:7:73",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -149,13 +149,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 9908,
+                  "id": 11519,
                   "mutability": "mutable",
                   "name": "_rewardDistributor",
-                  "nameLocation": "210:18:97",
+                  "nameLocation": "210:18:73",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9913,
-                  "src": "202:26:97",
+                  "scope": 11524,
+                  "src": "202:26:73",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -163,10 +163,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9907,
+                    "id": 11518,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "202:7:97",
+                    "src": "202:7:73",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -176,21 +176,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "133:102:97"
+              "src": "133:102:73"
             },
             "returnParameters": {
-              "id": 9912,
+              "id": 11523,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9911,
+                  "id": 11522,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9913,
-                  "src": "254:7:97",
+                  "scope": 11524,
+                  "src": "254:7:73",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -198,10 +198,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9910,
+                    "id": 11521,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "254:7:97",
+                    "src": "254:7:73",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -211,35 +211,35 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "253:9:97"
+              "src": "253:9:73"
             },
-            "scope": 9914,
-            "src": "104:159:97",
+            "scope": 11525,
+            "src": "104:159:73",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 9915,
-        "src": "67:199:97",
+        "scope": 11526,
+        "src": "67:199:73",
         "usedErrors": []
       }
     ],
-    "src": "40:228:97"
+    "src": "40:228:73"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/studentmanager/interfaces/IScholarshipFactory.sol",
     "exportedSymbols": {
       "IScholarshipFactory": [
-        9914
+        11525
       ]
     },
-    "id": 9915,
+    "id": 11526,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 9902,
+        "id": 11513,
         "literals": [
           "solidity",
           "^",
@@ -247,7 +247,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "40:23:97"
+        "src": "40:23:73"
       },
       {
         "abstract": false,
@@ -256,36 +256,36 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 9914,
+        "id": 11525,
         "linearizedBaseContracts": [
-          9914
+          11525
         ],
         "name": "IScholarshipFactory",
-        "nameLocation": "77:19:97",
+        "nameLocation": "77:19:73",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "378ac245",
-            "id": 9913,
+            "id": 11524,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createNewScholarship",
-            "nameLocation": "113:20:97",
+            "nameLocation": "113:20:73",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9909,
+              "id": 11520,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9904,
+                  "id": 11515,
                   "mutability": "mutable",
                   "name": "owner",
-                  "nameLocation": "152:5:97",
+                  "nameLocation": "152:5:73",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9913,
-                  "src": "144:13:97",
+                  "scope": 11524,
+                  "src": "144:13:73",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -293,10 +293,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9903,
+                    "id": 11514,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "144:7:97",
+                    "src": "144:7:73",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -307,13 +307,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 9906,
+                  "id": 11517,
                   "mutability": "mutable",
                   "name": "_accessControll",
-                  "nameLocation": "176:15:97",
+                  "nameLocation": "176:15:73",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9913,
-                  "src": "168:23:97",
+                  "scope": 11524,
+                  "src": "168:23:73",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -321,10 +321,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9905,
+                    "id": 11516,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "168:7:97",
+                    "src": "168:7:73",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -335,13 +335,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 9908,
+                  "id": 11519,
                   "mutability": "mutable",
                   "name": "_rewardDistributor",
-                  "nameLocation": "210:18:97",
+                  "nameLocation": "210:18:73",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9913,
-                  "src": "202:26:97",
+                  "scope": 11524,
+                  "src": "202:26:73",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -349,10 +349,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9907,
+                    "id": 11518,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "202:7:97",
+                    "src": "202:7:73",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -362,21 +362,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "133:102:97"
+              "src": "133:102:73"
             },
             "returnParameters": {
-              "id": 9912,
+              "id": 11523,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9911,
+                  "id": 11522,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9913,
-                  "src": "254:7:97",
+                  "scope": 11524,
+                  "src": "254:7:73",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -384,10 +384,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9910,
+                    "id": 11521,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "254:7:97",
+                    "src": "254:7:73",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -397,21 +397,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "253:9:97"
+              "src": "253:9:73"
             },
-            "scope": 9914,
-            "src": "104:159:97",
+            "scope": 11525,
+            "src": "104:159:73",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 9915,
-        "src": "67:199:97",
+        "scope": 11526,
+        "src": "67:199:73",
         "usedErrors": []
       }
     ],
-    "src": "40:228:97"
+    "src": "40:228:73"
   },
   "compiler": {
     "name": "solc",
@@ -419,7 +419,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-05-21T07:58:16.180Z",
+  "updatedAt": "2022-06-13T07:41:46.658Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

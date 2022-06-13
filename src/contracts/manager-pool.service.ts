@@ -43,6 +43,19 @@ class ManagerPoolContractService extends ContractBase {
     return tx
   }
 
+  async revokeStudentRole(studentAddr: string[]) {
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
+    const tx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      "revokeStudentRole",
+      studentAddr,
+    )
+    return tx
+  }
+
   async update(studentAddr: string, hashInfo: string) {
     const contract = await this.loadContract(this.contractAddress)
     if (!contract) return
@@ -67,6 +80,19 @@ class ManagerPoolContractService extends ContractBase {
       "addLecturerInfo",
       lecturerAddr,
       hashInfo,
+    )
+    return tx
+  }
+
+  async revokeLecturerRole(lecturerAddr: string[]) {
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
+    const tx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      "revokeLecturerRole",
+      lecturerAddr,
     )
     return tx
   }
@@ -135,8 +161,11 @@ class ManagerPoolContractService extends ContractBase {
     _urlMetadata: string,
     _scholarshipId: string,
     _award: number | string,
+    _persionInCharge: string,
     _startTime: number | string,
+    _endTimeToRegister: number | string,
     _endTime: number | string,
+    _endTimeToConfirm: number | string,
   ) {
     const contract = await this.loadContract(this.contractAddress)
     if (!contract) return
@@ -148,8 +177,11 @@ class ManagerPoolContractService extends ContractBase {
       _urlMetadata,
       _scholarshipId,
       amountToValue(Number(_award)),
+      _persionInCharge,
       _startTime,
+      _endTimeToRegister,
       _endTime,
+      _endTimeToConfirm,
     )
     return tx
   }
@@ -173,6 +205,58 @@ class ManagerPoolContractService extends ContractBase {
       amountToValue(Number(_feeByToken)),
       _startTime,
       _endTime,
+    )
+    return tx
+  }
+
+  async lockTuition(_tuitionList: string[]) {
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
+    const tx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      "lockTuition",
+      _tuitionList,
+    )
+    return tx
+  }
+
+  async lockSubject(_tuitionList: string[]) {
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
+    const tx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      "lockSubject",
+      _tuitionList,
+    )
+    return tx
+  }
+
+  async lockScholarship(_tuitionList: string[]) {
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
+    const tx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      "lockScholarship",
+      _tuitionList,
+    )
+    return tx
+  }
+
+  async lockMission(_tuitionList: string[]) {
+    const contract = await this.loadContract(this.contractAddress)
+    if (!contract) return
+    const tx = await transactionService.sendTransaction(
+      this.web3,
+      contract,
+      0,
+      "lockMission",
+      _tuitionList,
     )
     return tx
   }

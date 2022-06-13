@@ -3,10 +3,19 @@ import { Link } from "react-router-dom"
 import Pagination from "src/components/shared/Pagination/Pagination"
 import { subjectContracService } from "src/contracts/subject-contract.service"
 import useList from "src/hooks/useList"
-import { getSubjectList } from "../../../api/subjectApi"
+import {
+  getSubjectList,
+  getSubjectListByLecturer,
+} from "../../../api/subjectApi"
 import { ISubjectInstance } from "../../../utils/window"
 import "./SubjectListPage.scss"
 import { CustomWindow } from "src/utils/window"
+import img from "src/assets/images/Subject.png"
+import { useAppSelector } from "src/app/hooks"
+import { selectRole } from "src/components/shared/Header/HeaderSlice"
+import useNow from "../../../hooks/useNow"
+import Countdown from "../../../components/countdown/CountDown"
+import { managerPoolContractService } from "src/contracts/manager-pool.service"
 
 declare let window: CustomWindow
 
@@ -22,15 +31,27 @@ function SubjectListPage() {
     renderList,
     setTotalList,
   } = useList<ISubjectInstance>()
+  const role = useAppSelector(selectRole)
+  const { now } = useNow()
 
   useEffect(() => {
     const fetchSubjectList = async (walletAddress: string) => {
-      const response = await getSubjectList(walletAddress)
+      let response
+      switch (role.role) {
+        case "LECTURER":
+          response = await await getSubjectListByLecturer(walletAddress)
+          break
+        case "STUDENT":
+          response = await getSubjectList(walletAddress)
+          break
+        default:
+          response = await getSubjectList()
+      }
       const result: ISubjectInstance[] = response.data.result
       setTotalList(result)
     }
     window.localStorage.account && fetchSubjectList(window.localStorage.account)
-  }, [])
+  }, [role])
 
   const onPaginate = (page: number) => {
     const filter = searchParams.get("filter")
@@ -54,6 +75,10 @@ function SubjectListPage() {
 
   const handleCancelRegister = async (contractAddress: string) => {
     await subjectContracService.cancelRegister(contractAddress)
+  }
+
+  const handleLock = async (address?: string) => {
+    await managerPoolContractService.lockSubject([address])
   }
 
   return (
@@ -87,35 +112,101 @@ function SubjectListPage() {
             <div
               key={index}
               className="mission_element col-4"
-              onClick={() => console.log("Hello")}
-              style={{ height: "164px" }}
+              style={{ height: "200px", padding: "0px" }}
             >
               <Link to={"/subjects/" + subject.subjectAddress}>
-                <h5>
-                  <strong>{subject.subjectName}</strong>
-                </h5>
-                <p>
-                  <b>Số lượng:</b> {subject.joinedStudentAmount}/
-                  {subject.maxStudentAmount}
-                </p>
-                <p className="element_status">{subject.subjectStatus}</p>
-              </Link>
-              {subject.isJoined ? (
-                <button
-                  className={
-                    subject.subjectStatus != "Closed"
-                      ? "join_btn cancel"
-                      : "join_btn cancel btn-disabled"
-                  }
-                  onClick={() =>
-                    subject.subjectStatus != "Closed" &&
-                    handleCancelRegister(subject.subjectAddress)
-                  }
-                  disabled
+                <div className="img">
+                  <img src={img} alt="mission" />
+                </div>
+                <div
+                  style={{
+                    position: "relative",
+                    top: "-80px",
+                    height: "5px",
+                  }}
                 >
-                  Hủy
-                </button>
-              ) : (
+                  {now <= subject.endTimeToResigter && (
+                    <>
+                      <Countdown
+                        timestamp={subject.endTimeToResigter}
+                        size={1}
+                        title="Thời gian còn lại để đăng ký..."
+                      />
+                    </>
+                  )}
+                  {subject.endTimeToResigter < now && now <= subject.endTime && (
+                    <>
+                      <Countdown
+                        timestamp={subject.endTime}
+                        size={1}
+                        title="Nhiệm vụ đang diễn ra..."
+                      />
+                    </>
+                  )}
+                  {subject.endTime < now && now <= subject.endTimeToComFirm && (
+                    <>
+                      <Countdown
+                        timestamp={subject.endTimeToComFirm}
+                        size={1}
+                        title="Nhiệm vụ đã kết thúc và đang chờ xác nhận..."
+                      />
+                    </>
+                  )}
+                  {now > subject.endTimeToComFirm && (
+                    <>
+                      <Countdown
+                        timestamp={subject.endTimeToComFirm}
+                        size={1}
+                        title="Kết thúc"
+                      />
+                    </>
+                  )}
+                </div>
+                <div className="p-3">
+                  <h5>
+                    <strong>{subject.subjectName}</strong>
+                  </h5>
+                  <p>
+                    <b>Số lượng:</b> {subject.joinedStudentAmount}/
+                    {subject.maxStudentAmount}
+                  </p>
+                  <p className="element_status">{subject.subjectStatus}</p>
+                </div>
+              </Link>
+              {subject.isJoined
+                ? role.role == "STUDENT" && (
+                    <button
+                      className={
+                        subject.subjectStatus != "Closed"
+                          ? "join_btn cancel"
+                          : "join_btn cancel btn-disabled"
+                      }
+                      onClick={() =>
+                        subject.subjectStatus != "Closed" &&
+                        handleCancelRegister(subject.subjectAddress)
+                      }
+                      disabled
+                    >
+                      Hủy
+                    </button>
+                  )
+                : role.role == "STUDENT" && (
+                    <button
+                      className={
+                        subject.subjectStatus != "Closed"
+                          ? "join_btn join"
+                          : "join_btn join btn-disabled"
+                      }
+                      onClick={() =>
+                        subject.subjectStatus != "Closed" &&
+                        handleRegister(subject.subjectAddress)
+                      }
+                    >
+                      Tham gia
+                    </button>
+                  )}
+
+              {role.role == "ADMIN" && (
                 <button
                   className={
                     subject.subjectStatus != "Closed"
@@ -124,10 +215,10 @@ function SubjectListPage() {
                   }
                   onClick={() =>
                     subject.subjectStatus != "Closed" &&
-                    handleRegister(subject.subjectAddress)
+                    handleLock(subject.subjectAddress)
                   }
                 >
-                  Tham gia
+                  Khoá
                 </button>
               )}
             </div>

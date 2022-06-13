@@ -23,15 +23,15 @@
     "absolutePath": "project:/contracts/studentmanager/interfaces/IGeneralContract.sol",
     "exportedSymbols": {
       "IGeneralContract": [
-        9603
+        11160
       ]
     },
-    "id": 9604,
+    "id": 11161,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 9599,
+        "id": 11156,
         "literals": [
           "solidity",
           ">=",
@@ -39,7 +39,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "39:24:91"
+        "src": "39:24:67"
       },
       {
         "abstract": false,
@@ -48,62 +48,62 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 9603,
+        "id": 11160,
         "linearizedBaseContracts": [
-          9603
+          11160
         ],
         "name": "IGeneralContract",
-        "nameLocation": "77:16:91",
+        "nameLocation": "77:16:67",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "43d726d6",
-            "id": 9602,
+            "id": 11159,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "close",
-            "nameLocation": "110:5:91",
+            "nameLocation": "110:5:67",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9600,
+              "id": 11157,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "115:2:91"
+              "src": "115:2:67"
             },
             "returnParameters": {
-              "id": 9601,
+              "id": 11158,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "126:0:91"
+              "src": "126:0:67"
             },
-            "scope": 9603,
-            "src": "101:26:91",
+            "scope": 11160,
+            "src": "101:26:67",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 9604,
-        "src": "67:63:91",
+        "scope": 11161,
+        "src": "67:63:67",
         "usedErrors": []
       }
     ],
-    "src": "39:93:91"
+    "src": "39:93:67"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/studentmanager/interfaces/IGeneralContract.sol",
     "exportedSymbols": {
       "IGeneralContract": [
-        9603
+        11160
       ]
     },
-    "id": 9604,
+    "id": 11161,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 9599,
+        "id": 11156,
         "literals": [
           "solidity",
           ">=",
@@ -111,7 +111,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "39:24:91"
+        "src": "39:24:67"
       },
       {
         "abstract": false,
@@ -120,48 +120,48 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 9603,
+        "id": 11160,
         "linearizedBaseContracts": [
-          9603
+          11160
         ],
         "name": "IGeneralContract",
-        "nameLocation": "77:16:91",
+        "nameLocation": "77:16:67",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "43d726d6",
-            "id": 9602,
+            "id": 11159,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "close",
-            "nameLocation": "110:5:91",
+            "nameLocation": "110:5:67",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 9600,
+              "id": 11157,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "115:2:91"
+              "src": "115:2:67"
             },
             "returnParameters": {
-              "id": 9601,
+              "id": 11158,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "126:0:91"
+              "src": "126:0:67"
             },
-            "scope": 9603,
-            "src": "101:26:91",
+            "scope": 11160,
+            "src": "101:26:67",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 9604,
-        "src": "67:63:91",
+        "scope": 11161,
+        "src": "67:63:67",
         "usedErrors": []
       }
     ],
-    "src": "39:93:91"
+    "src": "39:93:67"
   },
   "compiler": {
     "name": "solc",
@@ -169,7 +169,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-05-21T07:58:16.153Z",
+  "updatedAt": "2022-06-13T07:41:46.647Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
