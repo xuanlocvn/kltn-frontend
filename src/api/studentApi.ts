@@ -1,5 +1,10 @@
 import axiosClient from "./axiosClient"
 
+export const getAllStudents = () => {
+  const url = "api/student"
+  return axiosClient.get(url)
+}
+
 export const getStudentByAddress = (studentAddress: string) => {
   const url = `api/student/${studentAddress}`
   return axiosClient.get(url)

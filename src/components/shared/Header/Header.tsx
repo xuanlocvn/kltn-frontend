@@ -68,10 +68,30 @@ function Header() {
   return (
     <>
       <div className="header container header__account d-flex justify-content-between align-items-center">
-        <h1 className="col col-5">BLOCK CHAIN</h1>
-        <div className="col col-7 d-flex align-items-center justify-content-between">
-          <div className="col col-7 d-flex justify-content-between">
+        <h1 className={role.role == "ADMIN" ? "col col-3" : "col col-5"}>
+          LOGO
+        </h1>
+        <div
+          className={
+            role.role == "ADMIN"
+              ? "col col-9 d-flex align-items-center justify-content-between"
+              : "col col-7 d-flex align-items-center justify-content-between"
+          }
+        >
+          <div
+            className={
+              role.role == "ADMIN"
+                ? "col col-9 d-flex justify-content-between"
+                : "col col-7 d-flex justify-content-between"
+            }
+          >
             <>
+              {role.role == "ADMIN" && (
+                <>
+                  <Link to={"/students"}>DS Sinh viên</Link>
+                  <Link to={"/lecturers"}>DS Giảng viên</Link>
+                </>
+              )}
               <Link to={"/missions"}>Nhiệm vụ</Link>
               <Link to={"/subjects"}>Môn học</Link>
               <Link to={"/scholarships"}>Học bổng</Link>

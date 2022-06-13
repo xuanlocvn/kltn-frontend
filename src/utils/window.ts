@@ -263,3 +263,19 @@ export interface ISellerOnSaleInstance {
   ownerAddress
   status
 }
+
+export interface ISudentList {
+  studentName
+  studentId
+  studentAddress
+  classroomName
+  departmentName
+}
+
+export interface ILecturerList {
+  lecturerName
+  lecturerId
+  lecturerAddress
+  departmentName
+  departmentShortenName
+}

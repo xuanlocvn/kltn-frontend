@@ -28,28 +28,6 @@ StudentInfomation.propTypes = {
   }),
 }
 
-// StudentInfomation.defaultProps = {
-//   studentInfo: {
-//     name: 'Mai Nguyen Duc Tho',
-//     gender: 'Nữ',
-//     placeOfBirth: 'Long An',
-//     nation: 'Kinh',
-//     cmnd: '123456789',
-//     issuanceDate: convertLocalTime(1450017483),
-//     issuancePlace: 'Long An',
-//     address: 'Long An',
-//     imgUrl:
-//       'https://img4.thuthuatphanmem.vn/uploads/2020/12/25/avt-chibi-doc_115941237.jpg',
-//     studentId: '18520369',
-//     birthday: convertLocalTime(1650438993),
-//     faculty: 'KTTT',
-//     major: 'CNNT',
-//     schoolYear: '2018',
-//     class: 'CNTT2018',
-//     walletAddress: '0xa68a621367346bedb9a0325087856598903c9c70',
-//   },
-// };
-
 function StudentInfomation(props) {
   const { studentInfo } = props
   const { onChangeAvt, defaultAvt, setDefaultAvt } = useAvata()

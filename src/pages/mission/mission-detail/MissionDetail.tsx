@@ -14,6 +14,7 @@ import TimeLine from "../../../components/timeline/TimeLine"
 import Countdown from "../../../components/countdown/CountDown"
 import useNow from "../../../hooks/useNow"
 import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import LoadCSV from "src/components/csv/LoadCSV"
 
 declare let window: CustomWindow
 
@@ -32,6 +33,7 @@ function MissionDetail() {
   const { selectList, handleChange } = useCheckbox()
   const [data, setData] = useState([{}])
   const { now } = useNow()
+  const [studentList, SetStudentList] = useState([])
 
   useEffect(() => {
     const getDetail = async (missionAddress: string) => {
@@ -78,6 +80,14 @@ function MissionDetail() {
       missionId,
       selectList,
     )
+  }
+
+  const handleAddStudent = async () => {
+    await missionContractService.addStudentToMission(missionId, studentList)
+  }
+
+  const onLoadCSV = (list: string[]) => {
+    SetStudentList(list)
   }
 
   const handleLock = async (address?: string) => {
@@ -338,34 +348,52 @@ function MissionDetail() {
                 </tbody>
               </table>
               {role.role == "LECTURER" && (
-                <div className="d-flex flex-row-reverse mt-5">
-                  <button
-                    className={
-                      detail.endTimeToComFirm < Date.now() / 1000
-                        ? "completed btn-disabled"
-                        : "completed"
-                    }
-                    onClick={() =>
-                      detail.endTimeToComFirm > Date.now() / 1000 &&
-                      handleConfirmCompletedAddress
-                    }
-                  >
-                    Hoàn thành
-                  </button>
-                  <button
-                    className={
-                      detail.endTimeToComFirm < Date.now() / 1000
-                        ? "not-completed btn-disabled"
-                        : "not-completed"
-                    }
-                    onClick={() =>
-                      detail.endTimeToComFirm > Date.now() / 1000 &&
-                      handleUnconfirmCompletedAddress
-                    }
-                  >
-                    Chưa hoàn thành
-                  </button>
-                </div>
+                <>
+                  <div>
+                    <LoadCSV onLoadCSV={onLoadCSV} />
+                  </div>
+                  <div className="d-flex flex-row-reverse mt-5">
+                    <button
+                      className={
+                        detail.endTimeToComFirm < Date.now() / 1000
+                          ? "completed btn-disabled"
+                          : "completed"
+                      }
+                      onClick={() =>
+                        detail.endTimeToComFirm > Date.now() / 1000 &&
+                        handleConfirmCompletedAddress
+                      }
+                    >
+                      Hoàn thành
+                    </button>
+                    <button
+                      className={
+                        detail.endTimeToComFirm < Date.now() / 1000
+                          ? "not-completed btn-disabled"
+                          : "not-completed"
+                      }
+                      onClick={() =>
+                        detail.endTimeToComFirm > Date.now() / 1000 &&
+                        handleUnconfirmCompletedAddress
+                      }
+                    >
+                      Chưa hoàn thành
+                    </button>
+                    <button
+                      className={
+                        detail.endTimeToComFirm < Date.now() / 1000
+                          ? "not-completed btn-disabled"
+                          : "not-completed"
+                      }
+                      onClick={() =>
+                        detail.endTimeToComFirm > Date.now() / 1000 &&
+                        handleAddStudent
+                      }
+                    >
+                      Thêm sinh viên
+                    </button>
+                  </div>
+                </>
               )}
             </div>
           )}

@@ -74,18 +74,32 @@ function StudentTab(props) {
           </p>
         </>
       ) : (
-        <p>
-          <button
-            className={activeButton == 3 ? "active" : ""}
-            onClick={() => {
-              onTab(3)
-              handleActive(3)
-              setSearchParams({ t: "3" })
-            }}
-          >
-            Chứng nhận
-          </button>
-        </p>
+        <>
+          <p>
+            <button
+              className={activeButton == 2 ? "active" : ""}
+              onClick={() => {
+                onTab(2)
+                handleActive(2)
+                setSearchParams({ t: "2" })
+              }}
+            >
+              Tài khoản
+            </button>
+          </p>
+          <p>
+            <button
+              className={activeButton == 3 ? "active" : ""}
+              onClick={() => {
+                onTab(3)
+                handleActive(3)
+                setSearchParams({ t: "3" })
+              }}
+            >
+              Chứng nhận
+            </button>
+          </p>
+        </>
       )}
     </div>
   )

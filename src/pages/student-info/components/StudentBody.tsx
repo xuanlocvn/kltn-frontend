@@ -56,7 +56,6 @@ function StudentBody(props: { walletAddress: string; studentInfo: any }) {
     }
 
     getAccount().then((account) => {
-      console.log("Helloooooooooooooooooooooo")
       if (account == null) return
       if (account.toLowerCase() == walletAddress.toLowerCase()) {
         setIsOwnStudent(true)
@@ -81,7 +80,7 @@ function StudentBody(props: { walletAddress: string; studentInfo: any }) {
         {tab == 1 && isOwnStdudent && (
           <StudentInfomation studentInfo={studentInfo} />
         )}
-        {tab == 2 && isOwnStdudent && (
+        {tab == 2 && (
           <StudentAccount
             walletAddress={walletAddress}
             totalToken={totalToken}
