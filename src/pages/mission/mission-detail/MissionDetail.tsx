@@ -68,13 +68,11 @@ function MissionDetail() {
     await missionContractService.cancelRegister(contractAddress)
   }
 
-  const handleConfirmCompletedAddress = async (e) => {
-    e.preventDefault()
+  const handleConfirmCompletedAddress = async () => {
     console.log(selectList)
     await missionContractService.confirmCompletedAddress(missionId, selectList)
   }
-  const handleUnconfirmCompletedAddress = async (e) => {
-    e.preventDefault()
+  const handleUnconfirmCompletedAddress = async () => {
     console.log(selectList)
     await missionContractService.unConfirmCompletedAddress(
       missionId,
@@ -191,12 +189,14 @@ function MissionDetail() {
                     ? role.role == "STUDENT" && (
                         <button
                           className={
-                            detail.missionStatus != "Closed"
+                            detail.missionStatus != "Closed" &&
+                            now <= detail.endTimeToResigter
                               ? "join_btn cancel"
                               : "join_btn cancel btn-disabled"
                           }
                           onClick={() =>
                             detail.missionStatus != "Closed" &&
+                            now <= detail.endTimeToResigter &&
                             handleCancelRegister(detail.missionAddress)
                           }
                         >
@@ -206,12 +206,14 @@ function MissionDetail() {
                     : role.role == "STUDENT" && (
                         <button
                           className={
-                            detail.missionStatus != "Closed"
+                            detail.missionStatus != "Closed" &&
+                            now <= detail.endTimeToResigter
                               ? "join_btn join"
                               : "join_btn join btn-disabled"
                           }
                           onClick={() =>
                             detail.missionStatus != "Closed" &&
+                            now <= detail.endTimeToResigter &&
                             handleRegister(detail.missionAddress)
                           }
                         >
@@ -361,7 +363,7 @@ function MissionDetail() {
                       }
                       onClick={() =>
                         detail.endTimeToComFirm > Date.now() / 1000 &&
-                        handleConfirmCompletedAddress
+                        handleConfirmCompletedAddress()
                       }
                     >
                       Hoàn thành
@@ -374,7 +376,7 @@ function MissionDetail() {
                       }
                       onClick={() =>
                         detail.endTimeToComFirm > Date.now() / 1000 &&
-                        handleUnconfirmCompletedAddress
+                        handleUnconfirmCompletedAddress()
                       }
                     >
                       Chưa hoàn thành
@@ -387,7 +389,7 @@ function MissionDetail() {
                       }
                       onClick={() =>
                         detail.endTimeToComFirm > Date.now() / 1000 &&
-                        handleAddStudent
+                        handleAddStudent()
                       }
                     >
                       Thêm sinh viên

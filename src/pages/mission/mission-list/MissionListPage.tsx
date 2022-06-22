@@ -105,116 +105,125 @@ function MissionListPage() {
       </div>
       <div style={{ height: "552px" }}>
         <div className="mission mt-4 d-flex flex-wrap">
-          {renderList.map((mission, index) => (
-            <div
-              key={index}
-              className="mission_element col-4"
-              style={{ height: "200px" }}
-            >
-              <Link to={"/missions/" + mission.missionAddress}>
-                <div className="img">
-                  <img src={img} alt="mission" />
-                </div>
-                <div
-                  style={{ position: "relative", top: "-80px", height: "5px" }}
-                >
-                  {now <= mission.endTimeToResigter && (
-                    <>
-                      <Countdown
-                        timestamp={mission.endTimeToResigter}
-                        size={1}
-                        title="Thời gian còn lại để đăng ký..."
-                      />
-                    </>
-                  )}
-                  {mission.endTimeToResigter < now && now <= mission.endTime && (
-                    <>
-                      <Countdown
-                        timestamp={mission.endTime}
-                        size={1}
-                        title="Nhiệm vụ đang diễn ra..."
-                      />
-                    </>
-                  )}
-                  {mission.endTime < now && now <= mission.endTimeToComFirm && (
-                    <>
-                      <Countdown
-                        timestamp={mission.endTimeToComFirm}
-                        size={1}
-                        title="Nhiệm vụ đã kết thúc và đang chờ xác nhận..."
-                      />
-                    </>
-                  )}
-                  {now > mission.endTimeToComFirm && (
-                    <>
-                      <Countdown
-                        timestamp={mission.endTimeToComFirm}
-                        size={1}
-                        title="Kết thúc"
-                      />
-                    </>
-                  )}
-                </div>
-                <div className="p-3">
-                  <h5>
-                    <strong>{mission.missionName}</strong>
-                  </h5>
-                  <p>
-                    <b>Số lượng:</b> {mission.joinedStudentAmount}/
-                    {mission.maxStudentAmount}
-                  </p>
-                  <p className="element_status">{mission.missionStatus}</p>
-                </div>
-              </Link>
-              {mission.isJoined
-                ? role.role == "STUDENT" && (
-                    <button
-                      className={
-                        mission.missionStatus != "Closed"
-                          ? "join_btn cancel"
-                          : "join_btn cancel btn-disabled"
-                      }
-                      onClick={() =>
-                        mission.missionStatus != "Closed" &&
-                        handleCancelRegister(mission.missionAddress)
-                      }
-                    >
-                      Hủy
-                    </button>
-                  )
-                : role.role == "STUDENT" && (
-                    <button
-                      className={
-                        mission.missionStatus != "Closed"
-                          ? "join_btn join"
-                          : "join_btn join btn-disabled"
-                      }
-                      onClick={() => {
-                        mission.missionStatus != "Closed" &&
-                          handleRegister(mission.missionAddress)
-                      }}
-                    >
-                      Tham gia
-                    </button>
-                  )}
+          {renderList &&
+            renderList.map((mission, index) => (
+              <div
+                key={index}
+                className="mission_element col-4"
+                style={{ height: "200px" }}
+              >
+                <Link to={"/missions/" + mission.missionAddress}>
+                  <div className="img">
+                    <img src={img} alt="mission" />
+                  </div>
+                  <div
+                    style={{
+                      position: "relative",
+                      top: "-80px",
+                      height: "5px",
+                    }}
+                  >
+                    {now <= mission.endTimeToResigter && (
+                      <>
+                        <Countdown
+                          timestamp={mission.endTimeToResigter}
+                          size={1}
+                          title="Thời gian còn lại để đăng ký..."
+                        />
+                      </>
+                    )}
+                    {mission.endTimeToResigter < now && now <= mission.endTime && (
+                      <>
+                        <Countdown
+                          timestamp={mission.endTime}
+                          size={1}
+                          title="Nhiệm vụ đang diễn ra..."
+                        />
+                      </>
+                    )}
+                    {mission.endTime < now && now <= mission.endTimeToComFirm && (
+                      <>
+                        <Countdown
+                          timestamp={mission.endTimeToComFirm}
+                          size={1}
+                          title="Nhiệm vụ đã kết thúc và đang chờ xác nhận..."
+                        />
+                      </>
+                    )}
+                    {now > mission.endTimeToComFirm && (
+                      <>
+                        <Countdown
+                          timestamp={mission.endTimeToComFirm}
+                          size={1}
+                          title="Kết thúc"
+                        />
+                      </>
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <h5>
+                      <strong>{mission.missionName}</strong>
+                    </h5>
+                    <p>
+                      <b>Số lượng:</b> {mission.joinedStudentAmount}/
+                      {mission.maxStudentAmount}
+                    </p>
+                    <p className="element_status">{mission.missionStatus}</p>
+                  </div>
+                </Link>
+                {mission.isJoined
+                  ? role.role == "STUDENT" && (
+                      <button
+                        className={
+                          mission.missionStatus != "Closed" &&
+                          now <= mission.endTimeToResigter
+                            ? "join_btn cancel"
+                            : "join_btn cancel btn-disabled"
+                        }
+                        onClick={() =>
+                          mission.missionStatus != "Closed" &&
+                          now <= mission.endTimeToResigter &&
+                          handleCancelRegister(mission.missionAddress)
+                        }
+                      >
+                        Hủy
+                      </button>
+                    )
+                  : role.role == "STUDENT" && (
+                      <button
+                        className={
+                          mission.missionStatus != "Closed" &&
+                          now <= mission.endTimeToResigter
+                            ? "join_btn join"
+                            : "join_btn join btn-disabled"
+                        }
+                        onClick={() => {
+                          mission.missionStatus != "Closed" &&
+                            now <= mission.endTimeToResigter &&
+                            handleRegister(mission.missionAddress)
+                        }}
+                      >
+                        Tham gia
+                      </button>
+                    )}
 
-              {role.role == "ADMIN" && (
-                <button
-                  className={
-                    mission.missionStatus != "Closed"
-                      ? "join_btn join"
-                      : "join_btn join btn-disabled"
-                  }
-                  onClick={() =>
-                    mission.missionStatus != "Closed" &&
-                    handleLock(mission.missionAddress)
-                  }
-                >
-                  Khoá
-                </button>
-              )}
-            </div>
-          ))}
+                {role.role == "ADMIN" && (
+                  <button
+                    className={
+                      mission.missionStatus != "Closed"
+                        ? "join_btn join"
+                        : "join_btn join btn-disabled"
+                    }
+                    onClick={() =>
+                      mission.missionStatus != "Closed" &&
+                      handleLock(mission.missionAddress)
+                    }
+                  >
+                    Khoá
+                  </button>
+                )}
+              </div>
+            ))}
         </div>
       </div>
 

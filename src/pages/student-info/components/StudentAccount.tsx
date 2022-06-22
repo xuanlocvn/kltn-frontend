@@ -71,7 +71,9 @@ function StudentAccount(props) {
             <label className="d-block">Số dư token</label>
             <div className="d-flex justify-content-around">
               <div>
-                <p className="amountToken d-inline-block">{totalToken}</p>
+                <p className="amountToken d-inline-block">
+                  {Math.round(totalToken * 100) / 100}
+                </p>
                 <p className="d-inline-block" style={{ fontWeight: "bold" }}>
                   Token
                 </p>
@@ -96,20 +98,26 @@ function StudentAccount(props) {
                     <tr key={index} className="row">
                       <td className="col col-3 text-center">{index}</td>
                       <td className="col col-3 text-center">
-                        {history.historyName}
+                        <Link
+                          to={`/${history.type}/${history.contractAddress}`}
+                        >
+                          {history.historyName}
+                        </Link>
                       </td>
                       <td className="col col-3 text-center">
-                        <span className="text-success fw-bold">
+                        <span
+                          className={
+                            history.amount > 0
+                              ? "text-success fw-bold"
+                              : "text-danger fw-bold"
+                          }
+                        >
                           {history.amount > 0 && "+"}
                           {history.amount}
                         </span>
                       </td>
                       <td className="col col-3 text-center">
-                        <Link
-                          to={`/${history.type}/${history.contractAddress}`}
-                        >
-                          {convertLocalTime(Number(history.submitTime))}
-                        </Link>
+                        {convertLocalTime(Number(history.submitTime))}
                       </td>
                     </tr>
                   ))

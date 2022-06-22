@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import { useEffect, useState } from "react"
 import Web3 from "web3"
 import {
@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from "src/app/hooks"
 import { Link } from "react-router-dom"
 import { addRole, removeRole, selectRole } from "./HeaderSlice"
 import { accessControlContractService } from "src/contracts/access-control.service"
+import img from "src/assets/images/Logo.png"
 
 declare let window: CustomWindow
 
@@ -21,8 +22,14 @@ function Header() {
   const role = useAppSelector(selectRole)
   const dispatch = useAppDispatch()
   const [account, setAccount] = useState(null)
+  const tabRef = useRef(0)
+
+  // const handleTab = (tab: number) => {
+  //   tabRef.current = tab
+  // }
 
   useEffect(() => {
+    tabRef.current = 0
     const loadAccountFromWallet = async () => {
       const ethereum = window.ethereum
       if (ethereum != undefined) {
@@ -38,7 +45,6 @@ function Header() {
         ethereum.on("chainChanged", (chainId: string) => {
           console.log(`On Chain ID: ${chainId}`)
           dispatch(connect(new Web3(ethereum)))
-          // eslint-disable-next-line no-undef
           window.location.reload()
         })
         ethereum.on("accountsChanged", async (accounts) => {
@@ -49,7 +55,6 @@ function Header() {
           window.localStorage.account = accounts[0]
           if (accounts[0] == "undefined") setAccount(null)
           dispatch(connect(new Web3(ethereum)))
-          // eslint-disable-next-line no-undef
           window.location.reload()
         })
         ethereum.on("disconnect", (code, reason) => {
@@ -67,9 +72,9 @@ function Header() {
 
   return (
     <>
-      <div className="header container header__account d-flex justify-content-between align-items-center">
+      <div className="header header__account d-flex justify-content-between align-items-center">
         <h1 className={role.role == "ADMIN" ? "col col-3" : "col col-5"}>
-          LOGO
+          <img src={img} alt="logo" width={120} />
         </h1>
         <div
           className={
@@ -107,7 +112,10 @@ function Header() {
                 }`}
               >
                 <div className="d-flex align-items-center">
-                  <span>{account}</span>
+                  <div className="d-flex flex-column">
+                    <span style={{ fontSize: "10px" }}>{role.role}</span>
+                    <span>{account}</span>
+                  </div>
                   <img
                     src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png"
                     alt=""

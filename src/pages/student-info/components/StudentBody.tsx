@@ -10,6 +10,9 @@ import { useAppSelector } from "src/app/hooks"
 import { selectWeb3 } from "src/pages/sign-in/SignInSlice"
 import StudentCertificate from "./StudentCertificate"
 import { getMissionsOfStudent, getSubjectsOfStudent } from "src/api/studentApi"
+import { erc20ContractService } from "src/contracts/erc20.service"
+import { configService } from "src/configs/config.service"
+import { CONFIG } from "src/configs/config.enum"
 
 StudentBody.propTypes = {
   walletAddress: PropTypes.string,
@@ -29,8 +32,15 @@ function StudentBody(props: { walletAddress: string; studentInfo: any }) {
   })
 
   useEffect(() => {
-    setTotaToken(5000)
-  })
+    const getBalance = async () => {
+      const balance = await erc20ContractService.getERC20Balance(
+        configService.getConfig(CONFIG.UIT_TOKEN_ADDRESS),
+        walletAddress,
+      )
+      setTotaToken(Number(balance))
+    }
+    getBalance()
+  }, [])
 
   useEffect(() => {
     const getCertificates = async (studentAddress: string) => {

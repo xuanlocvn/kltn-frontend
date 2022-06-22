@@ -37,13 +37,14 @@ function CreateNewClass() {
     const fetchApi = async () => {
       const response = await getSubjectByDepartment(faculty)
       response.data.result && setSubjectList(response.data.result)
-      response.data.result && SetSubjectId(response.data.result[0].subjectHash)
+      response.data.result &&
+        SetSubjectId(response.data.result[0].subjectHash + ".L22")
     }
     fetchApi()
   }, [faculty])
 
   useEffect(() => {
-    subject && SetSubjectId(subject)
+    subject && SetSubjectId(subject + ".L22")
   }, [subject])
 
   const handleSubmit = async (e) => {

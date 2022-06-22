@@ -15,6 +15,9 @@ import Paypal from "src/components/paypal/PaypalComponent"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import { erc20ContractService } from "src/contracts/erc20.service"
+import { CONFIG } from "src/configs/config.enum"
+import { configService } from "src/configs/config.service"
 
 declare let window: CustomWindow
 
@@ -71,6 +74,16 @@ function TuitionListPage() {
   }
 
   const paymentByToken = async (contractAddress: string) => {
+    const allowance = await erc20ContractService.getAllowance(
+      configService.getConfig(CONFIG.UIT_TOKEN_ADDRESS),
+      contractAddress,
+    )
+    if (Number(allowance) == 0)
+      await erc20ContractService.approve(
+        configService.getConfig(CONFIG.UIT_TOKEN_ADDRESS),
+        contractAddress,
+        1000000000000000,
+      )
     await tuitionContracService.paymentByToken(contractAddress)
   }
 
@@ -113,7 +126,7 @@ function TuitionListPage() {
       <div style={{ height: "552px" }}>
         <div className="mission mt-4 d-flex flex-wrap">
           {renderList.map((tuition, index) => (
-            <div key={index}>
+            <div key={index} className="col col-4">
               {checkout && (
                 <div className="payment_container">
                   <div className="payment">
@@ -141,8 +154,8 @@ function TuitionListPage() {
                 </div>
               )}
               <div
-                className="mission_element col-4"
-                style={{ height: "200px" }}
+                className="mission_element"
+                style={{ height: "200px", width: "96%" }}
               >
                 <Link to={"/tuitions/" + tuition.tuitionAddress}>
                   <div className="img">
@@ -184,20 +197,24 @@ function TuitionListPage() {
                     <p className="element_status">{tuition.tuitionStatus}</p>
                   </div>
                 </Link>
-                {tuition.isCompleted
-                  ? role.role == "STUDENT" && (
-                      <button className="join_btn cancel">Đã đóng</button>
-                    )
-                  : role.role == "STUDENT" && (
-                      <>
-                        <button
-                          className="join_btn join"
-                          onClick={() => setCheckOut(true)}
-                        >
-                          Đóng
-                        </button>
-                      </>
-                    )}
+                {tuition.isCompleted ? (
+                  role.role == "STUDENT" && (
+                    <button className="join_btn cancel btn-disabled">
+                      Đã đóng
+                    </button>
+                  )
+                ) : role.role == "STUDENT" && now <= tuition.endTime ? (
+                  <>
+                    <button
+                      className="join_btn join"
+                      onClick={() => setCheckOut(true)}
+                    >
+                      Đóng
+                    </button>
+                  </>
+                ) : (
+                  <button className="join_btn cancel btn-disabled">Đóng</button>
+                )}
 
                 {role.role == "ADMIN" && (
                   <button

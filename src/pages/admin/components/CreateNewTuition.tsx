@@ -101,7 +101,7 @@ function CreateNewTuition() {
                 </label>
                 <input
                   type="text"
-                  placeholder="Mã lớp"
+                  placeholder="Mã đợt đóng học phí"
                   name="tuitionId"
                   required
                 />
@@ -133,6 +133,7 @@ function CreateNewTuition() {
                   </label>
                   <input
                     type="number"
+                    step="0.01"
                     placeholder="Số token phải thanh toán"
                     name="amountToken"
                     required
@@ -145,6 +146,7 @@ function CreateNewTuition() {
                   </label>
                   <input
                     type="number"
+                    step="0.01"
                     placeholder="Hoặc số tiền cần thanh toán"
                     name="amountCurency"
                     required

@@ -177,15 +177,16 @@ function SubjectListPage() {
                 ? role.role == "STUDENT" && (
                     <button
                       className={
-                        subject.subjectStatus != "Closed"
+                        subject.subjectStatus != "Closed" &&
+                        now <= subject.endTimeToResigter
                           ? "join_btn cancel"
                           : "join_btn cancel btn-disabled"
                       }
                       onClick={() =>
                         subject.subjectStatus != "Closed" &&
+                        now <= subject.endTimeToResigter &&
                         handleCancelRegister(subject.subjectAddress)
                       }
-                      disabled
                     >
                       Hủy
                     </button>
@@ -193,12 +194,14 @@ function SubjectListPage() {
                 : role.role == "STUDENT" && (
                     <button
                       className={
-                        subject.subjectStatus != "Closed"
+                        subject.subjectStatus != "Closed" &&
+                        now <= subject.endTimeToResigter
                           ? "join_btn join"
                           : "join_btn join btn-disabled"
                       }
                       onClick={() =>
                         subject.subjectStatus != "Closed" &&
+                        now <= subject.endTimeToResigter &&
                         handleRegister(subject.subjectAddress)
                       }
                     >

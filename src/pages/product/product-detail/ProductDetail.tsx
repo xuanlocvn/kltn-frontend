@@ -339,6 +339,7 @@ function ProductDetail() {
                             <input
                               name="priceForSell"
                               id="priceForSell"
+                              step="0.01"
                               type="number"
                               placeholder="Giá bán cho một vật phẩm"
                               min={0}

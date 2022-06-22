@@ -55,8 +55,8 @@ function CreateNewScholarShip() {
       scholarshipInfoForm.award,
       scholarshipInfoForm.lecturerInCharge,
       scholarshipInfoForm.startTime,
-      scholarshipInfoForm.endTimeToRegister,
       scholarshipInfoForm.endTime,
+      scholarshipInfoForm.endTimeToRegister,
       scholarshipInfoForm.endTimeToConfirm,
     )
   }
@@ -97,6 +97,7 @@ function CreateNewScholarShip() {
                   type="text"
                   placeholder="Tên môn học"
                   name="name"
+                  defaultValue={"Học bổng "}
                   required
                 />
               </div>
@@ -188,6 +189,7 @@ function CreateNewScholarShip() {
                 </label>
                 <input
                   type="number"
+                  step="0.01"
                   placeholder="Phần thưởng"
                   name="award"
                   required

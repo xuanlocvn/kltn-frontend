@@ -114,7 +114,10 @@ function LecturerList() {
           {role.role == "ADMIN" && (
             <div className="d-flex flex-row-reverse align-items-center mt-5">
               <div>
-                <button className="completed" onClick={handleRevoke}>
+                <button
+                  className="completed"
+                  onClick={selectList && selectList.length > 0 && handleRevoke}
+                >
                   Xoá phân quyền
                 </button>
               </div>

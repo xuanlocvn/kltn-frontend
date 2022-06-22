@@ -451,6 +451,7 @@ select .select-item {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     position: absolute;
+    z-index: 9999;
     top: 0;
   }
 

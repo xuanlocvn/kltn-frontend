@@ -205,6 +205,7 @@ function CreateNewMission() {
                 </label>
                 <input
                   type="number"
+                  step="0.01"
                   placeholder="Phần thưởng"
                   name="award"
                   required

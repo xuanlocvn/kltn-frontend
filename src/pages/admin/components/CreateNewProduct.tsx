@@ -136,6 +136,7 @@ function CreateNewProduct() {
                   </label>
                   <input
                     type="number"
+                    step="0.01"
                     placeholder="Giá mỗi vật phẩm"
                     name="price"
                     required

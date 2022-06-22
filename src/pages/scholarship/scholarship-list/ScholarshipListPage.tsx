@@ -132,7 +132,7 @@ function ScholarshipListPage() {
                         <Countdown
                           timestamp={scholarship.endTimeToResigter}
                           size={1}
-                          title="Thời gian còn lại để đăng ký..."
+                          title="Thời gian còn lại để đăng ký học bổng..."
                         />
                       </>
                     )}
@@ -142,7 +142,7 @@ function ScholarshipListPage() {
                           <Countdown
                             timestamp={scholarship.endTime}
                             size={1}
-                            title="Nhiệm vụ đang diễn ra..."
+                            title="Quá trình xét học bổng đang diễn ra..."
                           />
                         </>
                       )}
@@ -152,7 +152,7 @@ function ScholarshipListPage() {
                           <Countdown
                             timestamp={scholarship.endTimeToComFirm}
                             size={1}
-                            title="Nhiệm vụ đã kết thúc và đang chờ xác nhận..."
+                            title="Học bổng đã kết thúc và đang chờ xác nhận..."
                           />
                         </>
                       )}
@@ -171,7 +171,8 @@ function ScholarshipListPage() {
                       <strong>{scholarship.scholarshipName}</strong>
                     </h5>
                     <p>
-                      <b>Số lượng:</b> {scholarship.joinedStudentAmount}
+                      <b>Số lượng đã đăng ký:</b>{" "}
+                      {scholarship.joinedStudentAmount}
                     </p>
                     <p className="element_status">
                       {scholarship.scholarshipStatus}
@@ -182,12 +183,14 @@ function ScholarshipListPage() {
                   ? role.role == "STUDENT" && (
                       <button
                         className={
-                          scholarship.scholarshipStatus != "Closed"
+                          scholarship.scholarshipStatus != "Closed" &&
+                          now <= scholarship.endTimeToResigter
                             ? "join_btn cancel"
                             : "join_btn cancel btn-disabled"
                         }
                         onClick={() =>
                           scholarship.scholarshipStatus != "Closed" &&
+                          now <= scholarship.endTimeToResigter &&
                           handleCancelRegister(scholarship.scholarshipAddress)
                         }
                       >
@@ -197,12 +200,14 @@ function ScholarshipListPage() {
                   : role.role == "STUDENT" && (
                       <button
                         className={
-                          scholarship.scholarshipStatus != "Closed"
+                          scholarship.scholarshipStatus != "Closed" &&
+                          now <= scholarship.endTimeToResigter
                             ? "join_btn join"
                             : "join_btn join btn-disabled"
                         }
                         onClick={() => {
                           scholarship.scholarshipStatus != "Closed" &&
+                            now <= scholarship.endTimeToResigter &&
                             handleRegister(scholarship.scholarshipAddress)
                         }}
                       >

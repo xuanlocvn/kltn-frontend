@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom"
 import "./App.scss"
 import SpinnerApp from "./components/shared/Spinner/Spinner"
 import Header from "./components/shared/Header/Header"
+import Footer from "./components/shared/Footer/Footer"
 import Router from "./routes/routes"
 import Popup from "./components/shared/Popup/Popup"
 
@@ -15,6 +16,7 @@ function App() {
             <Header />
             <Router />
             <Popup></Popup>
+            <Footer />
           </BrowserRouter>
         </div>
       </Suspense>

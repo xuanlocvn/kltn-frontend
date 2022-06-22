@@ -16,6 +16,10 @@ import Countdown from "src/components/countdown/CountDown"
 import useCheckbox from "src/hooks/useCheckbox"
 import Paypal from "src/components/paypal/PaypalComponent"
 import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import LoadCSV from "src/components/csv/LoadCSV"
+import { erc20ContractService } from "src/contracts/erc20.service"
+import { configService } from "src/configs/config.service"
+import { CONFIG } from "src/configs/config.enum"
 
 declare let window: CustomWindow
 
@@ -35,6 +39,7 @@ function TuitionDetail() {
   const [data, setData] = useState([{}])
   const { now } = useNow()
   const [checkout, setCheckOut] = useState(false)
+  const [studentList, SetStudentList] = useState([])
 
   useEffect(() => {
     const getDetail = async (tuitionAddress: string) => {
@@ -61,7 +66,27 @@ function TuitionDetail() {
     drawData.length > 0 && setData(drawData)
   }, [detail])
 
+  useEffect(() => {
+    SetStudentList(selectList)
+    console.log(selectList)
+  }, [selectList])
+
+  const onLoadCSV = (list: string[]) => {
+    console.log("Day la", list)
+    SetStudentList(list)
+  }
+
   const paymentByToken = async (contractAddress: string) => {
+    const allowance = await erc20ContractService.getAllowance(
+      configService.getConfig(CONFIG.UIT_TOKEN_ADDRESS),
+      contractAddress,
+    )
+    if (Number(allowance) == 0)
+      await erc20ContractService.approve(
+        configService.getConfig(CONFIG.UIT_TOKEN_ADDRESS),
+        contractAddress,
+        1000000000000000,
+      )
     await tuitionContracService.paymentByToken(contractAddress)
   }
 
@@ -72,15 +97,13 @@ function TuitionDetail() {
     )
   }
 
-  const handleConfirmCompletedAddress = async (e) => {
-    e.preventDefault()
+  const handleConfirmCompletedAddress = async () => {
     console.log(selectList)
-    await tuitionContracService.addStudentToTuition(tuitionId, selectList)
+    await tuitionContracService.addStudentToTuition(tuitionId, studentList)
   }
-  const handleUnconfirmCompletedAddress = async (e) => {
-    e.preventDefault()
+  const handleUnconfirmCompletedAddress = async () => {
     console.log(selectList)
-    await tuitionContracService.removeStudentFromTuition(tuitionId, selectList)
+    await tuitionContracService.removeStudentFromTuition(tuitionId, studentList)
   }
 
   const handleLock = async (address?: string) => {
@@ -189,20 +212,26 @@ function TuitionDetail() {
                     <b>Hoặc số tiền phải đóng: </b> {detail.currencyAmount} USD
                   </p>
 
-                  {detail.isCompleted
-                    ? role.role == "STUDENT" && (
-                        <button className="join_btn cancel">Đã đóng</button>
-                      )
-                    : role.role == "STUDENT" && (
-                        <>
-                          <button
-                            className="join_btn join"
-                            onClick={() => setCheckOut(true)}
-                          >
-                            Đóng
-                          </button>
-                        </>
-                      )}
+                  {detail.isCompleted ? (
+                    role.role == "STUDENT" && (
+                      <button className="join_btn cancel btn-disabled">
+                        Đã đóng
+                      </button>
+                    )
+                  ) : role.role == "STUDENT" && now <= detail.endTime ? (
+                    <>
+                      <button
+                        className="join_btn join"
+                        onClick={() => setCheckOut(true)}
+                      >
+                        Đóng
+                      </button>
+                    </>
+                  ) : (
+                    <button className="join_btn cancel btn-disabled">
+                      Đóng
+                    </button>
+                  )}
 
                   {role.role == "ADMIN" && (
                     <button
@@ -334,34 +363,39 @@ function TuitionDetail() {
                 </tbody>
               </table>
               {role.role == "LECTURER" && (
-                <div className="d-flex flex-row-reverse mt-5">
-                  <button
-                    className={
-                      detail.endTime < Date.now() / 1000
-                        ? "completed btn-disabled"
-                        : "completed"
-                    }
-                    onClick={() =>
-                      detail.endTime > Date.now() / 1000 &&
-                      handleConfirmCompletedAddress
-                    }
-                  >
-                    Thêm
-                  </button>
-                  <button
-                    className={
-                      detail.endTime < Date.now() / 1000
-                        ? "not-completed btn-disabled"
-                        : "not-completed"
-                    }
-                    onClick={() =>
-                      detail.endTime > Date.now() / 1000 &&
-                      handleUnconfirmCompletedAddress
-                    }
-                  >
-                    Xóa
-                  </button>
-                </div>
+                <>
+                  <div className="mt-5">
+                    <LoadCSV onLoadCSV={onLoadCSV} />
+                  </div>
+                  <div className="d-flex flex-row-reverse mt-5">
+                    <button
+                      className={
+                        detail.endTime < Date.now() / 1000
+                          ? "completed btn-disabled"
+                          : "completed"
+                      }
+                      onClick={() =>
+                        detail.endTime > Date.now() / 1000 &&
+                        handleConfirmCompletedAddress()
+                      }
+                    >
+                      Thêm
+                    </button>
+                    <button
+                      className={
+                        detail.endTime < Date.now() / 1000
+                          ? "not-completed btn-disabled"
+                          : "not-completed"
+                      }
+                      onClick={() =>
+                        detail.endTime > Date.now() / 1000 &&
+                        handleUnconfirmCompletedAddress()
+                      }
+                    >
+                      Xóa
+                    </button>
+                  </div>
+                </>
               )}
             </div>
           )}

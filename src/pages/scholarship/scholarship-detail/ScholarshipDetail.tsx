@@ -66,15 +66,13 @@ function ScholarshipDetail() {
     await scholarshipContractService.cancelRegister(contractAddress)
   }
 
-  const handleConfirmCompletedAddress = async (e) => {
-    e.preventDefault()
+  const handleConfirmCompletedAddress = async () => {
     await scholarshipContractService.confirmCompletedAddress(
       scholarshipId,
       selectList,
     )
   }
-  const handleUnconfirmCompletedAddress = async (e) => {
-    e.preventDefault()
+  const handleUnconfirmCompletedAddress = async () => {
     await scholarshipContractService.unConfirmCompletedAddress(
       scholarshipId,
       selectList,
@@ -155,7 +153,7 @@ function ScholarshipDetail() {
                 </div>
                 <div>
                   <p>
-                    <b>Số lượng tham gia: </b> {detail.joinedStudentAmount}/
+                    <b>Số lượng đã đăng ký: </b> {detail.joinedStudentAmount}/
                     {detail.joinedStudentAmount}
                   </p>
                   <p>
@@ -314,11 +312,11 @@ function ScholarshipDetail() {
                         <td className="col col-4 text-center">
                           {student.isCompleted ? (
                             <span className="text-success fw-bold">
-                              Đã hoàn thành
+                              Được nhận
                             </span>
                           ) : (
                             <span className="text-danger fw-bold">
-                              Chưa hoàn thành
+                              Không được nhận
                             </span>
                           )}
                         </td>
@@ -331,29 +329,29 @@ function ScholarshipDetail() {
                 <div className="d-flex flex-row-reverse mt-5">
                   <button
                     className={
-                      detail.endTime < Date.now() / 1000
+                      detail.endTimeToComFirm < Date.now() / 1000
                         ? "completed btn-disabled"
                         : "completed"
                     }
                     onClick={() =>
-                      detail.endTime > Date.now() / 1000 &&
-                      handleConfirmCompletedAddress
+                      detail.endTimeToComFirm > Date.now() / 1000 &&
+                      handleConfirmCompletedAddress()
                     }
                   >
-                    Thêm
+                    Xác nhận
                   </button>
                   <button
                     className={
-                      detail.endTime < Date.now() / 1000
+                      detail.endTimeToComFirm < Date.now() / 1000
                         ? "not-completed btn-disabled"
                         : "not-completed"
                     }
                     onClick={() =>
-                      detail.endTime > Date.now() / 1000 &&
-                      handleUnconfirmCompletedAddress
+                      detail.endTimeToComFirm > Date.now() / 1000 &&
+                      handleUnconfirmCompletedAddress()
                     }
                   >
-                    Xóa
+                    Loại bỏ
                   </button>
                 </div>
               )}

@@ -3,7 +3,7 @@ import ContractBase from "./contract-base"
 import { amountToValue, valueToAmount } from "./helpers"
 
 export class Erc20ContractService extends ContractBase {
-  contractABI: any = ERC20_ABI
+  contractABI: any = ERC20_ABI.abi
 
   async getInfo(tokenAddress: string) {
     const contract = await this.loadContract(tokenAddress)
@@ -75,7 +75,7 @@ export class Erc20ContractService extends ContractBase {
   }
 
   async getERC20Balance(tokenAddress: string, walletAddress: string) {
-    const tokenInst = new this.web3.eth.Contract(this.contractABI, tokenAddress)
+    const tokenInst = await this.loadContract(tokenAddress)
 
     const balance = await tokenInst.methods
       .balanceOf(walletAddress)
@@ -84,7 +84,7 @@ export class Erc20ContractService extends ContractBase {
         return balance
       })
 
-    return balance
+    return valueToAmount(balance)
   }
 }
 

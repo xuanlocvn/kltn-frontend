@@ -66,14 +66,10 @@ function SubjectDetail() {
     await subjectContracService.cancelRegister(contractAddress)
   }
 
-  const handleConfirmCompletedAddress = async (e) => {
-    e.preventDefault()
-    console.log(selectList)
+  const handleConfirmCompletedAddress = async () => {
     await subjectContracService.confirmCompletedAddress(subjectId, selectList)
   }
-  const handleUnconfirmCompletedAddress = async (e) => {
-    e.preventDefault()
-    console.log(selectList)
+  const handleUnconfirmCompletedAddress = async () => {
     await subjectContracService.unConfirmCompletedAddress(subjectId, selectList)
   }
 
@@ -162,12 +158,14 @@ function SubjectDetail() {
                     ? role.role == "STUDENT" && (
                         <button
                           className={
-                            detail.subjectStatus != "Closed"
+                            detail.subjectStatus != "Closed" &&
+                            now <= detail.endTimeToResigter
                               ? "join_btn cancel"
                               : "join_btn cancel btn-disabled"
                           }
                           onClick={() =>
                             detail.subjectStatus != "Closed" &&
+                            now <= detail.endTimeToResigter &&
                             handleCancelRegister(detail.subjectAddress)
                           }
                         >
@@ -177,12 +175,14 @@ function SubjectDetail() {
                     : role.role == "STUDENT" && (
                         <button
                           className={
-                            detail.subjectStatus != "Closed"
+                            detail.subjectStatus != "Closed" &&
+                            now <= detail.endTimeToResigter
                               ? "join_btn join"
                               : "join_btn join btn-disabled"
                           }
                           onClick={() =>
                             detail.subjectStatus != "Closed" &&
+                            now <= detail.endTimeToResigter &&
                             handleRegister(detail.subjectAddress)
                           }
                         >
@@ -328,7 +328,7 @@ function SubjectDetail() {
                     }
                     onClick={() =>
                       detail.endTimeToComFirm > Date.now() / 1000 &&
-                      handleConfirmCompletedAddress
+                      handleConfirmCompletedAddress()
                     }
                   >
                     Hoàn thành
@@ -339,10 +339,10 @@ function SubjectDetail() {
                         ? "not-completed btn-disabled"
                         : "not-completed"
                     }
-                    onClick={() =>
+                    onClick={() => {
                       detail.endTimeToComFirm > Date.now() / 1000 &&
-                      handleUnconfirmCompletedAddress
-                    }
+                        handleUnconfirmCompletedAddress()
+                    }}
                   >
                     Chưa hoàn thành
                   </button>

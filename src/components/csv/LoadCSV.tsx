@@ -37,9 +37,10 @@ export default function LoadCSV(props) {
         val != "" && s.push(val.toString().slice(0, -1))
       })
     })
-    setString(s)
-    console.log(s)
-    onLoadCSV(array)
+    let arr = [...new Set(s)]
+    arr = arr.map((a) => a.trim())
+    setString(arr)
+    onLoadCSV(arr)
     setArray(array)
   }
 
@@ -55,11 +56,28 @@ export default function LoadCSV(props) {
       fileReader.readAsText(file)
     }
   }
+  const handleChange = (e) => {
+    const arr: string = e.target.value.split(",")
+    let ar = [...new Set(arr)]
+    ar = ar.map((a) => a.trim())
+    onLoadCSV(ar)
+  }
 
   // const headerKeys = Object.keys(Object.assign({}, ...array))
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "right" }}>
+      <textarea
+        rows={10}
+        cols={160}
+        defaultValue={string.toString()}
+        onChange={handleChange}
+        style={{
+          borderRadius: "20px",
+          border: "0.1px solid rgba(0,0,0,0.3)",
+          padding: "10px",
+        }}
+      ></textarea>
       <form>
         <input
           type={"file"}
@@ -69,17 +87,14 @@ export default function LoadCSV(props) {
         />
 
         <button
+          style={{ border: "none", borderRadius: "10px" }}
           onClick={(e) => {
             handleOnSubmit(e)
           }}
         >
-          Xem lai
+          Tải lên
         </button>
       </form>
-
-      <br />
-
-      <textarea rows={5} cols={50} value={string}></textarea>
       {/* <table>
         <thead>
           <tr key={"header"}>

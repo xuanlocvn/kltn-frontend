@@ -38,6 +38,13 @@ function ProductListPage() {
   useEffect(() => {
     const f = searchParams.get("filter") ? searchParams.get("filter") : "all"
     const p = searchParams.get("page") ? Number(searchParams.get("page")) : 1
+    setFilter(f)
+    setPage(p)
+  }, [])
+
+  useEffect(() => {
+    const f = searchParams.get("filter") ? searchParams.get("filter") : "all"
+    const p = searchParams.get("page") ? Number(searchParams.get("page")) : 1
 
     const getListByPage = (list: any[], page: number) => {
       const ttp = Math.ceil(list.length / 9)
@@ -62,9 +69,23 @@ function ProductListPage() {
             window.localStorage.account,
           )
           productList = (response1.data.result && [
-            ...response1.data.result,
             ...response2.data.result,
+            ...response1.data.result,
           ]) || [...response2.data.result]
+
+          const output = []
+
+          productList.forEach(function (item) {
+            const existing = output.filter(
+              (v) => v.productNftId == item.productNftId,
+            )
+            // eslint-disable-next-line no-empty
+            if (existing.length != 0) {
+            } else {
+              output.push(item)
+            }
+          })
+          productList = output
           break
         }
         case "requested": {
