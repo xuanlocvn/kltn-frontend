@@ -351,7 +351,7 @@ function MissionDetail() {
               </table>
               {role.role == "LECTURER" && (
                 <>
-                  <div>
+                  <div className="mt-5">
                     <LoadCSV onLoadCSV={onLoadCSV} />
                   </div>
                   <div className="d-flex flex-row-reverse mt-5">

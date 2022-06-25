@@ -31,7 +31,7 @@ class ActiveNFTService extends ContractBase {
       this.web3,
       contract,
       0,
-      "cancelRequestActiveNFT",
+      "cancelRequestActivateNFT",
       _activeId,
     )
     return tx
@@ -44,7 +44,7 @@ class ActiveNFTService extends ContractBase {
       this.web3,
       contract,
       0,
-      "activeNFT",
+      "activateNFT",
       _activeId,
     )
     return tx

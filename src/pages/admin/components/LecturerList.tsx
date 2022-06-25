@@ -67,7 +67,7 @@ function LecturerList() {
               Tải xuống danh sách <FontAwesomeIcon icon={faDownload} />
             </CSVLink>
           </div>
-          <table className="mt-3">
+          <table className="mt-3" style={{ minHeight: "59vh" }}>
             <tbody>
               <tr className="row">
                 <th className="col col-1 text-center"></th>

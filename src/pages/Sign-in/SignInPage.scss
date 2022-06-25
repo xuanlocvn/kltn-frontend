@@ -4,7 +4,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: black;
 
   div {
     position: relative;
@@ -14,7 +13,7 @@
       border-radius: 10px;
       font-weight: 500;
       padding: 5px 15px;
-      background-color: white;
+      background-color: rgb(13,110,253);
       border: none;
     }
     button:hover {

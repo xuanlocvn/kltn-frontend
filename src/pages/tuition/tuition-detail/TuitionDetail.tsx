@@ -72,7 +72,6 @@ function TuitionDetail() {
   }, [selectList])
 
   const onLoadCSV = (list: string[]) => {
-    console.log("Day la", list)
     SetStudentList(list)
   }
 

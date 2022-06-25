@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import AdminBody from "./components/AdminBody"
 import { useAppSelector } from "src/app/hooks"
 import { selectRole } from "src/components/shared/Header/HeaderSlice"
+import Forbidden from "src/components/shared/403/Forbidden"
 import { ROLE } from "src/utils/enum"
 import { useNavigate, useParams } from "react-router-dom"
 import "./AdminPage.scss"
@@ -22,7 +23,7 @@ function AdminPage() {
       {role.role == ROLE.ADMIN ? (
         <AdminBody walletAddress={adminAddress} />
       ) : (
-        <h1>403</h1>
+        <Forbidden />
       )}
     </div>
   )

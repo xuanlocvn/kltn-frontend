@@ -60,7 +60,7 @@ function CreateNewClass() {
         e.target.lecturerInCharge.options[
           e.target.lecturerInCharge.selectedIndex
         ].text,
-      faculty: "",
+      faculty: e.target.faculty.options[e.target.faculty.selectedIndex].text,
       startTime: convertDateToTimestamp(e.target.startTime.value),
       endTime: convertDateToTimestamp(e.target.endTime.value),
       endTimeToRegister: convertDateToTimestamp(

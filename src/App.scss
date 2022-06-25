@@ -8,6 +8,7 @@ body {
     // font-family: 'Lato', sans-serif;
     font-family: 'Roboto', sans-serif;
     height: 100vh;
+    background-color: rgb(248,246,242);
 }
 
 body {
@@ -15,7 +16,7 @@ body {
 }
 /* width */
 body::-webkit-scrollbar {
-	width: 12px;
+	width: 6px;
 }
 
 /* Track */
@@ -102,4 +103,20 @@ input[type="radio"] {
     transform: scale(1.7);
     vertical-align: middle;
     margin-left: 30px;
+}
+
+.body_form{
+  background-color: white;
+}
+
+.mission_element {
+  background-color: white;
+}
+
+.product-info {
+  background-color: white;
+}
+
+.detail-description{
+  background-color: white!important;
 }

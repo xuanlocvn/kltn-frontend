@@ -33,7 +33,7 @@ function ProductDetail() {
   const role = useAppSelector(selectRole)
   const [selectedSeller, setSelectedSeller] =
     useState<ISellerOnSaleInstance>(null)
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(1)
   const [searchParams, setSearchParams] = useSearchParams({})
   const [filter, setFilter] = useState("all")
   const [style, setStyle] = useState({})
@@ -111,12 +111,21 @@ function ProductDetail() {
     await marketplaceContractService.deList(Number(productId))
   }
 
-  // const handleUpdatePrice = async (
-  //   _itemId: number | string,
-  //   _oneItemPrice: number | string,
-  // ) => {
-  //   await marketplaceContractService.updatePrice(_itemId, _oneItemPrice)
-  // }
+  const handleUpdatePrice = async (e) => {
+    e.preventDefault()
+    await marketplaceContractService.updatePrice(
+      productDetail.productNftId,
+      e.target.newPrice.value,
+    )
+  }
+
+  const handleUpdateAmount = async (e) => {
+    e.preventDefault()
+    await marketplaceContractService.updateAmountNFT(
+      productDetail.productNftId,
+      e.target.newAmount.value,
+    )
+  }
 
   const handleBuy = async (e) => {
     e.preventDefault()
@@ -235,6 +244,10 @@ function ProductDetail() {
                                     id={index.toString()}
                                     value={seller.ownerAddress}
                                     width={100}
+                                    disabled={
+                                      seller.ownerAddress ==
+                                      window.localStorage.account
+                                    }
                                   />
                                 </td>
                                 <td className="col col-4 text-center">
@@ -268,19 +281,22 @@ function ProductDetail() {
                                                 width: "80%",
                                                 margin: "auto",
                                                 borderRadius: "15px",
-                                                border: "2px solid red",
+                                                border: "0.1px solid red",
+                                                padding: "10px",
                                               }
                                             : {
                                                 width: "80%",
                                                 margin: "auto",
                                                 borderRadius: "15px",
-                                                border: "2px solid blue",
+                                                border: "0.1px solid green",
+                                                padding: "10px",
                                               }
                                         }
                                         type="number"
                                         placeholder="Nhập số lượng muốn mua"
                                         max={seller.amountOnSale}
-                                        defaultValue={0}
+                                        defaultValue={1}
+                                        required
                                         onChange={(e) => {
                                           setAmount(Number(e.target.value))
                                         }}
@@ -293,63 +309,37 @@ function ProductDetail() {
                       </tbody>
                     </table>
                   )}
-                  <div className="d-flex flex-row-reverse mt-5">
-                    {(productDetail.status == "OnSale" ||
-                      (productDetailOnSale &&
-                        productDetailOnSale.status == "OnSale")) &&
-                      isOwner && (
-                        <button className="btn btn-sell" onClick={handleDelist}>
-                          Hủy đăng bán
-                        </button>
-                      )}
+                  <div className="d-flex flex-row-reverse mt-5 justify-content-center align-items-end text-center">
                     {productDetail.status == "OnSale" && !isOwner && (
-                      <button className="btn btn-sell" onClick={handleBuy}>
-                        Mua
-                      </button>
-                    )}
-                    {productDetail.status == "OffSale" && (
-                      <form onSubmit={handleRequestActivateNFT}>
-                        <input
-                          name="amountForActivate"
-                          id="amountForActivate"
-                          type="number"
-                          placeholder="Số lượng muốn kích hoạt"
-                          max={productDetail.amount}
-                          min={0}
-                          required
-                        />
-                        <button className="btn btn-active" type="submit">
-                          Kích hoạt
+                      <div className="d-flex align-items-center justify-content-center">
+                        <p className="p-0 m-0">
+                          {selectedSeller &&
+                          amount > 0 &&
+                          amount <= selectedSeller.amountOnSale ? (
+                            <span>
+                              Bạn sẽ mua{" "}
+                              <b className="text-success">{amount} sản phẩm</b>{" "}
+                              của
+                              <b className="text-success">
+                                {" "}
+                                {selectedSeller.ownerAddress}
+                              </b>
+                            </span>
+                          ) : selectedSeller &&
+                            (amount == 0 ||
+                              amount > selectedSeller.amountOnSale) ? (
+                            <span className="text-danger">
+                              <b>Số lượng không hợp lệ</b>
+                            </span>
+                          ) : (
+                            "Vui lòng chọn người bán và nhập số lượng"
+                          )}
+                        </p>
+                        <button className="btn btn-sell" onClick={handleBuy}>
+                          Mua
                         </button>
-                      </form>
+                      </div>
                     )}
-
-                    {productDetail.status == "OffSale" &&
-                      productDetailOnSale == null && (
-                        <div>
-                          <form onSubmit={handleList}>
-                            <input
-                              name="amountForSell"
-                              id="amountForSell"
-                              type="number"
-                              placeholder="Số lượng muốn bán"
-                              max={productDetail.amount}
-                              min={0}
-                            />
-                            <input
-                              name="priceForSell"
-                              id="priceForSell"
-                              step="0.01"
-                              type="number"
-                              placeholder="Giá bán cho một vật phẩm"
-                              min={0}
-                            />
-                            <button className="btn btn-sell" type="submit">
-                              Bán
-                            </button>
-                          </form>
-                        </div>
-                      )}
                   </div>
                 </div>
               </div>
@@ -372,14 +362,193 @@ function ProductDetail() {
                   </p>
                   <p>
                     <b>Giá một vật phẩm: </b>
-                    {productDetail.priceOfOneItem} coin
+                    {productDetail.priceOfOneItem != 0
+                      ? productDetail.priceOfOneItem
+                      : productDetailOnSale &&
+                        productDetailOnSale.priceOfOneItem}
+                    coin
                   </p>
-                  <p>
-                    <b>Trạng thái: </b>
-                    {productDetailOnSale && productDetail != productDetailOnSale
-                      ? `${productDetail.amount} ${productDetail.status},  ${productDetailOnSale.amount} ${productDetailOnSale.status}`
-                      : `${productDetail.amount} ${productDetail.status}`}
-                  </p>
+                  {filter != "all" && (
+                    <p>
+                      <b>Trạng thái: </b>
+                      {productDetailOnSale &&
+                      productDetail != productDetailOnSale
+                        ? `${productDetail.amount} ${productDetail.status},  ${productDetailOnSale.amount} ${productDetailOnSale.status}`
+                        : `${productDetail.amount} ${productDetail.status}`}
+                    </p>
+                  )}
+                </div>
+                <div className="d-flex flex-row-reverse mt-5 justify-content-around align-items-end text-center">
+                  {role.role == "STUDENT" &&
+                    (productDetail.status == "OnSale" ||
+                      (productDetailOnSale &&
+                        productDetailOnSale.status == "OnSale")) &&
+                    isOwner && (
+                      <div className="flex-grow-1">
+                        <form onSubmit={handleUpdatePrice}>
+                          <input
+                            name="newPrice"
+                            id="newPrice"
+                            type="number"
+                            placeholder="Cập nhật giá trên mỗi sản phẩm"
+                            step="0.01"
+                            min={0}
+                            required
+                            className="activate-product mb-3"
+                          />
+                          <p>
+                            Bạn đang bán{" "}
+                            <b className="text-primary">
+                              {productDetailOnSale &&
+                              productDetail != productDetailOnSale
+                                ? productDetailOnSale.amount
+                                : productDetail.amount}{" "}
+                              sản phẩm
+                            </b>{" "}
+                            . Bạn có muốn hủy đăng bán hoặc thay đổi giá?
+                          </p>
+                          <div className="d-flex">
+                            <button
+                              className="btn btn-sell"
+                              type="button"
+                              style={{ width: "max-content" }}
+                              onClick={handleDelist}
+                            >
+                              Hủy đăng bán
+                            </button>
+                            <button
+                              className="btn"
+                              type="submit"
+                              style={{ width: "max-content" }}
+                            >
+                              Cập nhật giá
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    )}
+                  {role.role == "ADMIN" &&
+                    (productDetail.status == "OnSale" ||
+                      (productDetailOnSale &&
+                        productDetailOnSale.status == "OnSale")) &&
+                    isOwner && (
+                      <div className="d-flex flex-column">
+                        <p>
+                          Bạn đang bán{" "}
+                          <b className="text-primary">
+                            {productDetailOnSale &&
+                            productDetail != productDetailOnSale
+                              ? productDetailOnSale.amount
+                              : productDetail.amount}{" "}
+                            sản phẩm
+                          </b>{" "}
+                          . Bạn có muốn thay đổi?
+                        </p>
+                        <div className="d-flex">
+                          <form
+                            onSubmit={handleUpdateAmount}
+                            className="col col-6"
+                          >
+                            <input
+                              name="newAmount"
+                              id="newAmount"
+                              type="number"
+                              placeholder="Cập nhật số lượng"
+                              min={0}
+                              required
+                              className="activate-product mb-3"
+                            />
+                            <button
+                              className="btn btn-sell"
+                              type="submit"
+                              style={{ width: "max-content" }}
+                            >
+                              Cập nhật số lượng
+                            </button>
+                          </form>
+                          <form
+                            onSubmit={handleUpdatePrice}
+                            className="col col-6"
+                          >
+                            <input
+                              name="newPrice"
+                              id="newPrice"
+                              type="number"
+                              placeholder="Cập nhật giá trên mỗi sản phẩm"
+                              min={0}
+                              step="0.01"
+                              required
+                              className="activate-product mb-3"
+                            />
+                            <button className="btn btn-active" type="submit">
+                              Cập nhật giá
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    )}
+                  {productDetail.status == "OffSale" && (
+                    <form
+                      onSubmit={handleRequestActivateNFT}
+                      className="flex-grow-1"
+                    >
+                      <input
+                        name="amountForActivate"
+                        id="amountForActivate"
+                        type="number"
+                        placeholder="Số lượng kích hoạt"
+                        max={productDetail.amount}
+                        min={0}
+                        required
+                        className="activate-product mb-3"
+                      />
+                      <p>
+                        Bạn đang có{" "}
+                        <b className="text-primary">
+                          {productDetail.amount} sản phẩm
+                        </b>
+                        . Bạn có muốn kích hoạt?
+                      </p>
+                      <button className="btn btn-active" type="submit">
+                        Kích hoạt
+                      </button>
+                    </form>
+                  )}
+
+                  {productDetail.status == "OffSale" &&
+                    productDetailOnSale == null && (
+                      <form onSubmit={handleList} className="flex-grow-1">
+                        <input
+                          name="amountForSell"
+                          id="amountForSell"
+                          type="number"
+                          placeholder="Số lượng muốn bán"
+                          max={productDetail.amount}
+                          min={0}
+                          className="activate-product mb-3"
+                        />
+                        <input
+                          name="priceForSell"
+                          id="priceForSell"
+                          step="0.01"
+                          type="number"
+                          placeholder="Giá bán cho một vật phẩm"
+                          className="activate-product mb-3"
+                          min={0}
+                          required
+                        />
+                        <p>
+                          Bạn đang có{" "}
+                          <b className="text-success">
+                            {productDetail.amount} sản phẩm
+                          </b>
+                          . Bạn muốn bán?
+                        </p>
+                        <button className="btn btn-sell" type="submit">
+                          Bán
+                        </button>
+                      </form>
+                    )}
                 </div>
               </div>
             </div>

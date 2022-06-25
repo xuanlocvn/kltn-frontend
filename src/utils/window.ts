@@ -223,7 +223,7 @@ export interface IProductInstance {
   amount: number
   productTypeName: string
   ownerAddress: string
-  priceOfOneItem: string | number
+  minPrice: string | number
   status: string
 }
 
@@ -278,4 +278,15 @@ export interface ILecturerList {
   lecturerAddress
   departmentName
   departmentShortenName
+}
+
+export interface ILecturerInfo {
+  lecturerImg
+  lecturerName: string
+  lecturerId: string
+  lecturerAddress: string
+  departmentName: string
+  sex: string
+  dateOfBirth: string
+  lecturerHashIPFS: string
 }

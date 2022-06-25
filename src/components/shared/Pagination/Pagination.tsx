@@ -17,16 +17,17 @@ Pagination.defaultProps = {
 }
 
 function Pagination(props) {
-  let { currentPage } = props
-  const { totalPage, onPaginate } = props
+  let { currentPage, totalPage } = props
+  const { onPaginate } = props
   const [pages, setPages] = useState([])
-  const [isHiden, setIshiden] = useState(true)
 
   useEffect(() => {
     setPages([])
-    if (totalPage <= 1) setIshiden(true)
-    else {
-      setIshiden(false)
+    // eslint-disable-next-line no-empty
+    if (totalPage <= 1) {
+      totalPage = 1
+      setPages([1])
+    } else {
       for (let i = 1; i <= totalPage; i++) {
         setPages((prev) => [...prev, i])
       }
@@ -55,68 +56,66 @@ function Pagination(props) {
 
   return (
     <>
-      {!isHiden && (
-        <div className="pagination">
-          {currentPage == 1 ? (
-            <>
-              <div className="firstpage disable">
-                <p>Trang đầu</p>
-              </div>
-              <div className="firstpage disable">
-                <p>
-                  <FontAwesomeIcon icon={faAnglesLeft} />
-                </p>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="firstpage" onClick={onFirstPage}>
-                <p>Trang đầu</p>
-              </div>
-              <div className="firstpage" onClick={onPrevPage}>
-                <p>
-                  <FontAwesomeIcon icon={faAnglesLeft} />
-                </p>
-              </div>
-            </>
-          )}
-          <div></div>
-          {pages.map((p, index) => (
-            <div
-              key={index}
-              onClick={() => {
-                onPaginate(p)
-              }}
-            >
-              <p className={currentPage == p ? "active" : ""}>{p}</p>
+      <div className="pagination">
+        {currentPage == 1 ? (
+          <>
+            <div className="firstpage disable">
+              <p>Trang đầu</p>
             </div>
-          ))}
-          <div></div>
-          {currentPage == totalPage ? (
-            <>
-              <div className="lastpage disable">
-                <p>
-                  <FontAwesomeIcon icon={faAnglesRight} />
-                </p>
-              </div>
-              <div className="lastpage disable">
-                <p>Trang cuối</p>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="lastpage" onClick={onNextPage}>
-                <p>
-                  <FontAwesomeIcon icon={faAnglesRight} />
-                </p>
-              </div>
-              <div className="lastpage" onClick={onLastPage}>
-                <p>Trang cuối</p>
-              </div>
-            </>
-          )}
-        </div>
-      )}
+            <div className="firstpage disable">
+              <p>
+                <FontAwesomeIcon icon={faAnglesLeft} />
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="firstpage" onClick={onFirstPage}>
+              <p>Trang đầu</p>
+            </div>
+            <div className="firstpage" onClick={onPrevPage}>
+              <p>
+                <FontAwesomeIcon icon={faAnglesLeft} />
+              </p>
+            </div>
+          </>
+        )}
+        <div></div>
+        {pages.map((p, index) => (
+          <div
+            key={index}
+            onClick={() => {
+              onPaginate(p)
+            }}
+          >
+            <p className={currentPage == p ? "active" : ""}>{p}</p>
+          </div>
+        ))}
+        <div></div>
+        {currentPage == totalPage || totalPage == 0 ? (
+          <>
+            <div className="lastpage disable">
+              <p>
+                <FontAwesomeIcon icon={faAnglesRight} />
+              </p>
+            </div>
+            <div className="lastpage disable">
+              <p>Trang cuối</p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="lastpage" onClick={onNextPage}>
+              <p>
+                <FontAwesomeIcon icon={faAnglesRight} />
+              </p>
+            </div>
+            <div className="lastpage" onClick={onLastPage}>
+              <p>Trang cuối</p>
+            </div>
+          </>
+        )}
+      </div>
     </>
   )
 }

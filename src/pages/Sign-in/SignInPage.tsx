@@ -48,7 +48,7 @@ function SignInPage() {
       account &&
       role.role &&
       navigate(`/${role.role.toLocaleLowerCase()}/${account}`)
-  })
+  }, [role.role, web3, account])
 
   const loadWeb3 = async () => {
     if (window.ethereum != undefined) {
@@ -61,6 +61,11 @@ function SignInPage() {
     } else {
       web3 != null && dispatch(disconnect())
     }
+    console.log(web3, account, role.role)
+    web3 &&
+      account &&
+      role.role &&
+      navigate(`/${role.role.toLocaleLowerCase()}/${account}`)
   }
 
   return (
@@ -74,7 +79,7 @@ function SignInPage() {
         />
         {metamask ? (
           <div>
-            <button onClick={loadWeb3}>Connect Wallet</button>
+            <button onClick={loadWeb3}>Kết nối ví Metamask</button>
           </div>
         ) : (
           <div>
@@ -83,7 +88,7 @@ function SignInPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Please install MetaMask
+              Hãy cài đặt ví Metamask để tiếp tục
             </a>
           </div>
         )}

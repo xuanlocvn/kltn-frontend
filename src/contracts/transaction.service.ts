@@ -134,7 +134,7 @@ export class TransactionService {
         store.dispatch(updatePopup(newState))
         setInterval(() => {
           window.location.reload()
-        }, 5000)
+        }, 3000)
         // ;
       })
       .once("error", function (error: Error, receipt) {

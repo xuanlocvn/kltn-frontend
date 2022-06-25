@@ -11,11 +11,16 @@ function App() {
   return (
     <div className="App">
       <Suspense fallback={<SpinnerApp />}>
-        <div className="container">
+        <div className="container-fluid p-0">
           <BrowserRouter>
             <Header />
-            <Router />
-            <Popup></Popup>
+            <div
+              className="container"
+              style={{ minHeight: "78vh", marginTop: "100px" }}
+            >
+              <Router />
+              <Popup></Popup>
+            </div>
             <Footer />
           </BrowserRouter>
         </div>

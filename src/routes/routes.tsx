@@ -6,6 +6,7 @@ import ScholarshipDetail from "../pages/scholarship/scholarship-detail/Scholarsh
 import TuitionDetail from "../pages/tuition/tuition-detail/TuitionDetail"
 import StudentList from "src/pages/admin/components/StudentList"
 import LecturerList from "src/pages/admin/components/LecturerList"
+import LecturerInfo from "src/pages/lecturer/LecturerInfo"
 const NotFound = lazy(() => import("src/components/shared/NotFound/NotFound"))
 const MissionDetail = lazy(
   () => import("src/pages/mission/mission-detail/MissionDetail"),
@@ -58,6 +59,7 @@ function Router() {
       <Route path="products/:productId" element={<ProductDetail />} />
 
       <Route path="admin/:adminAddress" element={<AdminPage />} />
+      <Route path="lecturer/:address" element={<LecturerInfo />} />
 
       <Route path="students" element={<StudentList />} />
       <Route path="lecturers" element={<LecturerList />} />

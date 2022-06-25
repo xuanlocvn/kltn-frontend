@@ -16,7 +16,7 @@ function StudentCertificate(props: {
   const { subjectList, certificateList } = props
   return (
     <div className="confirmedInfo">
-      <div style={{ width: "100%", height: "500px" }}>
+      <div style={{ width: "100%", minHeight: "200px", maxHeight: "500px" }}>
         <div>
           <h2>Môn Học Hoàn Thành</h2>
         </div>
@@ -66,7 +66,14 @@ function StudentCertificate(props: {
           </div>
         </div>
       </div>
-      <div style={{ width: "100%", height: "500px", marginTop: "100px" }}>
+      <div
+        style={{
+          width: "100%",
+          minHeight: "200px",
+          marginTop: "80px",
+          maxHeight: "500px",
+        }}
+      >
         <div>
           <h2>Chứng Chỉ Hoàn Thành Nhiệm Vụ</h2>
         </div>

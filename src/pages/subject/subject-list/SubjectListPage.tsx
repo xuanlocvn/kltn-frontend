@@ -106,7 +106,7 @@ function SubjectListPage() {
           Chưa tham gia
         </button>
       </div>
-      <div style={{ height: "552px" }}>
+      <div style={{ minHeight: "450px" }}>
         <div className="mission mt-4 d-flex flex-wrap">
           {renderList.map((subject, index) => (
             <div
