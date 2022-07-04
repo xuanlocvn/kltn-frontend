@@ -13,6 +13,8 @@ import { useAppSelector } from "src/app/hooks"
 import Countdown from "../../../components/countdown/CountDown"
 import useNow from "../../../hooks/useNow"
 import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import SpinnerApp from "../../../components/shared/Spinner/Spinner"
+import useAvata from "src/hooks/useAvata"
 
 declare let window: CustomWindow
 
@@ -30,19 +32,27 @@ function MissionListPage() {
   } = useList<IMissionInstance>()
   const role = useAppSelector(selectRole)
   const { now } = useNow()
+  const { defaultAvt } = useAvata()
 
   useEffect(() => {
     const fetchMissionList = async (walletAddress: string) => {
       let response
+      const lecturerAddress = searchParams.get("lecturerAddress")
+        ? searchParams.get("lecturerAddress")
+        : null
       switch (role.role) {
         case "LECTURER":
-          response = await await getMissionListByLecturer(walletAddress)
+          response = await getMissionListByLecturer(walletAddress)
           break
         case "STUDENT":
-          response = await getMissionList(walletAddress)
+          response = lecturerAddress
+            ? await getMissionListByLecturer(lecturerAddress)
+            : await getMissionList(walletAddress)
           break
         default:
-          response = await getMissionList()
+          response = lecturerAddress
+            ? await getMissionListByLecturer(lecturerAddress)
+            : await getMissionList()
       }
       const result: IMissionInstance[] = response.data.result
       setTotalList(result)
@@ -105,7 +115,9 @@ function MissionListPage() {
       </div>
       <div style={{ minHeight: "450px" }}>
         <div className="mission mt-4 d-flex flex-wrap">
-          {renderList &&
+          {!renderList ? (
+            <SpinnerApp />
+          ) : (
             renderList.map((mission, index) => (
               <div
                 key={index}
@@ -114,7 +126,14 @@ function MissionListPage() {
               >
                 <Link to={"/missions/" + mission.missionAddress}>
                   <div className="img">
-                    <img src={img} alt="mission" />
+                    <img
+                      src={
+                        mission.missionImg != defaultAvt
+                          ? mission.missionImg
+                          : img
+                      }
+                      alt="mission"
+                    />
                   </div>
                   <div
                     style={{
@@ -164,11 +183,22 @@ function MissionListPage() {
                     <h5>
                       <strong>{mission.missionName}</strong>
                     </h5>
-                    <p>
+                    <p className="text-secondary">
                       <b>Số lượng:</b> {mission.joinedStudentAmount}/
                       {mission.maxStudentAmount}
                     </p>
-                    <p className="element_status">{mission.missionStatus}</p>
+                    <p className="element_status">
+                      {mission.missionStatus == "Closed" && (
+                        <span className="text-danger fw-bolder">
+                          Hoàn thành
+                        </span>
+                      )}
+                      {mission.missionStatus == "Opening" && (
+                        <span className="text-success fw-bolder">
+                          Đang diễn ra
+                        </span>
+                      )}
+                    </p>
                   </div>
                 </Link>
                 {mission.isJoined
@@ -223,7 +253,8 @@ function MissionListPage() {
                   </button>
                 )}
               </div>
-            ))}
+            ))
+          )}
         </div>
       </div>
 

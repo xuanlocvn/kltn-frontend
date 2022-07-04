@@ -56,7 +56,13 @@ function Countdown(props) {
   }, [days, hours, minutes, seconds])
 
   return (
-    <div style={{ backgroundColor: "rgba(255,255,255,0.6)", padding: "5px 0" }}>
+    <div
+      style={{
+        backgroundColor: "rgba(255,255,255,0.6)",
+        padding: `${5 * size * size}px 0`,
+        borderRadius: `${5 * size * size}px`,
+      }}
+    >
       <p className="title text-primary text-center">{title}</p>
       <div className="countdown-wrapper">
         {days && (

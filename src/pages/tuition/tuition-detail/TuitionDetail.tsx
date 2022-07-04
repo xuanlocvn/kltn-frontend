@@ -20,6 +20,7 @@ import LoadCSV from "src/components/csv/LoadCSV"
 import { erc20ContractService } from "src/contracts/erc20.service"
 import { configService } from "src/configs/config.service"
 import { CONFIG } from "src/configs/config.enum"
+import useAvata from "src/hooks/useAvata"
 
 declare let window: CustomWindow
 
@@ -40,6 +41,7 @@ function TuitionDetail() {
   const { now } = useNow()
   const [checkout, setCheckOut] = useState(false)
   const [studentList, SetStudentList] = useState([])
+  const { defaultAvt } = useAvata()
 
   useEffect(() => {
     const getDetail = async (tuitionAddress: string) => {
@@ -143,7 +145,16 @@ function TuitionDetail() {
             className="detail-info"
             style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
           >
-            <div className="banner-tuition"></div>
+            <div
+              className="banner-tuition"
+              style={
+                detail.imgURL != defaultAvt
+                  ? {
+                      backgroundImage: `url(${detail.imgURL})`,
+                    }
+                  : { display: "block" }
+              }
+            ></div>
             <div className="d-flex">
               <div className="col col-6">
                 <TimeLine
@@ -188,13 +199,13 @@ function TuitionDetail() {
                   )}
                 </div>
               </div>
-              <div className="col col-6">
+              <div className="col col-6 object-info">
                 <div>
                   <h2>
                     {detail.tuitionName} - {detail.tuitionId}
                   </h2>
                 </div>
-                <div>
+                <div className="">
                   <p>
                     <b>Giảng viên phụ trách: </b> {detail.lecturerName}
                   </p>

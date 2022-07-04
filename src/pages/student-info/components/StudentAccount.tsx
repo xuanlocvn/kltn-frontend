@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { getBalanceHistoriesOfStudent } from "src/api/studentApi"
 import { convertLocalTime } from "src/utils"
 import { Link } from "react-router-dom"
+import coinImg from "src/assets/images/coin.png"
 
 StudentAccount.propTypes = {
   walletAddress: PropTypes.string,
@@ -56,26 +57,22 @@ function StudentAccount(props) {
                 style={{ cursor: "not-allowed" }}
               />
             </div>
-            <button
-              className="submitbtn"
-              type="submit"
-              disabled
-              style={{ cursor: "not-allowed" }}
-            >
-              Cập nhật
-            </button>
           </div>
         </form>
         <div>
           <div>
             <label className="d-block">Số dư token</label>
             <div className="d-flex justify-content-around">
-              <div>
+              <div className="d-flex align-items-center">
                 <p className="amountToken d-inline-block">
                   {Math.round(totalToken * 100) / 100}
                 </p>
-                <p className="d-inline-block" style={{ fontWeight: "bold" }}>
-                  Token
+                <p
+                  className="d-inline-block mt-4"
+                  style={{ fontWeight: "bold" }}
+                >
+                  <span style={{ width: "5px" }}></span>
+                  <img src={coinImg} className="coin" width={55} height={55} />
                 </p>
               </div>
             </div>
@@ -84,9 +81,9 @@ function StudentAccount(props) {
             <table>
               <tbody>
                 <tr className="row">
-                  <th className="col col-3 text-center">STT</th>
-                  <th className="col col-3 text-center">Tên</th>
-                  <th className="col col-3 text-center">Biến động số dư</th>
+                  <th className="col col-2 text-center">STT</th>
+                  <th className="col col-5 text-center">Tên</th>
+                  <th className="col col-2 text-center">Biến động số dư</th>
                   <th className="col col-3 text-center">Thời gian</th>
                 </tr>
                 {historyList.length == 0 ? (
@@ -96,15 +93,15 @@ function StudentAccount(props) {
                 ) : (
                   historyList.map((history, index) => (
                     <tr key={index} className="row">
-                      <td className="col col-3 text-center">{index}</td>
-                      <td className="col col-3 text-center">
+                      <td className="col col-2 text-center">{index}</td>
+                      <td className="col col-5 text-center">
                         <Link
                           to={`/${history.type}/${history.contractAddress}`}
                         >
                           {history.historyName}
                         </Link>
                       </td>
-                      <td className="col col-3 text-center">
+                      <td className="col col-2 text-center">
                         <span
                           className={
                             history.amount > 0

@@ -24,12 +24,12 @@
   }
 
   .lastpage p:hover{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     color: rgb(112, 109, 109);
   }
 
   .firstpage p:hover{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     color: rgb(112, 109, 109);
   }
 
@@ -45,7 +45,7 @@
   .disable p:hover {
     cursor: text;
     color: rgb(112, 109, 109);
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
   }
 
 }

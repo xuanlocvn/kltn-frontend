@@ -53,11 +53,14 @@ function StudentCertificate(props: {
                           <b>Đến ngày:</b> {convertLocalTime(subject.endTime)}
                         </p>
                       </td>
-                      <Link to={`/${subject.type}/${subject.contractAddress}`}>
-                        <td className="subject col col-6 text-center">
+
+                      <td className="subject col col-6 text-center">
+                        <Link
+                          to={`/${subject.type}/${subject.contractAddress}`}
+                        >
                           {subject.certificateName}
-                        </td>
-                      </Link>
+                        </Link>
+                      </td>
                     </tr>
                   ))
                 )}
@@ -110,11 +113,13 @@ function StudentCertificate(props: {
                           <b>Đến ngày:</b> {convertLocalTime(subject.endTime)}
                         </p>
                       </td>
-                      <Link to={`/${subject.type}/${subject.contractAddress}`}>
-                        <td className="subject col col-6 text-center">
+                      <td className="subject col col-6 text-center">
+                        <Link
+                          to={`/${subject.type}/${subject.contractAddress}`}
+                        >
                           {subject.certificateName}
-                        </td>
-                      </Link>
+                        </Link>
+                      </td>
                     </tr>
                   ))
                 )}

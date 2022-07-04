@@ -15,6 +15,7 @@ import Countdown from "../../../components/countdown/CountDown"
 import useNow from "../../../hooks/useNow"
 import { managerPoolContractService } from "src/contracts/manager-pool.service"
 import LoadCSV from "src/components/csv/LoadCSV"
+import useAvata from "src/hooks/useAvata"
 
 declare let window: CustomWindow
 
@@ -34,6 +35,7 @@ function MissionDetail() {
   const [data, setData] = useState([{}])
   const { now } = useNow()
   const [studentList, SetStudentList] = useState([])
+  const { defaultAvt } = useAvata()
 
   useEffect(() => {
     const getDetail = async (missionAddress: string) => {
@@ -100,7 +102,16 @@ function MissionDetail() {
             className="detail-info"
             style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
           >
-            <div className="banner-mission"></div>
+            <div
+              className="banner-mission"
+              style={
+                detail.missionImg != defaultAvt
+                  ? {
+                      backgroundImage: `url(${detail.missionImg})`,
+                    }
+                  : { display: "block" }
+              }
+            ></div>
             <div className="d-flex">
               <div className="col col-6">
                 <TimeLine
@@ -154,7 +165,7 @@ function MissionDetail() {
                   )}
                 </div>
               </div>
-              <div className="col col-6">
+              <div className="col col-6 object-info">
                 <h2 className="mb-4">
                   {detail.missionName} - {detail.missionId}{" "}
                 </h2>

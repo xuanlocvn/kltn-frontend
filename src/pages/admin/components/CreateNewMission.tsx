@@ -6,8 +6,9 @@ import { convertDateToTimestamp } from "src/utils"
 import { getLecturerList } from "../../../api/lecturerApi"
 import { Editor } from "react-draft-wysiwyg"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
-import { convertToRaw } from "draft-js"
+import { convertToRaw, EditorState, ContentState } from "draft-js"
 import draftToHtml from "draftjs-to-html"
+import htmlToDraft from "html-to-draftjs"
 
 CreateNewMission.propTypes = {}
 
@@ -34,7 +35,7 @@ function CreateNewMission() {
       award: e.target.award.value,
       missionId: e.target.missionId.value,
       maxEntrant: e.target.maxEntrant.value,
-      faculty: "Doan Khoa",
+      faculty: "Đoàn, Hội",
       lecturerInCharge: e.target.lecturerInCharge.value,
       lecturerName:
         e.target.lecturerInCharge.options[
@@ -65,7 +66,30 @@ function CreateNewMission() {
   }
 
   const onEditorStateChange = (editorState) => {
+    setEditorState(editorState)
     SetDescription(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+  }
+  const [editorState, setEditorState] = useState(() => {
+    const html = "<p></p>"
+    const contentBlock = htmlToDraft(html)
+    if (contentBlock) {
+      const contentState = ContentState.createFromBlockArray(
+        contentBlock.contentBlocks,
+      )
+      const a = EditorState.createWithContent(contentState)
+      return a
+    }
+  })
+  const onCancel = () => {
+    const html = "<p></p>"
+    const contentBlock = htmlToDraft(html)
+    if (contentBlock) {
+      const contentState = ContentState.createFromBlockArray(
+        contentBlock.contentBlocks,
+      )
+      const a = EditorState.createWithContent(contentState)
+      setEditorState(a)
+    }
   }
 
   return (
@@ -222,6 +246,7 @@ function CreateNewMission() {
                 toolbarClassName="toolbarClassName"
                 wrapperClassName="wrapperClassName"
                 editorClassName="editorClassName"
+                editorState={editorState}
                 wrapperStyle={{
                   border: "1px solid rgba(0,0,0,0.3)",
                   borderRadius: "20px",
@@ -233,7 +258,13 @@ function CreateNewMission() {
               <button className="submitbtn" type="submit">
                 Tạo
               </button>
-              <button className="submitbtn cancel_btn">Hủy</button>
+              <button
+                className="submitbtn cancel_btn"
+                type="reset"
+                onClick={onCancel}
+              >
+                Hủy
+              </button>
             </div>
           </div>
         </form>

@@ -44,6 +44,7 @@ function GrantRoleLecturer() {
       hash,
     )
   }
+
   return (
     <div className="form_body container">
       <div>
@@ -154,7 +155,9 @@ function GrantRoleLecturer() {
               <button className="submitbtn" type="submit">
                 Tạo
               </button>
-              <button className="submitbtn cancel_btn">Hủy</button>
+              <button className="submitbtn cancel_btn" type="reset">
+                Hủy
+              </button>
             </div>
           </div>
         </form>

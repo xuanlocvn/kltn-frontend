@@ -1,6 +1,6 @@
 .detail-info {
   border-radius: 20px;
-  border: 0.5px solid #8a8b8b;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
   position: relative;
   
   p {
@@ -40,27 +40,33 @@
     background-color: #023556;
   }
 
+  .object-info{
+    border-radius: 20px;
+    border: 1px solid #F8F6F2;
+    padding: 20px!important;
+    border-radius: 20px;
+    height: 340px;
+  }
 }
 
 .detail-description{
   border-radius: 20px;
   padding: 50px;
-  border: 0.5px solid #8a8b8b;
-  // box-shadow: 1px 1px 8px 8px rgb(179, 177, 177);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .historyTable {
   table {
     width: 100%;
     margin: 0 auto;
-    border-radius: 0.5px solid rgba(49, 47, 47, 0.3);
+    border-radius: 0.5px solid rgba(49, 47, 47, 0.5);
     padding: 100px;
     border-radius: 20px;
 
     td, th {
       padding: 10px 0;
 
-      border-bottom: 0.5px solid rgba(49, 47, 47, 0.3);
+      border-bottom: 0.5px solid rgba(49, 47, 47, 0.5);
     }
   }
 

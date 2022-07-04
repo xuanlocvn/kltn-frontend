@@ -49,6 +49,7 @@ function StudentPage() {
         class: result.classroomName,
         faculty: result.departmentName,
         schoolYear: result.schoolYear.toString(),
+        avataImage: result.studentImg,
       })
     }
     getStudentInfoByAddress(address)

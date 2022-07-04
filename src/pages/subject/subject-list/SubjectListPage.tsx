@@ -16,6 +16,7 @@ import { selectRole } from "src/components/shared/Header/HeaderSlice"
 import useNow from "../../../hooks/useNow"
 import Countdown from "../../../components/countdown/CountDown"
 import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import useAvata from "src/hooks/useAvata"
 
 declare let window: CustomWindow
 
@@ -33,19 +34,27 @@ function SubjectListPage() {
   } = useList<ISubjectInstance>()
   const role = useAppSelector(selectRole)
   const { now } = useNow()
+  const { defaultAvt } = useAvata()
 
   useEffect(() => {
     const fetchSubjectList = async (walletAddress: string) => {
       let response
+      const lecturerAddress = searchParams.get("lecturerAddress")
+        ? searchParams.get("lecturerAddress")
+        : null
       switch (role.role) {
         case "LECTURER":
-          response = await await getSubjectListByLecturer(walletAddress)
+          response = await getSubjectListByLecturer(walletAddress)
           break
         case "STUDENT":
-          response = await getSubjectList(walletAddress)
+          response = lecturerAddress
+            ? await getSubjectListByLecturer(lecturerAddress)
+            : await getSubjectList(walletAddress)
           break
         default:
-          response = await getSubjectList()
+          response = lecturerAddress
+            ? await getSubjectListByLecturer(lecturerAddress)
+            : await getSubjectList()
       }
       const result: ISubjectInstance[] = response.data.result
       setTotalList(result)
@@ -116,7 +125,14 @@ function SubjectListPage() {
             >
               <Link to={"/subjects/" + subject.subjectAddress}>
                 <div className="img">
-                  <img src={img} alt="mission" />
+                  <img
+                    src={
+                      subject.subjectImg != defaultAvt
+                        ? subject.subjectImg
+                        : img
+                    }
+                    alt="mission"
+                  />
                 </div>
                 <div
                   style={{
@@ -166,11 +182,20 @@ function SubjectListPage() {
                   <h5>
                     <strong>{subject.subjectName}</strong>
                   </h5>
-                  <p>
+                  <p className="text-secondary">
                     <b>Số lượng:</b> {subject.joinedStudentAmount}/
                     {subject.maxStudentAmount}
                   </p>
-                  <p className="element_status">{subject.subjectStatus}</p>
+                  <p className="element_status">
+                    {subject.subjectStatus == "Closed" && (
+                      <span className="text-danger fw-bolder">Hoàn thành</span>
+                    )}
+                    {subject.subjectStatus == "Opening" && (
+                      <span className="text-success fw-bolder">
+                        Đang diễn ra
+                      </span>
+                    )}
+                  </p>
                 </div>
               </Link>
               {subject.isJoined

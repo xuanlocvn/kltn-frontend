@@ -84,7 +84,26 @@ function Header() {
     }
 
     web3 == null && loadAccountFromWallet()
+    console.log(role.role, web3)
   })
+
+  const loadWeb3 = async () => {
+    if (window.ethereum != undefined) {
+      dispatch(connect(new Web3(window.ethereum)))
+      await window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((result) => {
+          setAccount(result[0])
+        })
+    } else {
+      web3 != null && dispatch(disconnect())
+    }
+    console.log(await window.ethereum.isConnected())
+    // web3 &&
+    //   account &&
+    //   role.role &&
+    //   navigate(`/${role.role.toLocaleLowerCase()}/${account}`)
+  }
 
   return (
     <>
@@ -274,6 +293,13 @@ function Header() {
                   />
                 </div>
               </Link>
+            )}
+            {role.role == null && (
+              <div>
+                <button className="wallet" onClick={loadWeb3}>
+                  Kết nối ví Metamask
+                </button>
+              </div>
             )}
           </div>
         </div>

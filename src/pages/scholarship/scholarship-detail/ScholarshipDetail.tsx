@@ -14,6 +14,7 @@ import useNow from "src/hooks/useNow"
 import TimeLine from "src/components/timeline/TimeLine"
 import Countdown from "src/components/countdown/CountDown"
 import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import useAvata from "src/hooks/useAvata"
 
 declare let window: CustomWindow
 
@@ -32,6 +33,7 @@ function ScholarshipDetail() {
   const { selectList, handleChange } = useCheckbox()
   const [data, setData] = useState([{}])
   const { now } = useNow()
+  const { defaultAvt } = useAvata()
 
   useEffect(() => {
     const getDetail = async (sholarshipAddress: string) => {
@@ -91,7 +93,16 @@ function ScholarshipDetail() {
             className="detail-info"
             style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
           >
-            <div className="banner-scholarship"></div>
+            <div
+              className="banner-scholarship"
+              style={
+                detail.scholarshipImg != defaultAvt
+                  ? {
+                      backgroundImage: `url(${detail.scholarshipImg})`,
+                    }
+                  : { display: "block" }
+              }
+            ></div>
             <div className="d-flex">
               <div className="col col-6">
                 <TimeLine
@@ -145,13 +156,13 @@ function ScholarshipDetail() {
                   )}
                 </div>
               </div>
-              <div className="col col-6">
+              <div className="col col-6 object-info">
                 <div>
                   <h2>
                     {detail.scholarshipName} - {detail.scholarshipId}
                   </h2>
                 </div>
-                <div>
+                <div className="">
                   <p>
                     <b>Số lượng đã đăng ký: </b> {detail.joinedStudentAmount}/
                     {detail.joinedStudentAmount}

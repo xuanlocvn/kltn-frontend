@@ -18,7 +18,7 @@ function TimeLine(props) {
                     <div className="event-date badge bg-info">
                       {convertLocalTimeFullFormat(startTime)}
                     </div>
-                    <h6 className="pt-2">Bắt đầu</h6>
+                    <h6 className="pt-2">Thời điểm bắt đầu</h6>
                   </div>
                 </li>
               )}
@@ -38,7 +38,7 @@ function TimeLine(props) {
                     <div className="event-date badge bg-danger">
                       {convertLocalTimeFullFormat(endTime)}
                     </div>
-                    <h6 className="pt-2">Kết thúc</h6>
+                    <h6 className="pt-2">Thời điểm kết thúc</h6>
                   </div>
                 </li>
               )}

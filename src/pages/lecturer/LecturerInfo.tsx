@@ -5,17 +5,29 @@ import { ROLE } from "src/utils/enum"
 import { getLecturerByAddress } from "src/api/lecturerApi"
 import { ILecturerInfo } from "src/utils/window"
 import "./LecturerInfo.scss"
+import SpinnerApp from "../../components/shared/Spinner/Spinner"
+import { ILecturerAmountObject } from "../../utils/window"
+import { getLecturerAmountObject } from "../../api/lecturerApi"
 
 function LecturerInfo() {
   const { address } = useParams()
   const navigate = useNavigate()
   const [lecturerInfo, setLecturerInfo] = useState<ILecturerInfo>(null)
+  const [objectAmount, setObjectAmount] = useState<ILecturerAmountObject>({
+    amountSubject: 0,
+    amountMission: 0,
+    amountScholarchip: 0,
+    amountTuition: 0,
+  })
 
   useEffect(() => {
     const fetchApi = async (walletAddress: string) => {
-      const response: any = await getLecturerByAddress(walletAddress)
-      const result = response.data.result
+      let response: any = await getLecturerByAddress(walletAddress)
+      let result = response.data.result
       setLecturerInfo(result)
+      response = await getLecturerAmountObject(walletAddress)
+      result = response.data.result
+      setObjectAmount(result)
     }
     address && fetchApi(address)
   }, [address])
@@ -33,7 +45,9 @@ function LecturerInfo() {
 
   return (
     <div className="d-flex justify-content-evenly align-items-center lecturerInfo">
-      {lecturerInfo && (
+      {lecturerInfo == null ? (
+        <SpinnerApp />
+      ) : (
         <>
           <div>
             <img
@@ -76,31 +90,31 @@ function LecturerInfo() {
               }}
             >
               <Link
-                to={"/missions"}
+                to={`/missions?lecturerAddress=${address}`}
                 className="stats d-flex flex-column align-items-center p-3 bg-primary col col-6 text-light"
               >
-                <h1>5</h1>
+                <h1>{objectAmount.amountMission}</h1>
                 <p>Nhiệm vụ</p>
               </Link>
               <Link
-                to={"/subjects"}
+                to={`/subjects?lecturerAddress=${address}`}
                 className="stats d-flex flex-column align-items-center p-3 bg-secondary col col-6 text-light"
               >
-                <h1>5</h1>
+                <h1>{objectAmount.amountSubject}</h1>
                 <p>Môn học</p>
               </Link>
               <Link
-                to={"/tuitions"}
+                to={`/tuitions?lecturerAddress=${address}`}
                 className="stats d-flex flex-column align-items-center p-3 bg-success col col-6 text-light"
               >
-                <h1>5</h1>
+                <h1>{objectAmount.amountTuition}</h1>
                 <p>Học phí</p>
               </Link>
               <Link
-                to={"/scholarships"}
+                to={`/scholarships?lecturerAddress=${address}`}
                 className="stats d-flex flex-column align-items-center p-3 bg-warning col col-6 text-light"
               >
-                <h1>5</h1>
+                <h1>{objectAmount.amountScholarchip}</h1>
                 <p>Học bổng</p>
               </Link>
             </div>

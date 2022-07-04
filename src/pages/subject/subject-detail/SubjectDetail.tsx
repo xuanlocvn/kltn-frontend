@@ -14,6 +14,7 @@ import useNow from "../../../hooks/useNow"
 import Countdown from "../../../components/countdown/CountDown"
 import TimeLine from "../../../components/timeline/TimeLine"
 import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import useAvata from "src/hooks/useAvata"
 
 declare let window: CustomWindow
 
@@ -32,6 +33,7 @@ function SubjectDetail() {
   const { selectList, handleChange } = useCheckbox()
   const [data, setData] = useState([{}])
   const { now } = useNow()
+  const { defaultAvt } = useAvata()
 
   useEffect(() => {
     const getDetail = async (subjectId: string) => {
@@ -85,7 +87,16 @@ function SubjectDetail() {
             className="detail-info"
             style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
           >
-            <div className="banner-subject"></div>
+            <div
+              className="banner-subject"
+              style={
+                detail.subjectImg != defaultAvt
+                  ? {
+                      backgroundImage: `url(${detail.subjectImg})`,
+                    }
+                  : { display: "block" }
+              }
+            ></div>
             <div className="d-flex">
               <div className="col col-6">
                 <TimeLine
@@ -139,11 +150,11 @@ function SubjectDetail() {
                   )}
                 </div>
               </div>
-              <div className="col col-6">
+              <div className="col col-6 object-info">
                 <h2 className="mb-5">
                   {detail.subjectName} - {detail.subjectId}{" "}
                 </h2>
-                <div>
+                <div className="">
                   <p>
                     <b>Giảng viên: </b> {detail.lecturerName}
                   </p>

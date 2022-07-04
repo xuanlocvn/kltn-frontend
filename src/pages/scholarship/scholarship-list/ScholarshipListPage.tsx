@@ -16,6 +16,7 @@ import useNow from "../../../hooks/useNow"
 import Countdown from "../../../components/countdown/CountDown"
 import { scholarshipContractService } from "src/contracts/scholarship-contract.service"
 import { managerPoolContractService } from "src/contracts/manager-pool.service"
+import useAvata from "src/hooks/useAvata"
 
 declare let window: CustomWindow
 
@@ -33,19 +34,27 @@ function ScholarshipListPage() {
   } = useList<IScholarshipInstance>()
   const role = useAppSelector(selectRole)
   const { now } = useNow()
+  const { defaultAvt } = useAvata()
 
   useEffect(() => {
     const fetchScholarshiptList = async (walletAddress: string) => {
       let response
+      const lecturerAddress = searchParams.get("lecturerAddress")
+        ? searchParams.get("lecturerAddress")
+        : null
       switch (role.role) {
         case "LECTURER":
-          response = await await getScholarshipListByLecturer(walletAddress)
+          response = await getScholarshipListByLecturer(walletAddress)
           break
         case "STUDENT":
-          response = await getScholarshipList(walletAddress)
+          response = lecturerAddress
+            ? await getScholarshipListByLecturer(lecturerAddress)
+            : await getScholarshipList(walletAddress)
           break
         default:
-          response = await getScholarshipList()
+          response = lecturerAddress
+            ? await getScholarshipListByLecturer(lecturerAddress)
+            : await getScholarshipList()
       }
       const result: IScholarshipInstance[] = response.data.result
       setTotalList(result)
@@ -118,7 +127,14 @@ function ScholarshipListPage() {
               >
                 <Link to={"/scholarships/" + scholarship.scholarshipAddress}>
                   <div className="img">
-                    <img src={img} alt="mission" />
+                    <img
+                      src={
+                        scholarship.scholarshipImg != defaultAvt
+                          ? scholarship.scholarshipImg
+                          : img
+                      }
+                      alt="mission"
+                    />
                   </div>
                   <div
                     style={{
@@ -170,12 +186,21 @@ function ScholarshipListPage() {
                     <h5>
                       <strong>{scholarship.scholarshipName}</strong>
                     </h5>
-                    <p>
+                    <p className="text-secondary">
                       <b>Số lượng đã đăng ký:</b>{" "}
                       {scholarship.joinedStudentAmount}
                     </p>
                     <p className="element_status">
-                      {scholarship.scholarshipStatus}
+                      {scholarship.scholarshipStatus == "Closed" && (
+                        <span className="text-danger fw-bolder">
+                          Hoàn thành
+                        </span>
+                      )}
+                      {scholarship.scholarshipStatus == "Opening" && (
+                        <span className="text-success fw-bolder">
+                          Đang diễn ra
+                        </span>
+                      )}
                     </p>
                   </div>
                 </Link>

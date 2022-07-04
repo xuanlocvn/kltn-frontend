@@ -10,10 +10,6 @@ function useList<T>() {
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
-    setRenderList(totalList)
-  }, [totalList])
-
-  useEffect(() => {
     const filter = searchParams.get("filter")
       ? searchParams.get("filter")
       : "all"
@@ -61,7 +57,7 @@ function useList<T>() {
         setSearchParams({ filter, page: "1" })
       } else setPage(p)
     }
-  }, [page, filter])
+  }, [page, filter, totalList])
 
   return {
     searchParams,

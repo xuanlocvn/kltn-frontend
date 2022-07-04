@@ -18,6 +18,7 @@ import { managerPoolContractService } from "src/contracts/manager-pool.service"
 import { erc20ContractService } from "src/contracts/erc20.service"
 import { CONFIG } from "src/configs/config.enum"
 import { configService } from "src/configs/config.service"
+import useAvata from "src/hooks/useAvata"
 
 declare let window: CustomWindow
 
@@ -36,19 +37,27 @@ function TuitionListPage() {
   const role = useAppSelector(selectRole)
   const { now } = useNow()
   const [checkout, setCheckOut] = useState(false)
+  const { defaultAvt } = useAvata()
 
   useEffect(() => {
     const fetchTuitionList = async (walletAddress: string) => {
       let response
+      const lecturerAddress = searchParams.get("lecturerAddress")
+        ? searchParams.get("lecturerAddress")
+        : null
       switch (role.role) {
         case "LECTURER":
-          response = await await getTuitionListByLecturer(walletAddress)
+          response = await getTuitionListByLecturer(walletAddress)
           break
         case "STUDENT":
-          response = await getTuitionList(walletAddress)
+          response = lecturerAddress
+            ? await getTuitionListByLecturer(lecturerAddress)
+            : await getTuitionList(walletAddress)
           break
         default:
-          response = await getTuitionList()
+          response = lecturerAddress
+            ? await getTuitionListByLecturer(lecturerAddress)
+            : await getTuitionList()
           break
       }
       const result: ITuitionInstance[] = response.data.result
@@ -159,7 +168,10 @@ function TuitionListPage() {
               >
                 <Link to={"/tuitions/" + tuition.tuitionAddress}>
                   <div className="img">
-                    <img src={img} alt="mission" />
+                    <img
+                      src={tuition.imgURL != defaultAvt ? tuition.imgURL : img}
+                      alt="mission"
+                    />
                   </div>
                   <div
                     style={{
@@ -191,10 +203,21 @@ function TuitionListPage() {
                     <h5>
                       <strong>{tuition.tuitionName}</strong>
                     </h5>
-                    <p>
+                    <p className="text-secondary">
                       <b>Số lượng:</b> {tuition.joinedStudentAmount}
                     </p>
-                    <p className="element_status">{tuition.tuitionStatus}</p>
+                    <p className="element_status">
+                      {tuition.tuitionStatus == "Closed" && (
+                        <span className="text-danger fw-bolder">
+                          Hoàn thành
+                        </span>
+                      )}
+                      {tuition.tuitionStatus == "Opening" && (
+                        <span className="text-success fw-bolder">
+                          Đang diễn ra
+                        </span>
+                      )}
+                    </p>
                   </div>
                 </Link>
                 {tuition.isCompleted ? (

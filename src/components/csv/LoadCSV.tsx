@@ -69,7 +69,7 @@ export default function LoadCSV(props) {
     <div style={{ textAlign: "right" }}>
       <textarea
         rows={10}
-        cols={160}
+        cols={157}
         defaultValue={string.toString()}
         onChange={handleChange}
         style={{

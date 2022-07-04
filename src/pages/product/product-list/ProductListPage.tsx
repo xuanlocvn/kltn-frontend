@@ -17,17 +17,18 @@ import { useAppSelector } from "src/app/hooks"
 import { selectRole } from "src/components/shared/Header/HeaderSlice"
 import { activeNFTService } from "src/contracts/(remove)active-nft.service"
 import { makeShotAccount } from "src/utils"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGreaterThanEqual } from "@fortawesome/free-solid-svg-icons"
+import SpinnerApp from "../../../components/shared/Spinner/Spinner"
+import NotFound from "../../../components/shared/NotFound/NotFound"
+import coinImg from "src/assets/images/coin.png"
 
 declare let window: CustomWindow
 
 function ProductListPage() {
   const [totalPage, setTotalPage] = useState(null)
   const [page, setPage] = useState(1)
-  const [filter, setFilter] = useState("all")
+  const [filter, setFilter] = useState(null)
   const role = useAppSelector(selectRole)
-  const [renderList, setRenderList] = useState([])
+  const [renderList, setRenderList] = useState(null)
   const [searchParams, setSearchParams] = useSearchParams({})
   const [search, setSearch] = useState({
     searchName: "",
@@ -112,9 +113,10 @@ function ProductListPage() {
           productList = response.data.result || []
           break
         }
-        default: {
+        case "all": {
           const response = await getAllProductsOnSale()
           productList = response.data.result || []
+          break
         }
       }
 
@@ -261,323 +263,321 @@ function ProductListPage() {
 
   return (
     <>
-      <div className="products d-flex mt-5">
-        <div className="products-filter col col-3">
-          <h4>Bộ lọc</h4>
-          <form onSubmit={handleSubmit}>
-            <div className="filter d-flex flex-column">
-              <div className="filter-item">
-                <h6>Tìm kiếm</h6>
-                <input
-                  className="search-input"
-                  type="text"
-                  name="searchName"
-                  placeholder="Tìm kiếm ..."
-                  defaultValue={search.searchName}
-                />
-              </div>
-              <div className="filter-item">
-                <h6>Loại</h6>
-                <select
-                  name="productType"
-                  id="productType"
-                  value={type}
-                  onChange={(e) => setType(e.target.value)}
-                >
-                  <option value="Khoá học">Khoá học</option>
-                  <option value="Vật phẩm">Vật phẩm</option>
-                  <option value="Khác">Khác</option>
-                </select>
-              </div>
-              <div className="filter-item">
-                <h6>Giá</h6>
-                <div className="d-flex mt-2 justify-content-between">
+      {role.role == "LECTURER" ? (
+        <NotFound />
+      ) : (
+        <div className="products d-flex mt-5">
+          <div className="products-filter col col-3">
+            <h4>Bộ lọc</h4>
+            <form onSubmit={handleSubmit}>
+              <div className="filter d-flex flex-column">
+                <div className="filter-item">
+                  <h6>Tìm kiếm</h6>
                   <input
                     className="search-input"
-                    type="number"
-                    step="0.01"
-                    placeholder="Từ"
-                    name="from"
-                    id="from"
-                    defaultValue={0}
-                  />
-                  <div style={{ width: "10%" }}></div>
-                  <input
-                    className="search-input"
-                    type="number"
-                    step="0.01"
-                    placeholder="Đến"
-                    name="to"
-                    id="to"
-                    defaultValue={1000}
+                    type="text"
+                    name="searchName"
+                    placeholder="Tìm kiếm ..."
+                    defaultValue={search.searchName}
                   />
                 </div>
-              </div>
-              <button className="submitbtn" type="submit">
-                Cập nhật
-              </button>
-            </div>
-          </form>
-        </div>
-        <div className="products-list col col-9">
-          <div style={{ minHeight: "580px" }}>
-            <div className="list_filter">
-              <button
-                className={`filter_btn ${filter == "all" ? "active" : ""}`}
-                onClick={() => onFilter("all")}
-              >
-                Tất cả
-              </button>
-              <button
-                className={`filter_btn ${filter == "owned" ? "active" : ""}`}
-                onClick={() => onFilter("owned")}
-              >
-                Sở hữu
-              </button>
-              <button
-                className={`filter_btn ${
-                  filter == "requested" ? "active" : ""
-                }`}
-                onClick={() => onFilter("requested")}
-              >
-                {role.role == "ADMIN" ? "Các yêu cầu" : "Đã yêu cầu"}
-              </button>
-              <button
-                className={`filter_btn ${
-                  filter == "activated" ? "active" : ""
-                }`}
-                onClick={() => onFilter("activated")}
-              >
-                Đã kích hoạt
-              </button>
-            </div>
-
-            <div className="d-flex flex-wrap mt-4">
-              {renderList && renderList.length > 0 ? (
-                (filter == "all" || filter == "owned") &&
-                renderList.map((product: IProductInstance, index) => (
-                  <div key={index} className="product-item col col-3">
-                    <Link
-                      to={`/products/${product.productNftId}?filter=${filter}`}
-                    >
-                      <img
-                        src={product.productImg}
-                        alt={product.productName}
-                        width={190}
-                        height={127}
-                      />
-                      <div className="product-info">
-                        <h5
-                          style={{
-                            width: "fit-content",
-                            margin: "auto",
-                            height: "40%",
-                            fontWeight: "bold",
-                          }}
-                          className="text-center pt-3"
-                        >
-                          {product.productName}
-                        </h5>
-                        <div className="">
-                          {product.minPrice && (
-                            <h4 className="text-center text-danger fw-bold">
-                              <FontAwesomeIcon icon={faGreaterThanEqual} />{" "}
-                              {product.minPrice} Coin
-                            </h4>
-                          )}
-                          <div className="d-flex justify-content-around">
-                            <p>
-                              <b>Loại: </b>
-                              {product.productTypeName}
-                            </p>
-                            <p>
-                              <b>Số lượng: </b>
-                              {product.totalAmountOnSale || product.amount}
-                            </p>
-                          </div>
-                          <p
-                            style={{
-                              width: "max-content",
-                              margin: "auto",
-                              height: "40px",
-                            }}
-                          >
-                            <span
-                              className="text-danger"
-                              style={{ fontSize: "10px" }}
-                            >
-                              <i>Xem chi tiết</i>
-                            </span>{" "}
-                          </p>
-                        </div>
-                      </div>
-                    </Link>
+                <div className="filter-item">
+                  <h6>Loại</h6>
+                  <select
+                    name="productType"
+                    id="productType"
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <option value="Khoá học">Khoá học</option>
+                    <option value="Vật phẩm">Vật phẩm</option>
+                    <option value="Khác">Khác</option>
+                  </select>
+                </div>
+                <div className="filter-item">
+                  <h6>Giá</h6>
+                  <div className="d-flex mt-2 justify-content-between">
+                    <input
+                      className="search-input"
+                      type="number"
+                      step="0.01"
+                      placeholder="Từ"
+                      name="from"
+                      id="from"
+                      defaultValue={0}
+                    />
+                    <div style={{ width: "10%" }}></div>
+                    <input
+                      className="search-input"
+                      type="number"
+                      step="0.01"
+                      placeholder="Đến"
+                      name="to"
+                      id="to"
+                      defaultValue={1000}
+                    />
                   </div>
-                ))
-              ) : (
-                <h4
-                  className="text-center"
-                  style={{ width: "max-content", margin: "200px auto" }}
+                </div>
+                <button className="submitbtn" type="submit">
+                  Cập nhật
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="products-list col col-9">
+            <div style={{ minHeight: "580px" }}>
+              <div className="list_filter">
+                <button
+                  className={`filter_btn ${filter == "all" ? "active" : ""}`}
+                  onClick={() => onFilter("all")}
                 >
-                  <i>Danh sách trống</i>
-                </h4>
-              )}
-              <form
-                className="accept-all"
-                onSubmit={handleSubmitAccept}
-                style={{ width: "100%" }}
-              >
-                <div className="d-flex">
-                  {renderList &&
-                    filter == "requested" &&
-                    renderList.map(
-                      (product: IActivateRequestInstance, index) => (
-                        <div key={index} className="product-item col col-3">
-                          <div className="checkout">
-                            <input
-                              type="checkbox"
-                              name="selected"
-                              id="selected"
-                              value={product.requestId}
-                              onChange={handleChange}
+                  Tất cả
+                </button>
+                <button
+                  className={`filter_btn ${filter == "owned" ? "active" : ""}`}
+                  onClick={() => onFilter("owned")}
+                >
+                  {role.role == "ADMIN" ? "Đăng bán" : "Sở hữu"}
+                </button>
+                <button
+                  className={`filter_btn ${
+                    filter == "requested" ? "active" : ""
+                  }`}
+                  onClick={() => onFilter("requested")}
+                >
+                  {role.role == "ADMIN" ? "Các yêu cầu" : "Đã yêu cầu"}
+                </button>
+                <button
+                  className={`filter_btn ${
+                    filter == "activated" ? "active" : ""
+                  }`}
+                  onClick={() => onFilter("activated")}
+                >
+                  Đã kích hoạt
+                </button>
+              </div>
+
+              <div className="d-flex flex-wrap mt-4">
+                {renderList == null && <SpinnerApp />}
+                {renderList &&
+                  (renderList.length > 0 ? (
+                    (filter == "all" || filter == "owned") &&
+                    renderList.map((product: IProductInstance, index) => (
+                      <div key={index} className="product-item col col-3">
+                        <Link
+                          to={`/products/${product.productNftId}?filter=${filter}`}
+                        >
+                          <div className="productlist-img">
+                            <img
+                              src={product.productImg}
+                              alt={product.productName}
                             />
                           </div>
-                          <img
-                            src={product.productImg}
-                            alt={product.productName}
-                            width={190}
-                            height={127}
-                          />
-                          <div className="product-info d-flex flex-column align-items-center justify-content-center">
-                            <h5
-                              style={{
-                                width: "fit-content",
-                                height: "40%",
-                                fontWeight: "bold",
-                              }}
-                              className="text-center pt-3"
-                            >
-                              {product.productName}
-                            </h5>
-                            <div className="mt-2">
-                              <div className="d-flex justify-content-around">
+                          <div className="product-info">
+                            <div className="mt-2 text-center">
+                              <h6
+                                className="col pt-2"
+                                style={{ height: "40px" }}
+                              >
+                                {product.productName}
+                              </h6>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                              <div className="d-flex flex-column">
+                                <p>{product.productTypeName}</p>
+                                <p>
+                                  <b>Số lượng: </b>
+                                  {product.totalAmountOnSale || product.amount}
+                                </p>
+                              </div>
+
+                              <div className="col col-5 d-flex justify-content-center align-items-center product-price">
+                                {product.minPrice ? (
+                                  <>
+                                    <h6 className="text-center text-primary fw-bold">
+                                      {product.minPrice}
+                                    </h6>
+                                    <span style={{ width: "3px" }}></span>
+                                    <img src={coinImg} className="coin" />
+                                  </>
+                                ) : (
+                                  <h6 className="text-center text-primary fw-bold">
+                                    {"Chưa bán"}
+                                  </h6>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      </div>
+                    ))
+                  ) : (
+                    <h4
+                      className="text-center"
+                      style={{ width: "max-content", margin: "200px auto" }}
+                    >
+                      <i>Danh sách trống</i>
+                    </h4>
+                  ))}
+                <form
+                  className="accept-all"
+                  onSubmit={handleSubmitAccept}
+                  style={{ width: "100%" }}
+                >
+                  <div className="d-flex">
+                    {renderList &&
+                      filter == "requested" &&
+                      renderList.map(
+                        (product: IActivateRequestInstance, index) => (
+                          <div
+                            key={index}
+                            className="product-item col col-3 requested"
+                          >
+                            <div className="checkout">
+                              <input
+                                type="checkbox"
+                                name="selected"
+                                id="selected"
+                                value={product.requestId}
+                                onChange={handleChange}
+                              />
+                            </div>
+                            <div className="productlist-img">
+                              <img
+                                src={product.productImg}
+                                alt={product.productName}
+                              />
+                            </div>
+                            <div className="product-info">
+                              <div className="mt-2 text-center">
+                                <h6
+                                  className="col pt-2"
+                                  style={{ height: "40px" }}
+                                >
+                                  {product.productName}
+                                </h6>
+                              </div>
+                              <div className="mt-2">
                                 {role.role == "ADMIN" && (
                                   <Link
                                     to={`/student/${product.studentAddress}`}
                                   >
-                                    <p>
-                                      <b>Sinh viên: </b>
+                                    <p className="text-center mb-2">
+                                      <b>Yêu cầu từ </b>
                                       {makeShotAccount(product.studentAddress)}
                                     </p>
                                   </Link>
-                                )}{" "}
-                                {/* {role.role == "ADMIN" || (
-                                  <p>
-                                    <b>Loại: </b>
-                                    {product.productTypeName}
-                                  </p>
-                                )} */}
-                                <p>
-                                  <b>Số lượng: </b>
-                                  {product.amountToActivate}
-                                </p>
-                              </div>
-                              <p
-                                style={{
-                                  width: "max-content",
-                                  margin: "auto",
-                                  height: "40px",
-                                }}
-                              >
-                                <button
-                                  className="btn btn-sell"
-                                  type="button"
-                                  onClick={() =>
-                                    role.role == "STUDENT"
-                                      ? handleCancelRequestActivateNFT([
-                                          product.requestId,
-                                        ])
-                                      : handleActivateNFTByAdmin([
-                                          product.requestId,
-                                        ])
-                                  }
+                                )}
+                                {/* <p
+                                  style={{
+                                    width: "max-content",
+                                    margin: "auto",
+                                    height: "40px",
+                                  }}
                                 >
-                                  {role.role == "ADMIN"
-                                    ? "Chấp nhận"
-                                    : "Hủy kích hoạt"}
-                                </button>
-                              </p>
+                                  <button
+                                    className="btn btn-sell"
+                                    type="button"
+                                    onClick={() =>
+                                      role.role == "STUDENT"
+                                        ? handleCancelRequestActivateNFT([
+                                            product.requestId,
+                                          ])
+                                        : handleActivateNFTByAdmin([
+                                            product.requestId,
+                                          ])
+                                    }
+                                  >
+                                    {role.role == "ADMIN"
+                                      ? "Chấp nhận"
+                                      : "Hủy kích hoạt"}
+                                  </button>
+                                </p> */}
+                              </div>
+                              <div className="d-flex justify-content-between">
+                                <div className="d-flex flex-column">
+                                  <p>{product.productTypeName}</p>
+                                  <p>
+                                    <b>Số lượng: </b>
+                                    {product.amountToActivate}
+                                  </p>
+                                </div>
+
+                                <div className="col col-5 d-flex justify-content-center align-items-center product-price">
+                                  <h6 className="text-center text-primary fw-bold">
+                                    #{product.requestId}
+                                  </h6>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ),
-                    )}
-                </div>
-                {filter == "requested" && selectList && selectList.length > 0 && (
-                  <button type="submit" className="btn btn-sell btn-all">
-                    Send
-                  </button>
-                )}
-              </form>
-
-              {renderList &&
-                filter == "activated" &&
-                renderList.map((product: IActivateRequestInstance, index) => (
-                  <div
-                    key={index}
-                    className="product-item col col-3 item-disable"
-                  >
-                    <div className="item-disable"></div>
-                    <img
-                      src={product.productImg}
-                      alt={product.productName}
-                      width={190}
-                      height={127}
-                    />
-                    <div className="product-info d-flex flex-column align-items-center justify-content-center">
-                      <h5
-                        style={{
-                          width: "fit-content",
-                          height: "40%",
-                          fontWeight: "bold",
-                        }}
-                        className="text-center pt-3"
+                        ),
+                      )}
+                  </div>
+                  {filter == "requested" &&
+                    selectList &&
+                    selectList.length > 0 && (
+                      <button
+                        type="submit"
+                        className="btn btn-sell btn-all text-light"
                       >
-                        {product.productName}
-                      </h5>
-                      <div className="mt-2">
-                        <div className="d-flex justify-content-around">
-                          <p>
-                            <b>Loại: </b>
-                            {product.productTypeName}
-                          </p>
-                          <p>
-                            <b>Số lượng: </b>
-                            {product.amountToActivate}
-                          </p>
+                        {role.role == "ADMIN"
+                          ? "Chấp nhận tất cả"
+                          : "Hủy tất cả"}
+                      </button>
+                    )}
+                </form>
+
+                {renderList &&
+                  filter == "activated" &&
+                  renderList.map((product: IActivateRequestInstance, index) => (
+                    <div
+                      key={index}
+                      className="product-item col col-3 item-disabled"
+                    >
+                      <div className="item-disable"></div>
+                      <div className="productlist-img">
+                        <img
+                          src={product.productImg}
+                          alt={product.productName}
+                          width={190}
+                          height={130}
+                        />
+                      </div>
+                      <div className="product-info">
+                        <div className="mt-2 text-center">
+                          <h6 className="col pt-2" style={{ height: "40px" }}>
+                            {product.productName}
+                          </h6>
                         </div>
-                        <p
-                          style={{
-                            width: "max-content",
-                            margin: "auto",
-                            height: "40px",
-                          }}
-                        >
-                          <span></span>
-                        </p>
+                        <div className="d-flex justify-content-between">
+                          <div className="d-flex flex-column">
+                            <p>{product.productTypeName}</p>
+                            <p>
+                              <b>Số lượng: </b>
+                              {product.amountToActivate}
+                            </p>
+                          </div>
+
+                          <div className="col col-5 d-flex justify-content-center align-items-center product-price">
+                            <h6 className="text-center text-primary fw-bold">
+                              Đã kích hoạt
+                            </h6>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+              </div>
             </div>
+            <Pagination
+              currentPage={page}
+              totalPage={totalPage}
+              onPaginate={onPaginate}
+            />
           </div>
-          <Pagination
-            currentPage={page}
-            totalPage={totalPage}
-            onPaginate={onPaginate}
-          />
         </div>
-      </div>
+      )}
     </>
   )
 }

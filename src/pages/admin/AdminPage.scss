@@ -1,8 +1,4 @@
 /** @format */
-table th,
-td {
-	padding: 5px;
-}
 
 .header {
 	height: 60px;
@@ -192,15 +188,15 @@ select:hover {
 	color: #33aaff;
 }
 
-.studentAccount .body_form .historyTable {
-	border-radius: 15px;
-	border: solid 0.5px rgba(0, 0, 0, 0.3);
-	padding: 20px;
-}
+// .studentAccount .body_form .historyTable {
+// 	border-radius: 15px;
+// 	border: solid 0.5px rgba(0, 0, 0, 0.3);
+// 	padding: 20px 0;
+// }
 
-.body_form table {
-	width: 100%;
-}
+// .body_form table {
+// 	width: 100%;
+// }
 
 .studentAccount .body_form table tr th {
 	border-bottom: solid 2px;
@@ -212,7 +208,7 @@ select:hover {
 }
 
 .studentAccount .body_form table tr:last-child {
-	border-bottom: solid 1px rgba(0, 0, 0, 0);
+	border-bottom: solid 1px rgba(0, 0, 0, 0) !important;
 }
 
 .confirmedInfo .body_form div {

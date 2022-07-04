@@ -6,6 +6,7 @@ import Forbidden from "src/components/shared/403/Forbidden"
 import { ROLE } from "src/utils/enum"
 import { useNavigate, useParams } from "react-router-dom"
 import "./AdminPage.scss"
+import SpinnerApp from "../../components/shared/Spinner/Spinner"
 
 AdminPage.propTypes = {}
 
@@ -20,7 +21,9 @@ function AdminPage() {
 
   return (
     <div className="student">
-      {role.role == ROLE.ADMIN ? (
+      {role.role == null ? (
+        <SpinnerApp />
+      ) : role.role == ROLE.ADMIN ? (
         <AdminBody walletAddress={adminAddress} />
       ) : (
         <Forbidden />

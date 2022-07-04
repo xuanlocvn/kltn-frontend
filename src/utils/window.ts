@@ -1,4 +1,5 @@
 export interface CustomWindow extends Window {
+  reload()
   ethereum: any
   web3: any
   paypal: any
@@ -139,9 +140,11 @@ export interface IMissionDetail {
   tokenAmount: number
   joinedStudentList: IStudentJoined[]
   isJoined: boolean
+  missionImg
 }
 
 export interface IScholarshipDetail {
+  scholarshipImg
   scholarshipAddress
   scholarshipId
   scholarshipHashIPFS
@@ -289,4 +292,11 @@ export interface ILecturerInfo {
   sex: string
   dateOfBirth: string
   lecturerHashIPFS: string
+}
+
+export interface ILecturerAmountObject {
+  amountSubject
+  amountMission
+  amountScholarchip
+  amountTuition
 }
