@@ -644,6 +644,7 @@ function ProductDetail() {
               >
                 <h2>Mô tả</h2>
                 <div
+                  className="description"
                   style={
                     open == false
                       ? { height: "400px", overflow: "hidden" }

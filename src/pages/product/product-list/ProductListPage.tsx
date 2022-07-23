@@ -169,11 +169,20 @@ function ProductListPage() {
       console.log(list)
       list =
         search.productType != ""
-          ? list.filter((x: IProductInstance) =>
-              x.productTypeName
+          ? list.filter((x: IProductInstance) => {
+              console.log(
+                x.productTypeName.toLocaleLowerCase(),
+                search.productType.toLocaleLowerCase(),
+              )
+              console.log(
+                x.productTypeName
+                  .toLocaleLowerCase()
+                  .includes(search.productType.toLocaleLowerCase()),
+              )
+              return x.productTypeName
                 .toLocaleLowerCase()
-                .includes(search.productType.toLocaleLowerCase()),
-            )
+                .includes(search.productType.toLocaleLowerCase())
+            })
           : list
       console.log(list)
       list =
@@ -289,7 +298,7 @@ function ProductListPage() {
                     value={type}
                     onChange={(e) => setType(e.target.value)}
                   >
-                    <option value="Khoá học">Khoá học</option>
+                    <option value="Khóa học">Khóa học</option>
                     <option value="Vật phẩm">Vật phẩm</option>
                     <option value="Khác">Khác</option>
                   </select>

@@ -274,6 +274,7 @@ function TuitionDetail() {
           >
             <h2>Mô tả</h2>
             <div
+              className="description"
               style={
                 open == false
                   ? { height: "200px", overflow: "hidden" }

@@ -33,7 +33,6 @@ export interface IMissionInstance {
   missionAddress: string
   missionName: string
   lecturerAddress: string
-  missionShortenName: string
   missionDescription: string
   missionStatus: string
   departmentName: string

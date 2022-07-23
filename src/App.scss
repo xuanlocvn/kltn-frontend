@@ -158,3 +158,12 @@ input[type="radio"] {
 h6{
   font-weight: bold;
 }
+
+.description{
+  width: 100%!important;
+  img{
+    justify-content: center!important;
+    width: 50%!important;
+    margin: 0 25%;
+  }
+}

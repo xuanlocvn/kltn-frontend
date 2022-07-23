@@ -109,7 +109,7 @@ function LecturerList() {
                         {makeShotTransactionHash(lecturer.lecturerAddress)}
                       </td>
                       <td className="col col-3 text-center">
-                        {lecturer.departmentName}
+                        {lecturer.departmentName || "Cán bộ"}
                       </td>
                     </tr>
                   ))
